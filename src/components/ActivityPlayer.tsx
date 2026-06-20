@@ -58,6 +58,9 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
 
   const handleComplete = useCallback(
     (score: number) => {
+      // Capture whether this activity was ALREADY completed before this attempt
+      // (i.e. we're replaying it) — read before markComplete mutates the store.
+      const wasAlreadyComplete = getActivityState(activity.id).completed;
       markComplete(activity.id, score);
       if (!kidMode) return;
       const success = score >= 100;
@@ -67,17 +70,20 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         setPipSays("Keep trying!");
         return;
       }
-      // Big celebration (confetti + fanfare) is reserved for finishing a whole
-      // lesson; a single activity gets a calm reward (a star + Pip's smile).
+      // Big celebration (confetti + fanfare) only when this completion NEWLY
+      // finishes the whole lesson — not on every replay of an already-done
+      // lesson, and not on a single activity. Otherwise just a calm reward.
       const lesson = mod.lessons.find((l) =>
         l.activities.some((a) => a.id === activity.id),
       );
-      const lessonComplete =
+      const otherActivitiesComplete =
         !!lesson &&
         lesson.activities
           .filter((a) => a.id !== activity.id)
           .every((a) => getActivityState(a.id).completed);
-      if (lessonComplete) {
+      const newlyCompletedLesson =
+        otherActivitiesComplete && !wasAlreadyComplete;
+      if (newlyCompletedLesson) {
         setConfettiKey((k) => k + 1);
         playSound("fanfare");
         setPipMood("cheer");
