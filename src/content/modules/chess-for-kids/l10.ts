@@ -1,52 +1,90 @@
-// Chess for Kids — Lesson 10: Play! (capstone games).
+// Play vs Pip — a gentle ladder of winnable "games" so kids actually PLAY.
+// Levels get a little harder (more help → less help), but every rung is winnable
+// and the robot plays at its friendliest (engineSkill 0). Puzzle rungs are
+// guaranteed solvable; drill rungs are real play. All engine-verified.
 
 import type { Lesson } from "../../types";
 
 export const l10: Lesson = {
   id: "kids-l10-play",
-  title: "10. Play!",
+  title: "Play vs Pip",
   summary:
-    "You've learned so much — now play! Race a pawn to the end and win a game against the friendly robot.",
+    "You've learned so much — now play! Climb Pip's ladder of games. Each level is winnable. Can you beat them all?",
   activities: [
     {
-      id: "pawn-race",
+      id: "pip-level-1-mate",
+      type: "puzzle",
+      title: "Level 1: Beat Pip in One!",
+      blurb: "One move to win.",
+      fen: "6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      orientation: "white",
+      goal: { type: "mate", inMoves: 1 },
+      prompt: "Pip's king is trapped! Find checkmate in ONE move to win Level 1.",
+      hints: ["The king can't escape its own pawns.", "Slide the rook to the back row."],
+      successText: "Level 1 complete! That's a checkmate. On to the next level! 🎉",
+      solution: ["d1d8"],
+    },
+    {
+      id: "pip-level-2-race",
       type: "drill",
-      title: "Pawn Race!",
-      blurb: "Get your pawn to the end first.",
+      title: "Level 2: Pawn Race!",
+      blurb: "Promote to win.",
       fen: "8/P7/8/8/8/8/8/3k1K2 w - - 0 1",
       orientation: "white",
       objective: "promote",
-      engineSkill: 1,
-      instructions:
-        "Race your pawn up the board! Tap the pawn and march it to the very top to make a queen and win.",
-      successText: "You promoted — you win the race! A pawn that reaches the end becomes a mighty queen.",
+      engineSkill: 0,
+      instructions: "Race your pawn to the top of the board to make a queen and win! Tap the pawn and march it home.",
+      successText: "Level 2 complete! Your pawn became a queen. 👑",
     },
     {
-      id: "play-the-robot",
+      id: "pip-level-3-power",
       type: "drill",
-      title: "Beat the Friendly Robot",
-      blurb: "Play a game and checkmate!",
+      title: "Level 3: Big Power Mate",
+      blurb: "Queen + rook vs Pip.",
+      fen: "4k3/8/8/8/8/8/3Q4/R3K3 w - - 0 1",
+      orientation: "white",
+      objective: "checkmate",
+      engineSkill: 0,
+      instructions: "You have a queen AND a rook — loads of power! Push Pip's king to the edge and checkmate. Take your time.",
+      successText: "Level 3 complete! You played it out and won with your big army. 💪",
+    },
+    {
+      id: "pip-level-4-queen",
+      type: "drill",
+      title: "Level 4: Queen Mate",
+      blurb: "King + queen vs Pip.",
       fen: "8/8/8/8/3k4/8/4Q3/4K3 w - - 0 1",
       orientation: "white",
       objective: "checkmate",
-      engineSkill: 1,
-      instructions:
-        "You have a king and queen against the robot's lonely king. Play it out and checkmate — remember, push to the edge and bring your king to help!",
-      successText: "Checkmate — you beat the robot! You're a real chess player now. 🎉",
+      engineSkill: 0,
+      instructions: "Just a queen and your king now. Use the queen to box Pip's king to the edge, bring your king up to help, and checkmate — don't stalemate!",
+      successText: "Level 4 complete! King and queen is the win you'll use the most. ⭐",
+    },
+    {
+      id: "pip-level-5-rook",
+      type: "drill",
+      title: "Level 5: Rook Mate",
+      blurb: "The toughest level!",
+      fen: "4k3/8/8/8/8/8/8/R3K3 w - - 0 1",
+      orientation: "white",
+      objective: "checkmate",
+      engineSkill: 0,
+      instructions: "The final level! Just a king and a rook. Walk your king up to help the rook trap Pip's king against the edge. You can do it!",
+      successText: "LEVEL 5 COMPLETE! King and rook is a real champion's checkmate. You climbed the whole ladder! 🏆",
     },
     {
       id: "you-did-it",
       type: "quiz",
-      title: "You're a chess player!",
+      title: "You're a Chess Player!",
       blurb: "One last question.",
-      question: "What's the BEST thing to do now that you've learned to play chess?",
+      question: "You beat every level! What's the best way to get even better now?",
       options: [
         "Never play again.",
         "Play lots of games with friends and family — and have fun!",
-        "Hide all the chess sets.",
+        "Hide the chess set.",
       ],
       correctIndex: 1,
-      explanation: "You did it! The best way to get even better is to play and have fun. Well done — Pip is so proud of you! 🌟",
+      explanation: "You did it! The best way to improve is to play and have fun. Pip is so proud of you! 🌟",
     },
   ],
 };

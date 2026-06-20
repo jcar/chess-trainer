@@ -13,6 +13,10 @@ import { l7 } from "./l7";
 import { l8 } from "./l8";
 import { l9 } from "./l9";
 import { l10 } from "./l10";
+import { arcade } from "./arcade";
+import { goodFirstMoves } from "./good-first-moves";
+import { playingSmart } from "./playing-smart";
+import { trappingTheKing } from "./trapping-the-king";
 
 export const chessForKids: Module = {
   id: "chess-for-kids",
@@ -21,5 +25,23 @@ export const chessForKids: Module = {
     "Brand new to chess? Start here! Tap, play, and learn — how the pieces move, how to checkmate, clever tricks, and your first games. Earn stars along the way!",
   level: "Beginner",
   kidMode: true,
-  lessons: [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10],
+  // Order: board & movement → arcade fun → capturing → playing smart →
+  // check/mate → special moves → draws → openings → trapping & first mates →
+  // tricks → play vs Pip.
+  lessons: [
+    l1,
+    l2,
+    l3,
+    arcade,
+    l4,
+    playingSmart,
+    l5,
+    l6,
+    l7,
+    goodFirstMoves,
+    trappingTheKing,
+    l8,
+    l9,
+    l10,
+  ],
 };

@@ -189,6 +189,21 @@ export interface TargetActivity extends ActivityBase {
   targets: string[];
   intro: string;
   successText: string;
+  /**
+   * Optional emoji shown ON each target square instead of the plain gold star
+   * (e.g. "🍎" for a "gobble" game). Cosmetic only.
+   */
+  prey?: string;
+  /**
+   * Optional squares shown in red that the piece must NOT land on; landing on
+   * one ends the attempt and resets (a gentle "don't get caught" mechanic).
+   */
+  avoidSquares?: string[];
+  /**
+   * Optional move budget — "do it in N hops!". Shown as pips; running out
+   * resets the attempt. Omit for unlimited moves.
+   */
+  moveBudget?: number;
 }
 
 /** One labeled choice in a sort game. */

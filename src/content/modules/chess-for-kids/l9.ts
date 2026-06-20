@@ -76,5 +76,43 @@ export const l9: Lesson = {
       correctIndex: 1,
       explanation: "My number-one tip: before you move, look at all the CHECKS and CAPTURES. That's how you find forks and skewers!",
     },
+    {
+      id: "tactics-practice",
+      type: "practiceSet",
+      title: "Trick Practice",
+      blurb: "Win pieces! Get 3 to master.",
+      intro: "Spot the trick in each one and win some material. Get 3 right to master it!",
+      requiredCorrect: 3,
+      items: [
+        {
+          fen: "4k3/8/8/8/r7/8/8/R3K3 w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "The enemy rook is free — slide up and grab it!",
+          solution: ["a1a4"],
+        },
+        {
+          fen: "r4rk1/ppp2ppp/8/3q4/8/2b2N2/PPP2PPP/R2Q1RK1 w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "The black queen is undefended — take it!",
+          solution: ["d1d5"],
+        },
+        {
+          fen: "r3k2r/ppp2ppp/4N3/3q4/8/8/PPP2PPP/R3K2R w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "Jump the knight in with check AND attack the queen — a fork!",
+          solution: ["e6c7", "e8f8", "c7d5"],
+        },
+        {
+          fen: "q7/8/8/k7/8/8/8/4R1K1 w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "Check the king so it steps aside, then grab the queen behind it — a skewer!",
+          solution: ["e1a1", "a5b6", "a1a8"],
+        },
+      ],
+    },
   ],
 };
