@@ -29,6 +29,7 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
   sort: "Sort",
   coordinate: "Squares",
   practiceSet: "Practice",
+  openingDrill: "Drill",
 };
 
 export function ModuleView({ moduleId }: { moduleId: string }) {

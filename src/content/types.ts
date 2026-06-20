@@ -263,6 +263,32 @@ export interface PracticeSetActivity extends ActivityBase {
   items: PracticeItem[];
 }
 
+/**
+ * Opening drill ("guess the move"): the learner reproduces one side of a known
+ * opening line. The board is interactive; on the learner's turn they must play
+ * the book move (validated by SAN), wrong moves are rejected with a gentle retry
+ * and a "Show me" arrow hint, and the opponent's replies are auto-played. This is
+ * the seed of the future standalone openings trainer — it reads the same line
+ * data (see `src/content/openings/`).
+ */
+export interface OpeningDrillActivity extends ActivityBase {
+  type: "openingDrill";
+  /** Starting position (defaults to the standard start if omitted). */
+  startFen?: string;
+  /** Board view — normally the learner's color. */
+  orientation: Orientation;
+  /** The full line in SAN. The learner plays `learnerColor`'s moves. */
+  line: string[];
+  /** Which side the learner is training. */
+  learnerColor: Orientation;
+  /** Intro shown before the first move. */
+  intro: string;
+  /** Message shown when the whole line is reproduced. */
+  successText: string;
+  /** Optional per-move notes, parallel to `line` (shown as each move is played). */
+  notes?: (string | undefined)[];
+}
+
 export type Activity =
   | PuzzleActivity
   | DrillActivity
@@ -273,7 +299,8 @@ export type Activity =
   | TargetActivity
   | SortActivity
   | CoordinateActivity
-  | PracticeSetActivity;
+  | PracticeSetActivity
+  | OpeningDrillActivity;
 
 export type ActivityType = Activity["type"];
 

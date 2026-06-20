@@ -109,6 +109,15 @@ export const PracticeIcon = ({ className }: IconProps) => (
   </Line>
 );
 
+export const OpeningDrillIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    {/* a flag on a pole — "reach the target line" */}
+    <path d="M7 4v16" />
+    <path d="M7 4.5h10l-2.4 3 2.4 3H7" />
+    <circle cx="7" cy="20.2" r="1.1" fill="currentColor" stroke="none" />
+  </Line>
+);
+
 /* ---- Status / reward icons ---- */
 
 export const StarIcon = ({
@@ -211,4 +220,5 @@ export const ACTIVITY_ICON: Record<
   sort: SortIcon,
   coordinate: CoordinateIcon,
   practiceSet: PracticeIcon,
+  openingDrill: OpeningDrillIcon,
 };

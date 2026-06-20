@@ -1,0 +1,94 @@
+import type { Lesson } from "../../types";
+import { sicilianDefence } from "../../openings/sicilian-defence";
+import { buildReplay, buildOpeningDrill } from "../../openings";
+
+// Sicilian Defence lesson. Move sequences come from the shared opening data
+// (src/content/openings/sicilian-defence.ts); the prose here is original.
+export const sicilianDefenceLesson: Lesson = {
+  id: "sicilian-defence",
+  title: "Sicilian Defence",
+  summary:
+    "1.e4 c5 — Black's most ambitious reply, fighting for an unbalanced game.",
+  activities: [
+    buildReplay(sicilianDefence, {
+      id: "sicilian-defence-main",
+      title: "The Najdorf, move by move",
+      blurb: "Step through the Open Sicilian main line.",
+      intro:
+        "The Sicilian begins 1.e4 c5. Let's walk through the famous Najdorf, " +
+        "where Black trades on d4 and then builds a flexible, fighting set-up.",
+    }),
+    {
+      type: "quiz",
+      id: "sicilian-defence-idea",
+      title: "Why the Sicilian?",
+      blurb: "What Black is really after.",
+      question: "What is the main idea behind meeting 1.e4 with 1...c5?",
+      options: [
+        "It plays for an unbalanced game and the win, not just equality.",
+        "It forces White to trade queens early and simplify the game.",
+        "It guarantees Black an extra pawn straight out of the opening.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Unlike 1...e5, which tends to aim for a balanced, equal game, the " +
+        "Sicilian creates an asymmetrical structure. Both sides attack on " +
+        "opposite wings, and Black plays for the full point.",
+    },
+    {
+      type: "sort",
+      id: "sicilian-defence-aim",
+      title: "The defining pawn",
+      blurb: "Spot the Sicilian pawn.",
+      prompt: "Which black pawn defines the Sicilian and fights for the d4-square?",
+      fen: sicilianDefence.tabiyaFen,
+      orientation: "white",
+      options: [{ label: "c5" }, { label: "e5" }, { label: "g6" }],
+      correctIndex: 0,
+      explanation:
+        "The pawn on c5 contests d4 from the side. When White plays d4, this " +
+        "pawn captures it, giving Black the half-open c-file for counterplay.",
+    },
+    buildOpeningDrill(sicilianDefence, {
+      id: "sicilian-defence-recall",
+      title: "Play it: the Najdorf as Black",
+      blurb: "Reproduce the main line move by move.",
+      learnerColor: "black",
+      intro:
+        "Your turn to play the Sicilian as Black. Make the moves of the Najdorf " +
+        "main line — drag or tap a piece, and use Show me if you get stuck.",
+      successText:
+        "Well played — that's the Najdorf: a flexible, combative set-up with " +
+        "chances to play for the win.",
+    }),
+    buildReplay(sicilianDefence, {
+      id: "sicilian-defence-var",
+      title: "The Alapin (2.c3)",
+      blurb: "A solid anti-Sicilian set-up.",
+      lineIdx: 1,
+      intro:
+        "Many players avoid the Open Sicilian with 2.c3, preparing d4 with pawn " +
+        "support. Step through how Black meets the Alapin.",
+    }),
+    {
+      type: "puzzle",
+      id: "sicilian-siberian",
+      title: "The Siberian Trap",
+      blurb: "An aggressive anti-Sicilian backfires.",
+      fen: "r1b1kb1r/ppqp1ppp/2n1p3/8/2B1P1n1/2N2N1P/PP2QPP1/R1B2RK1 b kq - 0 9",
+      orientation: "black",
+      goal: { type: "win-material", minGain: 2 },
+      prompt:
+        "In a Smith-Morra Gambit, White just played h3?? — but Black has a " +
+        "knight leap that wins big. Black to play.",
+      hints: [
+        "Look for a knight jump into the heart of White's position.",
+        "After the knight lands, it both hits the queen and threatens mate on h2.",
+      ],
+      successText:
+        "Nd4! forks the queen and threatens ...Qh2#. White cannot meet both — " +
+        "Black wins decisive material. This is the famous Siberian Trap.",
+      solution: ["c6d4", "h3g4", "d4e2", "c4e2"],
+    },
+  ],
+};

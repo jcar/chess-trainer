@@ -20,6 +20,7 @@ import { TargetPlayer } from "@/components/activities/TargetPlayer";
 import { SortPlayer } from "@/components/activities/SortPlayer";
 import { CoordinatePlayer } from "@/components/activities/CoordinatePlayer";
 import { PracticeSetPlayer } from "@/components/activities/PracticeSetPlayer";
+import { OpeningDrillPlayer } from "@/components/activities/OpeningDrillPlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
@@ -45,6 +46,7 @@ const TYPE_LABEL: Record<Activity["type"], string> = {
   sort: "Sorting game",
   coordinate: "Square hunt",
   practiceSet: "Practice",
+  openingDrill: "Opening drill",
 };
 
 interface Props {
@@ -193,6 +195,14 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       )}
       {activity.type === "practiceSet" && (
         <PracticeSetPlayer activity={activity} onComplete={handleComplete} />
+      )}
+      {activity.type === "openingDrill" && (
+        <OpeningDrillPlayer
+          activity={activity}
+          onComplete={handleComplete}
+          onAttempt={handleAttempt}
+          kidMode={kidMode}
+        />
       )}
 
       <footer className="flex items-center justify-between gap-3 border-t border-line pt-5">

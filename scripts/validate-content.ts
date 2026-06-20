@@ -288,6 +288,29 @@ async function checkActivity(moduleId: string, a: Activity) {
       }
       break;
     }
+
+    case "openingDrill": {
+      // Replay the line for full legality; confirm the learner actually has
+      // moves to play (parity is correct for the trained color).
+      const game = new Chess(a.startFen);
+      assertLegalPosition(where, game.fen());
+      if (a.line.length === 0) note(where, "opening drill has no moves");
+      const learnerTurn = a.learnerColor === "white" ? "w" : "b";
+      let learnerMoves = 0;
+      for (let i = 0; i < a.line.length; i++) {
+        if (game.turn() === learnerTurn) learnerMoves++;
+        try {
+          game.move(a.line[i]);
+        } catch {
+          note(where, `line move #${i + 1} ("${a.line[i]}") is illegal`);
+          break;
+        }
+      }
+      if (learnerMoves === 0) {
+        note(where, `no ${a.learnerColor} moves for the learner to play`);
+      }
+      break;
+    }
   }
 }
 

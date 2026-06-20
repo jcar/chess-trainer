@@ -6,9 +6,15 @@ import type { Activity, Lesson, Module } from "./types";
 import { chessForKids } from "./modules/chess-for-kids";
 import { fundamentals } from "./modules/fundamentals";
 import { intermediate } from "./modules/intermediate";
+import { openings } from "./modules/openings";
 
-// Order = easiest first: absolute beginner → beginner → intermediate.
-export const MODULES: Module[] = [chessForKids, fundamentals, intermediate];
+// Order = easiest first: absolute beginner → beginner → intermediate → openings.
+export const MODULES: Module[] = [
+  chessForKids,
+  fundamentals,
+  intermediate,
+  openings,
+];
 
 export function getModule(moduleId: string): Module | undefined {
   return MODULES.find((m) => m.id === moduleId);
