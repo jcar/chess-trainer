@@ -12,15 +12,52 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/*
+ * The app is intentionally light-themed (light background, white cards, dark
+ * text). We do NOT honor prefers-color-scheme: dark — on a dark-mode device it
+ * would flip the inherited text color to near-white and make any element that
+ * relies on inherited color (e.g. unstyled buttons) render light-on-light.
+ */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Confetti pieces fall and fade (kid celebrations). */
+@keyframes kidConfettiFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* A happy bounce for the Pip mascot when cheering. */
+@keyframes kidBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12%);
+  }
+}
+
+/* Kid-mode "danger" flash for a king that is in check (applied to a board
+ * square via inline style: animation: kidDanger 0.8s ease-in-out infinite). */
+@keyframes kidDanger {
+  0%,
+  100% {
+    background-color: rgba(239, 68, 68, 0.35);
+    box-shadow: inset 0 0 0 4px rgba(220, 38, 38, 0.9);
+  }
+  50% {
+    background-color: rgba(239, 68, 68, 0.75);
+    box-shadow: inset 0 0 0 6px rgba(185, 28, 28, 1);
+  }
 }

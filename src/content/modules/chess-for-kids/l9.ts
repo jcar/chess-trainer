@@ -1,0 +1,80 @@
+// Chess for Kids — Lesson 9: clever tricks (forks, pins, skewers).
+
+import type { Lesson } from "../../types";
+
+export const l9: Lesson = {
+  id: "kids-l9-tricks",
+  title: "9. Clever Tricks",
+  summary:
+    "Little tricks that win pieces! Learn the fork and the skewer, then go win some pieces yourself.",
+  activities: [
+    {
+      id: "what-is-fork",
+      type: "quiz",
+      title: "What is a fork?",
+      blurb: "Attack two things at once.",
+      question: "A 'fork' is when:",
+      options: [
+        "You move two pieces at once.",
+        "One piece attacks TWO enemy pieces at the same time.",
+        "Two pawns join together.",
+      ],
+      correctIndex: 1,
+      explanation: "A fork attacks two pieces at once — the knight is the champion forker! Your opponent can only save one.",
+    },
+    {
+      id: "fork-puzzle",
+      type: "puzzle",
+      title: "Make a fork!",
+      blurb: "Win the queen with a jump.",
+      fen: "r3k2r/ppp2ppp/4N3/3q4/8/8/PPP2PPP/R3K2R w - - 0 1",
+      orientation: "white",
+      goal: { type: "win-material", minGain: 3 },
+      prompt: "Jump your knight in with check AND attack the queen at the same time!",
+      hints: ["A knight on c7 would check the king.", "From c7 it also hits the queen on d5."],
+      successText: "Fork! Nxc7+ checks the king and attacks the queen. After the king moves, take the queen!",
+      solution: ["e6c7", "e8f8", "c7d5"],
+    },
+    {
+      id: "what-is-pin",
+      type: "quiz",
+      title: "What is a pin?",
+      blurb: "Stuck in place.",
+      question: "A 'pin' is when:",
+      options: [
+        "You attack the king only.",
+        "A piece can't move because something more valuable is right behind it.",
+        "You promote a pawn.",
+      ],
+      correctIndex: 1,
+      explanation: "A pin freezes a piece: if it moved, it would expose something bigger (like the king or queen) behind it.",
+    },
+    {
+      id: "skewer-puzzle",
+      type: "puzzle",
+      title: "The skewer — win the queen!",
+      blurb: "Check the king, grab what's behind.",
+      fen: "q7/8/8/k7/8/8/8/4R1K1 w - - 0 1",
+      orientation: "white",
+      goal: { type: "win-material", minGain: 3 },
+      prompt: "Check the king — when it steps aside, the queen behind it is yours!",
+      hints: ["Slide your rook to the a-file to check.", "The king must move, then capture the queen behind it."],
+      successText: "You won the queen! That's a skewer — check the important piece in front, grab the one behind.",
+      solution: ["e1a1", "a5b6", "a1a8"],
+    },
+    {
+      id: "look-for-tricks",
+      type: "quiz",
+      title: "How to spot tricks",
+      blurb: "Pip's top tip!",
+      question: "On every turn, what's the best habit for finding tricks?",
+      options: [
+        "Move quickly without looking.",
+        "Look at every check and capture you can make.",
+        "Only watch your own king.",
+      ],
+      correctIndex: 1,
+      explanation: "My number-one tip: before you move, look at all the CHECKS and CAPTURES. That's how you find forks and skewers!",
+    },
+  ],
+};

@@ -1,0 +1,66 @@
+"use client";
+
+// "Meet the Piece" — a single piece on an empty board. The child taps it to
+// light up every square it can reach (dots) plus arrows showing the pattern,
+// then can tap a lit square to move it there and explore from the new spot.
+// Pure visual/tactile learning; no reading needed.
+
+import { useState } from "react";
+import type { MoveMapActivity } from "@/content/types";
+import { pieceTargets, pieceArrows, singlePieceFen } from "@/lib/chess/moves";
+import { Board } from "@/components/board/Board";
+import { SpeakButton } from "@/components/kids/SpeakButton";
+import { playSound } from "@/lib/audio/sounds";
+
+interface Props {
+  activity: MoveMapActivity;
+  onComplete: (score: number) => void;
+}
+
+export function MoveMapPlayer({ activity, onComplete }: Props) {
+  const [square, setSquare] = useState(activity.square);
+  const [showArrows, setShowArrows] = useState(false);
+  const [explored, setExplored] = useState(false);
+
+  const fen = singlePieceFen(activity.piece, square);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-start gap-3 rounded-2xl bg-sky-50 p-4 text-lg leading-relaxed text-sky-900">
+        <p className="flex-1">
+          {explored ? activity.funFact : activity.intro}
+        </p>
+        <SpeakButton text={`${activity.intro} ${activity.funFact}`} size="sm" />
+      </div>
+
+      <Board
+        fen={fen}
+        orientation={activity.orientation}
+        interactive={false}
+        arrows={showArrows ? pieceArrows(activity.piece, square) : []}
+        getLegalMoves={(sq) =>
+          sq === square ? pieceTargets(activity.piece, square) : []
+        }
+        onSelect={() => {
+          setShowArrows(true);
+          playSound("select");
+          if (!explored) {
+            setExplored(true);
+            onComplete(100);
+          }
+        }}
+        onMove={(_from, to) => {
+          setSquare(to);
+          setShowArrows(false);
+          playSound("move");
+        }}
+      />
+
+      <p className="text-center text-base font-semibold text-neutral-500">
+        {showArrows
+          ? "Now tap a green dot to move there! 🟢"
+          : "👆 Tap the piece to see where it can go!"}
+      </p>
+    </div>
+  );
+}

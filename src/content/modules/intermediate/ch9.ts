@@ -1,0 +1,108 @@
+// Chapter 9 — How to study openings at the intermediate level.
+// Original prose; opening moves are standard theory.
+
+import type { Lesson } from "../../types";
+
+export const ch9: Lesson = {
+  id: "ch9-opening-study",
+  title: "9. Building an Opening Repertoire",
+  summary:
+    "At this level, openings are about understanding plans and structures — not memorizing twenty moves. How to choose, learn, and handle surprises.",
+  activities: [
+    {
+      id: "study-openings-right",
+      type: "quiz",
+      title: "How to actually learn an opening",
+      blurb: "Memorization vs. understanding.",
+      question:
+        "What's the most useful way to study an opening as an improving player?",
+      options: [
+        "Memorize the first 20 moves of every line by heart.",
+        "Understand the typical pawn structures, piece placements, and middlegame plans the opening leads to.",
+        "Only learn the moves that win material immediately.",
+        "Avoid openings and just play random moves.",
+      ],
+      correctIndex: 1,
+      explanation:
+        "Understanding beats memorizing. If you know WHY the moves are played — which squares matter, where your pieces belong, what plan you're aiming for — you'll find good moves even when your opponent plays something unexpected.",
+    },
+    {
+      id: "what-is-repertoire",
+      type: "quiz",
+      title: "What's a repertoire?",
+      blurb: "Your set of go-to openings.",
+      question:
+        "A practical opening 'repertoire' for an improving player is best described as:",
+      options: [
+        "Every opening that has ever been played.",
+        "A small, consistent set of openings you know well — one for White, and a defense each to 1.e4 and 1.d4 as Black.",
+        "Whatever your opponent plays.",
+        "Only gambits.",
+      ],
+      correctIndex: 1,
+      explanation:
+        "Pick a compact repertoire and learn it deeply: one main opening for White, and reliable answers to 1.e4 and 1.d4 for Black. Familiar positions mean you spend your thinking time on plans, not panic.",
+    },
+    {
+      id: "ruy-model-game",
+      type: "replay",
+      title: "A model opening: the Closed Ruy Lopez",
+      blurb: "Principled development into a real middlegame.",
+      orientation: "white",
+      intro:
+        "Watch how both sides follow the principles into a rich middlegame. This is the Closed Ruy Lopez — one of the most instructive openings in chess.",
+      steps: [
+        { san: "e4", note: "Claim the center." },
+        { san: "e5", note: "Black answers symmetrically." },
+        { san: "Nf3", note: "Develop with a threat to e5." },
+        { san: "Nc6", note: "Defend and develop." },
+        { san: "Bb5", note: "The Ruy Lopez — pressure the knight that guards e5." },
+        { san: "a6", note: "Question the bishop." },
+        { san: "Ba4", note: "Keep the pin-like pressure along the diagonal." },
+        { san: "Nf6", note: "Black develops and attacks e4 in return." },
+        { san: "O-O", note: "King safety first — White castles even while e4 is 'hanging' (it's a well-known pawn sac that Black shouldn't grab)." },
+        { san: "Be7", note: "Black calmly develops and prepares to castle." },
+        { san: "Re1", note: "The rook supports e4 and eyes the e-file." },
+        { san: "b5", note: "Black gains queenside space and hits the bishop." },
+        { san: "Bb3", note: "The bishop retreats to a great diagonal aiming at f7." },
+        { san: "d6", note: "Black opens the bishop and supports e5." },
+        { san: "c3", note: "Prepare d4 — White's central break and the heart of the plan." },
+        { san: "O-O", note: "Both kings are safe; a long, strategic middlegame begins around the d4 break." },
+      ],
+    },
+    {
+      id: "transposition",
+      type: "quiz",
+      title: "Move order & transposition",
+      blurb: "Different paths, same position.",
+      question:
+        "Your opponent plays the moves of your favorite opening but in a different order, reaching the same setup. This is called:",
+      options: [
+        "Cheating.",
+        "A transposition — reaching a known position by a different move order.",
+        "An illegal sequence.",
+        "A gambit.",
+      ],
+      correctIndex: 1,
+      explanation:
+        "Transpositions are everywhere. Because you understand the resulting structure (not just one move sequence), you'll recognize the position no matter which order the moves arrived in.",
+    },
+    {
+      id: "offbeat-response",
+      type: "quiz",
+      title: "When they leave theory",
+      blurb: "Facing an unfamiliar move.",
+      question:
+        "Your opponent plays a strange, non-theoretical move in the opening. What's the soundest response?",
+      options: [
+        "Resign — you're out of preparation.",
+        "Fall back on principles: develop a piece, fight for the center, and keep your king safe.",
+        "Copy their strange move.",
+        "Immediately sacrifice a piece to punish them.",
+      ],
+      correctIndex: 1,
+      explanation:
+        "Offbeat moves are usually slightly inferior. Don't try to refute them with a wild attack — just play principled chess. Good development almost always punishes a bad opening move on its own.",
+    },
+  ],
+};

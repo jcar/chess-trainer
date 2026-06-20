@@ -1,0 +1,106 @@
+// Chess for Kids — Lesson 4: capturing & piece values (NEW).
+
+import type { Lesson } from "../../types";
+
+export const l4: Lesson = {
+  id: "kids-l4-capturing-values",
+  title: "4. Capturing and Piece Values",
+  summary:
+    "Some pieces are worth more than others! Learn what to grab, what's safe to take, and win some free pieces.",
+  activities: [
+    {
+      id: "most-valuable",
+      type: "sort",
+      title: "Who's worth the most?",
+      blurb: "Pick the biggest prize.",
+      prompt: "Which piece is worth the MOST points?",
+      fen: "8/8/3q4/8/3r4/8/3P4/8 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Queen", emoji: "👑" },
+        { label: "Rook", emoji: "🏰" },
+        { label: "Pawn", emoji: "♟️" },
+      ],
+      correctIndex: 0,
+      explanation: "The queen is worth the most (9 points)! A rook is 5, a bishop or knight is 3, and a pawn is just 1.",
+    },
+    {
+      id: "grab-free-piece",
+      type: "puzzle",
+      title: "Grab the free piece!",
+      blurb: "It's not guarded — take it!",
+      fen: "4k3/8/8/8/r7/8/8/R3K3 w - - 0 1",
+      orientation: "white",
+      goal: { type: "win-material", minGain: 3 },
+      prompt: "The enemy rook is sitting there with nothing guarding it. Tap your rook, then capture it!",
+      hints: ["They're on the same line — the a-file.", "Slide up and take it!"],
+      successText: "Free rook! Always look for pieces you can win safely.",
+      solution: ["a1a4"],
+    },
+    {
+      id: "is-it-safe",
+      type: "sort",
+      title: "Is it safe to take?",
+      blurb: "Look before you grab!",
+      prompt: "Can White's queen safely capture the pawn on d5?",
+      fen: "5k2/8/5n2/3p4/8/8/8/3QK3 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Yes, safe!", emoji: "✅" },
+        { label: "No, it's a trap", emoji: "🚫" },
+      ],
+      correctIndex: 1,
+      explanation: "No! The knight on f6 is guarding the pawn. If the queen takes, the knight takes the queen back — losing a 9 for a 1. Always check what defends a piece first.",
+    },
+    {
+      id: "run-to-safety",
+      type: "target",
+      title: "Run to safety!",
+      blurb: "Move your knight out of danger.",
+      piece: "knight",
+      square: "e5",
+      orientation: "white",
+      targets: ["g6"],
+      intro: "Uh oh — your knight is being attacked! Tap it and hop it to the safe gold star.",
+      successText: "Phew! You moved your knight to safety. When a piece is attacked, move it or defend it!",
+    },
+    {
+      id: "win-the-piece-practice",
+      type: "practiceSet",
+      title: "Win the Piece! (Practice)",
+      blurb: "Win three in a row to master it.",
+      intro: "Find the move that wins material in each one. Win 3 to master it!",
+      requiredCorrect: 3,
+      items: [
+        {
+          fen: "4k3/8/8/8/r7/8/8/R3K3 w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "Capture the free rook!",
+          solution: ["a1a4"],
+        },
+        {
+          fen: "r4rk1/ppp2ppp/8/3q4/8/2b2N2/PPP2PPP/R2Q1RK1 w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "The black queen is undefended — grab it!",
+          solution: ["d1d5"],
+        },
+        {
+          fen: "q7/8/8/k7/8/8/8/4R1K1 w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "Check the king so it steps aside, then win the queen behind it (a skewer).",
+          solution: ["e1a1", "a5b6", "a1a8"],
+        },
+        {
+          fen: "r3k2r/ppp2ppp/4N3/3q4/8/8/PPP2PPP/R3K2R w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 3 },
+          prompt: "Jump the knight in with check AND attack the queen (a fork)!",
+          solution: ["e6c7", "e8f8", "c7d5"],
+        },
+      ],
+    },
+  ],
+};

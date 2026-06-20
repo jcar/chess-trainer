@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored Stockfish engine (minified third-party build) served statically.
+    "public/**",
   ]),
 ]);
 
