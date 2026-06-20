@@ -48,16 +48,14 @@ export function SortPlayer({ activity, onComplete }: Props) {
           const isChosen = i === selected;
           let cls =
             "flex items-center justify-center gap-2 rounded-2xl border-4 px-4 py-5 text-xl font-extrabold transition active:scale-[0.98]";
-          if (!answered) cls += " border-sky-200 bg-white text-neutral-900";
-          else if (isCorrect) cls += " border-emerald-500 bg-emerald-50 text-emerald-900";
-          else if (isChosen) cls += " border-red-400 bg-red-50 text-red-900";
-          else cls += " border-neutral-200 bg-neutral-50 text-neutral-400";
+          if (!answered) cls += " border-kid-teal/30 bg-card text-ink";
+          else if (isCorrect) cls += " border-sage bg-sage/10 text-sage";
+          else if (isChosen) cls += " border-clay bg-clay/10 text-clay";
+          else cls += " border-line bg-surface text-ink-soft/60";
           return (
             <button key={i} type="button" onClick={() => choose(i)} disabled={answered} className={cls}>
               {opt.emoji && <span aria-hidden>{opt.emoji}</span>}
               <span>{opt.label}</span>
-              {answered && isCorrect && <span aria-hidden>✅</span>}
-              {answered && isChosen && !isCorrect && <span aria-hidden>❌</span>}
             </button>
           );
         })}
@@ -66,11 +64,11 @@ export function SortPlayer({ activity, onComplete }: Props) {
       {answered && (
         <div
           className={`rounded-2xl p-4 text-lg ${
-            correct ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"
+            correct ? "bg-sage/10 text-sage" : "bg-brass/10 text-walnut-deep"
           }`}
         >
           <div className="mb-1 flex items-center gap-2">
-            <p className="font-bold">{correct ? "Yay, correct! 🎉" : "Good try!"}</p>
+            <p className="font-bold">{correct ? "Yay, correct!" : "Good try!"}</p>
             <SpeakButton text={activity.explanation} size="sm" />
           </div>
           <p>{activity.explanation}</p>

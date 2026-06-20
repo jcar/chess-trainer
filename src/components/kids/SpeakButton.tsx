@@ -5,6 +5,7 @@
 
 import { speak, speechSupported } from "@/lib/audio/speech";
 import { unlockAudio } from "@/lib/audio/sounds";
+import { SpeakerIcon } from "@/components/icons";
 
 interface Props {
   /** The text to read aloud. */
@@ -19,7 +20,8 @@ export function SpeakButton({ text, className = "", size = "lg" }: Props) {
   // Render nothing if the browser can't speak (keeps the UI honest).
   if (typeof window !== "undefined" && !speechSupported()) return null;
 
-  const dim = size === "lg" ? "h-12 w-12 text-2xl" : "h-9 w-9 text-lg";
+  const dim = size === "lg" ? "h-12 w-12" : "h-9 w-9";
+  const icon = size === "lg" ? "h-6 w-6" : "h-5 w-5";
 
   return (
     <button
@@ -29,9 +31,9 @@ export function SpeakButton({ text, className = "", size = "lg" }: Props) {
         unlockAudio();
         speak(text);
       }}
-      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-amber-300 text-amber-900 shadow-sm transition active:scale-90 ${dim} ${className}`}
+      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-brass/15 text-brass shadow-sm transition hover:bg-brass/25 active:scale-90 ${dim} ${className}`}
     >
-      <span aria-hidden>🔊</span>
+      <SpeakerIcon className={icon} />
     </button>
   );
 }

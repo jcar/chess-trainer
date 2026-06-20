@@ -10,6 +10,8 @@ import { ChessGame, uciToMove, kingInCheckSquare } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
+import { buttonClasses } from "@/components/ui/Button";
+import { StarIcon } from "@/components/icons";
 
 interface Props {
   activity: PracticeSetActivity;
@@ -100,13 +102,14 @@ export function PracticeSetPlayer({ activity, onComplete }: Props) {
   return (
     <div className="space-y-4">
       {/* Progress pips */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         {Array.from({ length: needed }, (_, i) => (
-          <span key={i} className="text-2xl" aria-hidden>
-            {i < correct ? "⭐" : "⚪"}
-          </span>
+          <StarIcon
+            key={i}
+            className={`h-6 w-6 ${i < correct ? "text-brass" : "text-ink/15"}`}
+          />
         ))}
-        <span className="ml-2 text-base font-bold text-neutral-600">
+        <span className="ml-2 text-base font-bold text-ink-soft">
           {correct}/{needed} to master!
         </span>
       </div>
@@ -125,8 +128,8 @@ export function PracticeSetPlayer({ activity, onComplete }: Props) {
         onSelect={() => playSound("select")}
       />
 
-      <div className="flex items-start gap-3 rounded-2xl bg-neutral-50 p-4 text-lg">
-        <p className="flex-1">{feedback}</p>
+      <div className="flex items-start gap-3 rounded-2xl bg-surface p-4 text-lg shadow-soft">
+        <p className="flex-1 text-ink">{feedback}</p>
         <SpeakButton text={feedback} size="sm" />
       </div>
 
@@ -134,9 +137,9 @@ export function PracticeSetPlayer({ activity, onComplete }: Props) {
         <button
           type="button"
           onClick={showMe}
-          className="rounded-2xl border-4 border-amber-300 bg-amber-100 px-5 py-3 text-lg font-bold text-amber-900 active:scale-95"
+          className={buttonClasses("accent", "kid")}
         >
-          💡 Show me!
+          Show me!
         </button>
       )}
     </div>

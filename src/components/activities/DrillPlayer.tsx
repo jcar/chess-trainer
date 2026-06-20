@@ -12,6 +12,7 @@ import { getEngine } from "@/lib/chess/stockfish";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
+import { buttonClasses } from "@/components/ui/Button";
 
 interface Props {
   activity: DrillActivity;
@@ -95,7 +96,7 @@ export function DrillPlayer({ activity, onComplete, kidMode = false }: Props) {
 
     const myEpoch = epoch.current;
     setPhase("thinking");
-    setMessage(kidMode ? "The computer is thinking… 🤔" : "Engine is thinking…");
+    setMessage(kidMode ? "The computer is thinking…" : "Engine is thinking…");
 
     const best = await getEngine().getBestMove(result.fen, activity.engineSkill, 400);
     if (myEpoch !== epoch.current) return;
@@ -128,10 +129,10 @@ export function DrillPlayer({ activity, onComplete, kidMode = false }: Props) {
 
   const bannerCls =
     phase === "won"
-      ? "bg-emerald-50 text-emerald-900"
+      ? "bg-sage/10 text-sage"
       : phase === "lost"
-        ? "bg-amber-50 text-amber-900"
-        : "bg-neutral-50 text-neutral-700";
+        ? "bg-brass/10 text-walnut-deep"
+        : "bg-surface text-ink-soft shadow-soft";
 
   return (
     <div className="space-y-4">
@@ -162,13 +163,9 @@ export function DrillPlayer({ activity, onComplete, kidMode = false }: Props) {
       <button
         type="button"
         onClick={reset}
-        className={
-          kidMode
-            ? "rounded-2xl border-4 border-neutral-300 px-5 py-3 text-lg font-bold active:scale-95"
-            : "rounded-xl border border-neutral-300 px-4 py-2.5 text-sm font-medium"
-        }
+        className={buttonClasses("secondary", kidMode ? "kid" : "md")}
       >
-        ↺ Reset position
+        Reset position
       </button>
     </div>
   );

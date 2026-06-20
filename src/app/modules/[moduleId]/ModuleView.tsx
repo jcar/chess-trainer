@@ -5,6 +5,18 @@ import { notFound } from "next/navigation";
 import { getModule } from "@/content";
 import type { Activity } from "@/content/types";
 import { useProgress } from "@/lib/progress/useProgress";
+import { Card } from "@/components/ui/Card";
+import { Chip } from "@/components/ui/Chip";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { buttonClasses } from "@/components/ui/Button";
+import {
+  ACTIVITY_ICON,
+  StarIcon,
+  TrophyIcon,
+  CheckIcon,
+  PlayIcon,
+  ChevronRightIcon,
+} from "@/components/icons";
 
 const TYPE_BADGE: Record<Activity["type"], string> = {
   quiz: "Quiz",
@@ -17,19 +29,6 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
   sort: "Sort",
   coordinate: "Squares",
   practiceSet: "Practice",
-};
-
-const TYPE_EMOJI: Record<Activity["type"], string> = {
-  quiz: "❓",
-  replay: "👀",
-  puzzle: "🧩",
-  drill: "🤖",
-  movemap: "✨",
-  pictureQuiz: "🖼️",
-  target: "⭐",
-  sort: "🔀",
-  coordinate: "🗺️",
-  practiceSet: "💪",
 };
 
 export function ModuleView({ moduleId }: { moduleId: string }) {
@@ -45,19 +44,26 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
     return (
       <main className="space-y-6">
         <div className="flex items-center justify-between gap-3">
-          <Link href="/" className="text-base font-semibold text-neutral-500">
+          <Link
+            href="/"
+            className="text-sm font-medium text-ink-soft transition hover:text-ink"
+          >
             ← Home
           </Link>
           <Link
             href={`/modules/${mod.id}/stickers`}
-            className="rounded-full bg-amber-200 px-4 py-2 text-base font-extrabold text-amber-900 shadow-sm active:scale-95"
+            className={buttonClasses("accent", "md")}
           >
-            🎒 My Stickers
+            <TrophyIcon className="h-4 w-4" /> My Stickers
           </Link>
         </div>
 
-        <h1 className="text-3xl font-extrabold">{mod.title}</h1>
-        <p className="text-lg text-neutral-600">{mod.description}</p>
+        <div className="space-y-1">
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-walnut-deep">
+            {mod.title}
+          </h1>
+          <p className="text-ink-soft">{mod.description}</p>
+        </div>
 
         <ol className="space-y-4">
           {mod.lessons.map((lesson, idx) => {
@@ -66,49 +72,61 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
             const maxStars = ids.length * 3;
             const complete = allComplete(ids);
             return (
-              <li
-                key={lesson.id}
-                className={`rounded-3xl border-4 p-4 ${
-                  complete ? "border-emerald-300 bg-emerald-50" : "border-sky-100 bg-white"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-500 text-xl font-extrabold text-white">
-                    {complete ? "🏆" : idx + 1}
-                  </span>
-                  <div className="flex-1">
-                    <h2 className="text-xl font-extrabold text-sky-800">
-                      {lesson.title}
-                    </h2>
-                    <p className="text-sm font-bold text-amber-600">
-                      ⭐ {stars} / {maxStars}
-                    </p>
+              <li key={lesson.id}>
+                <Card
+                  className={`p-4 ${complete ? "border-sage/40 bg-sage/8" : ""}`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl font-display text-lg font-semibold ${
+                        complete
+                          ? "bg-sage text-[#fffdf7]"
+                          : "bg-kid-teal text-[#fffdf7]"
+                      }`}
+                    >
+                      {complete ? <TrophyIcon className="h-6 w-6" /> : idx + 1}
+                    </span>
+                    <div className="flex-1">
+                      <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                        {lesson.title}
+                      </h2>
+                      <p className="flex items-center gap-1 text-sm font-semibold text-brass">
+                        <StarIcon className="h-4 w-4" /> {stars} / {maxStars}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <ul className="mt-3 space-y-2">
-                  {lesson.activities.map((activity) => {
-                    const s = activityStars(activity.id);
-                    return (
-                      <li key={activity.id}>
-                        <Link
-                          href={`/modules/${mod.id}/${activity.id}`}
-                          className="flex items-center gap-3 rounded-2xl border-2 border-sky-100 bg-white p-3 transition active:scale-[0.98]"
-                        >
-                          <span className="text-2xl" aria-hidden>
-                            {TYPE_EMOJI[activity.type]}
-                          </span>
-                          <span className="flex-1 text-lg font-bold">
-                            {activity.title}
-                          </span>
-                          <span className="text-base" aria-hidden>
-                            {s > 0 ? "⭐".repeat(s) : "▶️"}
-                          </span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
+                  <ul className="mt-3 space-y-2">
+                    {lesson.activities.map((activity) => {
+                      const s = activityStars(activity.id);
+                      const Icon = ACTIVITY_ICON[activity.type];
+                      return (
+                        <li key={activity.id}>
+                          <Link
+                            href={`/modules/${mod.id}/${activity.id}`}
+                            className="flex items-center gap-3 rounded-2xl border border-line bg-card p-3 transition hover:border-kid-teal/40 active:scale-[0.98]"
+                          >
+                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-kid-teal/12 text-kid-teal">
+                              <Icon className="h-5 w-5" />
+                            </span>
+                            <span className="flex-1 text-lg font-semibold text-ink">
+                              {activity.title}
+                            </span>
+                            {s > 0 ? (
+                              <span className="flex items-center gap-0.5 text-brass">
+                                {Array.from({ length: s }, (_, i) => (
+                                  <StarIcon key={i} className="h-4 w-4" />
+                                ))}
+                              </span>
+                            ) : (
+                              <PlayIcon className="h-5 w-5 text-kid-teal" />
+                            )}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </Card>
               </li>
             );
           })}
@@ -119,50 +137,57 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
 
   // ---- Standard (non-kid) module listing ----
   return (
-    <main className="space-y-6">
-      <div>
-        <Link href="/" className="text-sm font-medium text-neutral-500">
-          ← All modules
-        </Link>
-        <h1 className="mt-2 text-2xl font-bold">{mod.title}</h1>
-        <p className="text-neutral-500">{mod.description}</p>
-      </div>
+    <main className="space-y-7">
+      <PageHeader
+        backHref="/"
+        backLabel="All modules"
+        eyebrow={mod.level}
+        title={mod.title}
+        subtitle={mod.description}
+      />
 
       {mod.lessons.map((lesson) => (
         <section key={lesson.id} className="space-y-3">
           <div>
-            <h2 className="text-lg font-semibold">{lesson.title}</h2>
-            <p className="text-sm text-neutral-500">{lesson.summary}</p>
+            <h2 className="font-display text-lg font-semibold text-walnut-deep">
+              {lesson.title}
+            </h2>
+            <p className="text-sm text-ink-soft">{lesson.summary}</p>
           </div>
           <ul className="space-y-2">
             {lesson.activities.map((activity) => {
               const done = getActivityState(activity.id).completed;
+              const Icon = ACTIVITY_ICON[activity.type];
               return (
                 <li key={activity.id}>
-                  <Link
-                    href={`/modules/${mod.id}/${activity.id}`}
-                    className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-4 transition active:scale-[0.99]"
-                  >
-                    <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm ${
-                        done
-                          ? "bg-emerald-500 text-white"
-                          : "border border-neutral-300 text-transparent"
-                      }`}
-                    >
-                      ✓
-                    </span>
-                    <span className="flex-1">
-                      <span className="font-medium">{activity.title}</span>
-                      {activity.blurb && (
-                        <span className="block text-sm text-neutral-500">
-                          {activity.blurb}
+                  <Link href={`/modules/${mod.id}/${activity.id}`} className="block">
+                    <Card interactive className="flex items-center gap-3 p-4">
+                      <span
+                        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${
+                          done
+                            ? "bg-sage/15 text-sage"
+                            : "bg-walnut/8 text-walnut"
+                        }`}
+                      >
+                        {done ? (
+                          <CheckIcon className="h-5 w-5" />
+                        ) : (
+                          <Icon className="h-5 w-5" />
+                        )}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-medium text-ink">
+                          {activity.title}
                         </span>
-                      )}
-                    </span>
-                    <span className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-600">
-                      {TYPE_BADGE[activity.type]}
-                    </span>
+                        {activity.blurb && (
+                          <span className="block text-sm text-ink-soft">
+                            {activity.blurb}
+                          </span>
+                        )}
+                      </span>
+                      <Chip tone="neutral">{TYPE_BADGE[activity.type]}</Chip>
+                      <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-soft" />
+                    </Card>
                   </Link>
                 </li>
               );

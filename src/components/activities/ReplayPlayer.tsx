@@ -6,6 +6,8 @@ import { buildReplayFens, replayMoveSquares } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
+import { buttonClasses } from "@/components/ui/Button";
+import { ArrowLeftIcon, ChevronRightIcon } from "@/components/icons";
 
 interface Props {
   activity: ReplayActivity;
@@ -53,13 +55,13 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
       />
 
       <div
-        className={`flex items-start gap-3 rounded-2xl bg-neutral-50 p-4 leading-relaxed ${
+        className={`flex items-start gap-3 rounded-2xl bg-surface p-4 leading-relaxed shadow-soft ${
           kidMode ? "text-lg" : "text-sm"
         }`}
       >
-        <p className="flex-1">
+        <p className="flex-1 text-ink">
           {step > 0 && (
-            <span className="mr-2 font-mono font-semibold text-emerald-700">
+            <span className="mr-2 font-mono font-semibold text-brass">
               {activity.steps[step - 1].san}
             </span>
           )}
@@ -73,28 +75,20 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
           type="button"
           onClick={() => go(step - 1)}
           disabled={step === 0}
-          className={
-            kidMode
-              ? "rounded-2xl border-4 border-neutral-300 px-6 py-4 text-lg font-bold disabled:opacity-40 active:scale-95"
-              : "rounded-xl border border-neutral-300 px-5 py-3 text-base font-medium disabled:opacity-40"
-          }
+          className={buttonClasses("secondary", kidMode ? "kid" : "lg", "disabled:opacity-40")}
         >
-          ← Back
+          <ArrowLeftIcon className="h-5 w-5" /> Back
         </button>
-        <span className={kidMode ? "text-base font-bold text-neutral-500" : "text-sm text-neutral-500"}>
+        <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
           {step} / {lastStep}
         </span>
         <button
           type="button"
           onClick={() => go(step + 1)}
           disabled={step === lastStep}
-          className={
-            kidMode
-              ? "rounded-2xl bg-emerald-500 px-7 py-4 text-xl font-extrabold text-white shadow-md disabled:opacity-40 active:scale-95"
-              : "rounded-xl bg-emerald-600 px-5 py-3 text-base font-medium text-white disabled:opacity-40"
-          }
+          className={buttonClasses("primary", kidMode ? "kid" : "lg", "disabled:opacity-40")}
         >
-          Next →
+          Next <ChevronRightIcon className="h-5 w-5" />
         </button>
       </div>
     </div>

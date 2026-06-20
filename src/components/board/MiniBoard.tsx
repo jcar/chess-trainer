@@ -23,8 +23,8 @@ export function MiniBoard({ fen, orientation = "white", arrows = [] }: Props) {
           allowDragging: false,
           showAnimations: false,
           showNotation: false,
-          darkSquareStyle: { backgroundColor: "#769656" },
-          lightSquareStyle: { backgroundColor: "#eeeed2" },
+          darkSquareStyle: { backgroundColor: "#b58863" },
+          lightSquareStyle: { backgroundColor: "#f0d9b5" },
           arrows: arrows.map((a) => ({
             startSquare: a.from,
             endSquare: a.to,

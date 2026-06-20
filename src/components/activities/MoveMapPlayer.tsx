@@ -26,7 +26,7 @@ export function MoveMapPlayer({ activity, onComplete }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start gap-3 rounded-2xl bg-sky-50 p-4 text-lg leading-relaxed text-sky-900">
+      <div className="flex items-start gap-3 rounded-2xl bg-kid-teal/10 p-4 text-lg leading-relaxed text-walnut-deep">
         <p className="flex-1">
           {explored ? activity.funFact : activity.intro}
         </p>
@@ -56,10 +56,10 @@ export function MoveMapPlayer({ activity, onComplete }: Props) {
         }}
       />
 
-      <p className="text-center text-base font-semibold text-neutral-500">
+      <p className="text-center text-base font-semibold text-ink-soft">
         {showArrows
-          ? "Now tap a green dot to move there! 🟢"
-          : "👆 Tap the piece to see where it can go!"}
+          ? "Now tap a glowing dot to move there!"
+          : "Tap the piece to see where it can go!"}
       </p>
     </div>
   );

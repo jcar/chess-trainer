@@ -171,8 +171,8 @@ export function Board({
           squareStyles: computedStyles,
           arrows: boardArrows,
           showNotation,
-          darkSquareStyle: { backgroundColor: "#769656" },
-          lightSquareStyle: { backgroundColor: "#eeeed2" },
+          darkSquareStyle: { backgroundColor: "#b58863" },
+          lightSquareStyle: { backgroundColor: "#f0d9b5" },
           onSquareClick: onSquareTap
             ? ({ square }) => onSquareTap(square)
             : tapEnabled

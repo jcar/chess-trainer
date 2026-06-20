@@ -45,8 +45,8 @@ export function CoordinatePlayer({ activity, onComplete }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start gap-3 rounded-2xl bg-sky-50 p-4 text-2xl font-extrabold text-sky-900">
-        <p className="flex-1">{done ? activity.successText : `Find: ${target}`}</p>
+      <div className="flex items-start gap-3 rounded-2xl bg-kid-teal/10 p-4 text-2xl font-extrabold text-walnut-deep">
+        <p className="flex-1 font-display">{done ? activity.successText : `Find: ${target}`}</p>
         <SpeakButton text={prompt} />
       </div>
 
@@ -59,9 +59,9 @@ export function CoordinatePlayer({ activity, onComplete }: Props) {
         dangerSquares={wrong}
       />
 
-      <p className="text-center text-base font-bold text-neutral-600">
+      <p className="text-center text-base font-bold text-ink-soft">
         {done
-          ? "Great job — you know your squares! 🗺️"
+          ? "Great job — you know your squares!"
           : `Round ${round + 1} of ${activity.rounds.length} — tap square ${target}!`}
       </p>
     </div>

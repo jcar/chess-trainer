@@ -25,6 +25,14 @@ import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
 import { recordResult, useStreak } from "@/lib/rewards/streak";
 import { playSound } from "@/lib/audio/sounds";
+import { buttonClasses } from "@/components/ui/Button";
+import {
+  ACTIVITY_ICON,
+  FlameIcon,
+  ChevronRightIcon,
+  CheckIcon,
+  ArrowLeftIcon,
+} from "@/components/icons";
 
 const TYPE_LABEL: Record<Activity["type"], string> = {
   quiz: "Quiz",
@@ -100,6 +108,8 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
     [recordAttempt, activity.id],
   );
 
+  const ActivityIcon = ACTIVITY_ICON[activity.type];
+
   return (
     <div className="space-y-6">
       {kidMode && <Confetti fireKey={confettiKey} />}
@@ -108,29 +118,42 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         <div className="flex items-center justify-between gap-3">
           <PipMascot mood={pipMood} size={56} says={pipSays || undefined} />
           {streak >= 3 && (
-            <span className="rounded-full bg-orange-100 px-3 py-1 text-base font-extrabold text-orange-700">
-              🔥 {streak} in a row!
+            <span className="inline-flex items-center gap-1 rounded-full bg-kid-coral/15 px-3 py-1 text-base font-bold text-kid-coral">
+              <FlameIcon className="h-4 w-4" /> {streak} in a row!
             </span>
           )}
         </div>
       )}
 
-      <header className="space-y-1">
-        {!kidMode && (
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600">
-            {TYPE_LABEL[activity.type]}
-          </p>
-        )}
-        <div className="flex items-center gap-3">
-          <h1 className={kidMode ? "text-3xl font-extrabold" : "text-2xl font-bold"}>
-            {activity.title}
-          </h1>
-          {kidMode && (
-            <SpeakButton text={`${activity.title}. ${activity.blurb ?? ""}`} />
-          )}
+      <header className="space-y-2">
+        <div className="flex items-start gap-3">
+          <span
+            className={`mt-0.5 grid shrink-0 place-items-center rounded-xl ${
+              kidMode ? "h-11 w-11 bg-kid-teal/12 text-kid-teal" : "h-10 w-10 bg-walnut/8 text-walnut"
+            }`}
+          >
+            <ActivityIcon className={kidMode ? "h-6 w-6" : "h-5 w-5"} />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brass">
+              {TYPE_LABEL[activity.type]}
+            </p>
+            <div className="flex items-center gap-2">
+              <h1
+                className={`font-display font-semibold tracking-tight text-walnut-deep ${
+                  kidMode ? "text-2xl" : "text-2xl"
+                }`}
+              >
+                {activity.title}
+              </h1>
+              {kidMode && (
+                <SpeakButton text={`${activity.title}. ${activity.blurb ?? ""}`} size="sm" />
+              )}
+            </div>
+          </div>
         </div>
         {activity.blurb && (
-          <p className={kidMode ? "text-lg text-neutral-600" : "text-neutral-500"}>
+          <p className={kidMode ? "text-lg text-ink-soft" : "text-ink-soft"}>
             {activity.blurb}
           </p>
         )}
@@ -172,40 +195,33 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         <PracticeSetPlayer activity={activity} onComplete={handleComplete} />
       )}
 
-      <footer className="flex items-center justify-between gap-3 border-t border-neutral-200 pt-5">
+      <footer className="flex items-center justify-between gap-3 border-t border-line pt-5">
         <Link
           href={`/modules/${mod.id}`}
-          className={kidMode ? "text-base font-semibold text-neutral-500" : "text-sm font-medium text-neutral-500"}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft transition hover:text-ink"
         >
-          ← {mod.title}
+          <ArrowLeftIcon className="h-4 w-4" />
+          <span className="max-w-[9rem] truncate">{mod.title}</span>
         </Link>
         {state.completed ? (
           next ? (
             <Link
               href={`/modules/${mod.id}/${next.id}`}
-              className={
-                kidMode
-                  ? "rounded-2xl bg-emerald-500 px-7 py-4 text-xl font-extrabold text-white shadow-md active:scale-95"
-                  : "rounded-xl bg-emerald-600 px-5 py-3 text-base font-medium text-white"
-              }
+              className={buttonClasses("primary", kidMode ? "kid" : "lg")}
             >
-              {kidMode ? "Next →" : `Next: ${next.title} →`}
+              Next <ChevronRightIcon className="h-5 w-5" />
             </Link>
           ) : (
             <Link
               href={`/modules/${mod.id}`}
-              className={
-                kidMode
-                  ? "rounded-2xl bg-emerald-500 px-7 py-4 text-xl font-extrabold text-white shadow-md active:scale-95"
-                  : "rounded-xl bg-emerald-600 px-5 py-3 text-base font-medium text-white"
-              }
+              className={buttonClasses("primary", kidMode ? "kid" : "lg")}
             >
-              {kidMode ? "All done! ✓" : "Finish module ✓"}
+              {kidMode ? "All done!" : "Finish"} <CheckIcon className="h-5 w-5" />
             </Link>
           )
         ) : (
-          <span className={kidMode ? "text-base text-neutral-400" : "text-sm text-neutral-400"}>
-            {kidMode ? "Finish to keep going!" : "Complete this activity to continue"}
+          <span className="text-sm text-ink-soft/70">
+            {kidMode ? "Finish to keep going!" : "Complete to continue"}
           </span>
         )}
       </footer>

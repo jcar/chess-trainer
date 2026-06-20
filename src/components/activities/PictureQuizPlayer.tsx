@@ -38,13 +38,13 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
         {activity.options.map((opt, i) => {
           const isCorrect = i === activity.correctIndex;
           const isChosen = i === selected;
-          let ring = "border-sky-200";
+          let ring = "border-kid-teal/30";
           if (answered) {
             ring = isCorrect
-              ? "border-emerald-500"
+              ? "border-sage"
               : isChosen
-                ? "border-red-400"
-                : "border-neutral-200 opacity-60";
+                ? "border-clay"
+                : "border-line opacity-60";
           }
           return (
             <button
@@ -52,7 +52,7 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
               type="button"
               onClick={() => choose(i)}
               disabled={answered}
-              className={`flex flex-col items-center gap-2 rounded-2xl border-4 bg-white p-2 transition active:scale-[0.97] ${ring}`}
+              className={`flex flex-col items-center gap-2 rounded-2xl border-4 bg-card p-2 transition active:scale-[0.97] ${ring}`}
             >
               <MiniBoard
                 fen={opt.fen}
@@ -60,8 +60,6 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
                 arrows={opt.arrows}
               />
               <span className="flex items-center gap-1 text-base font-bold">
-                {answered && isCorrect && <span aria-hidden>✅</span>}
-                {answered && isChosen && !isCorrect && <span aria-hidden>❌</span>}
                 {opt.caption}
               </span>
             </button>
@@ -72,13 +70,11 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
       {answered && (
         <div
           className={`rounded-2xl p-4 text-lg ${
-            correct
-              ? "bg-emerald-50 text-emerald-900"
-              : "bg-amber-50 text-amber-900"
+            correct ? "bg-sage/10 text-sage" : "bg-brass/10 text-walnut-deep"
           }`}
         >
           <div className="mb-1 flex items-center gap-2">
-            <p className="font-bold">{correct ? "Yay, correct! 🎉" : "Good try!"}</p>
+            <p className="font-bold">{correct ? "Yay, correct!" : "Good try!"}</p>
             <SpeakButton text={activity.explanation} size="sm" />
           </div>
           <p>{activity.explanation}</p>

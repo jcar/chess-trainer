@@ -30,16 +30,16 @@ export function PipMascot({ mood = "idle", size = 72, says }: Props) {
         }
       >
         {/* Body */}
-        <ellipse cx="50" cy="86" rx="30" ry="9" fill="#0ea5e9" opacity="0.25" />
+        <ellipse cx="50" cy="86" rx="30" ry="9" fill="#16959c" opacity="0.25" />
         <path
           d="M30 84 Q34 60 42 54 Q34 48 42 40 Q34 30 50 24 Q66 30 58 40 Q66 48 58 54 Q66 60 70 84 Z"
-          fill="#38bdf8"
-          stroke="#0284c7"
+          fill="#3fc3bb"
+          stroke="#0f766e"
           strokeWidth="3"
           strokeLinejoin="round"
         />
         {/* Head */}
-        <circle cx="50" cy="26" r="15" fill="#7dd3fc" stroke="#0284c7" strokeWidth="3" />
+        <circle cx="50" cy="26" r="15" fill="#8fded7" stroke="#0f766e" strokeWidth="3" />
         {/* Eyes */}
         <circle cx="44" cy="24" r="2.6" fill="#0f172a" />
         <circle cx="56" cy="24" r="2.6" fill="#0f172a" />
@@ -60,7 +60,7 @@ export function PipMascot({ mood = "idle", size = 72, says }: Props) {
         )}
       </svg>
       {says && (
-        <div className="relative rounded-2xl bg-white px-4 py-2 text-lg font-bold text-sky-900 shadow">
+        <div className="relative rounded-2xl bg-card px-4 py-2 text-lg font-bold text-walnut-deep shadow-soft">
           {says}
         </div>
       )}

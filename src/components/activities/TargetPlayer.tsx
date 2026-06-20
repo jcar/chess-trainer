@@ -93,7 +93,7 @@ export function TargetPlayer({ activity, onComplete }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start gap-3 rounded-2xl bg-amber-50 p-4 text-lg text-amber-900">
+      <div className="flex items-start gap-3 rounded-2xl bg-brass/10 p-4 text-lg text-walnut-deep">
         <p className="flex-1">{headerText}</p>
         <SpeakButton text={headerText} size="sm" />
       </div>
@@ -121,18 +121,25 @@ export function TargetPlayer({ activity, onComplete }: Props) {
         )}
       </div>
 
-      <div className="space-y-1 text-center">
-        <p className="text-base font-bold text-neutral-600">
+      <div className="space-y-2 text-center">
+        <p className="text-base font-bold text-ink-soft">
           {done
-            ? "You got them all! 🎉"
+            ? "You got them all!"
             : activity.prey
               ? `Gobble them all! (${collected.length}/${activity.targets.length})`
               : `Tap the piece, then tap a target! (${collected.length}/${activity.targets.length})`}
         </p>
         {budget && !done && (
-          <p className="text-base font-bold text-sky-600" aria-hidden>
-            {Array.from({ length: budget }, (_, i) => (i < moves ? "▫️" : "🟦")).join(" ")}
-            <span className="ml-2">{budget - moves} hops left</span>
+          <p className="flex items-center justify-center gap-2 text-base font-bold text-kid-teal">
+            <span className="flex gap-1" aria-hidden>
+              {Array.from({ length: budget }, (_, i) => (
+                <span
+                  key={i}
+                  className={`h-3 w-3 rounded-full ${i < moves ? "bg-ink/15" : "bg-kid-teal"}`}
+                />
+              ))}
+            </span>
+            <span>{budget - moves} hops left</span>
           </p>
         )}
       </div>

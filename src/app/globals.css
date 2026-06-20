@@ -1,31 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 /*
- * The app is intentionally light-themed (light background, white cards, dark
- * text). We do NOT honor prefers-color-scheme: dark — on a dark-mode device it
- * would flip the inherited text color to near-white and make any element that
- * relies on inherited color (e.g. unstyled buttons) render light-on-light.
+ * Chess Trainer — warm, premium design system.
+ * Parchment + walnut + brass, serif display (Fraunces) + clean sans (Inter).
+ * Light-themed only by design (do NOT honor prefers-color-scheme: dark — it
+ * would flip inherited text color and break unstyled elements).
  */
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme {
+  /* Surfaces */
+  --color-bg: #faf5ec; /* parchment page background */
+  --color-surface: #fffdf7; /* slightly warm panel */
+  --color-card: #ffffff; /* cards */
+
+  /* Ink (warm near-black) */
+  --color-ink: #221c15;
+  --color-ink-soft: #6b6258;
+  --color-line: #e8dfcd; /* hairline borders */
+
+  /* Brand */
+  --color-walnut: #5b4636;
+  --color-walnut-deep: #3f3327;
+  --color-brass: #b8863b; /* accent / CTAs / highlights */
+
+  /* Semantic (also the three difficulty levels) */
+  --color-sage: #5e7e58; /* success / progress / Beginner */
+  --color-amber: #b07d27; /* Intermediate */
+  --color-clay: #b0604a; /* Advanced */
+
+  /* Kid-track flex accents (layered only in kidMode) */
+  --color-kid-teal: #16959c;
+  --color-kid-coral: #ee6f54;
+
+  /* Typography (variables provided by next/font in layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Warm-tinted elevation */
+  --shadow-soft: 0 1px 2px rgba(61, 51, 39, 0.06),
+    0 6px 20px -8px rgba(61, 51, 39, 0.18);
+  --shadow-lift: 0 2px 4px rgba(61, 51, 39, 0.08),
+    0 14px 32px -12px rgba(61, 51, 39, 0.26);
 }
 
-/* Confetti pieces fall and fade (kid celebrations). */
+@layer base {
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  /* Titles default to the warm serif. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
+
+/* ---- Animations (kid celebrations & board cues) ---- */
+
+/* Confetti pieces fall and fade. */
 @keyframes kidConfettiFall {
   0% {
     transform: translateY(-10vh) rotate(0deg);
@@ -48,8 +83,7 @@ body {
   }
 }
 
-/* Kid-mode "danger" flash for a king that is in check (applied to a board
- * square via inline style: animation: kidDanger 0.8s ease-in-out infinite). */
+/* "Danger" flash for a king in check (applied to a board square inline). */
 @keyframes kidDanger {
   0%,
   100% {

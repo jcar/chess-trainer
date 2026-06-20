@@ -6,6 +6,7 @@ import { ChessGame, uciToMove, kingInCheckSquare } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
+import { buttonClasses } from "@/components/ui/Button";
 
 interface Props {
   activity: PuzzleActivity;
@@ -127,10 +128,10 @@ export function PuzzlePlayer({
 
   const feedbackCls =
     feedback.kind === "success"
-      ? "bg-emerald-50 text-emerald-900"
+      ? "bg-sage/10 text-sage"
       : feedback.kind === "error"
-        ? "bg-red-50 text-red-900"
-        : "bg-neutral-50 text-neutral-700";
+        ? "bg-clay/10 text-clay"
+        : "bg-surface text-ink-soft shadow-soft";
 
   return (
     <div className="space-y-4">
@@ -160,7 +161,7 @@ export function PuzzlePlayer({
       </div>
 
       {!kidMode && activity.hints && hintsShown > 0 && (
-        <ul className="list-disc space-y-1 rounded-xl bg-amber-50 p-4 pl-8 text-sm text-amber-900">
+        <ul className="list-disc space-y-1 rounded-xl bg-brass/8 p-4 pl-8 text-sm text-walnut-deep">
           {activity.hints.slice(0, hintsShown).map((h, i) => (
             <li key={i}>{h}</li>
           ))}
@@ -171,13 +172,9 @@ export function PuzzlePlayer({
         <button
           type="button"
           onClick={reset}
-          className={
-            kidMode
-              ? "rounded-2xl border-4 border-neutral-300 px-5 py-3 text-lg font-bold active:scale-95"
-              : "rounded-xl border border-neutral-300 px-4 py-2.5 text-sm font-medium"
-          }
+          className={buttonClasses("secondary", kidMode ? "kid" : "md")}
         >
-          ↺ Reset
+          Reset
         </button>
 
         {kidMode
@@ -185,9 +182,9 @@ export function PuzzlePlayer({
               <button
                 type="button"
                 onClick={showMe}
-                className="rounded-2xl border-4 border-amber-300 bg-amber-100 px-5 py-3 text-lg font-bold text-amber-900 active:scale-95"
+                className={buttonClasses("accent", "kid")}
               >
-                💡 Show me!
+                Show me!
               </button>
             )
           : activity.hints &&
@@ -196,7 +193,7 @@ export function PuzzlePlayer({
               <button
                 type="button"
                 onClick={() => setHintsShown((n) => n + 1)}
-                className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm font-medium text-amber-900"
+                className={buttonClasses("secondary", "md")}
               >
                 Show a hint
               </button>
