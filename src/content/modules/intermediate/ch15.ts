@@ -17,10 +17,10 @@ export const ch15: Lesson = {
       question:
         "What makes a square an ideal 'outpost' for a knight?",
       options: [
-        "It is in your own half of the board.",
-        "An advanced square, protected by your pawn, that an enemy pawn can no longer attack.",
-        "Any square on the edge of the board.",
-        "A square next to your king.",
+        "A safe square on your own half of the board, near your other pieces.",
+        "An advanced square, guarded by your pawn, that no enemy pawn can attack.",
+        "Any square on the rim, where the knight has a wide, open view.",
+        "A square right next to your king, where it helps with the defense.",
       ],
       correctIndex: 1,
       explanation:
@@ -34,10 +34,10 @@ export const ch15: Lesson = {
       question:
         "Rooks are strongest when placed on:",
       options: [
-        "Closed files behind their own pawns.",
-        "Open (or half-open) files, and especially the 7th rank, where they attack pawns and cut off the king.",
-        "The same square as the king.",
-        "The first rank only.",
+        "Closed files, tucked safely behind their own unbroken chain of pawns.",
+        "Open or half-open files, and the 7th rank, hitting pawns and cutting off the king.",
+        "The same file as their own king, guarding it patiently from a safe distance.",
+        "The first rank only, sitting back to hold the back row against any invasion.",
       ],
       correctIndex: 1,
       explanation:
@@ -51,10 +51,10 @@ export const ch15: Lesson = {
       question:
         "Why is the 'bishop pair' often an advantage, especially in open positions?",
       options: [
-        "Bishops are worth more than queens.",
-        "Together the two bishops cover both colors of squares from a distance, dominating open boards where their long-range power shines.",
-        "They can checkmate a lone king faster than a queen.",
-        "They protect each other automatically.",
+        "Each bishop on its own is worth more than a queen once the board opens up fully.",
+        "Together they cover both square colors from afar, dominating wide-open positions.",
+        "They can force checkmate against a lone king faster than a single queen ever could.",
+        "They always defend one another, so neither bishop can ever be won for free.",
       ],
       correctIndex: 1,
       explanation:
@@ -68,10 +68,10 @@ export const ch15: Lesson = {
       question:
         "An isolated queen's pawn (IQP) is double-edged. What does each side want?",
       options: [
-        "Both sides want to ignore it.",
-        "The owner uses the space and open lines for an attack (especially the outpost squares it controls); the defender blockades it and aims for an endgame where it's just weak.",
-        "Only the defender benefits, never the attacker.",
-        "It guarantees a win for whoever owns it.",
+        "Both sides should ignore it and play on the wings as if it weren't there.",
+        "The owner attacks using the space and outposts; the defender blockades and heads for an ending.",
+        "Only the defender ever benefits — the isolated pawn is purely a liability.",
+        "Whoever owns the isolated queen's pawn holds a decisive, essentially winning long-term advantage.",
       ],
       correctIndex: 1,
       explanation:
@@ -85,10 +85,10 @@ export const ch15: Lesson = {
       question:
         "Which is a sound guideline for trading pieces?",
       options: [
-        "Trade randomly to simplify.",
-        "When ahead in material, trade pieces (not pawns) toward a winning endgame; when cramped, trade to gain space to breathe; trade your bad piece for the opponent's good one.",
-        "Never trade anything.",
-        "Always trade queens as fast as possible.",
+        "Trade pieces off at random whenever you possibly can, just to keep the whole game simple.",
+        "When ahead, trade pieces toward the endgame; when cramped, trade to free your position.",
+        "Never trade anything, so you always keep your full army on the board.",
+        "Always swap the queens off as fast as you possibly can, in every game.",
       ],
       correctIndex: 1,
       explanation:
@@ -102,10 +102,10 @@ export const ch15: Lesson = {
       question:
         "When the position is quiet and there's no forcing move, what should guide your choice?",
       options: [
-        "Move the piece nearest your hand.",
-        "Assess the position (pawn structure, weaknesses, piece activity) and pick a concrete plan — improve your worst piece, target a weakness, or seize a key file or square.",
-        "Always attack the king regardless of the position.",
-        "Shuffle pieces until the opponent moves.",
+        "Just grab whichever piece is nearest your hand and make a quick move.",
+        "Assess the position, then pick a plan: fix your worst piece or target a weakness.",
+        "Always throw your pieces at the enemy king, no matter what the position asks for.",
+        "Shuffle your pieces back and forth and wait for the opponent to commit first.",
       ],
       correctIndex: 1,
       explanation:

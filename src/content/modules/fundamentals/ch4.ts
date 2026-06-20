@@ -17,10 +17,10 @@ export const ch4: Lesson = {
       question:
         "Why can two rooks force checkmate without their king's help, while a lone queen cannot?",
       options: [
-        "Rooks are worth more than a queen.",
-        "Two rooks can cover two full ranks/files at once, fencing the king to the edge by themselves; one queen needs its king to guard escape squares and avoid stalemate.",
-        "The queen isn't allowed to give checkmate alone.",
-        "It's random which pieces can mate.",
+        "Two rooks together are worth more points than one queen.",
+        "Two rooks fence the king alone; one queen needs its king's help.",
+        "The rules forbid a lone queen from giving checkmate by itself.",
+        "It is essentially random which pieces are able to force mate.",
       ],
       correctIndex: 1,
       explanation:

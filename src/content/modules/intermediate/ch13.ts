@@ -17,10 +17,10 @@ export const ch13: Lesson = {
       question:
         "In a king-and-pawn endgame, having 'the opposition' means:",
       options: [
-        "Your king is worth more than the enemy king.",
-        "The kings face each other with one square between them and it's the OPPONENT to move — forcing their king to give way.",
-        "You have an extra pawn.",
-        "Your king is on its starting square.",
+        "Your king controls more squares and so outvalues the enemy king in a race.",
+        "The kings stand one square apart and it is the OPPONENT to move, forcing them aside.",
+        "You hold an extra pawn that the enemy king is too far away to capture.",
+        "Your king has reached the far side of the board ahead of its pawn.",
       ],
       correctIndex: 1,
       explanation:
@@ -55,10 +55,10 @@ export const ch13: Lesson = {
       question:
         "The 'square of the pawn' rule lets you tell at a glance whether:",
       options: [
-        "A pawn is on a light or dark square.",
-        "A lone king can catch an enemy passed pawn before it promotes (without calculating move by move).",
-        "Two pawns are connected.",
-        "A bishop can reach a square.",
+        "Whether a given pawn currently sits on a light square or a dark square.",
+        "Whether a lone king can catch an enemy passed pawn before it promotes, at a glance.",
+        "Whether two of your pawns are connected and can defend each other.",
+        "Whether your bishop is able to reach a particular target square in time.",
       ],
       correctIndex: 1,
       explanation:
@@ -72,10 +72,10 @@ export const ch13: Lesson = {
       question:
         "Where do you generally want to put your rook relative to a passed pawn?",
       options: [
-        "Directly in front of it, blocking it.",
+        "Directly in front of it, parked on the square to physically block its advance.",
         "Behind the passed pawn — yours, to push it, or the enemy's, to restrain it.",
-        "As far away as possible.",
-        "Next to your king only.",
+        "As far away from the pawn as possible, holding squares on the other wing.",
+        "Right beside your own king, where the two can defend each other.",
       ],
       correctIndex: 1,
       explanation:
@@ -89,10 +89,10 @@ export const ch13: Lesson = {
       question:
         "In rook endgames, the Lucena and Philidor positions are famous because they show:",
       options: [
-        "How to checkmate with two rooks.",
-        "The key winning method (Lucena, 'building a bridge') and the key drawing method (Philidor, 'third-rank defense') in rook-and-pawn endings.",
-        "How to open a game.",
-        "Why rooks are weak.",
+        "The standard textbook method for delivering a checkmate using two rooks on open ranks and files.",
+        "The key winning method (Lucena, 'building a bridge') and drawing method (Philidor) with R+P.",
+        "The soundest way to develop the rooks and connect them in the opening.",
+        "The reasons rooks tend to be weak, passive pieces in most endgames.",
       ],
       correctIndex: 1,
       explanation:

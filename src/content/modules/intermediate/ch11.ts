@@ -141,10 +141,10 @@ export const ch11: Lesson = {
       question:
         "Which statement best matches these defenses to their character?",
       options: [
-        "All three are wild gambits.",
-        "Scandinavian: simple and direct; Caro-Kann: solid with an active bishop; QGD: ultra-solid central fortress.",
-        "They only work against weak opponents.",
-        "They all hang a pawn on move two.",
+        "All three are wild gambits that deliberately sacrifice a pawn for the attack.",
+        "Scandinavian: simple and direct; Caro-Kann: solid with an active bishop; QGD: central fortress.",
+        "All three are dubious openings that tend to collapse quickly against any well-prepared opponent.",
+        "All three hang the d-pawn on move two and rely on the opponent missing it.",
       ],
       correctIndex: 1,
       explanation:

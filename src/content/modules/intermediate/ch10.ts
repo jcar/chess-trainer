@@ -143,10 +143,10 @@ export const ch10: Lesson = {
       question:
         "What do the London, Vienna, and Alapin have in common as practical choices?",
       options: [
-        "They all force checkmate quickly.",
-        "Each gives White a clear, repeatable plan with limited forced theory to memorize.",
-        "They all sacrifice a piece on move 3.",
-        "They can only be played against beginners.",
+        "Each forces a quick checkmate against any reasonable defense Black tries.",
+        "Each gives White a clear, repeatable plan with little forced theory to memorize.",
+        "Each stakes the game on a piece sacrifice within the first few moves.",
+        "Each is a trap that works only against beginners who don't know theory.",
       ],
       correctIndex: 1,
       explanation:

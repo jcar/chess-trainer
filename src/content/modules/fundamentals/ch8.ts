@@ -17,10 +17,10 @@ export const ch8: Lesson = {
       question:
         "Why is an 'isolated' pawn (no friendly pawns on the files beside it) often a weakness?",
       options: [
-        "It can never promote.",
-        "No pawn can ever defend it, so it must be guarded by pieces — and the square in front makes a good outpost for the enemy.",
-        "It blocks your own king.",
-        "It is worth zero points.",
+        "It is permanently barred from ever promoting to a queen.",
+        "No pawn can defend it, and the square in front is an enemy outpost.",
+        "It always ends up blocking your own king's escape squares.",
+        "An isolated pawn is worth zero points in any trade.",
       ],
       correctIndex: 1,
       explanation:
@@ -34,10 +34,10 @@ export const ch8: Lesson = {
       question:
         "What practical benefit does a space advantage (pawns further up the board) usually give?",
       options: [
-        "It guarantees checkmate.",
-        "Your pieces have more squares to maneuver while the opponent's are cramped and trip over each other.",
-        "It wins a pawn immediately.",
-        "It prevents the opponent from castling.",
+        "It guarantees a forced checkmate later in the game.",
+        "Your pieces maneuver freely while the opponent's are cramped.",
+        "It wins a pawn immediately by force in the middlegame.",
+        "It permanently prevents the opponent from castling.",
       ],
       correctIndex: 1,
       explanation:
@@ -51,10 +51,10 @@ export const ch8: Lesson = {
       question:
         "In a wide-open position with few pawns and long, clear diagonals, which minor piece tends to be stronger?",
       options: [
-        "The knight, because it can jump.",
-        "The bishop, because it rakes across open diagonals from a distance.",
-        "They are always exactly equal.",
-        "Neither — only rooks matter.",
+        "The knight, because it can jump over other pieces.",
+        "The bishop, because it rakes long open diagonals from afar.",
+        "They are always exactly equal regardless of structure.",
+        "Neither — only the rooks really matter in open positions.",
       ],
       correctIndex: 1,
       explanation:
@@ -68,10 +68,10 @@ export const ch8: Lesson = {
       question:
         "What makes a bishop a 'bad' bishop?",
       options: [
-        "It is the wrong color.",
-        "Its own pawns are fixed on the same color squares it travels on, blocking its movement.",
-        "It has never captured anything.",
-        "It started on the queenside.",
+        "It happens to be the wrong color for the position.",
+        "Its own pawns are fixed on its color, blocking its diagonals.",
+        "It has not captured anything for the whole game.",
+        "It started the game on the queenside, not the kingside.",
       ],
       correctIndex: 1,
       explanation:
@@ -85,10 +85,10 @@ export const ch8: Lesson = {
       question:
         "You're up a clean piece. As a general rule, which trades do you want?",
       options: [
-        "Trade pawns, keep all the pieces.",
-        "Trade pieces (not pawns) to reach an endgame where your extra piece decides the game.",
-        "Avoid all trades forever.",
-        "Trade your extra piece as fast as possible.",
+        "Trade off the pawns and keep all the pieces on the board.",
+        "Trade pieces, not pawns, to reach a winning endgame.",
+        "Avoid every trade for the rest of the game.",
+        "Trade away your extra piece as fast as you possibly can.",
       ],
       correctIndex: 1,
       explanation:

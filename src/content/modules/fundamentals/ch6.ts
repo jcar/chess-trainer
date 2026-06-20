@@ -17,10 +17,10 @@ export const ch6: Lesson = {
       question:
         "Stalemate occurs when the player to move:",
       options: [
-        "Is in check and can escape.",
-        "Has no legal move AND is not in check — the game is drawn.",
-        "Has only a king left.",
-        "Refuses to move.",
+        "Is in check but still has a square to escape to.",
+        "Has no legal move AND is not in check — a draw.",
+        "Has only a lone king left on the board.",
+        "Simply refuses to make any move at all.",
       ],
       correctIndex: 1,
       explanation:
@@ -51,10 +51,10 @@ export const ch6: Lesson = {
       question:
         "A player may claim a draw by threefold repetition when:",
       options: [
-        "The same moves are played three times in a row.",
-        "The identical position (same pieces, same player to move, same rights) occurs three times during the game.",
-        "Both players agree three times.",
-        "Three pawns have been captured.",
+        "The very same sequence of moves is repeated three times in a row.",
+        "The identical position occurs three times, with the same side to move.",
+        "Both players offer and accept a draw on three separate turns.",
+        "A total of three pawns have been captured during the game.",
       ],
       correctIndex: 1,
       explanation:
@@ -68,10 +68,10 @@ export const ch6: Lesson = {
       question:
         "The fifty-move rule allows a draw claim when, in the last 50 moves by each side:",
       options: [
-        "No piece has been developed.",
+        "No minor or major piece has been developed at all.",
         "No pawn has moved and no capture has been made.",
-        "Neither king has castled.",
-        "The clock has run low.",
+        "Neither king has castled in the entire game.",
+        "Both players' clocks have run dangerously low.",
       ],
       correctIndex: 1,
       explanation:
@@ -85,10 +85,10 @@ export const ch6: Lesson = {
       question:
         "You're down a lot of material but your queen can check the enemy king forever, and it can never escape the checks. What's the result?",
       options: [
-        "You lose on material.",
-        "A draw — perpetual check forces repetition (a threefold draw).",
-        "You must stop checking and resign.",
-        "You win by persistence.",
+        "You lose, since the opponent is far ahead on material.",
+        "A draw — perpetual check forces a threefold repetition.",
+        "You must stop checking and resign the lost position.",
+        "You win, because your persistence wears the opponent down.",
       ],
       correctIndex: 1,
       explanation:

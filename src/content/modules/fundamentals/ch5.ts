@@ -17,10 +17,10 @@ export const ch5: Lesson = {
       question:
         "Against a lone king (and nothing else), which of these CANNOT force checkmate?",
       options: [
-        "King and queen.",
-        "King and rook.",
-        "King and a single bishop.",
-        "King and two bishops.",
+        "King and queen versus the lone king.",
+        "King and rook versus the lone king.",
+        "King and a single bishop, nothing more.",
+        "King and two bishops versus the lone king.",
       ],
       correctIndex: 2,
       explanation:
@@ -34,10 +34,10 @@ export const ch5: Lesson = {
       question:
         "King and TWO knights versus a lone king is generally:",
       options: [
-        "An easy forced win.",
-        "Not a forced win — you can't compel checkmate against best defense.",
-        "Always a win in under 10 moves.",
-        "Illegal to play out.",
+        "An easy forced win, like king and rook.",
+        "Not a forced win against best defense by Black.",
+        "Always a forced win in under ten moves.",
+        "Illegal to play out under the rules of chess.",
       ],
       correctIndex: 1,
       explanation:
@@ -51,10 +51,10 @@ export const ch5: Lesson = {
       question:
         "You're up a queen against a lone king. What's the single biggest way to blow it?",
       options: [
-        "Checking too often.",
-        "Stalemating the enemy king — leaving it with no legal move while it's NOT in check, making it a draw.",
-        "Promoting another pawn.",
-        "Trading your queen for the king.",
+        "Checking the king too often as you herd it.",
+        "Stalemating the king — no legal move while NOT in check.",
+        "Promoting one of your extra pawns to a second queen.",
+        "Trading your queen to capture the enemy king outright.",
       ],
       correctIndex: 1,
       explanation:
@@ -82,10 +82,10 @@ export const ch5: Lesson = {
       question:
         "Your opponent has only a king. You have a king and one knight (no pawns). The result with best play is:",
       options: [
-        "You win by force.",
-        "A draw — a single knight can't force checkmate.",
-        "You lose.",
-        "Automatic stalemate.",
+        "You win by force with careful technique.",
+        "A draw — a single knight can't force mate.",
+        "You lose despite being a piece ahead.",
+        "An automatic stalemate ends it at once.",
       ],
       correctIndex: 1,
       explanation:

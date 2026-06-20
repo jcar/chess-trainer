@@ -17,9 +17,9 @@ export const trappingTheKing: Lesson = {
       blurb: "Where do you trap the king?",
       question: "To checkmate the king, where do you want to push it?",
       options: [
-        "Into the middle of the board.",
-        "To the EDGE or a CORNER, where it has fewer places to run.",
-        "Next to your own king.",
+        "Into the middle, where it has lots of room.",
+        "To the EDGE or a CORNER, with fewer places to run.",
+        "Right next to your own king to keep it close.",
       ],
       correctIndex: 1,
       explanation: "Push the king to the edge! In the middle it has 8 escape squares; in the corner it has only 3. Trapping is much easier at the edge.",

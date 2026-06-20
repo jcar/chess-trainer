@@ -17,10 +17,10 @@ export const ch9: Lesson = {
       question:
         "What's the most useful way to study an opening as an improving player?",
       options: [
-        "Memorize the first 20 moves of every line by heart.",
-        "Understand the typical pawn structures, piece placements, and middlegame plans the opening leads to.",
-        "Only learn the moves that win material immediately.",
-        "Avoid openings and just play random moves.",
+        "Memorize the first twenty moves of every single main line by heart, in exact move order.",
+        "Understand the typical pawn structures, piece placements, and middlegame plans it leads to.",
+        "Learn only the sharp lines that win material in the first few moves.",
+        "Skip opening study entirely and just improvise from move one.",
       ],
       correctIndex: 1,
       explanation:
@@ -34,10 +34,10 @@ export const ch9: Lesson = {
       question:
         "A practical opening 'repertoire' for an improving player is best described as:",
       options: [
-        "Every opening that has ever been played.",
-        "A small, consistent set of openings you know well — one for White, and a defense each to 1.e4 and 1.d4 as Black.",
-        "Whatever your opponent plays.",
-        "Only gambits.",
+        "A thick binder covering every opening ever played at the master level, kept ready.",
+        "A small, consistent set you know well: a White opening plus defenses to 1.e4 and 1.d4.",
+        "Whatever your opponent happens to play that day, reacted to fresh over the board.",
+        "A collection of sharp gambits, chosen purely to surprise unprepared opponents.",
       ],
       correctIndex: 1,
       explanation:
@@ -78,10 +78,10 @@ export const ch9: Lesson = {
       question:
         "Your opponent plays the moves of your favorite opening but in a different order, reaching the same setup. This is called:",
       options: [
-        "Cheating.",
+        "Cheating — they have stolen your preparation against the rules.",
         "A transposition — reaching a known position by a different move order.",
-        "An illegal sequence.",
-        "A gambit.",
+        "An illegal sequence that the arbiter should force them to take back.",
+        "A gambit, since changing the move order must cost one side a pawn.",
       ],
       correctIndex: 1,
       explanation:
@@ -95,10 +95,10 @@ export const ch9: Lesson = {
       question:
         "Your opponent plays a strange, non-theoretical move in the opening. What's the soundest response?",
       options: [
-        "Resign — you're out of preparation.",
-        "Fall back on principles: develop a piece, fight for the center, and keep your king safe.",
-        "Copy their strange move.",
-        "Immediately sacrifice a piece to punish them.",
+        "Resign on the spot, since you are now out of your prepared lines.",
+        "Fall back on principles: develop a piece, fight for the center, keep the king safe.",
+        "Mirror their strange move exactly and aim for a symmetrical, dead-equal position.",
+        "Launch an immediate piece sacrifice to punish them for leaving theory.",
       ],
       correctIndex: 1,
       explanation:

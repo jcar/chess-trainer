@@ -88,10 +88,10 @@ export const ch7: Lesson = {
       question:
         "Your bishop can capture an enemy pawn. Before you take it, what's the most important thing to check?",
       options: [
-        "Whether the pawn is on a light or dark square.",
-        "Whether the pawn (or the square) is defended — so you don't lose your bishop for a pawn.",
-        "Whether it's an even-numbered move.",
-        "Whether your opponent is castled.",
+        "Whether the pawn is sitting on a light square or a dark one.",
+        "Whether the pawn is defended — so you don't lose the bishop for it.",
+        "Whether you are on an even-numbered move of the game.",
+        "Whether your opponent has already castled their king to safety.",
       ],
       correctIndex: 1,
       explanation:

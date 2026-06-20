@@ -76,9 +76,9 @@ export const l6: Lesson = {
       blurb: "Choose wisely.",
       question: "When your pawn reaches the other end, what can it turn into?",
       options: [
-        "Only a queen.",
+        "Only a strong new queen, and nothing else.",
         "A queen, rook, bishop, or knight — your choice!",
-        "Another king.",
+        "A brand new king to help the old one.",
       ],
       correctIndex: 1,
       explanation: "You pick: queen, rook, bishop, or knight. Almost always choose the queen — she's the strongest!",

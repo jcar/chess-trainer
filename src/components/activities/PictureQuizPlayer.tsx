@@ -3,11 +3,12 @@
 // A quiz whose answers are little board pictures (with arrows) instead of
 // sentences — so pre-readers can play by looking, not reading.
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { PictureQuizActivity } from "@/content/types";
 import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
+import { seededOrder } from "@/lib/shuffle";
 
 interface Props {
   activity: PictureQuizActivity;
@@ -18,6 +19,12 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const answered = selected !== null;
   const correct = selected === activity.correctIndex;
+
+  // Shuffle picture order so the correct one isn't always in the same slot.
+  const order = useMemo(
+    () => seededOrder(activity.options.length, activity.id),
+    [activity.options.length, activity.id],
+  );
 
   function choose(index: number) {
     if (answered) return;
@@ -35,9 +42,10 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-        {activity.options.map((opt, i) => {
-          const isCorrect = i === activity.correctIndex;
-          const isChosen = i === selected;
+        {order.map((origIdx) => {
+          const opt = activity.options[origIdx];
+          const isCorrect = origIdx === activity.correctIndex;
+          const isChosen = origIdx === selected;
           let ring = "border-kid-teal/30";
           if (answered) {
             ring = isCorrect
@@ -48,9 +56,9 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
           }
           return (
             <button
-              key={i}
+              key={origIdx}
               type="button"
-              onClick={() => choose(i)}
+              onClick={() => choose(origIdx)}
               disabled={answered}
               className={`flex flex-col items-center gap-2 rounded-2xl border-4 bg-card p-2 transition active:scale-[0.97] ${ring}`}
             >

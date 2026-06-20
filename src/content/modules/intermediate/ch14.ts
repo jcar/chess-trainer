@@ -17,10 +17,10 @@ export const ch14: Lesson = {
       question:
         "When looking for a tactic, which moves should you calculate FIRST?",
       options: [
-        "Quiet pawn moves on the side of the board.",
-        "Forcing moves: checks, captures, and threats — they limit the opponent's replies.",
-        "Only moves with your queen.",
-        "Whichever move looks prettiest.",
+        "Quiet little pawn moves out on the wing that very slowly improve your pawn structure.",
+        "Forcing moves: checks, captures, and threats that limit the opponent's replies.",
+        "Only queen moves, since the queen is your most powerful attacker.",
+        "Whichever move happens to look the prettiest on the board.",
       ],
       correctIndex: 1,
       explanation:
@@ -70,10 +70,10 @@ export const ch14: Lesson = {
       question:
         "A 'discovered attack' works by:",
       options: [
-        "Moving a piece so that a DIFFERENT piece behind it is unleashed onto a target — often while the moving piece makes its own threat.",
-        "Hiding your queen behind a pawn.",
-        "Attacking with every piece at once.",
-        "Castling on the queenside.",
+        "Moving a piece so the one behind it is unleashed on a target, often threatening too.",
+        "Hiding your queen behind a pawn so the opponent cannot see where it is really aiming.",
+        "Throwing every one of your pieces at the enemy king in a single coordinated assault.",
+        "Castling on the queenside to swing the rook into the attack with an element of surprise.",
       ],
       correctIndex: 0,
       explanation:
@@ -87,10 +87,10 @@ export const ch14: Lesson = {
       question:
         "Your opponent's knight is the only thing defending a key mating square. The tactical idea is to:",
       options: [
-        "Ignore it and play elsewhere.",
-        "Eliminate or chase away that defender (capture it, or drive it off), so the now-undefended square or piece falls.",
-        "Offer a draw.",
-        "Trade queens immediately.",
+        "Ignore the defending knight entirely and play on a completely different part of the board.",
+        "Eliminate or chase away that defender so the now-undefended square or piece falls.",
+        "Offer a draw, since a defended mating square cannot be exploited.",
+        "Trade the queens off at once to simplify into a safer endgame.",
       ],
       correctIndex: 1,
       explanation:
@@ -104,10 +104,10 @@ export const ch14: Lesson = {
       question:
         "A piece is 'overloaded' when it has two defensive duties at once. You exploit this by:",
       options: [
-        "Giving it a third job.",
-        "Deflecting it — forcing it to handle one duty so it abandons the other, which you then exploit.",
-        "Trading it for a pawn.",
-        "Leaving it alone.",
+        "Piling on a third defensive job until the piece can no longer cope.",
+        "Deflecting it — forcing it to handle one duty so it abandons the other.",
+        "Trading it off for a mere pawn to remove it from the board.",
+        "Leaving it alone and looking for a tactic somewhere else instead.",
       ],
       correctIndex: 1,
       explanation:

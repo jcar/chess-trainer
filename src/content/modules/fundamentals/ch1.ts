@@ -17,10 +17,10 @@ export const ch1: Lesson = {
       question:
         "You win a game outright (not on the clock, not by resignation) when you do what?",
       options: [
-        "Capture the opponent's king.",
-        "Put the king in check with no legal way out — checkmate.",
-        "Capture the opponent's queen.",
-        "Occupy all four central squares.",
+        "Capture the opponent's king on your turn to move.",
+        "Trap the king in check with no legal escape — checkmate.",
+        "Capture the opponent's queen and both rooks.",
+        "Occupy all four central squares with your pawns.",
       ],
       correctIndex: 1,
       explanation:
@@ -34,10 +34,10 @@ export const ch1: Lesson = {
       question:
         "It's your opponent's turn. Their king is NOT in check, but they have no legal move at all. What's the result?",
       options: [
-        "They lose by checkmate.",
-        "They must skip their turn.",
-        "The game is a draw by stalemate.",
-        "You win automatically.",
+        "They lose the game by checkmate.",
+        "They skip the turn and you move again.",
+        "The game is drawn by stalemate.",
+        "You win automatically on the spot.",
       ],
       correctIndex: 2,
       explanation:

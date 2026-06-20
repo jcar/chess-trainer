@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { QuizActivity } from "@/content/types";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
+import { seededOrder } from "@/lib/shuffle";
 
 interface Props {
   activity: QuizActivity;
@@ -18,6 +19,12 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
   const answered = selected !== null;
   const correct = selected === activity.correctIndex;
 
+  // Shuffle answer order so the correct option isn't always in the same slot.
+  const order = useMemo(
+    () => seededOrder(activity.options.length, activity.id),
+    [activity.options.length, activity.id],
+  );
+
   function choose(index: number) {
     if (answered) return;
     setSelected(index);
@@ -26,8 +33,8 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
     onComplete(isRight ? 100 : 50);
   }
 
-  const readAloud = `${activity.question}. ${activity.options
-    .map((o, i) => `${BADGES[i]}. ${o}`)
+  const readAloud = `${activity.question}. ${order
+    .map((origIdx, pos) => `${BADGES[pos]}. ${activity.options[origIdx]}`)
     .join(". ")}`;
 
   return (
@@ -40,9 +47,10 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
       </div>
 
       <div className="space-y-3">
-        {activity.options.map((option, i) => {
-          const isCorrect = i === activity.correctIndex;
-          const isChosen = i === selected;
+        {order.map((origIdx, pos) => {
+          const option = activity.options[origIdx];
+          const isCorrect = origIdx === activity.correctIndex;
+          const isChosen = origIdx === selected;
           let cls = kidMode
             ? "flex w-full items-center gap-4 rounded-2xl border-4 px-5 py-5 text-left text-xl font-semibold transition active:scale-[0.98]"
             : "w-full rounded-xl border px-4 py-4 text-left text-base transition active:scale-[0.99]";
@@ -59,10 +67,10 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
           }
           return (
             <button
-              key={i}
+              key={origIdx}
               type="button"
               className={cls}
-              onClick={() => choose(i)}
+              onClick={() => choose(origIdx)}
               disabled={answered}
             >
               {kidMode && (
@@ -77,7 +85,7 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
                           : "bg-ink/8 text-ink-soft/60"
                   }`}
                 >
-                  {answered && isCorrect ? "✓" : BADGES[i]}
+                  {answered && isCorrect ? "✓" : BADGES[pos]}
                 </span>
               )}
               <span>{option}</span>

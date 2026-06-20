@@ -79,9 +79,9 @@ export const l10: Lesson = {
       blurb: "One last question.",
       question: "You beat every level! What's the best way to get even better now?",
       options: [
-        "Never play again.",
-        "Play lots of games with friends and family — and have fun!",
-        "Hide the chess set.",
+        "Never play another game of chess again.",
+        "Play lots of games with friends and family!",
+        "Hide the chess set away in a closet.",
       ],
       correctIndex: 1,
       explanation: "You did it! The best way to improve is to play and have fun. Pip is so proud of you! 🌟",

@@ -17,10 +17,10 @@ export const ch12: Lesson = {
       question:
         "When you play a sound gambit, what are you trading your pawn FOR?",
       options: [
-        "Nothing — it's just a blunder.",
+        "Nothing of value — a sound gambit is really just a disguised blunder.",
         "A lead in development, open lines for your pieces, and the initiative.",
-        "An automatic checkmate.",
-        "An extra queen.",
+        "A forced checkmate that arrives automatically a few moves later.",
+        "A guaranteed second queen once the opponent's structure crumbles.",
       ],
       correctIndex: 1,
       explanation:
@@ -97,10 +97,10 @@ export const ch12: Lesson = {
       question:
         "Your opponent offers a gambit pawn. What's the most reliable practical approach?",
       options: [
-        "Always greedily hold every pawn at all costs.",
-        "It's fine to accept, but prioritize development and returning the pawn at a good moment to neutralize the initiative.",
-        "Always decline and play passively.",
-        "Immediately sacrifice a piece back.",
+        "Greedily accept the offer and then cling to that extra pawn at all costs, no matter what happens.",
+        "Accept if you like, but prioritize development and give the pawn back to kill the initiative.",
+        "Decline the offer and settle into a passive, cramped setup behind your own pawns.",
+        "Sacrifice a piece of your own straight back to seize the initiative first.",
       ],
       correctIndex: 1,
       explanation:

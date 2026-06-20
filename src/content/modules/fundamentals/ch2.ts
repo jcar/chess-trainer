@@ -17,9 +17,9 @@ export const ch2: Lesson = {
       question:
         "Which trio best captures the priorities of a good opening?",
       options: [
-        "Attack the king, grab pawns, trade queens.",
-        "Control the center, develop your pieces, castle your king to safety.",
-        "Push the h-pawn, fianchetto both bishops, double your rooks.",
+        "Attack the enemy king, grab pawns, trade off the queens.",
+        "Control the center, develop pieces, castle to safety.",
+        "Push the h-pawn, fianchetto both bishops, double the rooks.",
         "Bring the queen out early to create immediate threats.",
       ],
       correctIndex: 1,
@@ -93,10 +93,10 @@ export const ch2: Lesson = {
       question:
         "Why is bringing your queen out on move 2 or 3 usually a bad idea?",
       options: [
-        "The queen isn't allowed to move early.",
-        "Opponents can develop their pieces with tempo by attacking the exposed queen.",
-        "It's against the rules to check with the queen.",
-        "The queen is too valuable to ever move.",
+        "The rules don't let the queen move in the first few turns.",
+        "The opponent develops with tempo by attacking your exposed queen.",
+        "Giving check with the queen this early is against the rules.",
+        "The queen is too valuable to risk moving at all.",
       ],
       correctIndex: 1,
       explanation:

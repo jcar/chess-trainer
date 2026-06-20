@@ -17,10 +17,10 @@ export const ch3: Lesson = {
       question:
         "As Black, what's the soundest general approach to the opening?",
       options: [
-        "Copy White's moves forever to stay equal.",
-        "Follow the same principles — contest the center, develop, castle — accepting White has a small head start.",
-        "Immediately attack on the wing before developing.",
-        "Keep all pieces home until White commits.",
+        "Copy White's moves forever to keep the game equal.",
+        "Use the same principles, accepting White's small head start.",
+        "Attack at once on the wing before developing pieces.",
+        "Keep all your pieces at home until White commits.",
       ],
       correctIndex: 1,
       explanation:
@@ -92,10 +92,10 @@ export const ch3: Lesson = {
       question:
         "What's the main practical advantage of a setup-based opening for a beginner?",
       options: [
-        "It forces checkmate by move 10.",
-        "You aim for the same harmonious piece placement against most White tries, so there's less to memorize.",
-        "It wins a pawn by force.",
-        "It avoids ever having to castle.",
+        "It forces a winning checkmate against White around move 10.",
+        "You reach one setup each game, so there's less to memorize.",
+        "It wins a clean extra pawn by force during the opening.",
+        "It lets you safely skip castling and keep your king central.",
       ],
       correctIndex: 1,
       explanation:
