@@ -69,5 +69,26 @@ export const londonSystem: Opening = {
         "A handy luft, denying Black's pieces the g4-square and preparing g4 ideas.",
       ],
     },
+    {
+      label: "Black hits back with ...c5 and ...Qb6",
+      sans: [
+        "d4", "d5", "Nf3", "Nf6", "Bf4", "c5",
+        "e3", "Nc6", "c3", "Qb6", "Qc1", "Bf5",
+      ],
+      notes: [
+        "Claiming the centre.",
+        "A classical, symmetrical reply.",
+        "Developing and controlling e5.",
+        "Black mirrors the development.",
+        "The signature London move before e3 shuts the bishop in.",
+        "An immediate strike at the centre, the critical try against the London.",
+        "Building the structure and freeing the light-squared bishop.",
+        "Developing and adding pressure on d4.",
+        "Reinforcing d4 and giving the bishop a square on c2.",
+        "The point: hitting both b2 and d4, the most testing reply.",
+        "Calmly defending b2 while keeping the queen flexible.",
+        "Black also develops the bishop outside the chain, mirroring White's idea.",
+      ],
+    },
   ],
 };

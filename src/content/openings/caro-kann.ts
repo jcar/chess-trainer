@@ -66,5 +66,26 @@ export const caroKann: Opening = {
         "Black's thematic break against the base of the chain on d4.",
       ],
     },
+    {
+      label: "Panov–Botvinnik Attack",
+      sans: [
+        "e4", "c6", "d4", "d5", "exd5", "cxd5",
+        "c4", "Nf6", "Nc3", "e6", "Nf3", "Bb4",
+      ],
+      notes: [
+        "White grabs the centre.",
+        "The Caro-Kann: preparing ...d5 with support.",
+        "Reinforcing the centre.",
+        "Black challenges e4.",
+        "Releasing the tension and clearing the centre.",
+        "Recapturing toward the centre.",
+        "The Panov idea: striking at d5 to open the game and play with an isolated pawn.",
+        "Developing and pressing back on d5.",
+        "Developing and adding pressure to the d5-pawn.",
+        "Solidly defending d5 and opening the bishop's path.",
+        "Developing and supporting the centre.",
+        "Pinning the knight to ease the pressure on d5.",
+      ],
+    },
   ],
 };

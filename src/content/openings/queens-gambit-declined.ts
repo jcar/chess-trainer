@@ -70,5 +70,26 @@ export const queensGambitDeclined: Opening = {
         "Developing the bishop actively outside the pawn chain — a key point of this line.",
       ],
     },
+    {
+      label: "Facing the Catalan (3.g3)",
+      sans: [
+        "d4", "Nf6", "c4", "e6", "g3", "d5", "Bg2", "Be7",
+        "Nf3", "O-O", "O-O", "dxc4",
+      ],
+      notes: [
+        "White claims the centre.",
+        "Developing and controlling central squares.",
+        "Gaining queenside space and pressuring d5 ideas.",
+        "Solid development that keeps the centre flexible.",
+        "The Catalan: White prepares a long-diagonal fianchetto.",
+        "Staking a claim in the centre.",
+        "The Catalan bishop, bearing down the long diagonal toward d5 and b7.",
+        "Developing and preparing to castle.",
+        "Developing naturally and supporting the centre.",
+        "King safety.",
+        "Castling into a harmonious set-up.",
+        "Grabbing the c-pawn to gain a tempo and ease the cramped position.",
+      ],
+    },
   ],
 };

@@ -70,5 +70,26 @@ export const kingsIndian: Opening = {
         "Developing the knight to support an eventual ...e5 break.",
       ],
     },
+    {
+      label: "Sämisch Variation",
+      sans: [
+        "d4", "Nf6", "c4", "g6", "Nc3", "Bg7",
+        "e4", "d6", "f3", "O-O", "Be3", "e5",
+      ],
+      notes: [
+        "White takes the centre.",
+        "Hypermodern: developing first.",
+        "Grabbing more central space.",
+        "Preparing the fianchetto.",
+        "Natural development.",
+        "Completing the fianchetto along the long diagonal.",
+        "Building the big classical centre.",
+        "Restraining e5 and opening the bishop's diagonal.",
+        "The Sämisch: a rock-solid pawn shield for e4 that also clamps the g4-square.",
+        "King safety; the wing battle is coming.",
+        "Reinforcing d4 and preparing a queenside expansion or a kingside pawn storm.",
+        "The thematic counterstrike, challenging White's broad centre at once.",
+      ],
+    },
   ],
 };

@@ -69,5 +69,26 @@ export const italianGame: Opening = {
         "Blocking the check and defending — the fight for the centre is on.",
       ],
     },
+    {
+      label: "Evans Gambit",
+      sans: [
+        "e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5",
+        "b4", "Bxb4", "c3", "Ba5", "d4", "exd4",
+      ],
+      notes: [
+        "White takes the centre.",
+        "Black stakes an equal claim.",
+        "Developing with pressure on e5.",
+        "Defending e5 and developing.",
+        "The Italian bishop eyes f7.",
+        "Black mirrors the development.",
+        "The gambit: offering a pawn to deflect the bishop and seize the centre.",
+        "Black accepts, snatching the pawn.",
+        "Gaining a tempo on the bishop while preparing the big d4 push.",
+        "Retreating but keeping the bishop active on the diagonal.",
+        "Cashing in on the lead in development to build a broad centre.",
+        "Black grabs another pawn, but White's lead and open lines are the payment.",
+      ],
+    },
   ],
 };
