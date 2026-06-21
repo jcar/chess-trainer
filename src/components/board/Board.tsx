@@ -37,6 +37,12 @@ export interface BoardProps {
   highlightSquares?: string[];
   /** Arrows to draw, e.g. a move (from→to) or a piece's movement pattern. */
   arrows?: { from: string; to: string; color?: string }[];
+  /**
+   * The most recent move — its from + to squares get a soft "last move" tint so
+   * you can see what just changed after looking away. `mine` picks the color:
+   * warm gold for your move, cool slate for the opponent's.
+   */
+  lastMove?: { from: string; to: string; mine?: boolean };
   /** Squares to flash red as a "danger!" cue (e.g. a king in check). */
   dangerSquares?: string[];
   /**
@@ -89,6 +95,10 @@ const DANGER_STYLE: React.CSSProperties = {
   animation: "kidDanger 0.8s ease-in-out infinite",
 };
 
+// Last-move tint: warm gold for your move, cool slate for the opponent's.
+const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(201,154,51,0.50)" };
+const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(96,112,140,0.48)" };
+
 export function Board({
   fen,
   orientation,
@@ -100,6 +110,7 @@ export function Board({
   onSelect,
   highlightSquares,
   arrows,
+  lastMove,
   dangerSquares,
   onSquareTap,
   showNotation = true,
@@ -118,6 +129,12 @@ export function Board({
 
   const computedStyles = useMemo(() => {
     const styles: Record<string, React.CSSProperties> = { ...(squareStyles ?? {}) };
+    // Last-move tint sits at the base layer so selection / hints / dots show on top.
+    if (lastMove) {
+      const tint = lastMove.mine ? LAST_MOVE_SELF : LAST_MOVE_OPP;
+      styles[lastMove.from] = { ...styles[lastMove.from], ...tint };
+      styles[lastMove.to] = { ...styles[lastMove.to], ...tint };
+    }
     const occupied = selectedDests.length ? occupiedSquares(fen) : null;
     for (const sq of selectedDests) {
       styles[sq] = occupied?.has(sq) ? CAPTURE_STYLE : DOT_STYLE;
@@ -130,7 +147,7 @@ export function Board({
       styles[sq] = { ...styles[sq], ...DANGER_STYLE };
     }
     return styles;
-  }, [squareStyles, selectedDests, selected, highlightSquares, dangerSquares, fen]);
+  }, [squareStyles, selectedDests, selected, highlightSquares, dangerSquares, fen, lastMove]);
 
   const boardArrows = useMemo(
     () =>

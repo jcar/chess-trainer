@@ -514,6 +514,7 @@ export default function PlayPage() {
   }
 
   // playing / gameover
+  const lastPly = history.length ? history[history.length - 1] : null;
   return (
     <main className="space-y-5">
       <PageHeader
@@ -554,6 +555,11 @@ export default function PlayPage() {
             : undefined
         }
         onMove={phase === "playing" && !busy && !coaching ? (f, t) => void handleMove(f, t) : undefined}
+        lastMove={
+          lastPly && !coaching
+            ? { from: lastPly.uci.slice(0, 2), to: lastPly.uci.slice(2, 4), mine: lastPly.byLearner }
+            : undefined
+        }
         arrows={
           coaching
             ? [

@@ -41,6 +41,7 @@ export function DrillPlayer({
   const [fen, setFen] = useState(activity.fen);
   const [phase, setPhase] = useState<Phase>("playing");
   const [message, setMessage] = useState(activity.instructions);
+  const [lastMove, setLastMove] = useState<{ from: string; to: string; mine: boolean } | null>(null);
   // Guard against acting on a stale board after reset/unmount.
   const epoch = useRef(0);
 
@@ -55,6 +56,7 @@ export function DrillPlayer({
     setFen(activity.fen);
     setPhase("playing");
     setMessage(activity.instructions);
+    setLastMove(null);
   }
 
   function settle(status: string, mover: "learner" | "engine"): boolean {
@@ -91,6 +93,7 @@ export function DrillPlayer({
     if (!result.ok) return;
 
     setFen(result.fen);
+    setLastMove({ from, to, mine: true });
     if (kidMode) playSound(result.san?.includes("x") ? "capture" : "move");
     // Pawn-race / promotion goal: the learner wins by promoting a pawn.
     if (activity.objective === "promote" && result.san?.includes("=")) {
@@ -117,6 +120,7 @@ export function DrillPlayer({
     const afterEngine = new ChessGame(result.fen).tryMove(uciToMove(best));
     if (afterEngine.ok) {
       setFen(afterEngine.fen);
+      setLastMove({ from: best.slice(0, 2), to: best.slice(2, 4), mine: false });
       if (kidMode) playSound(afterEngine.san?.includes("x") ? "capture" : "move");
       if (!settle(afterEngine.status, "engine")) {
         setPhase("playing");
@@ -159,6 +163,7 @@ export function DrillPlayer({
         }
         onMove={tap ? (from, to) => void handleMove(from, to) : undefined}
         onSelect={kidMode ? () => playSound("select") : undefined}
+        lastMove={lastMove ?? undefined}
       />
 
       <div

@@ -200,10 +200,11 @@ function LineDrill({
     return true;
   }
 
-  const lastMoveArrow =
+  // Tint the opponent's just-played move (cool slate) so it's clear what changed.
+  const lastMove =
     learnerToMove && ply > 0 && moveSquares[ply - 1]
-      ? [moveSquares[ply - 1]]
-      : [];
+      ? { ...moveSquares[ply - 1], mine: false }
+      : undefined;
 
   const feedbackCls =
     feedback.kind === "success"
@@ -230,7 +231,8 @@ function LineDrill({
             : undefined
         }
         onMove={learnerToMove ? (f, t) => void handleMove(f, t) : undefined}
-        arrows={[...lastMoveArrow, ...arrowHint]}
+        arrows={arrowHint}
+        lastMove={lastMove}
         highlightSquares={arrowHint.flatMap((a) => [a.from, a.to])}
       />
 
