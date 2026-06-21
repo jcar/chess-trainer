@@ -21,11 +21,25 @@ import { buttonClasses } from "@/components/ui/Button";
 
 const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 const REVIEW_DEPTH = 10;
+const COACH_DEPTH = 10;
 
 interface RatingChange {
   before: number;
   after: number;
   delta: number;
+}
+
+/** A live coaching interruption: the move you just played was a blunder/mistake,
+ *  shown immediately with the better move so you can take it back or play on. */
+interface CoachTip {
+  severity: "blunder" | "mistake";
+  san: string;
+  bestSan: string;
+  bestUci: string;
+  playedUci: string;
+  fenBefore: string;
+  fenAfter: string;
+  loss: number;
 }
 
 interface Ply {
@@ -77,6 +91,12 @@ export default function PlayPage() {
   const [history, setHistory] = useState<Ply[]>([]);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState("");
+  // Live "Move coach" — flag blunders/mistakes the moment they're played.
+  const [coach, setCoach] = useState(true);
+  const [coaching, setCoaching] = useState<CoachTip | null>(null);
+  const [checking, setChecking] = useState(false);
+  const [praise, setPraise] = useState("");
+  const [usedTakeback, setUsedTakeback] = useState(false);
   const [progress, setProgress] = useState({ n: 0, total: 0 });
   const [flags, setFlags] = useState<Flag[]>([]);
   const [accuracy, setAccuracy] = useState(0);
@@ -108,10 +128,79 @@ export default function PlayPage() {
     else if (res.status === "stalemate" || res.status === "draw") finish("Draw.", "draw");
   }
 
+  // Check the learner's just-played move with the full-strength engine. If it's a
+  // blunder (or, after the opening, a mistake), pause and surface the better move;
+  // otherwise praise a top move and let the opponent reply.
+  async function coachCheck(
+    fenBefore: string,
+    res: { fen: string; uci?: string; san?: string },
+    hist: Ply[],
+    plyIndex: number,
+  ) {
+    setChecking(true);
+    setBusy(true);
+    const engine = getEngine();
+    const before = await engine.analyze(fenBefore, COACH_DEPTH);
+    const bestCp = toCp(before);
+    const bestUci = before.bestMove ?? "";
+    const playedUci = res.uci ?? "";
+    let loss = 0;
+    if (bestUci && bestUci !== playedUci) {
+      const after = await engine.analyze(res.fen, COACH_DEPTH);
+      loss = bestCp - -toCp(after); // flip: opponent to move at fenAfter
+    }
+    setChecking(false);
+
+    // Opening (first ~4 of each side) only interrupts on a real blunder, not on
+    // "not the engine's pet line" noise.
+    const severity: CoachTip["severity"] | null =
+      loss >= 300 ? "blunder" : plyIndex >= 8 && loss >= 150 ? "mistake" : null;
+
+    if (severity) {
+      const bestSan = bestUci
+        ? new ChessGame(fenBefore).tryMove(uciToMove(bestUci)).san ?? bestUci
+        : "?";
+      setPraise("");
+      setCoaching({
+        severity,
+        san: res.san ?? "",
+        bestSan,
+        bestUci,
+        playedUci,
+        fenBefore,
+        fenAfter: res.fen,
+        loss,
+      });
+      setBusy(false); // unlock the take-back / play-on buttons (board stays locked)
+      return;
+    }
+    // A clean move — a little encouragement, then the opponent replies.
+    setPraise(loss <= 20 ? "Best move ✓" : loss <= 70 ? "Good move ✓" : "");
+    await engineReply(res.fen, hist, gameElo);
+  }
+
+  function takeBack() {
+    if (!coaching) return;
+    setHistory((h) => h.slice(0, -1)); // drop the learner's move
+    setFen(coaching.fenBefore);
+    setUsedTakeback(true); // a coached take-back makes this a practice (unrated) game
+    setCoaching(null);
+    setPraise("");
+  }
+
+  async function playOn() {
+    if (!coaching) return;
+    const fenAfter = coaching.fenAfter;
+    setCoaching(null);
+    await engineReply(fenAfter, history, gameElo);
+  }
+
   function finish(msg: string, outcome?: GameResult) {
     setResult(msg);
-    // Rated result only on a natural finish in Adaptive mode (not manual end).
-    if (gameAdaptive && outcome) {
+    setCoaching(null);
+    setPraise("");
+    // Rated only on a natural finish in Adaptive mode with no coached take-backs.
+    if (gameAdaptive && outcome && !usedTakeback) {
       setRatingChange(playRatingStore.record(gameElo, outcome));
     } else {
       setRatingChange(null);
@@ -126,6 +215,9 @@ export default function PlayPage() {
     setGameElo(elo);
     setGameAdaptive(adaptive);
     setRatingChange(null);
+    setCoaching(null);
+    setPraise("");
+    setUsedTakeback(false);
     setFen(START);
     setHistory([]);
     setResult("");
@@ -136,16 +228,18 @@ export default function PlayPage() {
   }
 
   function handleMove(from: string, to: string): boolean {
-    if (phase !== "playing" || busy) return false;
+    if (phase !== "playing" || busy || coaching) return false;
     if (new ChessGame(fen).turn !== learnerTurn) return false;
     const res = applyMove(fen, { from, to });
     if (!res.ok) return false;
+    const plyIndex = history.length; // index of this learner move in history
     const nextHist = [
       ...history,
       { fenBefore: fen, fenAfter: res.fen, uci: res.uci ?? `${from}${to}`, san: res.san ?? "", byLearner: true },
     ];
     setHistory(nextHist);
     setFen(res.fen);
+    setPraise("");
     if (res.status === "checkmate") {
       finish("Checkmate — you won! Review to see your best moments and any slips.", "win");
       return true;
@@ -154,7 +248,8 @@ export default function PlayPage() {
       finish("Draw.", "draw");
       return true;
     }
-    void engineReply(res.fen, nextHist, gameElo);
+    if (coach) void coachCheck(fen, res, nextHist, plyIndex);
+    else void engineReply(res.fen, nextHist, gameElo);
     return true;
   }
 
@@ -280,6 +375,24 @@ export default function PlayPage() {
             </div>
             <p className="text-xs text-ink-soft/70">~ ratings below 1320 are approximate (the engine plays faster, weaker moves).</p>
           </div>
+          <button
+            type="button"
+            onClick={() => setCoach((c) => !c)}
+            className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${
+              coach ? "border-walnut bg-walnut/5" : "border-line bg-card hover:border-walnut/40"
+            }`}
+          >
+            <span className="min-w-0">
+              <span className="block font-display text-base font-semibold text-walnut-deep">Move coach</span>
+              <span className="block text-sm text-ink-soft">Flags a blunder the moment you play it, with a chance to take it back</span>
+            </span>
+            <span
+              className={`relative h-6 w-11 shrink-0 rounded-full transition ${coach ? "bg-sage" : "bg-ink/20"}`}
+              aria-hidden
+            >
+              <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${coach ? "left-[1.375rem]" : "left-0.5"}`} />
+            </span>
+          </button>
           <button type="button" onClick={start} className={buttonClasses("primary", "lg")}>
             Start game
           </button>
@@ -419,27 +532,75 @@ export default function PlayPage() {
           {gameElo}
         </Chip>
         <span>vs {personaForElo(gameElo)}</span>
+        {usedTakeback && <Chip tone="amber">Practice</Chip>}
+        {phase === "playing" && (
+          <button
+            type="button"
+            onClick={() => setCoach((c) => !c)}
+            className="ml-auto rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink-soft transition hover:border-walnut/40"
+          >
+            Coach {coach ? "on" : "off"}
+          </button>
+        )}
       </div>
       <Board
         fen={fen}
         orientation={color}
-        interactive={phase === "playing" && !busy}
-        onDrop={phase === "playing" && !busy ? handleMove : undefined}
+        interactive={phase === "playing" && !busy && !coaching}
+        onDrop={phase === "playing" && !busy && !coaching ? handleMove : undefined}
         getLegalMoves={
-          phase === "playing" && !busy && new ChessGame(fen).turn === learnerTurn
+          phase === "playing" && !busy && !coaching && new ChessGame(fen).turn === learnerTurn
             ? (sq) => new ChessGame(fen).legalDestinations(sq)
             : undefined
         }
-        onMove={phase === "playing" && !busy ? (f, t) => void handleMove(f, t) : undefined}
+        onMove={phase === "playing" && !busy && !coaching ? (f, t) => void handleMove(f, t) : undefined}
+        arrows={
+          coaching
+            ? [
+                { from: coaching.playedUci.slice(0, 2), to: coaching.playedUci.slice(2, 4), color: "#b0604a" },
+                { from: coaching.bestUci.slice(0, 2), to: coaching.bestUci.slice(2, 4), color: "#5e7e58" },
+              ]
+            : undefined
+        }
       />
 
-      <div className="rounded-2xl bg-surface p-4 text-sm text-ink-soft shadow-soft">
-        {phase === "gameover"
-          ? result
-          : busy
-            ? "Engine is thinking…"
-            : `Your move (${color}). Drag or tap a piece.`}
-      </div>
+      {coaching ? (
+        <Card className="space-y-3 border-2 border-brass/40 p-4">
+          <div className="flex items-center gap-2">
+            <Chip tone={coaching.severity === "blunder" ? "clay" : "amber"}>
+              {coaching.severity === "blunder" ? "Blunder" : "Mistake"}
+            </Chip>
+            <span className="font-mono text-ink">{coaching.san}</span>
+          </div>
+          <p className="text-sm text-ink-soft">
+            {coaching.severity === "blunder"
+              ? "That drops material or misses a big chance. "
+              : "That gives up some of your advantage. "}
+            A stronger move was <span className="font-semibold text-sage">{coaching.bestSan}</span>.
+            <span className="text-clay"> (red = your move, green = better)</span>
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <button type="button" onClick={takeBack} className={buttonClasses("primary", "md")}>
+              Take it back
+            </button>
+            <button type="button" onClick={() => void playOn()} className={buttonClasses("secondary", "md")}>
+              Play on
+            </button>
+          </div>
+        </Card>
+      ) : (
+        <div className="rounded-2xl bg-surface p-4 text-sm text-ink-soft shadow-soft">
+          {phase === "gameover"
+            ? result
+            : checking
+              ? "Coach is checking your move…"
+              : busy
+                ? praise
+                  ? `${praise} — opponent is thinking…`
+                  : "Engine is thinking…"
+                : `Your move (${color}). Drag or tap a piece.`}
+        </div>
+      )}
 
       {phase === "gameover" && ratingChange && (
         <Card className="flex items-center justify-between p-4">
@@ -453,6 +614,12 @@ export default function PlayPage() {
               {ratingChange.delta}
             </Chip>
           </span>
+        </Card>
+      )}
+
+      {phase === "gameover" && gameAdaptive && !ratingChange && usedTakeback && (
+        <Card className="p-4 text-sm text-ink-soft">
+          Practice game — you used a take-back, so your rating is unchanged.
         </Card>
       )}
 
