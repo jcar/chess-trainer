@@ -7,6 +7,7 @@ export const caroKann: Opening = {
   eco: "B10–B19",
   family: "1e4-other",
   trainerColor: "black",
+  tier: "core",
   firstMoves: "1.e4 c6",
   character:
     "As solid as the French but more harmonious. Black plays 1...c6 to prepare " +

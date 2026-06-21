@@ -7,6 +7,7 @@ export const londonSystem: Opening = {
   eco: "D02/A48",
   family: "1d4",
   trainerColor: "white",
+  tier: "core",
   firstMoves: "1.d4 d5 2.Nf3 Nf6 3.Bf4",
   character:
     "A low-theory 'system' opening: reliable, solid, and easy to learn. The " +

@@ -36,6 +36,11 @@ export interface Opening {
   family: OpeningFamily;
   /** The side the trainer drills for this opening (its natural repertoire color). */
   trainerColor: Orientation;
+  /**
+   * Curation tier: "core" = a recommended starter repertoire (learn these first,
+   * in depth); "explorer" (default) = the broader reference catalog.
+   */
+  tier?: "core" | "explorer";
   /** Defining moves as a display string, e.g. "1.e4 e5 2.Nf3 Nc6 3.Bc4". */
   firstMoves: string;
   /** Original prose: the personality/character of the opening. */

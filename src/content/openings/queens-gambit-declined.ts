@@ -7,6 +7,7 @@ export const queensGambitDeclined: Opening = {
   eco: "D30–D69",
   family: "1d4",
   trainerColor: "black",
+  tier: "core",
   firstMoves: "1.d4 d5 2.c4 e6",
   character:
     "The classical, rock-solid way to meet 1.d4. Instead of grabbing the " +

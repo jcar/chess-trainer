@@ -25,8 +25,14 @@ export function RepertoirePicker() {
 
   return (
     <div className="space-y-5">
+      <p className="text-sm text-ink-soft">
+        <span className="font-semibold text-sage">Core</span> openings are a
+        recommended starter repertoire — pick a couple of those first, then explore the rest.
+      </p>
       {FAMILY_ORDER.map((fam) => {
-        const list = openings.filter((o) => o.family === fam);
+        const list = openings
+          .filter((o) => o.family === fam)
+          .sort((a, b) => (a.tier === "core" ? 0 : 1) - (b.tier === "core" ? 0 : 1));
         if (!list.length) return null;
         return (
           <div key={fam} className="space-y-2">
@@ -63,6 +69,7 @@ export function RepertoirePicker() {
                           {o.firstMoves}
                         </span>
                       </span>
+                      {o.tier === "core" && <Chip tone="sage">Core</Chip>}
                       <Chip tone="neutral">
                         {o.trainerColor === "white" ? "White" : "Black"}
                       </Chip>
