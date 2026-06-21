@@ -6,8 +6,13 @@
 
 import type { Opening, OpeningLine } from "@/content/openings/types";
 import { OPENINGS, getOpening } from "@/content/openings";
-import type { TrainerData } from "./store";
-import { selectLineState } from "./store";
+import type { SrsData } from "../srs/store";
+import { isDue } from "../srs/store";
+
+/** SRS namespace for opening lines (kept distinct from tactics-puzzle ids). */
+export const srsKey = (lineKey: string): string => `ol:${lineKey}`;
+/** Leitner box at which a line counts as "mastered" (retained over ~weeks). */
+const MASTER_BOX = 3;
 
 export interface TrainerLine {
   opening: Opening;
@@ -66,33 +71,45 @@ export interface MasteryCounts {
   due: number;
 }
 
-export function masteryCounts(data: TrainerData): MasteryCounts {
-  const lines = repertoireLines(data.repertoire);
+export function masteryCounts(srs: SrsData, openingIds: string[]): MasteryCounts {
+  const lines = repertoireLines(openingIds);
+  const now = Date.now();
   let mastered = 0;
   let learning = 0;
+  let due = 0;
   for (const l of lines) {
-    const level = selectLineState(data, l.key).level;
-    if (level === "mastered") mastered++;
-    else if (level === "learning") learning++;
+    const it = srs[srsKey(l.key)];
+    if (it && it.box >= MASTER_BOX) mastered++;
+    else if (it) learning++;
+    if (isDue(srs, srsKey(l.key), now)) due++;
   }
-  return {
-    mastered,
-    learning,
-    total: lines.length,
-    due: lines.length - mastered,
-  };
+  return { mastered, learning, total: lines.length, due };
 }
 
-/** The session queue: not-yet-mastered lines, interleaved across openings. */
-export function dueQueue(data: TrainerData): TrainerLine[] {
-  const byOpening = data.repertoire
+/** The session queue (true spaced repetition): lines whose review is DUE now
+ *  (most-overdue / missed first via the SRS), then never-seen lines, interleaved
+ *  across openings so a session mixes them. */
+export function dueQueue(srs: SrsData, openingIds: string[]): TrainerLine[] {
+  const now = Date.now();
+  const byOpening = openingIds
     .map((id) => getOpening(id))
     .filter((o): o is Opening => !!o)
-    .map((o) =>
-      openingLines(o).filter(
-        (l) => selectLineState(data, l.key).level !== "mastered",
-      ),
-    );
+    .map((o) => {
+      const ls = openingLines(o);
+      const dueLines = ls
+        .filter((l) => {
+          const it = srs[srsKey(l.key)];
+          return !!it && it.due <= now;
+        })
+        .sort((a, b) => {
+          const A = srs[srsKey(a.key)]!;
+          const B = srs[srsKey(b.key)]!;
+          if (B.lapses !== A.lapses) return B.lapses - A.lapses; // mistakes first
+          return A.due - B.due;
+        });
+      const fresh = ls.filter((l) => !srs[srsKey(l.key)]);
+      return [...dueLines, ...fresh];
+    });
   return interleave(byOpening);
 }
 

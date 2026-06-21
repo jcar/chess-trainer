@@ -6,7 +6,8 @@
 
 import { useSyncExternalStore } from "react";
 import { trainerStore, type TrainerData } from "./store";
-import { masteryCounts, dueQueue, type MasteryCounts, type TrainerLine } from "./lines";
+import { masteryCounts, dueQueue, srsKey, type MasteryCounts, type TrainerLine } from "./lines";
+import { useSrs, srsStore } from "../srs/useSrs";
 
 export function useTrainerData(): TrainerData {
   return useSyncExternalStore(
@@ -29,14 +30,20 @@ export interface TrainerApi {
 
 export function useTrainer(): TrainerApi {
   const data = useTrainerData();
+  const srs = useSrs();
   return {
     data,
-    counts: masteryCounts(data),
-    due: dueQueue(data),
+    counts: masteryCounts(srs, data.repertoire),
+    due: dueQueue(srs, data.repertoire),
     inRepertoire: (openingId) => data.repertoire.includes(openingId),
     toggleOpening: trainerStore.toggleOpening,
     setRepertoire: trainerStore.setRepertoire,
-    recordLineResult: trainerStore.recordLineResult,
-    reset: trainerStore.reset,
+    // True spaced repetition: a clean recall pushes the line further out; a miss
+    // resets it to be reviewed again soon.
+    recordLineResult: (key, clean) => srsStore.record(srsKey(key), clean),
+    reset: () => {
+      trainerStore.reset();
+      srsStore.reset();
+    },
   };
 }
