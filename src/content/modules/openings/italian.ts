@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { italianGame } from "../../openings/italian-game";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Italian Game lesson. Move sequences come from the shared opening data
 // (src/content/openings/italian-game.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const italianLesson: Lesson = {
   summary:
     "1.e4 e5 2.Nf3 Nc6 3.Bc4 — natural development with the bishop aimed at f7.",
   activities: [
+    buildConcept(italianGame),
     buildReplay(italianGame, {
       id: "italian-main",
       title: "The quiet Italian, move by move",

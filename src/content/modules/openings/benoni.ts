@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { benoni } from "../../openings/benoni";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Benoni Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/benoni.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const benoniLesson: Lesson = {
   summary:
     "1.d4 Nf6 2.c4 c5 3.d5 e6 — trade space for dynamic counterplay.",
   activities: [
+    buildConcept(benoni),
     buildReplay(benoni, {
       id: "benoni-main",
       title: "The Modern Benoni, move by move",

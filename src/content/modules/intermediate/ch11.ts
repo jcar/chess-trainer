@@ -10,6 +10,19 @@ export const ch11: Lesson = {
     "A reliable answer to 1.e4 (Scandinavian or Caro-Kann) and to 1.d4 (Queen's Gambit Declined) — each shown with a main line and a key variation, from Black's side.",
   activities: [
     {
+      id: "ch11-black-openings-concept",
+      type: "concept",
+      title: "Solid answers for Black",
+      blurb: "A reply to 1.e4 and to 1.d4.",
+      body:
+        "As Black you need a reliable answer to both of White's main first moves. This chapter offers a choice against 1.e4 — the Scandinavian (challenge e4 at once) or the Caro-Kann (solid, and it frees the light-squared bishop) — plus the Queen's Gambit Declined against 1.d4, a time-tested central fortress.\n\nEach is shown with a main line and a key variation. Pick by temperament: the Scandinavian is the easiest to learn, the Caro-Kann stays solid while keeping a good bishop, and the QGD trades a slightly passive bishop for a rock-solid center.",
+      points: [
+        "Have a prepared reply to BOTH 1.e4 and 1.d4.",
+        "Caro-Kann's idea: get the light bishop OUT to f5 before locking it in.",
+        "QGD's idea: support d5 with ...e6 for a fortress-like center.",
+      ],
+    },
+    {
       id: "scandi-qa5",
       type: "replay",
       title: "Scandinavian — 3...Qa5",

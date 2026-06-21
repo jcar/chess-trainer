@@ -11,6 +11,13 @@ export const playingSmart: Lesson = {
     "Before every move, be a detective! Check what's being attacked and whether your move is safe — so you don't give pieces away.",
   activities: [
     {
+      id: "kids-playing-smart-concept",
+      type: "concept",
+      title: "Be a Detective",
+      blurb: "Look before you move.",
+      body: "Before every move, be a chess detective! Look at what's being attacked and make sure your move is safe, so you don't give pieces away.",
+    },
+    {
       id: "smart-routine",
       type: "quiz",
       title: "Before you move",

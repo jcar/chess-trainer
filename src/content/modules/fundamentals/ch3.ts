@@ -10,6 +10,19 @@ export const ch3: Lesson = {
     "The same principles apply when you're a move behind: meet 1.e4 and 1.d4 with sound, easy-to-learn systems — and punish White if they overreach.",
   activities: [
     {
+      id: "ch3-black-openings-concept",
+      type: "concept",
+      title: "Playing the opening as Black",
+      blurb: "Same principles, one move behind.",
+      body:
+        "Playing Black changes very little. You follow the same three goals — contest the center, develop, and castle — while accepting that White's extra move gives a small head start. That nudge of initiative is not a winning advantage; play soundly and you'll be perfectly fine.\n\nA great shortcut for beginners is a setup-based opening: you aim for the same healthy piece formation no matter what White does. That means far less to memorize and far fewer ways to go wrong early. Just stay alert for direct threats — answer those first, then steer toward your setup.",
+      points: [
+        "White's extra tempo is a small edge, not a winning one.",
+        "Setup openings give you one repeatable formation to learn.",
+        "Always meet a direct threat before following your plan.",
+      ],
+    },
+    {
       id: "meeting-first-moves",
       type: "quiz",
       title: "Responding as Black",

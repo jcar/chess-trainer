@@ -9,6 +9,19 @@ export const synthesisLesson: Lesson = {
     "Trade material for other imbalances when it pays — then convert by planning and stopping counterplay.",
   activities: [
     {
+      type: "concept",
+      id: "synthesis-concept",
+      title: "Putting it all together",
+      blurb: "Material is just one imbalance.",
+      body:
+        "Material is only one of the imbalances you weigh. A pawn — sometimes a piece — can be a fair price for more active pieces, a better structure, or a safer king, when what you get back is worth more over the whole game. When several advantages are yours, don't drift move to move: pick the most important one and build a plan around it.\n\nConverting a winning position takes one more habit — shut down the opponent's counterplay first, then simplify toward an ending where your edge decides.",
+      points: [
+        "Trade material for an imbalance when the payoff is greater.",
+        "Many pluses? Make a plan around the most important one.",
+        "When winning, kill counterplay, then simplify to convert.",
+      ],
+    },
+    {
       type: "quiz",
       id: "syn-exchange",
       title: "When material isn't everything",

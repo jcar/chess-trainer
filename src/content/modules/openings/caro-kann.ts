@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { caroKann } from "../../openings/caro-kann";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Caro-Kann Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/caro-kann.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const caroKannLesson: Lesson = {
   summary:
     "1.e4 c6 — solid like the French, but the light-squared bishop gets out first.",
   activities: [
+    buildConcept(caroKann),
     buildReplay(caroKann, {
       id: "caro-kann-main",
       title: "The Classical Variation, move by move",

@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { fourKnights } from "../../openings/four-knights";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Four Knights Game lesson. Move sequences come from the shared opening data
 // (src/content/openings/four-knights.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const fourKnightsLesson: Lesson = {
   summary:
     "1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 — both sides develop all four knights for a sound, classical game.",
   activities: [
+    buildConcept(fourKnights),
     buildReplay(fourKnights, {
       id: "four-knights-main",
       title: "The Four Knights, move by move",

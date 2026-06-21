@@ -11,6 +11,13 @@ export const trappingTheKing: Lesson = {
     "Checkmate is easy once you know the secret: push the enemy king to the edge, then trap it. Let's practice!",
   activities: [
     {
+      id: "kids-trapping-king-concept",
+      type: "concept",
+      title: "The Checkmate Secret",
+      blurb: "Push the king to the edge.",
+      body: "Here's the secret to checkmate: push the enemy king to the edge of the board, where it has fewer places to run. Then you can trap it!",
+    },
+    {
       id: "trap-where",
       type: "quiz",
       title: "The checkmate secret",

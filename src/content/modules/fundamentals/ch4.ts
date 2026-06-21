@@ -10,6 +10,19 @@ export const ch4: Lesson = {
     "The mates you'll convert again and again: two rooks, king and queen, king and rook. Learn the technique, then deliver it against the engine.",
   activities: [
     {
+      id: "ch4-basic-mates-concept",
+      type: "concept",
+      title: "Finishing a won game",
+      blurb: "The mates you must know cold.",
+      body:
+        "Being ahead in material means nothing if you can't deliver the final blow. A few basic checkmates come up again and again — two rooks, king and queen, and king and rook — and each is a forced win once you know the technique. The common thread is fencing the lone king to the edge of the board, where it runs out of squares.\n\nTwo rooks can do this by themselves, 'laddering' the king back one rank at a time. A single heavy piece, though, needs help: your own king must march up to take away escape squares so the queen or rook can mate. Bring the king into the action — that's the key to these endings.",
+      points: [
+        "Two rooks ladder the king to the edge on their own.",
+        "King + queen and king + rook need YOUR king's help.",
+        "Drive the king to an edge, then deliver mate.",
+      ],
+    },
+    {
       id: "why-king-helps",
       type: "quiz",
       title: "The king is a worker",

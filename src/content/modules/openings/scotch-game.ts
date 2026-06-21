@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { scotchGame } from "../../openings/scotch-game";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Scotch Game lesson. Move sequences come from the shared opening data
 // (src/content/openings/scotch-game.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const scotchGameLesson: Lesson = {
   summary:
     "1.e4 e5 2.Nf3 Nc6 3.d4 — open the centre at once for fast, active piece play.",
   activities: [
+    buildConcept(scotchGame),
     buildReplay(scotchGame, {
       id: "scotch-game-main",
       title: "The Scotch, move by move",

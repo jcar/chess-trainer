@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { alekhine } from "../../openings/alekhine";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Alekhine Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/alekhine.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const alekhineLesson: Lesson = {
   summary:
     "1.e4 Nf6 — provoke White's pawns forward, then attack the overextended centre.",
   activities: [
+    buildConcept(alekhine),
     buildReplay(alekhine, {
       id: "alekhine-main",
       title: "The Modern Variation, move by move",

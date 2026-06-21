@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { queensGambitDeclined } from "../../openings/queens-gambit-declined";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Queen's Gambit Declined lesson. Move sequences come from the shared opening
 // data (src/content/openings/queens-gambit-declined.ts); the prose is original.
@@ -10,6 +10,7 @@ export const queensGambitDeclinedLesson: Lesson = {
   summary:
     "1.d4 d5 2.c4 e6 — declining the gambit with a solid, classical wall.",
   activities: [
+    buildConcept(queensGambitDeclined),
     buildReplay(queensGambitDeclined, {
       id: "queens-gambit-declined-main",
       title: "The QGD, move by move",

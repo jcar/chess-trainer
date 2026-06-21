@@ -9,6 +9,19 @@ export const weakSquaresLesson: Lesson = {
     "A square no pawn can ever defend is a permanent home for an enemy piece.",
   activities: [
     {
+      type: "concept",
+      id: "weak-squares-concept",
+      title: "Weak squares & holes",
+      blurb: "A square no pawn can ever guard.",
+      body:
+        "A hole is a square your pawns have permanently given up — once a pawn advances past it, no pawn can ever guard that square again. Because pawns can't move backward, the weakness never heals, which makes the hole a safe, lasting home for an enemy piece.\n\nWhen you spot a hole in the enemy camp, especially a central one like d5, steer a knight toward it. Planted on a hole it can't be kicked, and it pressures the whole position.",
+      points: [
+        "A hole is a square your pawns can never control again.",
+        "Holes appear when a pawn advances and leaves squares behind.",
+        "Park a knight on an enemy hole — it can't be chased off.",
+      ],
+    },
+    {
       type: "quiz",
       id: "ws-hole",
       title: "What is a hole?",

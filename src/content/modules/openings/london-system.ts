@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { londonSystem } from "../../openings/london-system";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // London System lesson. Move sequences come from the shared opening data
 // (src/content/openings/london-system.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const londonSystemLesson: Lesson = {
   summary:
     "1.d4 d5 2.Nf3 Nf6 3.Bf4 — the same easy, solid set-up against almost anything.",
   activities: [
+    buildConcept(londonSystem),
     buildReplay(londonSystem, {
       id: "london-system-main",
       title: "The London setup, move by move",

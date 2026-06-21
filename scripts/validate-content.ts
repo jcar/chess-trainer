@@ -312,6 +312,12 @@ async function checkActivity(moduleId: string, a: Activity) {
       }
       break;
     }
+
+    case "concept": {
+      // Read-only teaching card; diagrams are display-only. Just require text.
+      if (!a.body || !a.body.trim()) note(where, "concept card has no body text");
+      break;
+    }
   }
 }
 

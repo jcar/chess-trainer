@@ -10,6 +10,19 @@ export const imbalancesLesson: Lesson = {
     "Evaluate a position by its imbalances, then make a plan that uses them.",
   activities: [
     {
+      type: "concept",
+      id: "imbalances-concept",
+      title: "Think in imbalances",
+      blurb: "How strong players size up a position.",
+      body:
+        "An imbalance is any way the two sides differ — material, pawn structure, space, open files, the bishops and knights, and the safety of each king. Strong players don't memorize moves; they read these differences and let them point to a plan.\n\nSo before you choose a move, take stock. The biggest imbalance tells you which part of the board is yours and what you should be aiming at.",
+      points: [
+        "An imbalance is any difference between the sides, not just material.",
+        "Good plans grow out of the imbalances you find.",
+        "A useful question: what is my worst-placed piece?",
+      ],
+    },
+    {
       type: "quiz",
       id: "imbalances-list",
       title: "What is an imbalance?",

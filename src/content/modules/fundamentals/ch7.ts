@@ -10,6 +10,19 @@ export const ch7: Lesson = {
     "Before strategy comes 'piece vision' — seeing what attacks what. Then the bread-and-butter tactics: the fork, the skewer, and simply taking what's hanging.",
   activities: [
     {
+      id: "ch7-tactics-concept",
+      type: "concept",
+      title: "Winning material with tactics",
+      blurb: "See what attacks what, then pounce.",
+      body:
+        "Most games at the beginner level are decided by material — and material is won with tactics. It all starts with 'piece vision': before every move, see which pieces attack which, and whether each one is defended. Pieces have rough values (pawn 1, knight and bishop 3, rook 5, queen 9), so a trade that gives you more than you give up is a win.\n\nThe simplest tactic is just grabbing a piece that's hanging — undefended and attacked. From there come the classics: the fork, where one piece attacks two targets at once (the knight is the great forker), and the skewer, where a check forces a valuable piece to step aside so you win what was behind it. Always ask 'if I take, what recaptures?' before you grab.",
+      points: [
+        "Values: pawn 1, knight/bishop 3, rook 5, queen 9.",
+        "Fork = one piece hits two targets; skewer = win the piece behind a check.",
+        "Before any capture, check what defends the target.",
+      ],
+    },
+    {
       id: "piece-values",
       type: "quiz",
       title: "What's it worth?",

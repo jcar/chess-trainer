@@ -10,6 +10,19 @@ export const ch1: Lesson = {
     "What it actually means to win — checkmate — plus the other ways a game ends. Then practice spotting and delivering mate.",
   activities: [
     {
+      id: "ch1-winning-concept",
+      type: "concept",
+      title: "What it means to win",
+      blurb: "Checkmate, and the other ways a game ends.",
+      body:
+        "The goal of chess isn't to capture the king — it's to trap it. When a king is in check and has no legal way to get out (it can't move to safety, the check can't be blocked, and the checking piece can't be captured), that's checkmate, and the game ends instantly.\n\nNot every game ends in mate. Players can resign, run out of time, or agree to a draw — and a position can be a draw on its own, such as stalemate, where the player to move has no legal move but is NOT in check. Knowing these outcomes is the foundation for everything else.",
+      points: [
+        "Checkmate = king in check with no legal escape — you win.",
+        "Stalemate = no legal move but NOT in check — it's a draw.",
+        "The king is never actually captured; it's trapped.",
+      ],
+    },
+    {
       id: "how-a-game-ends",
       type: "quiz",
       title: "How do you win?",

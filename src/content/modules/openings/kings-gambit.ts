@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { kingsGambit } from "../../openings/kings-gambit";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // King's Gambit lesson. Move sequences come from the shared opening data
 // (src/content/openings/kings-gambit.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const kingsGambitLesson: Lesson = {
   summary:
     "1.e4 e5 2.f4 — White offers a pawn to rip open the f-file and seize the initiative.",
   activities: [
+    buildConcept(kingsGambit),
     buildReplay(kingsGambit, {
       id: "kings-gambit-main",
       title: "The King's Gambit, move by move",

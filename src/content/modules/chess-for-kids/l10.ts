@@ -12,6 +12,13 @@ export const l10: Lesson = {
     "You've learned so much — now play! Climb Pip's ladder of games. Each level is winnable. Can you beat them all?",
   activities: [
     {
+      id: "kids-l10-play-concept",
+      type: "concept",
+      title: "Let's Play!",
+      blurb: "Climb Pip's ladder.",
+      body: "You've learned so much! Now it's time to play me, Pip. Every level can be won, so climb the ladder and try to beat them all!",
+    },
+    {
       id: "pip-level-1-mate",
       type: "puzzle",
       title: "Level 1: Beat Pip in One!",

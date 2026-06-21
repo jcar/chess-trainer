@@ -9,6 +9,19 @@ export const centerLesson: Lesson = {
     "Control the centre — but know the difference between a strong centre and an overextended one.",
   activities: [
     {
+      type: "concept",
+      id: "center-concept",
+      title: "Owning the center",
+      blurb: "Strong centre, or overextended one?",
+      body:
+        "Central control matters because pieces in the middle reach both wings in a move or two — a centralized knight fights for the whole board, a rim knight does little. But a big pawn centre is only strong while it's intact and supported.\n\nPush those pawns too far and they overextend: gaps open behind them and the proud centre becomes a row of targets. Against an enemy centre, the classic answer is a pawn break that challenges it before it can grow.",
+      points: [
+        "Central pieces influence both sides of the board.",
+        "An overextended centre is weak, not strong.",
+        "Meet a big centre with a timely pawn break.",
+      ],
+    },
+    {
       type: "quiz",
       id: "center-why",
       title: "Why the centre matters",

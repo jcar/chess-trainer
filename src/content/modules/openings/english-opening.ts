@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { englishOpening } from "../../openings/english-opening";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // English Opening lesson. Move sequences come from the shared opening data
 // (src/content/openings/english-opening.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const englishOpeningLesson: Lesson = {
   summary:
     "1.c4 — controlling the centre from the flank and fighting for d5.",
   activities: [
+    buildConcept(englishOpening),
     buildReplay(englishOpening, {
       id: "english-opening-main",
       title: "The Symmetrical English, move by move",

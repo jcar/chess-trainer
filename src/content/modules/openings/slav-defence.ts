@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { slavDefence } from "../../openings/slav-defence";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Slav Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/slav-defence.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const slavDefenceLesson: Lesson = {
   summary:
     "1.d4 d5 2.c4 c6 — solid like the QGD, but the light bishop stays free.",
   activities: [
+    buildConcept(slavDefence),
     buildReplay(slavDefence, {
       id: "slav-defence-main",
       title: "The Slav, move by move",

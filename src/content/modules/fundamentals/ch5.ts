@@ -10,6 +10,19 @@ export const ch5: Lesson = {
     "Not every advantage can force mate. Learn which pieces can finish the job, the famous exception, and how to avoid throwing away a win by stalemate.",
   activities: [
     {
+      id: "ch5-more-mates-concept",
+      type: "concept",
+      title: "Which material can mate",
+      blurb: "Not every advantage is enough to win.",
+      body:
+        "Being up a piece doesn't always mean you can force checkmate against a lone king. A queen, a rook, or two bishops can do it; a single bishop or a single knight simply can't — there aren't enough squares to control. The famous oddity is two knights, which also cannot force mate against a bare king. Knowing this tells you how much force to keep when simplifying a won game.\n\nEven with winning material, there's one classic way to throw it all away: stalemate. If you trap the lone king so it has no legal move while it is NOT in check, the game is an instant draw. Before every move when you're winning, ask whether the opponent will still have a legal reply — leave an escape square until the moment you actually mate.",
+      points: [
+        "Queen, rook, or two bishops can force mate; a lone minor can't.",
+        "Two knights vs a lone king is NOT a forced win.",
+        "Beware stalemate — leave the king a square until you mate.",
+      ],
+    },
+    {
       id: "which-material-mates",
       type: "quiz",
       title: "Can you force mate?",

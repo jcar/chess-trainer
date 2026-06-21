@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { bogoIndian } from "../../openings/bogo-indian";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Bogo-Indian Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/bogo-indian.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const bogoIndianLesson: Lesson = {
   summary:
     "1.d4 Nf6 2.c4 e6 3.Nf3 Bb4+ — a flexible check that eases development.",
   activities: [
+    buildConcept(bogoIndian),
     buildReplay(bogoIndian, {
       id: "bogo-indian-main",
       title: "The Bogo-Indian, move by move",

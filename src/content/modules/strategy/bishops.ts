@@ -9,6 +9,19 @@ export const bishopsLesson: Lesson = {
     "A bishop is only as good as its diagonals — keep your pawns off its colour.",
   activities: [
     {
+      type: "concept",
+      id: "bishops-concept",
+      title: "Good and bad bishops",
+      blurb: "A bishop is only as good as its diagonals.",
+      body:
+        "A bishop lives on diagonals, so its value depends on how open those diagonals are. A bishop blocked in by its own pawns — pawns fixed on the same colour it travels — is a 'bad' bishop with nowhere to go. A bishop with clear lines and real targets is a 'good' one.\n\nThe practical rule follows from this: keep your pawns on the opposite colour to your bishop. If you're stuck with a bad bishop, free it with a pawn break or trade it off.",
+      points: [
+        "Pawns on the bishop's colour block its diagonals.",
+        "Place your pawns on the opposite colour to your bishop.",
+        "A bad bishop won't improve on its own — free it or trade it.",
+      ],
+    },
+    {
       type: "quiz",
       id: "bishops-bad",
       title: "What is a bad bishop?",

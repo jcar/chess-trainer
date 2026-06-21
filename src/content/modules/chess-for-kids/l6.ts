@@ -9,6 +9,13 @@ export const l6: Lesson = {
     "Three special moves to learn: castling, pawn promotion, and en passant. Watch them, then make a queen yourself!",
   activities: [
     {
+      id: "kids-l6-special-moves-concept",
+      type: "concept",
+      title: "Special Tricks",
+      blurb: "Three fun extra moves.",
+      body: "Chess has a few special moves! You can tuck your king away, turn a pawn into a queen, and even make a sneaky pawn capture.",
+    },
+    {
       id: "castle-replay",
       type: "replay",
       title: "Castling: tuck your king away",

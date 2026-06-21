@@ -10,6 +10,19 @@ export const ch8: Lesson = {
     "When nothing is forcing, strategy decides your move: target weaknesses, claim space, and know which pieces thrive in which positions.",
   activities: [
     {
+      id: "ch8-strategy-concept",
+      type: "concept",
+      title: "Choosing a move with no tactic",
+      blurb: "What strategy is for.",
+      body:
+        "When nothing is forcing — no captures, checks, or threats to calculate — strategy decides your move. The big ideas are simple: target the opponent's weaknesses (especially pawns that can't be defended by other pawns), claim space so your pieces move freely, and play to the strengths of your pieces. Bishops love open positions with long clear diagonals; knights prefer closed positions where they can hop over locked pawns.\n\nYour own pawn placement matters too: a bishop blocked in by its own pawns is a 'bad' bishop, so try to keep pawns off its color. And when you're ahead in material, trade pieces (not pawns) to simplify toward an easy winning endgame; when behind, do the opposite and keep the pieces on to create chances.",
+      points: [
+        "Target weak pawns; claim space for freer pieces.",
+        "Open positions favor bishops, closed ones favor knights.",
+        "Ahead in material: trade pieces, keep pawns, simplify to win.",
+      ],
+    },
+    {
       id: "pawn-weaknesses",
       type: "quiz",
       title: "Pawn weaknesses",

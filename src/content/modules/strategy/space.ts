@@ -9,6 +9,19 @@ export const spaceLesson: Lesson = {
     "More space means more room for your pieces — but watch the enemy's plans before you push.",
   activities: [
     {
+      type: "concept",
+      id: "space-concept",
+      title: "Space & prophylaxis",
+      blurb: "More room — used carefully.",
+      body:
+        "A space advantage means freedom of movement: your pieces regroup easily while the cramped side's pieces trip over each other. The flip side is that the cramped player wants to trade, since each exchange frees up squares for the pieces that remain.\n\nGaining space means pushing pawns, but pawns can't move backward — push too far and they overextend, leaving holes behind them. That's where prophylaxis comes in: before charging ahead, ask what the opponent wants and quietly take it away.",
+      points: [
+        "Space gives your pieces room; cramp the enemy.",
+        "Short on space? Trade pieces for breathing room.",
+        "Prophylaxis: prevent the opponent's plan before pushing your own.",
+      ],
+    },
+    {
       type: "quiz",
       id: "space-benefit",
       title: "What space buys you",

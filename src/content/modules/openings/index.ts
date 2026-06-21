@@ -45,6 +45,21 @@ const overviewLesson: Lesson = {
   summary: "Openings are grouped by White's first move and judged by their plans.",
   activities: [
     {
+      type: "concept",
+      id: "openings-overview-concept",
+      title: "How to use this course",
+      blurb: "Ideas first, then drills.",
+      body:
+        "An opening isn't a list of moves to memorize — it's a plan. Each opening here " +
+        "starts with its big idea: what each side is trying to do and which squares matter.\n\n" +
+        "Openings are grouped by White's first move: 1.e4 (King's Pawn), 1.d4 (Queen's Pawn), " +
+        "and flank openings like 1.c4. Learn the plan first, and the moves will make sense.",
+      points: [
+        "Read the idea, step through the main line, then drill it move by move.",
+        "Pair this with the Openings Trainer to build a repertoire you'll remember.",
+      ],
+    },
+    {
       type: "quiz",
       id: "openings-families",
       title: "The opening families",

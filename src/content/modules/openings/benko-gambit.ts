@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { benkoGambit } from "../../openings/benko-gambit";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Benko Gambit lesson. Move sequences come from the shared opening data
 // (src/content/openings/benko-gambit.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const benkoGambitLesson: Lesson = {
   summary:
     "1.d4 Nf6 2.c4 c5 3.d5 b5 — give a pawn for lasting queenside pressure.",
   activities: [
+    buildConcept(benkoGambit),
     buildReplay(benkoGambit, {
       id: "benko-gambit-main",
       title: "The Benko Accepted, move by move",

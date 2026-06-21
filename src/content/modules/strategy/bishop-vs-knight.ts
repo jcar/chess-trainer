@@ -9,6 +9,19 @@ export const bishopVsKnightLesson: Lesson = {
     "Open positions love bishops; closed ones love knights — and the bishop pair is a lasting edge.",
   activities: [
     {
+      type: "concept",
+      id: "bishop-vs-knight-concept",
+      title: "Bishop, knight, and the pair",
+      blurb: "Which minor piece fits the position?",
+      body:
+        "Neither minor piece is simply better — it depends on the pawns. Open positions with targets on both wings favour the long-range bishop, which can switch sides in a single move. Closed positions with locked pawns favour the knight, which hops over the blockade to reach squares a bishop can't.\n\nHaving both bishops — the 'bishop pair' — is a lasting plus, since together they cover squares of both colours. To use the pair, open the position so the bishops can stretch out.",
+      points: [
+        "Open board: the bishop's range usually wins out.",
+        "Closed board: the knight's hops shine.",
+        "Hold the bishop pair? Open lines to set both bishops free.",
+      ],
+    },
+    {
       type: "quiz",
       id: "bvn-open",
       title: "Open positions",

@@ -3,7 +3,12 @@
 // guess-the-move drills with these helpers, and the future standalone openings
 // trainer reads the same `OPENINGS` — one source of truth for the moves.
 
-import type { ReplayActivity, OpeningDrillActivity, Orientation } from "../types";
+import type {
+  ReplayActivity,
+  OpeningDrillActivity,
+  ConceptActivity,
+  Orientation,
+} from "../types";
 import type { Opening, LearnerColor } from "./types";
 import { italianGame } from "./italian-game";
 import { ruyLopez } from "./ruy-lopez";
@@ -72,6 +77,32 @@ export const OPENINGS: Opening[] = [
 
 export function getOpening(id: string): Opening | undefined {
   return OPENINGS.find((o) => o.id === id);
+}
+
+/**
+ * Build a short "concept" teaching card from an opening's existing data, so each
+ * opening lesson can OPEN with the big idea (character + both sides' plans + the
+ * tabiya diagram) before stepping through moves.
+ */
+export function buildConcept(o: Opening): ConceptActivity {
+  return {
+    type: "concept",
+    id: `${o.id}-concept`,
+    title: "The big idea",
+    blurb: `What the ${o.name} is really about.`,
+    body: o.character,
+    points: [
+      `White's plan: ${o.whitePlan}`,
+      `Black's plan: ${o.blackPlan}`,
+    ],
+    diagrams: [
+      {
+        fen: o.tabiyaFen,
+        orientation: o.trainerColor,
+        caption: `After ${o.firstMoves}`,
+      },
+    ],
+  };
 }
 
 /** Build a guided replay from one of an opening's lines (moves come from data). */

@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { pirc } from "../../openings/pirc";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Pirc Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/pirc.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const pircLesson: Lesson = {
   summary:
     "1.e4 d6 2.d4 Nf6 3.Nc3 g6 — fianchetto, castle, and hit the centre later.",
   activities: [
+    buildConcept(pirc),
     buildReplay(pirc, {
       id: "pirc-main",
       title: "The Classical Variation, move by move",

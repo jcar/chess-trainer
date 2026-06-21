@@ -9,6 +9,13 @@ export const l4: Lesson = {
     "Some pieces are worth more than others! Learn what to grab, what's safe to take, and win some free pieces.",
   activities: [
     {
+      id: "kids-l4-capturing-values-concept",
+      type: "concept",
+      title: "Some Pieces Are Bigger Prizes",
+      blurb: "What's worth the most?",
+      body: "When you capture an enemy piece, you take it off the board! But some pieces are worth more than others, so grab the big ones safely.",
+    },
+    {
       id: "most-valuable",
       type: "sort",
       title: "Who's worth the most?",

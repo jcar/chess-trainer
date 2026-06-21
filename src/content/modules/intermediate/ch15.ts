@@ -10,6 +10,19 @@ export const ch15: Lesson = {
     "When there's no tactic, strategy decides: where pieces belong, which files and squares matter, and how to turn small edges into wins.",
   activities: [
     {
+      id: "ch15-strategy-concept",
+      type: "concept",
+      title: "When there's no tactic, strategy decides",
+      blurb: "Play for small, lasting edges.",
+      body:
+        "Most moves in a game aren't forced — there's no check or capture demanding attention. In those quiet moments, strategy decides the game: knowing where your pieces belong, which files and squares matter, and how to nurse a small edge until it becomes a win.\n\nThe building blocks are concrete: knight outposts (an advanced square a pawn guards and no enemy pawn can hit), rooks on open files and the 7th rank, the bishop pair in open positions, and handling structures like the isolated queen's pawn. Above all, always have a plan — find the imbalances and ask, 'What's my worst piece, and how do I improve it?'",
+      points: [
+        "Outposts, open files, and the 7th rank are where pieces come alive.",
+        "Trade with a reason: simplify when ahead, free a cramped position.",
+        "A move without a plan is wasted — target a weakness or fix your worst piece.",
+      ],
+    },
+    {
       id: "outposts",
       type: "quiz",
       title: "Knight outposts",

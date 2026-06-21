@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { semiSlav } from "../../openings/semi-slav";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Semi-Slav Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/semi-slav.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const semiSlavLesson: Lesson = {
   summary:
     "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 e6 — d5 propped up by both ...c6 and ...e6.",
   activities: [
+    buildConcept(semiSlav),
     buildReplay(semiSlav, {
       id: "semi-slav-main",
       title: "The Semi-Slav, move by move",

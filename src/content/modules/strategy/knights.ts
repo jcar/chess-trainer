@@ -9,6 +9,19 @@ export const knightsLesson: Lesson = {
     "Knights need support points — a protected square in enemy territory is gold.",
   activities: [
     {
+      type: "concept",
+      id: "knights-concept",
+      title: "Knights & outposts",
+      blurb: "Find your knight a square it can't be kicked from.",
+      body:
+        "A knight is short-stepping, so it's strongest when it has a stable home deep in enemy territory. An outpost is an advanced square — often the 5th or 6th rank — that one of your pawns defends and that no enemy pawn can ever attack. A knight planted there can only be removed by trading a piece for it.\n\nKnights also outshine bishops in closed positions, where they hop over locked pawn chains to reach squares a bishop never could.",
+      points: [
+        "An outpost is a square your pawn guards and no enemy pawn can hit.",
+        "A knight on an outpost is nearly impossible to dislodge.",
+        "Closed, locked positions favour knights over bishops.",
+      ],
+    },
+    {
       type: "quiz",
       id: "knights-outpost",
       title: "What is an outpost?",

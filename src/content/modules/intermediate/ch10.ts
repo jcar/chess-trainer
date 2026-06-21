@@ -10,6 +10,19 @@ export const ch10: Lesson = {
     "Three dependable weapons for White — the London System, the Vienna, and the Alapin against the Sicilian — each with a main line and a key variation.",
   activities: [
     {
+      id: "ch10-white-openings-concept",
+      type: "concept",
+      title: "Three repeatable weapons for White",
+      blurb: "System openings with little forced theory.",
+      body:
+        "This chapter gives White three dependable openings you can play again and again: the London System (a setup you aim for against almost anything), the Vienna (1.e4 e5 2.Nc3, calm or sharp), and the Alapin against the Sicilian (2.c3 to build a big center).\n\nWhat they share is the practical thread of this whole module — a clear, repeatable plan and very little forced theory to memorize. You learn a structure and a few key ideas, then steer toward them against most of Black's replies.",
+      points: [
+        "London: same harmonious setup (d4/e3/c3, bishop out to f4) vs nearly anything.",
+        "Vienna: develop with Nc3, keeping the f4 break in reserve — quiet or aggressive.",
+        "Alapin: meet the Sicilian by preparing d4 instead of memorizing sharp lines.",
+      ],
+    },
+    {
       id: "london-main",
       type: "replay",
       title: "London System — main setup",

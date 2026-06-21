@@ -10,6 +10,19 @@ export const ch9: Lesson = {
     "At this level, openings are about understanding plans and structures — not memorizing twenty moves. How to choose, learn, and handle surprises.",
   activities: [
     {
+      id: "ch9-opening-study-concept",
+      type: "concept",
+      title: "Openings: understand, don't memorize",
+      blurb: "Why plans beat move lists.",
+      body:
+        "At the intermediate level, an opening is not a list of moves to recite — it's a way of reaching a middlegame you understand. The goal is to learn the typical pawn structures, where each piece belongs, and the plan you're steering toward.\n\nThat's why a small, consistent repertoire works best: one main opening for White and reliable answers to 1.e4 and 1.d4 as Black. Familiar positions free your thinking time for plans instead of panic, and when an opponent leaves theory or shuffles their move order, you'll still recognize where you are.",
+      points: [
+        "Learn the plan and structure, not twenty memorized moves.",
+        "A compact repertoire you know well beats a thick one you don't.",
+        "Off-beat or out-of-order moves? Fall back on principles: develop, take the center, get the king safe.",
+      ],
+    },
+    {
       id: "study-openings-right",
       type: "quiz",
       title: "How to actually learn an opening",

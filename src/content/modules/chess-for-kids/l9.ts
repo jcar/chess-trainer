@@ -9,6 +9,13 @@ export const l9: Lesson = {
     "Little tricks that win pieces! Learn the fork and the skewer, then go win some pieces yourself.",
   activities: [
     {
+      id: "kids-l9-tricks-concept",
+      type: "concept",
+      title: "Clever Tricks",
+      blurb: "Win pieces with a trick!",
+      body: "There are clever tricks that win you extra pieces! Let's learn the fork and the skewer and start winning.",
+    },
+    {
       id: "what-is-fork",
       type: "quiz",
       title: "What is a fork?",

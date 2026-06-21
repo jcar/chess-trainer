@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { scandinavian } from "../../openings/scandinavian";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Scandinavian Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/scandinavian.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const scandinavianLesson: Lesson = {
   summary:
     "1.e4 d5 — challenge the king's pawn at once, then develop fast.",
   activities: [
+    buildConcept(scandinavian),
     buildReplay(scandinavian, {
       id: "scandinavian-main",
       title: "The Main Line, move by move",

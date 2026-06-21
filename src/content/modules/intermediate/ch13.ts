@@ -10,6 +10,19 @@ export const ch13: Lesson = {
     "King-and-pawn technique and rook-endgame principles win and save more games than any opening. Master the opposition, the square, and where the rook belongs.",
   activities: [
     {
+      id: "ch13-endgames-concept",
+      type: "concept",
+      title: "Endgame technique wins games",
+      blurb: "The few ideas that decide close games.",
+      body:
+        "Endgames quietly decide more games than any opening. The good news is that a handful of precise ideas cover most of what you'll face, and once you know them you can convert won positions and save lost ones with confidence.\n\nThe foundations are king-and-pawn play — the opposition (a mutual-zugzwang battle to push the enemy king aside) and the square of the pawn (a glance tells you whether a king catches a runner) — plus rook-endgame rules: rooks belong behind passed pawns, and the Lucena and Philidor positions are the must-know winning and drawing methods with rook and pawn.",
+      points: [
+        "King first: in K+P endings, lead with the king and use the opposition.",
+        "Rooks go BEHIND passed pawns — yours to push them, the enemy's to restrain.",
+        "Know Lucena (the win) and Philidor (the draw) cold.",
+      ],
+    },
+    {
       id: "opposition-concept",
       type: "quiz",
       title: "The opposition",

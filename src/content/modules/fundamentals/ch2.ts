@@ -10,6 +10,19 @@ export const ch2: Lesson = {
     "The three opening principles, two reliable ways to start as White, and the trap every beginner should know.",
   activities: [
     {
+      id: "ch2-white-openings-concept",
+      type: "concept",
+      title: "How to start a game",
+      blurb: "The three things every good opening does.",
+      body:
+        "The first few moves aren't about attacking — they're about getting ready. Three simple goals guide nearly every sound opening: fight for the center, develop your pieces, and get your king safe by castling. Pawns in the center give your pieces room to work, knights and bishops belong off the back rank, and a castled king is far safer than one stuck in the middle.\n\nA common beginner mistake is to rush the queen out to make early threats. It usually backfires: the opponent develops a piece while chasing your queen around, gaining time for free. Bring out your knights and bishops first; the queen comes later, once it's safe.",
+      points: [
+        "Control the center, develop pieces, then castle.",
+        "Develop knights and bishops before the queen.",
+        "A move that develops AND makes a threat is ideal.",
+      ],
+    },
+    {
       id: "opening-principles",
       type: "quiz",
       title: "The three opening goals",

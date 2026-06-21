@@ -10,6 +10,13 @@ export const l1: Lesson = {
     "Hi! I'm Pip. Let's explore the board — the squares, their colors, and the pieces — with games you can play by tapping.",
   activities: [
     {
+      id: "kids-l1-board-concept",
+      type: "concept",
+      title: "Welcome to the Board",
+      blurb: "Where chess happens.",
+      body: "Hi, I'm Pip! Chess is played on a board of squares, light and dark. Let's get to know it together!",
+    },
+    {
       id: "find-squares",
       type: "coordinate",
       title: "Square Hunt",

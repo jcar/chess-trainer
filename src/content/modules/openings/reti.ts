@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { reti } from "../../openings/reti";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Réti Opening lesson. Move sequences come from the shared opening data
 // (src/content/openings/reti.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const retiLesson: Lesson = {
   summary:
     "1.Nf3 d5 2.c4 — pressure the centre from the flank, with a fianchetto.",
   activities: [
+    buildConcept(reti),
     buildReplay(reti, {
       id: "reti-main",
       title: "The Main Line, move by move",

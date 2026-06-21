@@ -9,6 +9,19 @@ export const initiativeLesson: Lesson = {
     "A lead in development is a temporary edge — use it fast, before it fades.",
   activities: [
     {
+      type: "concept",
+      id: "initiative-concept",
+      title: "Development & the initiative",
+      blurb: "A lead in development is borrowed time.",
+      body:
+        "A lead in development is a dynamic edge — temporary, and it fades the moment you let the opponent catch up. Every quiet move you make is a free move for them. So use it fast: open lines with pawn breaks and create threats while your pieces are out and theirs are still home.\n\nThe classic mistake is to dawdle, especially by stopping to grab a pawn. When you're ahead in development, time is worth more than material.",
+      points: [
+        "A development lead is temporary — act before it vanishes.",
+        "Open the position so your active pieces can strike.",
+        "Don't waste time grabbing pawns; keep developing.",
+      ],
+    },
+    {
       type: "quiz",
       id: "init-temporary",
       title: "Use it or lose it",

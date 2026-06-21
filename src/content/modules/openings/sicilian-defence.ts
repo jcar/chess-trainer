@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { sicilianDefence } from "../../openings/sicilian-defence";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Sicilian Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/sicilian-defence.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const sicilianDefenceLesson: Lesson = {
   summary:
     "1.e4 c5 — Black's most ambitious reply, fighting for an unbalanced game.",
   activities: [
+    buildConcept(sicilianDefence),
     buildReplay(sicilianDefence, {
       id: "sicilian-defence-main",
       title: "The Najdorf, move by move",

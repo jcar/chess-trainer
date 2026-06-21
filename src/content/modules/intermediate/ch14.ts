@@ -10,6 +10,19 @@ export const ch14: Lesson = {
     "Calculate forcing moves first, then learn the recurring weapons: the discovered attack, removing the defender, deflection — and the prettiest mate of all.",
   activities: [
     {
+      id: "ch14-tactics-concept",
+      type: "concept",
+      title: "How to find tactics",
+      blurb: "Forcing moves, then patterns.",
+      body:
+        "Tactics rarely appear out of nowhere — you find them by looking in the right place. Scan the forcing moves first: every check, every capture, and every direct threat. Because they limit the opponent's replies, they're both the easiest to calculate and the most likely to hide a combination.\n\nOnce you're hunting in the right spots, it's the recurring weapons that do the damage: the discovered attack (move one piece to unleash another), removing the defender (knock out the piece holding everything together), and deflection (force an overloaded piece off one of its two jobs). Learn the patterns and you'll spot them at a glance.",
+      points: [
+        "Always calculate checks, captures, and threats first.",
+        "Discovered attacks fire two threats from a single move.",
+        "Remove or deflect the defender, then collect what it was guarding.",
+      ],
+    },
+    {
       id: "forcing-moves",
       type: "quiz",
       title: "Calculate forcing moves first",

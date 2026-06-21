@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { queensGambitAccepted } from "../../openings/queens-gambit-accepted";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Queen's Gambit Accepted lesson. Move sequences come from the shared opening
 // data (src/content/openings/queens-gambit-accepted.ts); the prose is original.
@@ -10,6 +10,7 @@ export const queensGambitAcceptedLesson: Lesson = {
   summary:
     "1.d4 d5 2.c4 dxc4 — take the pawn, develop freely, and hit back with ...c5.",
   activities: [
+    buildConcept(queensGambitAccepted),
     buildReplay(queensGambitAccepted, {
       id: "queens-gambit-accepted-main",
       title: "The Queen's Gambit Accepted, move by move",

@@ -10,6 +10,19 @@ export const calculationLesson: Lesson = {
     "Look at forcing moves first, and calculate them to the end.",
   activities: [
     {
+      type: "concept",
+      id: "calculation-concept",
+      title: "How to calculate",
+      blurb: "Forcing moves first, all the way to the end.",
+      body:
+        "Calculation begins with forcing moves — checks, captures, and threats — because they limit the opponent's replies and are where tactics hide. Gather two or three candidate moves, then work through each one in turn instead of grabbing the first idea you see.\n\nWhenever a capture is involved, count every attacker and defender on the square and play the line out to a quiet position. A combination only works if you've calculated it to the end.",
+      points: [
+        "Check forcing moves first: checks, captures, threats.",
+        "List your candidate moves, then calculate each.",
+        "Count the captures before you grab anything.",
+      ],
+    },
+    {
       type: "quiz",
       id: "calc-forcing",
       title: "Forcing moves first",

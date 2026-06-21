@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { nimzoIndian } from "../../openings/nimzo-indian";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Nimzo-Indian Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/nimzo-indian.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const nimzoIndianLesson: Lesson = {
   summary:
     "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 — pin the knight and fight for the e4-square.",
   activities: [
+    buildConcept(nimzoIndian),
     buildReplay(nimzoIndian, {
       id: "nimzo-indian-main",
       title: "The Rubinstein, move by move",

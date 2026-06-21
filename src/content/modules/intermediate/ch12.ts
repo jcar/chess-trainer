@@ -10,6 +10,19 @@ export const ch12: Lesson = {
     "A gambit gives up a pawn (or more) to gain rapid development, open lines, and the initiative. Three classics — two for White, one for Black — and when the trade is worth it.",
   activities: [
     {
+      id: "ch12-gambits-concept",
+      type: "concept",
+      title: "What a gambit buys",
+      blurb: "Trade a pawn for time.",
+      body:
+        "A gambit gives up a pawn (sometimes more) to gain something in return: a lead in development, open lines for your pieces, and the initiative. While your opponent spends moves grabbing and defending the extra pawn, you race ahead and start dictating play.\n\nThe catch is that the activity has to be real. If you can't point to concrete pressure for the pawn, it's just a lost pawn. And when you're on the receiving end, the antidote is your own development — accept if you like, but be ready to give the pawn back to extinguish the initiative rather than clinging to it.",
+      points: [
+        "You're buying time, open lines, and the initiative — not a forced mate.",
+        "No activity to show for it? Then it's simply a lost pawn.",
+        "Facing a gambit: develop fast and return the pawn when it kills the attack.",
+      ],
+    },
+    {
       id: "what-is-gambit",
       type: "quiz",
       title: "What you're buying",

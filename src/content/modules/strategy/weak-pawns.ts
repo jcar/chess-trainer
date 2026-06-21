@@ -9,6 +9,19 @@ export const weakPawnsLesson: Lesson = {
     "Isolated, doubled, and backward pawns are targets; passed pawns are a long-term trump.",
   activities: [
     {
+      type: "concept",
+      id: "weak-pawns-concept",
+      title: "Weak pawns & strong pawns",
+      blurb: "Targets to attack, trumps to push.",
+      body:
+        "Some pawns are weaknesses because they can't be defended by another pawn — isolated pawns (no neighbours), backward pawns (left behind, with a hole in front), and doubled pawns. Pieces have to babysit them, which ties your forces down and hands the other side the initiative. The way to play against them is to blockade the pawn, then pile up attackers on it.\n\nOne pawn is the opposite — a trump. A passed pawn, with no enemy pawns able to stop it, threatens to queen and grows stronger as pieces come off.",
+      points: [
+        "Isolated, backward, and doubled pawns are targets.",
+        "Play against a weak pawn: blockade it, then attack it.",
+        "A passed pawn is a long-term winning trump.",
+      ],
+    },
+    {
       type: "quiz",
       id: "wp-isolated",
       title: "The isolated pawn",

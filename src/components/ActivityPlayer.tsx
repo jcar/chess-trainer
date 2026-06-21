@@ -21,6 +21,7 @@ import { SortPlayer } from "@/components/activities/SortPlayer";
 import { CoordinatePlayer } from "@/components/activities/CoordinatePlayer";
 import { PracticeSetPlayer } from "@/components/activities/PracticeSetPlayer";
 import { OpeningDrillPlayer } from "@/components/activities/OpeningDrillPlayer";
+import { ConceptPlayer } from "@/components/activities/ConceptPlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
@@ -47,6 +48,7 @@ const TYPE_LABEL: Record<Activity["type"], string> = {
   coordinate: "Square hunt",
   practiceSet: "Practice",
   openingDrill: "Opening drill",
+  concept: "Learn",
 };
 
 interface Props {
@@ -203,6 +205,9 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           onAttempt={handleAttempt}
           kidMode={kidMode}
         />
+      )}
+      {activity.type === "concept" && (
+        <ConceptPlayer activity={activity} onComplete={handleComplete} kidMode={kidMode} />
       )}
 
       <footer className="flex items-center justify-between gap-3 border-t border-line pt-5">

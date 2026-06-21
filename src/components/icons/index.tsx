@@ -109,6 +109,14 @@ export const PracticeIcon = ({ className }: IconProps) => (
   </Line>
 );
 
+export const ConceptIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    {/* a lightbulb — "learn the idea" */}
+    <path d="M9 17.5h6M9.5 20h5" />
+    <path d="M12 3.5a6 6 0 0 0-3.6 10.8c.5.4.8 1 .9 1.7h5.4c.1-.7.4-1.3.9-1.7A6 6 0 0 0 12 3.5Z" />
+  </Line>
+);
+
 export const OpeningDrillIcon = ({ className }: IconProps) => (
   <Line className={className}>
     {/* a flag on a pole — "reach the target line" */}
@@ -221,4 +229,5 @@ export const ACTIVITY_ICON: Record<
   coordinate: CoordinateIcon,
   practiceSet: PracticeIcon,
   openingDrill: OpeningDrillIcon,
+  concept: ConceptIcon,
 };

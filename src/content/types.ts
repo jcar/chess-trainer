@@ -289,6 +289,23 @@ export interface OpeningDrillActivity extends ActivityBase {
   notes?: (string | undefined)[];
 }
 
+/**
+ * Concept card: a short, read-only teaching screen shown at the START of a
+ * lesson so the idea is explained before it is quizzed. A couple of short
+ * paragraphs, optional key points, and optional display-only diagrams; the
+ * learner taps "Got it" to continue. (Diagrams are illustrative — not legal
+ * positions necessarily — so they are exempt from validation.)
+ */
+export interface ConceptActivity extends ActivityBase {
+  type: "concept";
+  /** One or two short paragraphs (split on a blank line). */
+  body: string;
+  /** Optional key takeaways shown as bullets. */
+  points?: string[];
+  /** Optional illustrative diagrams (display-only). */
+  diagrams?: { fen: string; orientation?: Orientation; caption?: string }[];
+}
+
 export type Activity =
   | PuzzleActivity
   | DrillActivity
@@ -300,7 +317,8 @@ export type Activity =
   | SortActivity
   | CoordinateActivity
   | PracticeSetActivity
-  | OpeningDrillActivity;
+  | OpeningDrillActivity
+  | ConceptActivity;
 
 export type ActivityType = Activity["type"];
 

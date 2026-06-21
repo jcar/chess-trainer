@@ -9,6 +9,13 @@ export const l5: Lesson = {
     "The whole game is about the king! Spot a check, give a check, escape a check — and tell checkmate from stalemate.",
   activities: [
     {
+      id: "kids-l5-check-mate-concept",
+      type: "concept",
+      title: "Keep the King Safe",
+      blurb: "Check and checkmate.",
+      body: "When the king is attacked, that's a check, and he must get to safety. If he can't escape at all, that's checkmate and the game is won!",
+    },
+    {
       id: "is-it-check",
       type: "sort",
       title: "Is the king in check?",

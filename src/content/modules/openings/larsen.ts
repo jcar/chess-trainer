@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { larsen } from "../../openings/larsen";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Larsen's Opening lesson. Move sequences come from the shared opening data
 // (src/content/openings/larsen.ts); the prose here is original.
@@ -9,6 +9,7 @@ export const larsenLesson: Lesson = {
   title: "Larsen's Opening",
   summary: "1.b3 — fianchetto the queen's bishop and fight for the centre from the flank.",
   activities: [
+    buildConcept(larsen),
     buildReplay(larsen, {
       id: "larsen-main",
       title: "The Nimzo-Larsen, move by move",

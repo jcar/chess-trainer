@@ -10,6 +10,19 @@ export const endgamesLesson: Lesson = {
     "King power, the opposition, and turning a pawn into a queen.",
   activities: [
     {
+      type: "concept",
+      id: "endgames-concept",
+      title: "Endgame essentials",
+      blurb: "The king wakes up; pawns become queens.",
+      body:
+        "Once most pieces are gone the king is no longer a target to hide — it becomes a fighting piece that should march to the centre to escort pawns and attack weaknesses. The other key tool is the opposition: when kings stand directly opposed with one square between them, the side NOT to move wins the squares, because the other must give way.\n\nUse these together to shepherd a pawn to promotion: put your king in front of the pawn and let the opposition clear the path.",
+      points: [
+        "Activate your king — centralize it in the endgame.",
+        "The opposition: whoever doesn't have to move holds the squares.",
+        "Lead the pawn with your king to promote it.",
+      ],
+    },
+    {
       type: "quiz",
       id: "endgames-king",
       title: "The king in the endgame",

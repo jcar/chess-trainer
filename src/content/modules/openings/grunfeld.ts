@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { grunfeld } from "../../openings/grunfeld";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Grünfeld Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/grunfeld.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const grunfeldLesson: Lesson = {
   summary:
     "1.d4 Nf6 2.c4 g6 3.Nc3 d5 — invite the big centre, then attack it.",
   activities: [
+    buildConcept(grunfeld),
     buildReplay(grunfeld, {
       id: "grunfeld-main",
       title: "The Exchange Variation, move by move",

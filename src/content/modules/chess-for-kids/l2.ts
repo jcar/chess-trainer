@@ -10,6 +10,13 @@ export const l2: Lesson = {
     "Three pieces that slide across the board. Tap each one to see where it goes, then play the star game!",
   activities: [
     {
+      id: "kids-l2-straight-diagonal-concept",
+      type: "concept",
+      title: "Sliders!",
+      blurb: "Pieces that glide.",
+      body: "The rook, the bishop, and the queen love to slide across the board. Let's see where each one can go!",
+    },
+    {
       id: "meet-the-rook",
       type: "movemap",
       title: "Meet the Rook",

@@ -10,6 +10,13 @@ export const goodFirstMoves: Lesson = {
     "How to start a game like a champ: grab the middle, get your pieces out, and tuck your king away safe.",
   activities: [
     {
+      id: "kids-good-first-moves-concept",
+      type: "concept",
+      title: "Start Like a Champ",
+      blurb: "How to begin a game.",
+      body: "Every game has a start! Grab the middle of the board, bring your pieces out, and tuck your king somewhere safe.",
+    },
+    {
       id: "gfm-center-target",
       type: "target",
       title: "Grab the Middle!",

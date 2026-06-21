@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { queensIndian } from "../../openings/queens-indian";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Queen's Indian Defence lesson. Move sequences come from the shared opening
 // data (src/content/openings/queens-indian.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const queensIndianLesson: Lesson = {
   summary:
     "1.d4 Nf6 2.c4 e6 3.Nf3 b6 — fianchetto the bishop and fight for e4.",
   activities: [
+    buildConcept(queensIndian),
     buildReplay(queensIndian, {
       id: "queens-indian-main",
       title: "The Queen's Indian, move by move",

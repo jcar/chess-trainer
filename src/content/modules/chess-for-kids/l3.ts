@@ -9,6 +9,13 @@ export const l3: Lesson = {
     "The king takes baby steps, the knight leaps in an L, and pawns march forward. Tap each piece to see how it moves!",
   activities: [
     {
+      id: "kids-l3-king-knight-pawn-concept",
+      type: "concept",
+      title: "Three More Friends",
+      blurb: "King, knight, and pawn.",
+      body: "The king takes tiny steps, the knight hops in an L, and the pawn marches ahead. Let's meet them all!",
+    },
+    {
       id: "meet-the-king",
       type: "movemap",
       title: "Meet the King",

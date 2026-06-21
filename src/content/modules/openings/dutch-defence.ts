@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { dutchDefence } from "../../openings/dutch-defence";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Dutch Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/dutch-defence.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const dutchDefenceLesson: Lesson = {
   summary:
     "1.d4 f5 — stake a kingside claim and fight for the e4-square.",
   activities: [
+    buildConcept(dutchDefence),
     buildReplay(dutchDefence, {
       id: "dutch-defence-main",
       title: "The Classical Dutch, move by move",

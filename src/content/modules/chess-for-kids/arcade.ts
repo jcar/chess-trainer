@@ -11,6 +11,13 @@ export const arcade: Lesson = {
     "Game time! Hop, zoom, and gobble your way around the board. Play these as many times as you like!",
   activities: [
     {
+      id: "kids-arcade-concept",
+      type: "concept",
+      title: "Game Time!",
+      blurb: "Just for fun.",
+      body: "Welcome to my arcade! Tap a piece and zoom around the board to collect the stars. Play as many times as you like!",
+    },
+    {
       id: "arcade-knight-tour",
       type: "target",
       title: "Knight's Hop Tour",

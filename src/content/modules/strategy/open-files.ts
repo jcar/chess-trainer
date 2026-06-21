@@ -9,6 +9,19 @@ export const openFilesLesson: Lesson = {
     "Rooks belong on open files — and a rook on the 7th rank is a monster.",
   activities: [
     {
+      type: "concept",
+      id: "open-files-concept",
+      title: "Open files & the 7th rank",
+      blurb: "Give your rooks a highway.",
+      body:
+        "Rooks are long-range pieces that do nothing stuck behind their own pawns. They belong on open or half-open files, where they can hit enemy pawns and invade. Doubling both rooks on a file concentrates that force so a single defender can't hold the line.\n\nThe payoff of an open file is invasion. A rook that reaches the enemy's 7th rank munches pawns from the side and pins the king to its back rank — a 'pig on the seventh' that earns its name.",
+      points: [
+        "Put rooks on open or half-open files for scope.",
+        "Doubling rooks multiplies pressure and forces a breakthrough.",
+        "A rook on the 7th rank attacks pawns and traps the king.",
+      ],
+    },
+    {
       type: "quiz",
       id: "of-rooks",
       title: "Where rooks belong",

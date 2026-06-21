@@ -9,6 +9,13 @@ export const l7: Lesson = {
     "Not every game has a winner — sometimes it's a tie, called a draw. Learn the ways a game can end in a tie.",
   activities: [
     {
+      id: "kids-l7-draws-concept",
+      type: "concept",
+      title: "Sometimes Nobody Wins",
+      blurb: "A tie is called a draw.",
+      body: "Not every game has a winner! Sometimes a game ends in a tie, which we call a draw. Let's learn how that can happen.",
+    },
+    {
       id: "stalemate-sort",
       type: "sort",
       title: "Checkmate or Stalemate?",

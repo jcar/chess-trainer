@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { petroff } from "../../openings/petroff";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Petroff Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/petroff.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const petroffLesson: Lesson = {
   summary:
     "1.e4 e5 2.Nf3 Nf6 — Black counterattacks e4 instead of defending e5 for a solid, symmetrical game.",
   activities: [
+    buildConcept(petroff),
     buildReplay(petroff, {
       id: "petroff-main",
       title: "The Petroff, move by move",

@@ -10,6 +10,19 @@ export const ch6: Lesson = {
     "Half a point is sometimes the best result available. Know every way a game can end in a draw — both to claim them and to avoid them when you're winning.",
   activities: [
     {
+      id: "ch6-draws-concept",
+      type: "concept",
+      title: "The ways a game is drawn",
+      blurb: "Half a point — sometimes the best result.",
+      body:
+        "A draw splits the point, and it can be the goal or the disaster depending on which side you're on. There are several ways a game ends in a draw: stalemate (no legal move while not in check), insufficient material (neither side has enough to mate), threefold repetition (the same position occurs three times), the fifty-move rule (fifty moves with no pawn move and no capture), and agreement.\n\nThe practical lesson cuts both ways. When you're losing, these rules are lifelines — perpetual check, where you check the enemy king forever, forces a repetition and saves the game. When you're winning, you must avoid handing your opponent a draw: keep the king out of stalemate and don't let it escape into endless checks.",
+      points: [
+        "Draws: stalemate, insufficient material, repetition, fifty-move, agreement.",
+        "Perpetual check is a draw by repetition — a losing side's escape.",
+        "When winning, take care not to stalemate or get checked forever.",
+      ],
+    },
+    {
       id: "stalemate-rule",
       type: "quiz",
       title: "Stalemate",

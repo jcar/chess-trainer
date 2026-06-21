@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { frenchDefence } from "../../openings/french-defence";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // French Defence lesson. Move sequences come from the shared opening data
 // (src/content/openings/french-defence.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const frenchDefenceLesson: Lesson = {
   summary:
     "1.e4 e6 — a solid, resilient reply that strikes back with ...d5 and ...c5.",
   activities: [
+    buildConcept(frenchDefence),
     buildReplay(frenchDefence, {
       id: "french-defence-main",
       title: "The Advance Variation, move by move",

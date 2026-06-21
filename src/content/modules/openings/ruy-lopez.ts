@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 import { ruyLopez } from "../../openings/ruy-lopez";
-import { buildReplay, buildOpeningDrill } from "../../openings";
+import { buildConcept, buildReplay, buildOpeningDrill } from "../../openings";
 
 // Ruy Lopez lesson. Move sequences come from the shared opening data
 // (src/content/openings/ruy-lopez.ts); the prose here is original.
@@ -10,6 +10,7 @@ export const ruyLopezLesson: Lesson = {
   summary:
     "1.e4 e5 2.Nf3 Nc6 3.Bb5 — patient pressure on the knight that guards e5.",
   activities: [
+    buildConcept(ruyLopez),
     buildReplay(ruyLopez, {
       id: "ruy-lopez-main",
       title: "The Closed Ruy Lopez, move by move",

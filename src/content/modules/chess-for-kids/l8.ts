@@ -9,6 +9,13 @@ export const l8: Lesson = {
     "Now win for real! Practice the checkmates you'll use again and again — against the friendly robot.",
   activities: [
     {
+      id: "kids-l8-first-mates-concept",
+      type: "concept",
+      title: "Time to Win!",
+      blurb: "Your first checkmates.",
+      body: "Now you get to win for real! Let's practice some easy checkmates you'll use over and over again.",
+    },
+    {
       id: "ladder-replay",
       type: "replay",
       title: "The Two-Rook Ladder",
