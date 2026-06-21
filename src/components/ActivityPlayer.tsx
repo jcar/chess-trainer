@@ -26,6 +26,7 @@ import { SpeakButton } from "@/components/kids/SpeakButton";
 import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
 import { recordResult, useStreak } from "@/lib/rewards/streak";
+import { recordDailyActivity } from "@/lib/rewards/daily";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
 import {
@@ -74,6 +75,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       // (i.e. we're replaying it) — read before markComplete mutates the store.
       const wasAlreadyComplete = getActivityState(activity.id).completed;
       markComplete(activity.id, score);
+      recordDailyActivity(); // any activity completion counts toward the daily streak
       if (!kidMode) return;
       const success = score >= 100;
       recordResult(success);

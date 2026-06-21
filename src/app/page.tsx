@@ -5,6 +5,7 @@ import { MODULES, getModuleActivities } from "@/content";
 import type { Module } from "@/content/types";
 import { useProgress } from "@/lib/progress/useProgress";
 import { useTrainer } from "@/lib/trainer/useTrainer";
+import { useDailyStreak } from "@/lib/rewards/daily";
 import { Card } from "@/components/ui/Card";
 import { LevelChip, Chip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
@@ -15,7 +16,22 @@ import {
   CrownGlyph,
   OpeningDrillIcon,
   PuzzleIcon,
+  FlameIcon,
+  CheckIcon,
+  PlayIcon,
 } from "@/components/icons";
+
+/** The first not-yet-completed activity across all modules (for "Continue"). */
+function firstIncomplete(
+  isDone: (id: string) => boolean,
+): { modId: string; actId: string } | null {
+  for (const mod of MODULES) {
+    for (const a of getModuleActivities(mod)) {
+      if (!isDone(a.id)) return { modId: mod.id, actId: a.id };
+    }
+  }
+  return null;
+}
 
 // Medallion glyph + color tone per module.
 function moduleEmblem(mod: Module): {
@@ -31,8 +47,10 @@ function moduleEmblem(mod: Module): {
 }
 
 export default function HomePage() {
-  const { moduleProgress } = useProgress();
+  const { moduleProgress, getActivityState } = useProgress();
   const { counts: trainerCounts } = useTrainer();
+  const daily = useDailyStreak();
+  const cont = firstIncomplete((id) => getActivityState(id).completed);
 
   return (
     <main className="space-y-7">
@@ -44,6 +62,57 @@ export default function HomePage() {
           Hands-on lessons, guided puzzles, and friendly games — from a child&apos;s
           very first move to confident, clever play.
         </p>
+      </section>
+
+      {/* Today: daily puzzle + continue */}
+      <section className="grid gap-3 sm:grid-cols-2">
+        <Link href="/daily" className="block">
+          <Card interactive className="flex h-full items-center gap-3 p-4">
+            <span
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
+              style={{ backgroundColor: "var(--color-brass)" }}
+            >
+              <span className="text-[#fffdf7]"><FlameIcon className="h-6 w-6" /></span>
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="font-display text-base font-semibold text-walnut-deep">
+                Puzzle of the Day
+              </p>
+              <p className="text-sm text-ink-soft">
+                {daily.playedToday ? (
+                  <span className="inline-flex items-center gap-1 text-sage">
+                    <CheckIcon className="h-4 w-4" /> Done — {daily.current}-day streak
+                  </span>
+                ) : daily.current > 0 ? (
+                  `Keep your ${daily.current}-day streak alive`
+                ) : (
+                  "Start a daily streak"
+                )}
+              </p>
+            </div>
+            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+          </Card>
+        </Link>
+
+        <Link href={cont ? `/modules/${cont.modId}/${cont.actId}` : "/daily"} className="block">
+          <Card interactive className="flex h-full items-center gap-3 p-4">
+            <span
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
+              style={{ backgroundColor: "var(--color-sage)" }}
+            >
+              <span className="text-[#fffdf7]"><PlayIcon className="h-6 w-6" /></span>
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="font-display text-base font-semibold text-walnut-deep">
+                {cont ? "Continue learning" : "All caught up!"}
+              </p>
+              <p className="text-sm text-ink-soft">
+                {cont ? "Pick up where you left off" : "Review or train your skills"}
+              </p>
+            </div>
+            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+          </Card>
+        </Link>
       </section>
 
       <ul className="space-y-4">
