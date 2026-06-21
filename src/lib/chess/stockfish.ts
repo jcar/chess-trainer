@@ -84,6 +84,49 @@ class StockfishEngine {
     });
   }
 
+  /**
+   * Analyze a position at full strength to a fixed depth. Returns the evaluation
+   * from the SIDE-TO-MOVE's perspective (cp = centipawns, or mate-in-N) plus the
+   * best move. Used by Play & Review.
+   */
+  async analyze(
+    fen: string,
+    depth = 12,
+  ): Promise<{ cp: number | null; mate: number | null; bestMove: string | null }> {
+    await this.ensureWorker();
+
+    return new Promise((resolve) => {
+      let cp: number | null = null;
+      let mate: number | null = null;
+      let best: string | null = null;
+      const onLine = (line: string) => {
+        if (line.startsWith("info")) {
+          const sm = line.match(/score (cp|mate) (-?\d+)/);
+          if (sm) {
+            if (sm[1] === "cp") {
+              cp = Number(sm[2]);
+              mate = null;
+            } else {
+              mate = Number(sm[2]);
+              cp = null;
+            }
+          }
+          const pv = line.match(/ pv (\S+)/);
+          if (pv) best = pv[1];
+        } else if (line.startsWith("bestmove")) {
+          this.listeners.delete(onLine);
+          const bm = line.split(" ")[1];
+          if (bm && bm !== "(none)") best = bm;
+          resolve({ cp, mate, bestMove: best });
+        }
+      };
+      this.listeners.add(onLine);
+      this.send("setoption name Skill Level value 20");
+      this.send(`position fen ${fen}`);
+      this.send(`go depth ${depth}`);
+    });
+  }
+
   /** Tear down the worker (e.g. when leaving a drill). */
   dispose() {
     this.worker?.terminate();

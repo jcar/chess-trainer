@@ -224,6 +224,32 @@ export default function HomePage() {
           </Card>
         </Link>
 
+        <Link href="/play" className="block">
+          <Card interactive className="flex items-center gap-4 p-5">
+            <span
+              className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
+              style={{ backgroundColor: "var(--color-clay)" }}
+            >
+              <span className="text-[#fffdf7]">
+                <PlayIcon className="h-7 w-7" />
+              </span>
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                  Play &amp; Review
+                </h2>
+                <Chip tone="neutral">Practice</Chip>
+              </div>
+              <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
+                Play a full game against the engine, then get a review that flags
+                your mistakes and shows the better move.
+              </p>
+            </div>
+            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+          </Card>
+        </Link>
+
         <Link href="/endgames" className="block">
           <Card interactive className="flex items-center gap-4 p-5">
             <span
