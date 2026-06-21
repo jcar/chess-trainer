@@ -35,6 +35,7 @@ import { benoniLesson } from "./benoni";
 import { benkoGambitLesson } from "./benko-gambit";
 import { dutchDefenceLesson } from "./dutch-defence";
 import { retiLesson } from "./reti";
+import { larsenLesson } from "./larsen";
 
 // Short, catalog-specific framing (the openings taxonomy) — distinct from the
 // Intermediate module's coverage of general opening principles.
@@ -103,5 +104,6 @@ export const openings: Module = {
     // Flank
     englishOpeningLesson,
     retiLesson,
+    larsenLesson,
   ],
 };

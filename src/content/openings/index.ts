@@ -32,6 +32,7 @@ import { benoni } from "./benoni";
 import { benkoGambit } from "./benko-gambit";
 import { dutchDefence } from "./dutch-defence";
 import { reti } from "./reti";
+import { larsen } from "./larsen";
 
 // Ordered by family: 1.e4 e5 → other 1.e4 → 1.d4 → flank.
 export const OPENINGS: Opening[] = [
@@ -66,6 +67,7 @@ export const OPENINGS: Opening[] = [
   // Flank
   englishOpening,
   reti,
+  larsen,
 ];
 
 export function getOpening(id: string): Opening | undefined {
