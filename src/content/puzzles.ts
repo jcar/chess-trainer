@@ -6,6 +6,7 @@
 
 import type { Orientation, PuzzleGoal } from "./types";
 import { MODULES, getModuleActivities } from "./index";
+import { TACTICS_BANK } from "./tactics-bank";
 
 export type PuzzleTheme =
   | "mate"
@@ -105,6 +106,21 @@ export function getAllPuzzles(): TacticsPuzzle[] {
         });
       }
     }
+  }
+  // Standalone tactics bank — explicit tags, no derivation.
+  for (const p of TACTICS_BANK) {
+    out.push({
+      id: p.id,
+      fen: p.fen,
+      orientation: p.orientation,
+      solution: p.solution,
+      goal: p.goal,
+      prompt: p.prompt,
+      theme: p.theme,
+      difficulty: p.difficulty,
+      source: "tactics-bank",
+      kid: false,
+    });
   }
   cache = out;
   return out;

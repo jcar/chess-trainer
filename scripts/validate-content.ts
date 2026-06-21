@@ -12,6 +12,7 @@
 import { Chess } from "chess.js";
 import { MODULES, getModuleActivities } from "../src/content";
 import { OPENINGS } from "../src/content/openings";
+import { TACTICS_BANK } from "../src/content/tactics-bank";
 import type { Activity, PuzzleActivity, PuzzleGoal } from "../src/content/types";
 import { getEngine, quitEngine, type Score } from "./lib/engine";
 
@@ -343,6 +344,25 @@ function checkOpeningLines(): number {
   return lineCount;
 }
 
+/** The standalone tactics bank — every puzzle engine-verified sound + unique. */
+async function checkTacticsBank(): Promise<number> {
+  for (const p of TACTICS_BANK) {
+    const where = `tactics-bank/${p.id}`;
+    if (!assertLegalPosition(where, p.fen)) continue;
+    const probe = new Chess(p.fen);
+    let ok = true;
+    for (let i = 0; i < p.solution.length; i++) {
+      if (!playUci(probe, p.solution[i])) {
+        note(where, `solution move #${i + 1} ("${p.solution[i]}") is illegal`);
+        ok = false;
+        break;
+      }
+    }
+    if (ok) await checkLineSound(where, p.fen, p.solution, p.goal);
+  }
+  return TACTICS_BANK.length;
+}
+
 async function main() {
   let count = 0;
   for (const mod of MODULES) {
@@ -352,6 +372,7 @@ async function main() {
     }
   }
   const openingLineCount = checkOpeningLines();
+  const bankCount = await checkTacticsBank();
   quitEngine();
 
   for (const w of warnings) console.warn(`  ⚠ ${w}`);
@@ -362,7 +383,7 @@ async function main() {
   }
   console.log(
     `\n✓ Content valid: ${count} activities across ${MODULES.length} module(s)` +
-      ` + ${openingLineCount} opening lines` +
+      ` + ${openingLineCount} opening lines + ${bankCount} tactics-bank puzzles` +
       (warnings.length ? ` (${warnings.length} warning(s))` : "") +
       `.`,
   );
