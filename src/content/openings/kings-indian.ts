@@ -6,6 +6,7 @@ export const kingsIndian: Opening = {
   name: "King's Indian Defence",
   eco: "E60–E99",
   family: "1d4",
+  trainerColor: "black",
   firstMoves: "1.d4 Nf6 2.c4 g6",
   character:
     "A fighting, hypermodern defence. Rather than occupying the centre at once, " +

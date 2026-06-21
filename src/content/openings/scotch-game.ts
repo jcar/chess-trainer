@@ -6,6 +6,7 @@ export const scotchGame: Opening = {
   name: "Scotch Game",
   eco: "C44–C45",
   family: "1e4-e5",
+  trainerColor: "white",
   firstMoves: "1.e4 e5 2.Nf3 Nc6 3.d4",
   character:
     "White opens the position at once instead of maneuvering slowly. By striking " +

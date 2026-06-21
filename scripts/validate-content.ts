@@ -11,6 +11,7 @@
 
 import { Chess } from "chess.js";
 import { MODULES, getModuleActivities } from "../src/content";
+import { OPENINGS } from "../src/content/openings";
 import type { Activity, PuzzleActivity, PuzzleGoal } from "../src/content/types";
 import { getEngine, quitEngine, type Score } from "./lib/engine";
 
@@ -314,6 +315,28 @@ async function checkActivity(moduleId: string, a: Activity) {
   }
 }
 
+/** Every opening line (used by the openings trainer) must replay legally. */
+function checkOpeningLines(): number {
+  let lineCount = 0;
+  for (const o of OPENINGS) {
+    for (const line of o.lines) {
+      const where = `opening:${o.id}/${line.label}`;
+      const game = new Chess(line.startFen);
+      assertLegalPosition(where, game.fen());
+      for (let i = 0; i < line.sans.length; i++) {
+        try {
+          game.move(line.sans[i]);
+        } catch {
+          note(where, `line move #${i + 1} ("${line.sans[i]}") is illegal`);
+          break;
+        }
+      }
+      lineCount++;
+    }
+  }
+  return lineCount;
+}
+
 async function main() {
   let count = 0;
   for (const mod of MODULES) {
@@ -322,6 +345,7 @@ async function main() {
       count++;
     }
   }
+  const openingLineCount = checkOpeningLines();
   quitEngine();
 
   for (const w of warnings) console.warn(`  ⚠ ${w}`);
@@ -332,6 +356,7 @@ async function main() {
   }
   console.log(
     `\n✓ Content valid: ${count} activities across ${MODULES.length} module(s)` +
+      ` + ${openingLineCount} opening lines` +
       (warnings.length ? ` (${warnings.length} warning(s))` : "") +
       `.`,
   );

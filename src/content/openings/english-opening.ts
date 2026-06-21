@@ -6,6 +6,7 @@ export const englishOpening: Opening = {
   name: "English Opening",
   eco: "A10–A39",
   family: "flank",
+  trainerColor: "white",
   firstMoves: "1.c4",
   character:
     "A flexible, fianchetto-friendly flank opening. Instead of planting pawns " +

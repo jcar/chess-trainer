@@ -34,6 +34,8 @@ export interface Opening {
   /** ECO code or range (public reference), e.g. "C50–C54". */
   eco?: string;
   family: OpeningFamily;
+  /** The side the trainer drills for this opening (its natural repertoire color). */
+  trainerColor: Orientation;
   /** Defining moves as a display string, e.g. "1.e4 e5 2.Nf3 Nc6 3.Bc4". */
   firstMoves: string;
   /** Original prose: the personality/character of the opening. */

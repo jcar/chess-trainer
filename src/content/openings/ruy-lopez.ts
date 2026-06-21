@@ -6,6 +6,7 @@ export const ruyLopez: Opening = {
   name: "Ruy Lopez",
   eco: "C60–C99",
   family: "1e4-e5",
+  trainerColor: "white",
   firstMoves: "1.e4 e5 2.Nf3 Nc6 3.Bb5",
   character:
     "The oldest and most deeply respected of all 1.e4 e5 openings. Instead of " +

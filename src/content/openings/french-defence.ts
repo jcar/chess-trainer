@@ -6,6 +6,7 @@ export const frenchDefence: Opening = {
   name: "French Defence",
   eco: "C00–C19",
   family: "1e4-other",
+  trainerColor: "black",
   firstMoves: "1.e4 e6",
   character:
     "Solid and combative. Black answers 1.e4 with 1...e6, preparing to challenge " +

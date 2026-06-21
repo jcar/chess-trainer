@@ -6,6 +6,7 @@ export const nimzoIndian: Opening = {
   name: "Nimzo-Indian Defence",
   eco: "E20–E59",
   family: "1d4",
+  trainerColor: "black",
   firstMoves: "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4",
   character:
     "A sophisticated, flexible defence and one of Black's most respected " +

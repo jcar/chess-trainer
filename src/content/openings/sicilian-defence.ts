@@ -6,6 +6,7 @@ export const sicilianDefence: Opening = {
   name: "Sicilian Defence",
   eco: "B20–B99",
   family: "1e4-other",
+  trainerColor: "black",
   firstMoves: "1.e4 c5",
   character:
     "The most popular and ambitious answer to 1.e4. Instead of mirroring with " +

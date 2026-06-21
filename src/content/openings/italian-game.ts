@@ -6,6 +6,7 @@ export const italianGame: Opening = {
   name: "Italian Game",
   eco: "C50–C54",
   family: "1e4-e5",
+  trainerColor: "white",
   firstMoves: "1.e4 e5 2.Nf3 Nc6 3.Bc4",
   character:
     "One of the oldest openings, and the friendliest introduction to 1.e4 e5. " +

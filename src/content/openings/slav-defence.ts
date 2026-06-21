@@ -6,6 +6,7 @@ export const slavDefence: Opening = {
   name: "Slav Defence",
   eco: "D10–D19",
   family: "1d4",
+  trainerColor: "black",
   firstMoves: "1.d4 d5 2.c4 c6",
   character:
     "As solid as the Queen's Gambit Declined, but with a twist: Black supports " +

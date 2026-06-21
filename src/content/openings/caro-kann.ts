@@ -6,6 +6,7 @@ export const caroKann: Opening = {
   name: "Caro-Kann Defence",
   eco: "B10–B19",
   family: "1e4-other",
+  trainerColor: "black",
   firstMoves: "1.e4 c6",
   character:
     "As solid as the French but more harmonious. Black plays 1...c6 to prepare " +

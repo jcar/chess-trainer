@@ -4,14 +4,16 @@ import Link from "next/link";
 import { MODULES, getModuleActivities } from "@/content";
 import type { Module } from "@/content/types";
 import { useProgress } from "@/lib/progress/useProgress";
+import { useTrainer } from "@/lib/trainer/useTrainer";
 import { Card } from "@/components/ui/Card";
-import { LevelChip } from "@/components/ui/Chip";
+import { LevelChip, Chip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import {
   ChevronRightIcon,
   StarIcon,
   PawnGlyph,
   CrownGlyph,
+  OpeningDrillIcon,
 } from "@/components/icons";
 
 // Medallion glyph + color tone per module.
@@ -28,6 +30,7 @@ function moduleEmblem(mod: Module): {
 
 export default function HomePage() {
   const { moduleProgress } = useProgress();
+  const { counts: trainerCounts } = useTrainer();
 
   return (
     <main className="space-y-7">
@@ -84,6 +87,46 @@ export default function HomePage() {
           );
         })}
       </ul>
+
+      <section className="space-y-3">
+        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">
+          Tools
+        </h2>
+        <Link href="/trainer" className="block">
+          <Card interactive className="flex items-center gap-4 p-5">
+            <span
+              className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
+              style={{ backgroundColor: "var(--color-walnut)" }}
+            >
+              <span className="text-[#fffdf7]">
+                <OpeningDrillIcon className="h-7 w-7" />
+              </span>
+            </span>
+
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                  Openings Trainer
+                </h2>
+                <Chip tone="neutral">Practice</Chip>
+              </div>
+              <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
+                Build a personal opening repertoire and drill it move by move
+                until it&apos;s automatic.
+              </p>
+              {trainerCounts.total > 0 && (
+                <ProgressBar
+                  pct={(trainerCounts.mastered / trainerCounts.total) * 100}
+                  showLabel
+                  className="mt-3"
+                />
+              )}
+            </div>
+
+            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+          </Card>
+        </Link>
+      </section>
     </main>
   );
 }
