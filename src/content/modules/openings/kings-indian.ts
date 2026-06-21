@@ -77,5 +77,15 @@ export const kingsIndianLesson: Lesson = {
         "White can meet the King's Indian by fianchettoing the bishop as well. " +
         "Step through the calmer, very solid Fianchetto Variation.",
     }),
+    buildReplay(kingsIndian, {
+      id: "kings-indian-var2",
+      title: "The Sämisch Variation",
+      blurb: "Building a wall with f3.",
+      lineIdx: 2,
+      intro:
+        "With an early f3, White reinforces the centre and prepares to castle " +
+        "queenside for a pawn-storm race. Step through the rugged Sämisch " +
+        "Variation.",
+    }),
   ],
 };

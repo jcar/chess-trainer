@@ -71,6 +71,16 @@ export const italianLesson: Lesson = {
         "If you want a livelier game, the Italian can strike in the centre with " +
         "an early c3 and d4. Step through the classical main line.",
     }),
+    buildReplay(italianGame, {
+      id: "italian-classical-var2",
+      title: "The Evans Gambit",
+      blurb: "Sacrificing a pawn for fast development.",
+      lineIdx: 2,
+      intro:
+        "The Evans Gambit offers the b-pawn to lure Black's bishop offside and " +
+        "seize the centre with a rapid c3 and d4. Step through this bold, " +
+        "attacking try.",
+    }),
     {
       type: "puzzle",
       id: "italian-legal-trap",

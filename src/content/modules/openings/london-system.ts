@@ -77,5 +77,15 @@ export const londonSystemLesson: Lesson = {
         "same London structure. Step through how the set-up handles a " +
         "King's-Indian formation.",
     }),
+    buildReplay(londonSystem, {
+      id: "london-system-var2",
+      title: "Meeting ...c5 and ...Qb6",
+      blurb: "Defusing the pressure on b2.",
+      lineIdx: 2,
+      intro:
+        "Black's most testing try is ...c5 followed by ...Qb6, eyeing the " +
+        "loose b2-pawn. Step through how White calmly defends and keeps the " +
+        "solid London structure intact.",
+    }),
   ],
 };

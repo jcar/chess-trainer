@@ -72,5 +72,25 @@ export const frenchDefenceLesson: Lesson = {
         "...Bb4 and trades it for White's knight, unbalancing the pawns. Step " +
         "through the main line.",
     }),
+    buildReplay(frenchDefence, {
+      id: "french-defence-var2",
+      title: "The Classical Variation",
+      blurb: "Developing with ...Nf6 and ...Be7.",
+      lineIdx: 2,
+      intro:
+        "In the Classical, Black develops naturally with ...Nf6 and ...Be7, " +
+        "accepting the tension in the centre. Step through this solid, " +
+        "well-tested main line.",
+    }),
+    buildReplay(frenchDefence, {
+      id: "french-defence-var3",
+      title: "The Tarrasch Variation",
+      blurb: "White's flexible 3.Nd2.",
+      lineIdx: 3,
+      intro:
+        "With 3.Nd2, White keeps the pawns intact and sidesteps the pin of the " +
+        "Winawer. Step through how Black responds to the flexible Tarrasch " +
+        "Variation.",
+    }),
   ],
 };

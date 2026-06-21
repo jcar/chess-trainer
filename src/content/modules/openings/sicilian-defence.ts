@@ -71,6 +71,25 @@ export const sicilianDefenceLesson: Lesson = {
         "Many players avoid the Open Sicilian with 2.c3, preparing d4 with pawn " +
         "support. Step through how Black meets the Alapin.",
     }),
+    buildReplay(sicilianDefence, {
+      id: "sicilian-defence-var2",
+      title: "The Najdorf: 6.Bg5 main line",
+      blurb: "The sharpest test of the Najdorf.",
+      lineIdx: 2,
+      intro:
+        "White's most aggressive reply pins the f6-knight with 6.Bg5, aiming for " +
+        "a direct attack. Step through this critical main line of the Najdorf.",
+    }),
+    buildReplay(sicilianDefence, {
+      id: "sicilian-defence-var3",
+      title: "Facing the Rossolimo (3.Bb5)",
+      blurb: "An anti-Sicilian bishop sortie.",
+      lineIdx: 3,
+      intro:
+        "Rather than opening the centre, White can pin the c6-knight with " +
+        "3.Bb5, steering into a quieter strategic game. Step through how Black " +
+        "meets the Rossolimo.",
+    }),
     {
       type: "puzzle",
       id: "sicilian-siberian",

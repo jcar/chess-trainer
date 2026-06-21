@@ -76,6 +76,15 @@ export const caroKannLesson: Lesson = {
         "In the Advance, White pushes e5 to grab space. Black still gets the " +
         "bishop out to f5 first, then strikes back with ...c5. Step through it.",
     }),
+    buildReplay(caroKann, {
+      id: "caro-kann-var2",
+      title: "The Panov-Botvinnik Attack",
+      blurb: "An open, dynamic IQP fight.",
+      lineIdx: 2,
+      intro:
+        "With an early c4, White steers into an isolated-queen's-pawn middlegame " +
+        "full of piece activity. Step through the sharp Panov-Botvinnik Attack.",
+    }),
     {
       type: "puzzle",
       id: "caro-smothered",

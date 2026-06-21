@@ -73,5 +73,15 @@ export const ruyLopezLesson: Lesson = {
         "on c6 and aim for a healthier endgame. Step through the Exchange " +
         "Variation.",
     }),
+    buildReplay(ruyLopez, {
+      id: "ruy-lopez-var2",
+      title: "The Berlin Defence",
+      blurb: "Black's rock-solid early ...Nf6.",
+      lineIdx: 2,
+      intro:
+        "Instead of ...a6, Black can answer with the sturdy ...Nf6, inviting an " +
+        "early queen trade and a resilient endgame. Step through the Berlin " +
+        "Defence.",
+    }),
   ],
 };

@@ -75,6 +75,16 @@ export const queensGambitDeclinedLesson: Lesson = {
         "White can release the central tension early with cxd5. Step through the " +
         "Exchange Variation and see how the structures fix.",
     }),
+    buildReplay(queensGambitDeclined, {
+      id: "queens-gambit-declined-var2",
+      title: "Facing the Catalan",
+      blurb: "Meeting White's kingside fianchetto.",
+      lineIdx: 2,
+      intro:
+        "When White fianchettoes with g3 and Bg2, the long diagonal bears down " +
+        "on Black's queenside. Step through a sound way to meet the Catalan " +
+        "set-up.",
+    }),
     {
       type: "puzzle",
       id: "qgd-elephant",
