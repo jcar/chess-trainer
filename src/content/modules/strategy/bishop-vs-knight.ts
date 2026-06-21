@@ -88,6 +88,40 @@ export const bishopVsKnightLesson: Lesson = {
         "knights and waste your advantage.",
     },
     {
+      type: "sort",
+      id: "bishop-vs-knight-apply1",
+      title: "Which minor to keep?",
+      blurb: "Trade the right piece for the structure.",
+      prompt:
+        "The pawns are locked across the board and you may swap one minor piece. Which do you keep?",
+      fen: "r3k2r/pp3ppp/2n1p3/2ppP3/2PP1B2/2N5/PP3PPP/R3K2R w KQkq - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Keep the knight, trade the bishop" },
+        { label: "Keep the bishop, trade the knight" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "In a closed, locked position the bishop bumps into its own pawn chains while the knight hops over them to good squares. Keep the knight here and let the bishop go — the piece that fits the structure is the one worth holding on to.",
+    },
+    {
+      type: "sort",
+      id: "bishop-vs-knight-apply2",
+      title: "Play to your bishops",
+      blurb: "You hold the pair.",
+      prompt:
+        "You have the two bishops against bishop and knight. Offered a pawn break that opens the centre, do you take it?",
+      fen: "r3k2r/pp3ppp/2b1p3/3p4/3P4/2P1B3/PP3PPP/R3K2R w KQkq - 0 1",
+      orientation: "white",
+      options: [
+        { label: "No — keep the centre closed and safe" },
+        { label: "Yes — open lines so both bishops stretch out" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "The bishop pair is at its strongest on an open board, where the two bishops sweep squares of both colours from a distance. Take the break and open lines. Keeping the centre shut would only blunt your bishops and help the enemy knight find a foothold.",
+    },
+    {
       type: "replay",
       id: "bvn-demo",
       title: "Letting the bishops breathe",

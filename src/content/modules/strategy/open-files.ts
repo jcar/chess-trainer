@@ -93,6 +93,26 @@ export const openFilesLesson: Lesson = {
       solution: ["a1a8"],
     },
     {
+      type: "sort",
+      id: "of-apply2",
+      title: "Which rook takes the file?",
+      blurb: "Seize the open line.",
+      prompt:
+        "The d-file is wide open. With rooks on a1 and f1, which one should grab it?",
+      fen: "3q1rk1/pp3ppp/2p2n2/8/8/2P2N2/PP3PPP/R2Q1RK1 w - - 0 14",
+      orientation: "white",
+      options: [
+        { label: "Neither — keep both rooks where they are" },
+        { label: "The a1-rook, leaving f1 to guard the king" },
+        { label: "The f1-rook, so the a1-rook can double behind it" },
+      ],
+      correctIndex: 2,
+      explanation:
+        "Take the open file with the rook that lets you double up: Rfd1 first, " +
+        "then Rad1 stacks behind it. Two rooks on the file overwhelm a lone " +
+        "defender and force the invasion of the 7th rank.",
+    },
+    {
       type: "replay",
       id: "of-demo",
       title: "Seizing the file",

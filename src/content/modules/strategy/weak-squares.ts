@@ -93,6 +93,26 @@ export const weakSquaresLesson: Lesson = {
       solution: ["d5e7", "g8f8", "e7c8"],
     },
     {
+      type: "sort",
+      id: "ws-apply2",
+      title: "Route the knight to the hole",
+      blurb: "Find the path home.",
+      prompt:
+        "There's a permanent hole on d5. Your knight sits on f3. What's the right idea?",
+      fen: "r1bq1rk1/pp2bppp/2np4/4p3/4P3/2NP1N2/PPP1BPPP/R1BQ1RK1 w - - 0 9",
+      orientation: "white",
+      options: [
+        { label: "Manoeuvre it via e1 and c2 toward d5" },
+        { label: "Leave it on f3 and push the h-pawn" },
+        { label: "Swap it for the enemy's worst-placed bishop" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "A hole is only worth something once a piece occupies it. Manoeuvre the " +
+        "knight toward d5 (f3-e1-c2-e3-d5 is a typical route) where no pawn can " +
+        "ever evict it — don't trade away the piece that wants the outpost.",
+    },
+    {
       type: "replay",
       id: "ws-demo",
       title: "A home for the knight",

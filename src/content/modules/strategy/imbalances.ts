@@ -82,6 +82,40 @@ export const imbalancesLesson: Lesson = {
         "Run through the list: the minor pieces (bishops vs knights), the pawn structure, who has more space, which files are open, and how safe each king is. The differences you find are the raw material for your plan.",
     },
     {
+      type: "sort",
+      id: "imbalances-apply1",
+      title: "Read the biggest imbalance",
+      blurb: "Let the difference choose the plan.",
+      prompt:
+        "White is fully developed and castled while Black is still uncastled with pieces on the back rank. Which plan fits this imbalance?",
+      fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b kq - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Attack before Black catches up" },
+        { label: "Trade everything to a quiet endgame" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "The lead in development is a temporary imbalance — it disappears the moment Black finishes developing and castles. Press now: open lines and create threats while your extra ready pieces still count for something. Trading into an endgame just lets Black catch up for free.",
+    },
+    {
+      type: "sort",
+      id: "imbalances-apply2",
+      title: "Evaluate the trade",
+      blurb: "Is this exchange good for you?",
+      prompt:
+        "Your knight sits passively on the rim while Black's bishop rakes a long open diagonal. You can swap them off. Good idea?",
+      fen: "r2qk2r/ppp2ppp/2np1n2/4p1b1/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w kq - 0 1",
+      orientation: "white",
+      options: [
+        { label: "No — keep both pieces" },
+        { label: "Yes — trade your worse piece for their better one" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "When you can swap your worst-placed piece for the opponent's best-placed one, take it. The trade erases a piece-quality imbalance that was working against you and leaves the remaining forces more even — a clear gain even though the material count never changed.",
+    },
+    {
       type: "replay",
       id: "imbalances-plan-demo",
       title: "Spotting the plan",

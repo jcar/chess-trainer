@@ -92,6 +92,26 @@ export const initiativeLesson: Lesson = {
         "pawn — keep developing and attacking.",
     },
     {
+      type: "sort",
+      id: "init-apply2",
+      title: "Forcing or quiet?",
+      blurb: "Keep them on the back foot.",
+      prompt:
+        "You're better developed and want to keep the initiative. Which move serves you?",
+      fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 0 1",
+      orientation: "white",
+      options: [
+        { label: "A forcing move that makes a threat" },
+        { label: "A slow, do-nothing waiting move" },
+        { label: "A pawn grab that pulls a piece off the attack" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "The initiative is kept with threats: a forcing move makes the opponent " +
+        "react instead of develop. Quiet moves and pawn-grabs hand back the free " +
+        "time you need to keep them on the defensive.",
+    },
+    {
       type: "replay",
       id: "init-demo",
       title: "Punishing slow play",

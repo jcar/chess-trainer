@@ -93,6 +93,26 @@ export const synthesisLesson: Lesson = {
         "opponent's chances of swindling you with complications.",
     },
     {
+      type: "sort",
+      id: "syn-apply2",
+      title: "Is the sacrifice sound?",
+      blurb: "Count what you get back.",
+      prompt:
+        "You can give up a bishop to smash open the castled king's pawn cover, with your queen and rook ready to pour in. Sound or not?",
+      fen: "r2q1rk1/ppp2ppp/2n5/2b1N3/2B1P3/8/PPP2PPP/R2Q1RK1 w - - 0 12",
+      orientation: "white",
+      options: [
+        { label: "Sound — the open king and your active pieces pay for it" },
+        { label: "Unsound — never give up material" },
+        { label: "Unsound — only sacrifice for a forced mate" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "A sacrifice is justified when what you get back outweighs the material: " +
+        "here a bare enemy king plus your attackers swarming in. Material is just " +
+        "one imbalance — and a forced mate isn't required, only a payoff worth more.",
+    },
+    {
       type: "replay",
       id: "syn-demo",
       title: "A sacrifice for the long game",

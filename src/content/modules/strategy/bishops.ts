@@ -94,6 +94,40 @@ export const bishopsLesson: Lesson = {
         "influence the game.",
     },
     {
+      type: "sort",
+      id: "bishops-apply1",
+      title: "Where to put the pawn break",
+      blurb: "Free the bishop, don't bury it.",
+      prompt:
+        "Your bishop is boxed in by pawns on its own colour. Which pawn move helps it most?",
+      fen: "4k3/5p2/3pp3/3p4/3P1B2/3KP3/5P2/8 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "A break that opens a diagonal for the bishop" },
+        { label: "A push that fixes another pawn on the bishop's colour" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "A bad bishop only improves when its diagonals open. Choose the pawn break that clears a line in front of it, not a push that adds yet another pawn on its colour — that would wall the bishop in even more and deepen the problem you are trying to solve.",
+    },
+    {
+      type: "sort",
+      id: "bishops-apply2",
+      title: "Trade it or keep it?",
+      blurb: "Your bad bishop, their good one.",
+      prompt:
+        "You're stuck with a bad bishop and can swap it for the opponent's active, well-placed bishop. Do it?",
+      fen: "4k3/pp3p2/2p1p3/3pP3/3P4/2P5/PP3B2/4K1b1 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Keep your bishop and play around it" },
+        { label: "Trade — swap your worst piece for their best" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "Trading a bad bishop for the enemy's good one is almost always a fine deal: you shed your weakest piece and remove their strongest in a single move. Clinging to a bishop that has no future just leaves you effectively playing a piece down.",
+    },
+    {
       type: "replay",
       id: "bishops-good-demo",
       title: "The better bishop",

@@ -107,5 +107,41 @@ export const ch6: Lesson = {
       explanation:
         "Perpetual check is a draw: the position repeats and you claim threefold. When you're losing, look for it; when you're winning, make sure the enemy king has a hiding place so it can't be checked endlessly.",
     },
+    {
+      id: "ch6-apply-stalemate-danger",
+      type: "sort",
+      title: "Winning — is this safe?",
+      blurb: "Don't throw away the win.",
+      prompt:
+        "You have queen and king vs a lone king on a8. You're about to play Qb6. What happens?",
+      fen: "k7/8/2KQ4/8/8/8/8/8 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Stalemate — a draw!" },
+        { label: "Checkmate — you win" },
+        { label: "The king runs to b8" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "Qb6 leaves the king on a8 with no legal move and NOT in check — stalemate, a heartbreaking draw. When you're winning, always leave the enemy king a square until the move that actually mates. Here Qc7 (keeping b8 free) or bringing the king up first is correct.",
+    },
+    {
+      id: "ch6-apply-perpetual-lifeline",
+      type: "sort",
+      title: "Losing — can you save it?",
+      blurb: "Look for the draw.",
+      prompt:
+        "You're Black, down a whole rook — but White's king is stuck on g1/h1 and your queen can check it again and again with no escape. What's the best result you can get?",
+      fen: "6k1/5ppp/8/8/8/8/5PPP/3q2K1 b - - 0 1",
+      orientation: "black",
+      options: [
+        { label: "A draw by perpetual check" },
+        { label: "Nothing — you're just lost" },
+        { label: "A win on material" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "When you're losing, a perpetual check is gold: keep checking, the position repeats three times, and you claim the draw. Always check for it before resigning a material-down position.",
+    },
   ],
 };

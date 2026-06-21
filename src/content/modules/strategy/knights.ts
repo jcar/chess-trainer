@@ -73,6 +73,40 @@ export const knightsLesson: Lesson = {
         "rest of the game.",
     },
     {
+      type: "sort",
+      id: "knights-apply1",
+      title: "Route the knight to the outpost",
+      blurb: "Plan the journey, not just the destination.",
+      prompt:
+        "The d5 square is a protected outpost no Black pawn can attack. What's the right plan for your knight on f3?",
+      fen: "r1bq1rk1/pp3ppp/2np1n2/3Np3/4P3/2N2P2/PPP3PP/R1BQ1RK1 b - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Manoeuvre a knight onto d5 and leave it there" },
+        { label: "Swap both knights off as fast as you can" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "An outpost is only worth having if you occupy it. Steer a knight to d5, where a pawn defends it and no enemy pawn can ever chase it away. Trading the knights off throws away the very piece best suited to that dream square.",
+    },
+    {
+      type: "sort",
+      id: "knights-apply2",
+      title: "Keep the lock or open up?",
+      blurb: "Match the pawns to your pieces.",
+      prompt:
+        "The pawns are locked and you have the knight while the opponent has the bishop. With a choice between a pawn break and keeping things closed, what suits you?",
+      fen: "r3k2r/pp3ppp/2n1p3/2ppP3/2PP4/2N5/PP3PPP/R3K2R w KQkq - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Open the position with a pawn break" },
+        { label: "Keep the position closed and locked" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "Closed, locked pawns are a knight's home turf — it hops over the blockade to outposts the bishop can never reach. Keep the structure shut. Opening lines would hand the bishop the long, clear diagonals it craves and undo your advantage.",
+    },
+    {
       type: "puzzle",
       id: "knights-fork",
       title: "The knight forks the queen",

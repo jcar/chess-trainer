@@ -88,6 +88,41 @@ export const endgamesLesson: Lesson = {
         "The Lucena position is the classic win with rook and pawn versus rook: you 'build a bridge' with your rook so it can shield the advancing king from checks and shepherd the pawn home.",
     },
     {
+      type: "sort",
+      id: "endgames-apply1",
+      title: "Race or block?",
+      blurb: "The opponent has a runner too.",
+      prompt:
+        "Both sides have a passed pawn racing to promote. With it your move, what wins the race?",
+      fen: "8/6P1/8/8/8/1p6/8/k1K5 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Stop their pawn first" },
+        { label: "Push your own pawn to queen" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "Count the tempi before reacting. Your g-pawn is two squares from queening; Black's b-pawn needs two moves and then must get past your king. Push and promote — switching to defence here would only let the faster pawn lose its head start.",
+    },
+    {
+      type: "sort",
+      id: "endgames-apply2",
+      title: "Seize the opposition",
+      blurb: "King move first, not pawn.",
+      prompt:
+        "Kings stand a knight's-move apart and it's your move. To make progress with your pawn, what should you do?",
+      fen: "8/8/3k4/8/3P4/3K4/8/8 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Push the pawn at once" },
+        { label: "Step the king forward to take the opposition" },
+        { label: "Shuffle the king sideways and wait" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "In king-and-pawn endings the king leads and the pawn follows. Advancing the king to seize the opposition forces the enemy king to give way, clearing a path for the pawn. Pushing the pawn too early surrenders the opposition and lets the defender block in front of it.",
+    },
+    {
       type: "drill",
       id: "endgames-kp-win",
       title: "Win the K+P endgame",

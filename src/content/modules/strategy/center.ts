@@ -89,6 +89,26 @@ export const centerLesson: Lesson = {
         "way to fight for the centre.",
     },
     {
+      type: "sort",
+      id: "center-apply2",
+      title: "Which break hits the centre?",
+      blurb: "Pick the lever.",
+      prompt:
+        "White has built a pawn centre on d4 and e4. As Black, which pawn break challenges it most directly?",
+      fen: "rnbqkb1r/ppp2ppp/4pn2/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 0 3",
+      orientation: "black",
+      options: [
+        { label: "...c5, striking the base d4" },
+        { label: "...h6, making luft for the king" },
+        { label: "...a6, leaving the centre alone" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "...c5 hits d4, the support of the whole centre. Challenge the base of a " +
+        "pawn duo and the structure starts to crack; a rook's-pawn nudge does " +
+        "nothing to the centre and simply loses time.",
+    },
+    {
       type: "replay",
       id: "center-demo",
       title: "Hitting the centre",

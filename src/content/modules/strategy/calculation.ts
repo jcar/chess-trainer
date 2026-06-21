@@ -88,6 +88,41 @@ export const calculationLesson: Lesson = {
       solution: ["e5f7", "h8g8", "f7h6", "g8h8", "b3g8", "f8g8", "h6f7"],
     },
     {
+      type: "sort",
+      id: "calculation-apply1",
+      title: "Which move to calculate first?",
+      blurb: "Forcing moves narrow the search.",
+      prompt:
+        "You spot several ideas in this position. Which type of move should you calculate first?",
+      fen: "r4rk1/ppp2ppp/2n5/3qp3/3P4/2P2N2/PP3PPP/R2Q1RK1 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "A quiet move that improves a piece" },
+        { label: "A check or capture that forces a reply" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "Forcing moves come first because they cut the opponent's choices down to almost nothing, so the tree you must calculate stays small and clear. Quiet improving moves matter, but you only reach for them after the checks, captures, and threats have all been checked and ruled out.",
+    },
+    {
+      type: "sort",
+      id: "calculation-apply2",
+      title: "Do the captures favour you?",
+      blurb: "Count to the last capture.",
+      prompt:
+        "Three pieces eye the contested e5-pawn on each side. Before grabbing it, what does counting tell you to do?",
+      fen: "3r1rk1/pp3ppp/4n3/4p3/4P3/2N2N2/PP3PPP/2RR2K1 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Take only if the exchanges end in your favour" },
+        { label: "Grab the pawn immediately" },
+        { label: "Never capture on a contested square" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "On a contested square, line up every attacker and defender and play the trades out in your head to the very end. Capture only when the final tally leaves you ahead. Grabbing on instinct loses material the moment defenders outnumber attackers, and refusing every contested capture would mean missing winning exchanges.",
+    },
+    {
       type: "replay",
       id: "calc-combo-demo",
       title: "A combination in action",

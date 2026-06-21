@@ -71,6 +71,7 @@ export default function PlayPage() {
   const [flags, setFlags] = useState<Flag[]>([]);
   const [accuracy, setAccuracy] = useState(0);
   const [selected, setSelected] = useState<Flag | null>(null);
+  const [plainView, setPlainView] = useState<string | null>(null);
 
   const learnerTurn = color === "white" ? "w" : "b";
 
@@ -149,6 +150,13 @@ export default function PlayPage() {
     for (let i = 0; i < history.length; i++) {
       const p = history[i];
       if (!p.byLearner) continue;
+      // Don't flag opening-book moves (first ~4 of each side) — eval noise.
+      if (i < 8) {
+        good++;
+        done++;
+        setProgress({ n: done, total: learnerPlies.length });
+        continue;
+      }
       const before = await engine.analyze(p.fenBefore, REVIEW_DEPTH);
       const after = await engine.analyze(p.fenAfter, REVIEW_DEPTH);
       const bestCp = toCp(before); // learner to move at fenBefore
@@ -243,7 +251,9 @@ export default function PlayPage() {
   }
 
   if (phase === "done") {
-    const view = selected;
+    const flag = selected;
+    const boardFen = flag ? flag.fenBefore : plainView;
+    const flagByPly = (i: number) => flags.find((f) => f.ply === i);
     return (
       <main className="space-y-5">
         <PageHeader
@@ -260,29 +270,40 @@ export default function PlayPage() {
           <Chip tone={accuracy >= 80 ? "sage" : accuracy >= 60 ? "amber" : "clay"}>{accuracy}%</Chip>
         </Card>
 
-        {view ? (
+        {boardFen ? (
           <Board
-            fen={view.fenBefore}
+            fen={boardFen}
             orientation={color}
             interactive={false}
-            arrows={[
-              { from: view.playedUci.slice(0, 2), to: view.playedUci.slice(2, 4), color: "#b0604a" },
-              { from: view.bestUci.slice(0, 2), to: view.bestUci.slice(2, 4), color: "#5e7e58" },
-            ]}
+            arrows={
+              flag
+                ? [
+                    { from: flag.playedUci.slice(0, 2), to: flag.playedUci.slice(2, 4), color: "#b0604a" },
+                    { from: flag.bestUci.slice(0, 2), to: flag.bestUci.slice(2, 4), color: "#5e7e58" },
+                  ]
+                : []
+            }
           />
         ) : (
           <Card className="p-6 text-center text-ink-soft">
-            No big mistakes flagged — clean game! 🎉
+            {flags.length ? "Tap a move below to review the position." : "No big mistakes flagged — clean game! 🎉"}
           </Card>
+        )}
+
+        {flag && (
+          <div className="rounded-2xl bg-surface p-3 text-sm shadow-soft">
+            <span className="font-mono text-ink">{flag.moveLabel} {flag.san}</span>
+            <span className="text-ink-soft"> — better was </span>
+            <span className="font-semibold text-sage">{flag.bestSan}</span>
+            <span className="text-clay"> (red = your move, green = engine&apos;s best)</span>
+          </div>
         )}
 
         {flags.length > 0 && (
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">
-              Key moments <span className="text-clay">(red = your move, green = engine&apos;s best)</span>
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Key moments</p>
             {flags.map((f) => (
-              <button key={f.ply} type="button" onClick={() => setSelected(f)} className="block w-full text-left">
+              <button key={f.ply} type="button" onClick={() => { setSelected(f); setPlainView(null); }} className="block w-full text-left">
                 <Card interactive className={`flex items-center gap-3 p-3 ${selected?.ply === f.ply ? "ring-2 ring-walnut" : ""}`}>
                   <span className="font-mono text-sm text-ink-soft">{f.moveLabel}</span>
                   <span className="min-w-0 flex-1">
@@ -297,6 +318,33 @@ export default function PlayPage() {
             ))}
           </div>
         )}
+
+        {/* Full move list — click any move to step through the game */}
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Move list</p>
+          <Card className="flex flex-wrap items-center gap-x-2 gap-y-1 p-4 font-mono text-sm">
+            {history.map((p, i) => {
+              const f = flagByPly(i);
+              const active = (flag && flag.ply === i) || (!flag && plainView === p.fenAfter);
+              const mark = f ? (f.klass === "blunder" ? "??" : f.klass === "mistake" ? "?" : "?!") : "";
+              return (
+                <span key={i} className="inline-flex items-center">
+                  {i % 2 === 0 && <span className="mr-1 text-ink-soft/60">{Math.floor(i / 2) + 1}.</span>}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (f) { setSelected(f); setPlainView(null); }
+                      else { setSelected(null); setPlainView(p.fenAfter); }
+                    }}
+                    className={`rounded px-1 ${active ? "bg-walnut text-[#fffdf7]" : "text-ink hover:bg-line"} ${f ? "font-semibold" : ""}`}
+                  >
+                    {p.san}{mark}
+                  </button>
+                </span>
+              );
+            })}
+          </Card>
+        </div>
       </main>
     );
   }

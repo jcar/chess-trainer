@@ -33,16 +33,15 @@ function todayStr(): string {
   }
 }
 
-function prevDayStr(dateStr: string): string {
+function dayDiff(a: string, b: string): number {
   try {
-    const [y, m, d] = dateStr.split("-").map(Number);
-    const dt = new Date(y, m - 1, d);
-    dt.setDate(dt.getDate() - 1);
-    const mm = `${dt.getMonth() + 1}`.padStart(2, "0");
-    const dd = `${dt.getDate()}`.padStart(2, "0");
-    return `${dt.getFullYear()}-${mm}-${dd}`;
+    const [ay, am, ad] = a.split("-").map(Number);
+    const [by, bm, bd] = b.split("-").map(Number);
+    const da = new Date(ay, am - 1, ad).getTime();
+    const db = new Date(by, bm - 1, bd).getTime();
+    return Math.round((db - da) / 86_400_000);
   } catch {
-    return "";
+    return 99;
   }
 }
 
@@ -88,13 +87,16 @@ class DailyStreakStore {
 
   getServerSnapshot = (): DailyState => SERVER_SNAPSHOT;
 
-  /** Call whenever the learner completes any activity. Bumps the streak once/day. */
+  /** Call whenever the learner completes any activity. Bumps the streak once/day.
+   *  A single missed day is forgiven (a built-in "streak freeze"); a longer gap
+   *  resets the streak. */
   record = (): void => {
     const today = todayStr();
     if (!today) return;
     const s = this.getSnapshot();
     if (s.lastDate === today) return; // already counted today
-    const current = s.lastDate === prevDayStr(today) ? s.current + 1 : 1;
+    const gap = s.lastDate ? dayDiff(s.lastDate, today) : 99;
+    const current = gap === 1 || gap === 2 ? s.current + 1 : 1;
     this.persist({
       lastDate: today,
       current,

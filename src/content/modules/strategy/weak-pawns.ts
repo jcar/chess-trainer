@@ -92,6 +92,26 @@ export const weakPawnsLesson: Lesson = {
         "long-term trump.",
     },
     {
+      type: "sort",
+      id: "wp-apply2",
+      title: "Attack the isolated pawn",
+      blurb: "Where does the knight go?",
+      prompt:
+        "Black's d5-pawn is isolated. Which knight move best fights against it?",
+      fen: "r1bq1rk1/pp3ppp/2n1pn2/3p4/8/2N2N2/PP3PPP/R1BQ1RK1 w - - 0 12",
+      orientation: "white",
+      options: [
+        { label: "Reroute a knight to d4, the blockade square" },
+        { label: "Trade off both knights immediately" },
+        { label: "Push your own a- and b-pawns up the board" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "The square in front of an isolated pawn (d4 here) is the ideal blockade " +
+        "post: reroute a knight there so the pawn can never advance, then pile " +
+        "attackers on the frozen target. Retreating wastes the plan.",
+    },
+    {
       type: "replay",
       id: "wp-demo",
       title: "Creating a target",

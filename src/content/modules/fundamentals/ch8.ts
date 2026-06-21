@@ -107,5 +107,41 @@ export const ch8: Lesson = {
       explanation:
         "When ahead in material, trade PIECES to reduce the opponent's attacking chances and reach a simple, winning endgame — but keep pawns, since they're what you'll promote. When behind, do the opposite: keep pieces on and seek complications.",
     },
+    {
+      id: "ch8-apply-plan",
+      type: "sort",
+      title: "No tactics — what's the plan?",
+      blurb: "Play toward the weakness.",
+      prompt:
+        "Nothing is forcing. Black has a weak, isolated d5-pawn and the c-file is open. What's White's plan?",
+      fen: "r2q1rk1/pp3ppp/2n1bn2/3p4/8/2N1BN2/PP3PPP/R2Q1RK1 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Blockade d4 and pile up on the d5-pawn" },
+        { label: "Push the kingside pawns at once" },
+        { label: "Trade everything into a draw" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "Plans come from weaknesses. Park a knight on the d4 outpost (in front of the isolated pawn so it can't advance), then attack d5 with rooks down the open file. Random pawn pushes or mass trades throw away the edge.",
+    },
+    {
+      id: "ch8-apply-piece",
+      type: "sort",
+      title: "Open or closed?",
+      blurb: "Match the piece to the structure.",
+      prompt:
+        "The pawns are locked in long chains (a closed position). You can keep either your knight or your bishop — which do you want?",
+      fen: "4k3/pp3ppp/2p1p3/2PpP3/3P4/8/PP3PPP/4K3 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "The knight" },
+        { label: "The bishop" },
+        { label: "It makes no difference" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "Closed positions favor knights — they hop over the locked pawns to reach squares a bishop (stuck behind its own chain) never can. In open positions you'd want the bishop instead.",
+    },
   ],
 };

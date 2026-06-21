@@ -80,6 +80,56 @@ export const ENDGAMES: EndgamePosition[] = [
       "Two connected passed pawns beat a lone king. Advance them side by side so they defend each other, and never let the king win one for free — promote one.",
     successText: "Promoted! Connected passers are a powerhouse — advance them as a team.",
   },
+  {
+    id: "kp-key-squares",
+    name: "King + Pawn: the key squares",
+    category: "King & Pawn",
+    fen: "2k5/8/2K5/2P5/8/8/8/8 w - - 0 1",
+    orientation: "white",
+    objective: "promote",
+    engineSkill: 16,
+    instructions:
+      "With your king two ranks ahead of the pawn, you control the 'key squares' and win no matter who has the move. Lead with the king, grab the opposition, and promote.",
+    successText: "Promoted! When your king reaches the key squares ahead of the pawn, the win is automatic.",
+  },
+  // ---- Rook Endgames ----
+  {
+    id: "rook-vs-pawn",
+    name: "Rook vs a Runner",
+    category: "Rook Endgames",
+    fen: "8/8/8/8/8/1k6/1p6/4K2R w - - 0 1",
+    orientation: "white",
+    objective: "checkmate",
+    engineSkill: 16,
+    instructions:
+      "A rook beats a lone passed pawn. Use the rook to control the queening square and round the pawn up, bring your king, then mate.",
+    successText: "Won! Rook behind (or in front of) the runner stops it cold — then king and rook mate.",
+  },
+  {
+    id: "lucena-bridge",
+    name: "Rook + Pawn vs Rook (the Lucena bridge)",
+    category: "Rook Endgames",
+    fen: "2K4r/2P5/5k2/8/8/8/8/3R4 w - - 0 1",
+    orientation: "white",
+    objective: "promote",
+    engineSkill: 16,
+    instructions:
+      "The most important rook ending. 'Build a bridge': use your rook to shelter your king from the checks so the pawn can promote. (The Lucena position.)",
+    successText: "Promoted! Building a bridge is THE winning technique in rook-and-pawn endings.",
+  },
+  // ---- Minor Pieces ----
+  {
+    id: "bishop-pawn-escort",
+    name: "Bishop + Pawn vs King",
+    category: "Minor Pieces",
+    fen: "8/8/8/8/4k3/8/4PB2/4K3 w - - 0 1",
+    orientation: "white",
+    objective: "promote",
+    engineSkill: 14,
+    instructions:
+      "Escort the pawn with your king and bishop. The bishop covers squares the enemy king can't, so it can never blockade you — promote.",
+    successText: "Promoted! A bishop is a perfect escort — it controls squares from a distance.",
+  },
 ];
 
 export const ENDGAME_CATEGORIES: string[] = [

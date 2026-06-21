@@ -90,6 +90,41 @@ export const spaceLesson: Lesson = {
         "them and become targets the enemy pieces gang up on.",
     },
     {
+      type: "sort",
+      id: "space-apply1",
+      title: "The prophylactic move",
+      blurb: "Stop their plan before your own.",
+      prompt:
+        "You'd love to expand, but the opponent is about to break with a freeing pawn push. What's the wiser move?",
+      fen: "r1bqk2r/pp1nbppp/2p1pn2/3p4/2PP4/2N1PN2/PP2BPPP/R1BQ1RK1 w kq - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Charge ahead and grab more space at once" },
+        { label: "Quietly prevent their freeing break first" },
+      ],
+      correctIndex: 1,
+      explanation:
+        "Prophylaxis means asking what the opponent wants and taking it away before pushing your own agenda. Stop the freeing break first, then your space advantage becomes permanent. Charging ahead and ignoring their idea lets them equalise the moment the break lands.",
+    },
+    {
+      type: "sort",
+      id: "space-apply2",
+      title: "Cramped: what now?",
+      blurb: "Less room, more trades.",
+      prompt:
+        "You're squeezed for space with pieces tripping over each other. What helps most?",
+      fen: "r1bqk2r/pp1nbppp/2p1pn2/3p4/2PP4/2N1PN2/PP2BPPP/R1BQK2R b KQkq - 0 1",
+      orientation: "black",
+      options: [
+        { label: "Trade a pair of pieces" },
+        { label: "Push a pawn deep into their half" },
+        { label: "Keep every piece and sit tight" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "The cramped side wants fewer pieces, because every trade frees up squares for whatever remains. Swap a pair off to breathe. Lunging forward with a pawn from a cramped position usually just creates a weakness, and sitting tight only lets the squeeze tighten.",
+    },
+    {
       type: "replay",
       id: "space-demo",
       title: "The big squeeze",
