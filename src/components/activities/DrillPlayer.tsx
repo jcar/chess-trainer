@@ -18,6 +18,8 @@ interface Props {
   activity: DrillActivity;
   onComplete: (score: number) => void;
   kidMode?: boolean;
+  /** Enable tap-to-move without kid styling (e.g. the Endgame Trainer). */
+  tapToMove?: boolean;
 }
 
 type Phase = "playing" | "thinking" | "won" | "lost";
@@ -29,7 +31,13 @@ function applyLearnerMove(fen: string, move: SimpleMove) {
   return new ChessGame(fen).tryMove({ ...move, promotion: "q" });
 }
 
-export function DrillPlayer({ activity, onComplete, kidMode = false }: Props) {
+export function DrillPlayer({
+  activity,
+  onComplete,
+  kidMode = false,
+  tapToMove = false,
+}: Props) {
+  const tap = tapToMove || kidMode;
   const [fen, setFen] = useState(activity.fen);
   const [phase, setPhase] = useState<Phase>("playing");
   const [message, setMessage] = useState(activity.instructions);
@@ -145,11 +153,11 @@ export function DrillPlayer({ activity, onComplete, kidMode = false }: Props) {
           kidMode && kingInCheckSquare(fen) ? [kingInCheckSquare(fen) as string] : []
         }
         getLegalMoves={
-          kidMode && phase === "playing"
+          tap && phase === "playing"
             ? (square) => new ChessGame(fen).legalDestinations(square)
             : undefined
         }
-        onMove={kidMode ? (from, to) => void handleMove(from, to) : undefined}
+        onMove={tap ? (from, to) => void handleMove(from, to) : undefined}
         onSelect={kidMode ? () => playSound("select") : undefined}
       />
 
