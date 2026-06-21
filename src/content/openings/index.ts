@@ -17,21 +17,55 @@ import { kingsIndian } from "./kings-indian";
 import { nimzoIndian } from "./nimzo-indian";
 import { londonSystem } from "./london-system";
 import { englishOpening } from "./english-opening";
+import { fourKnights } from "./four-knights";
+import { petroff } from "./petroff";
+import { kingsGambit } from "./kings-gambit";
+import { scandinavian } from "./scandinavian";
+import { alekhine } from "./alekhine";
+import { pirc } from "./pirc";
+import { queensGambitAccepted } from "./queens-gambit-accepted";
+import { semiSlav } from "./semi-slav";
+import { queensIndian } from "./queens-indian";
+import { bogoIndian } from "./bogo-indian";
+import { grunfeld } from "./grunfeld";
+import { benoni } from "./benoni";
+import { benkoGambit } from "./benko-gambit";
+import { dutchDefence } from "./dutch-defence";
+import { reti } from "./reti";
 
 // Ordered by family: 1.e4 e5 → other 1.e4 → 1.d4 → flank.
 export const OPENINGS: Opening[] = [
+  // 1.e4 e5 — the Open Games
   italianGame,
   ruyLopez,
   scotchGame,
+  fourKnights,
+  petroff,
+  kingsGambit,
+  // Other 1.e4 defences
   sicilianDefence,
   frenchDefence,
   caroKann,
+  scandinavian,
+  alekhine,
+  pirc,
+  // 1.d4 openings
   queensGambitDeclined,
   slavDefence,
   kingsIndian,
   nimzoIndian,
   londonSystem,
+  queensGambitAccepted,
+  semiSlav,
+  queensIndian,
+  bogoIndian,
+  grunfeld,
+  benoni,
+  benkoGambit,
+  dutchDefence,
+  // Flank
   englishOpening,
+  reti,
 ];
 
 export function getOpening(id: string): Opening | undefined {

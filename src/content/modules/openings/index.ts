@@ -20,6 +20,21 @@ import { kingsIndianLesson } from "./kings-indian";
 import { nimzoIndianLesson } from "./nimzo-indian";
 import { londonSystemLesson } from "./london-system";
 import { englishOpeningLesson } from "./english-opening";
+import { fourKnightsLesson } from "./four-knights";
+import { petroffLesson } from "./petroff";
+import { kingsGambitLesson } from "./kings-gambit";
+import { scandinavianLesson } from "./scandinavian";
+import { alekhineLesson } from "./alekhine";
+import { pircLesson } from "./pirc";
+import { queensGambitAcceptedLesson } from "./queens-gambit-accepted";
+import { semiSlavLesson } from "./semi-slav";
+import { queensIndianLesson } from "./queens-indian";
+import { bogoIndianLesson } from "./bogo-indian";
+import { grunfeldLesson } from "./grunfeld";
+import { benoniLesson } from "./benoni";
+import { benkoGambitLesson } from "./benko-gambit";
+import { dutchDefenceLesson } from "./dutch-defence";
+import { retiLesson } from "./reti";
 
 // Short, catalog-specific framing (the openings taxonomy) — distinct from the
 // Intermediate module's coverage of general opening principles.
@@ -61,17 +76,32 @@ export const openings: Module = {
     italianLesson,
     ruyLopezLesson,
     scotchGameLesson,
+    fourKnightsLesson,
+    petroffLesson,
+    kingsGambitLesson,
     // Other 1.e4 defences
     sicilianDefenceLesson,
     frenchDefenceLesson,
     caroKannLesson,
+    scandinavianLesson,
+    alekhineLesson,
+    pircLesson,
     // 1.d4 openings
     queensGambitDeclinedLesson,
     slavDefenceLesson,
     kingsIndianLesson,
     nimzoIndianLesson,
     londonSystemLesson,
+    queensGambitAcceptedLesson,
+    semiSlavLesson,
+    queensIndianLesson,
+    bogoIndianLesson,
+    grunfeldLesson,
+    benoniLesson,
+    benkoGambitLesson,
+    dutchDefenceLesson,
     // Flank
     englishOpeningLesson,
+    retiLesson,
   ],
 };
