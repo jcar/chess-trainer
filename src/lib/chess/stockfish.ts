@@ -15,6 +15,15 @@ const ENGINE_URL = withBasePath("/stockfish/stockfish-18-lite-single.js");
 /** UCI skill levels run 0 (weakest) to 20 (full strength). */
 export type SkillLevel = number;
 
+/** Approximate sub-1320-Elo play by limiting search depth + skill (the engine
+ *  has no native Elo setting below 1320). Shallower search = weaker, beatable
+ *  by beginners. Heuristic — tuned for "feels about right", not exact Elo. */
+function weakConfigForElo(elo: number): { skill: number; depth: number } {
+  if (elo <= 700) return { skill: 0, depth: 1 };
+  if (elo <= 1000) return { skill: 1, depth: 2 };
+  return { skill: 2, depth: 4 }; // ~1100 up to the 1320 native floor
+}
+
 class StockfishEngine {
   private worker: Worker | null = null;
   private ready: Promise<void> | null = null;
@@ -78,9 +87,53 @@ class StockfishEngine {
       this.listeners.add(onLine);
 
       const clampedSkill = Math.max(0, Math.min(20, Math.round(skill)));
+      // Ensure a prior Elo-limited game doesn't leave UCI_LimitStrength on (it
+      // would cap this skill-based move at 1320).
+      this.send("setoption name UCI_LimitStrength value false");
       this.send(`setoption name Skill Level value ${clampedSkill}`);
       this.send(`position fen ${fen}`);
       this.send(`go movetime ${moveTimeMs}`);
+    });
+  }
+
+  /**
+   * Ask for a move at a target Elo rating (for Play & Review's opponent ladder).
+   * Ratings ≥ 1320 use the engine's native UCI_Elo limiter (calibrated). Weaker
+   * ratings are APPROXIMATED by capping search depth + skill, since the engine
+   * cannot natively limit below 1320 Elo. Returns UCI or null.
+   */
+  async getMoveAtElo(
+    fen: string,
+    elo: number,
+    moveTimeMs = 600,
+  ): Promise<string | null> {
+    await this.ensureWorker();
+
+    return new Promise<string | null>((resolve) => {
+      const onLine = (line: string) => {
+        if (line.startsWith("bestmove")) {
+          this.listeners.delete(onLine);
+          const move = line.split(" ")[1];
+          resolve(move && move !== "(none)" ? move : null);
+        }
+      };
+      this.listeners.add(onLine);
+
+      const e = Math.round(elo);
+      if (e >= 1320) {
+        this.send("setoption name UCI_LimitStrength value true");
+        this.send(`setoption name UCI_Elo value ${Math.min(3190, e)}`);
+        this.send("setoption name Skill Level value 20");
+        this.send(`position fen ${fen}`);
+        this.send(`go movetime ${moveTimeMs}`);
+      } else {
+        // Below the native floor: throttle search so beginners can win.
+        const { skill, depth } = weakConfigForElo(e);
+        this.send("setoption name UCI_LimitStrength value false");
+        this.send(`setoption name Skill Level value ${skill}`);
+        this.send(`position fen ${fen}`);
+        this.send(`go depth ${depth}`);
+      }
     });
   }
 
@@ -121,6 +174,8 @@ class StockfishEngine {
         }
       };
       this.listeners.add(onLine);
+      // Full strength for analysis — clear any Elo limit left by a rated game.
+      this.send("setoption name UCI_LimitStrength value false");
       this.send("setoption name Skill Level value 20");
       this.send(`position fen ${fen}`);
       this.send(`go depth ${depth}`);

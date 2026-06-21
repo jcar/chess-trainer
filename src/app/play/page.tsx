@@ -10,6 +10,8 @@ import type { Orientation } from "@/content/types";
 import { ChessGame, uciToMove, type SimpleMove } from "@/lib/chess/game";
 import { getEngine } from "@/lib/chess/stockfish";
 import { recordDailyActivity } from "@/lib/rewards/daily";
+import { OPPONENTS, personaForElo } from "@/lib/play/opponents";
+import { usePlayRating, playRatingStore, type GameResult } from "@/lib/play/rating";
 import { Board } from "@/components/board/Board";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -18,12 +20,13 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { buttonClasses } from "@/components/ui/Button";
 
 const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-const STRENGTHS = [
-  { label: "Easy", skill: 3 },
-  { label: "Medium", skill: 9 },
-  { label: "Hard", skill: 16 },
-];
 const REVIEW_DEPTH = 10;
+
+interface RatingChange {
+  before: number;
+  after: number;
+  delta: number;
+}
 
 interface Ply {
   fenBefore: string;
@@ -60,9 +63,16 @@ function moveLabel(plyIndex: number): string {
 type Phase = "setup" | "playing" | "gameover" | "reviewing" | "done";
 
 export default function PlayPage() {
+  const rating = usePlayRating();
   const [phase, setPhase] = useState<Phase>("setup");
   const [color, setColor] = useState<Orientation>("white");
-  const [skill, setSkill] = useState(9);
+  // The opponent for the NEXT game (setup selection).
+  const [adaptive, setAdaptive] = useState(true);
+  const [pickElo, setPickElo] = useState(1100);
+  // The opponent locked in for the game in progress, + adaptive rating result.
+  const [gameElo, setGameElo] = useState(1100);
+  const [gameAdaptive, setGameAdaptive] = useState(true);
+  const [ratingChange, setRatingChange] = useState<RatingChange | null>(null);
   const [fen, setFen] = useState(START);
   const [history, setHistory] = useState<Ply[]>([]);
   const [busy, setBusy] = useState(false);
@@ -75,9 +85,9 @@ export default function PlayPage() {
 
   const learnerTurn = color === "white" ? "w" : "b";
 
-  async function engineReply(curFen: string, hist: Ply[]) {
+  async function engineReply(curFen: string, hist: Ply[], elo: number) {
     setBusy(true);
-    const best = await getEngine().getBestMove(curFen, skill, 500);
+    const best = await getEngine().getMoveAtElo(curFen, elo, 500);
     if (!best) {
       setBusy(false);
       return;
@@ -94,26 +104,35 @@ export default function PlayPage() {
     setHistory(nextHist);
     setFen(res.fen);
     setBusy(false);
-    if (res.status === "checkmate") finish("Checkmate — the engine won. Review your game to see where it slipped.");
-    else if (res.status === "stalemate" || res.status === "draw") finish("Draw.");
+    if (res.status === "checkmate") finish("Checkmate — the engine won. Review your game to see where it slipped.", "loss");
+    else if (res.status === "stalemate" || res.status === "draw") finish("Draw.", "draw");
   }
 
-  function finish(msg: string) {
+  function finish(msg: string, outcome?: GameResult) {
     setResult(msg);
+    // Rated result only on a natural finish in Adaptive mode (not manual end).
+    if (gameAdaptive && outcome) {
+      setRatingChange(playRatingStore.record(gameElo, outcome));
+    } else {
+      setRatingChange(null);
+    }
     setPhase("gameover");
     recordDailyActivity();
   }
 
-  function start(c: Orientation, s: number) {
-    setColor(c);
-    setSkill(s);
+  function start() {
+    // Lock in the opponent for this game. Adaptive uses the player's live rating.
+    const elo = adaptive ? rating.rating : pickElo;
+    setGameElo(elo);
+    setGameAdaptive(adaptive);
+    setRatingChange(null);
     setFen(START);
     setHistory([]);
     setResult("");
     setFlags([]);
     setSelected(null);
     setPhase("playing");
-    if (c === "black") void engineReply(START, []);
+    if (color === "black") void engineReply(START, [], elo);
   }
 
   function handleMove(from: string, to: string): boolean {
@@ -128,14 +147,14 @@ export default function PlayPage() {
     setHistory(nextHist);
     setFen(res.fen);
     if (res.status === "checkmate") {
-      finish("Checkmate — you won! Review to see your best moments and any slips.");
+      finish("Checkmate — you won! Review to see your best moments and any slips.", "win");
       return true;
     }
     if (res.status === "stalemate" || res.status === "draw") {
-      finish("Draw.");
+      finish("Draw.", "draw");
       return true;
     }
-    void engineReply(res.fen, nextHist);
+    void engineReply(res.fen, nextHist, gameElo);
     return true;
   }
 
@@ -220,16 +239,48 @@ export default function PlayPage() {
             </div>
           </div>
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Engine strength</p>
-            <div className="flex gap-2">
-              {STRENGTHS.map((s) => (
-                <Pick key={s.skill} active={skill === s.skill} onClick={() => setSkill(s.skill)}>
-                  {s.label}
-                </Pick>
-              ))}
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Opponent</p>
+            <button
+              type="button"
+              onClick={() => setAdaptive(true)}
+              className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${
+                adaptive ? "border-walnut bg-walnut/5" : "border-line bg-card hover:border-walnut/40"
+              }`}
+            >
+              <span className="min-w-0">
+                <span className="block font-display text-base font-semibold text-walnut-deep">Adaptive</span>
+                <span className="block text-sm text-ink-soft">Matches your level and adjusts as you play</span>
+              </span>
+              <Chip tone="sage">{rating.rating}</Chip>
+            </button>
+            <p className="pt-1 text-xs text-ink-soft">…or pick a fixed rating:</p>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {OPPONENTS.map((o) => {
+                const on = !adaptive && pickElo === o.elo;
+                return (
+                  <button
+                    key={o.elo}
+                    type="button"
+                    onClick={() => {
+                      setAdaptive(false);
+                      setPickElo(o.elo);
+                    }}
+                    className={`rounded-xl border px-3 py-2 text-left transition ${
+                      on ? "border-walnut bg-walnut text-[#fffdf7]" : "border-line bg-card text-ink hover:border-walnut/40"
+                    }`}
+                  >
+                    <span className="block text-base font-bold">
+                      {o.approx ? "~" : ""}
+                      {o.elo}
+                    </span>
+                    <span className={`block text-xs ${on ? "text-[#fffdf7]/80" : "text-ink-soft"}`}>{o.name}</span>
+                  </button>
+                );
+              })}
             </div>
+            <p className="text-xs text-ink-soft/70">~ ratings below 1320 are approximate (the engine plays faster, weaker moves).</p>
           </div>
-          <button type="button" onClick={() => start(color, skill)} className={buttonClasses("primary", "lg")}>
+          <button type="button" onClick={start} className={buttonClasses("primary", "lg")}>
             Start game
           </button>
         </Card>
@@ -361,6 +412,14 @@ export default function PlayPage() {
           </button>
         }
       />
+      <div className="flex items-center gap-2 text-sm text-ink-soft">
+        <Chip tone={gameAdaptive ? "sage" : "neutral"}>
+          {gameAdaptive ? "Adaptive · " : ""}
+          {gameElo < 1320 ? "~" : ""}
+          {gameElo}
+        </Chip>
+        <span>vs {personaForElo(gameElo)}</span>
+      </div>
       <Board
         fen={fen}
         orientation={color}
@@ -381,6 +440,21 @@ export default function PlayPage() {
             ? "Engine is thinking…"
             : `Your move (${color}). Drag or tap a piece.`}
       </div>
+
+      {phase === "gameover" && ratingChange && (
+        <Card className="flex items-center justify-between p-4">
+          <span className="font-display text-base font-semibold text-walnut-deep">Your rating</span>
+          <span className="flex items-center gap-2 text-sm">
+            <span className="text-ink-soft">{ratingChange.before}</span>
+            <span aria-hidden>→</span>
+            <span className="font-bold text-walnut-deep">{ratingChange.after}</span>
+            <Chip tone={ratingChange.delta >= 0 ? "sage" : "clay"}>
+              {ratingChange.delta >= 0 ? "+" : ""}
+              {ratingChange.delta}
+            </Chip>
+          </span>
+        </Card>
+      )}
 
       <div className="flex flex-wrap gap-3">
         {phase === "playing" && (
