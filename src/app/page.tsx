@@ -14,6 +14,7 @@ import {
   PawnGlyph,
   CrownGlyph,
   OpeningDrillIcon,
+  PuzzleIcon,
 } from "@/components/icons";
 
 // Medallion glyph + color tone per module.
@@ -22,6 +23,7 @@ function moduleEmblem(mod: Module): {
   tone: string;
 } {
   if (mod.kidMode) return { Glyph: (p) => <StarIcon {...p} />, tone: "kid-teal" };
+  if (mod.id === "strategy") return { Glyph: PuzzleIcon, tone: "brass" };
   if (mod.level === "Intermediate")
     return { Glyph: CrownGlyph, tone: "amber" };
   if (mod.level === "Advanced") return { Glyph: CrownGlyph, tone: "clay" };

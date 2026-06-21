@@ -7,13 +7,15 @@ import { chessForKids } from "./modules/chess-for-kids";
 import { fundamentals } from "./modules/fundamentals";
 import { intermediate } from "./modules/intermediate";
 import { openings } from "./modules/openings";
+import { strategy } from "./modules/strategy";
 
-// Order = easiest first: absolute beginner → beginner → intermediate → openings.
+// Order = easiest first: absolute beginner → beginner → intermediate → openings → strategy.
 export const MODULES: Module[] = [
   chessForKids,
   fundamentals,
   intermediate,
   openings,
+  strategy,
 ];
 
 export function getModule(moduleId: string): Module | undefined {
