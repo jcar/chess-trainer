@@ -163,6 +163,32 @@ export default function HomePage() {
         <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">
           Tools
         </h2>
+        <Link href="/tactics" className="block">
+          <Card interactive className="flex items-center gap-4 p-5">
+            <span
+              className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
+              style={{ backgroundColor: "var(--color-amber)" }}
+            >
+              <span className="text-[#fffdf7]">
+                <PuzzleIcon className="h-7 w-7" />
+              </span>
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                  Tactics Trainer
+                </h2>
+                <Chip tone="neutral">Practice</Chip>
+              </div>
+              <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
+                A spaced-repetition stream of puzzles by theme — the fastest way to
+                sharpen your eye. Missed ones come back.
+              </p>
+            </div>
+            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+          </Card>
+        </Link>
+
         <Link href="/trainer" className="block">
           <Card interactive className="flex items-center gap-4 p-5">
             <span
