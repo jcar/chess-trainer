@@ -65,7 +65,12 @@ export default function TacticsPage() {
   function start() {
     const ids = candidates.map((p) => p.id);
     const { due, fresh } = partitionQueue(srs, ids, Date.now());
-    const ordered = [...due, ...fresh].slice(0, SESSION_SIZE);
+    // Difficulty progression: serve fresh puzzles easiest-first within the session
+    // (due/missed ones keep their spaced-repetition priority).
+    const freshSorted = [...fresh].sort(
+      (a, b) => (byId.get(a)?.difficulty ?? 2) - (byId.get(b)?.difficulty ?? 2),
+    );
+    const ordered = [...due, ...freshSorted].slice(0, SESSION_SIZE);
     const pick = ordered.map((id) => byId.get(id)!).filter(Boolean);
     if (pick.length) setQueue(pick);
   }

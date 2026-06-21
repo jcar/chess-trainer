@@ -115,6 +115,41 @@ export default function HomePage() {
         </Link>
       </section>
 
+      {/* Improver's Path — the fastest daily routine */}
+      <Card className="space-y-3 p-5">
+        <div className="flex items-center gap-2">
+          <h2 className="font-display text-lg font-semibold text-walnut-deep">
+            Improve fastest
+          </h2>
+          <Chip tone="sage">Daily routine</Chip>
+        </div>
+        <p className="text-sm text-ink-soft">
+          Reading teaches; <span className="font-semibold text-ink">doing</span> is
+          what makes you stronger. A good daily loop:
+        </p>
+        <ol className="space-y-1.5 text-sm">
+          {[
+            { n: 1, label: "Solve today's puzzle", href: "/daily" },
+            { n: 2, label: "Train tactics for 10 minutes", href: "/tactics" },
+            { n: 3, label: "Drill one endgame", href: "/endgames" },
+            { n: 4, label: "Play a game and review it", href: "/play" },
+          ].map((s) => (
+            <li key={s.n}>
+              <Link href={s.href} className="flex items-center gap-2.5 rounded-lg px-1 py-0.5 hover:bg-line/60">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-walnut text-xs font-bold text-[#fffdf7]">
+                  {s.n}
+                </span>
+                <span className="font-medium text-ink">{s.label}</span>
+                <ChevronRightIcon className="ml-auto h-4 w-4 text-ink-soft" />
+              </Link>
+            </li>
+          ))}
+        </ol>
+        <p className="text-xs text-ink-soft">
+          Work through the lessons below for depth whenever you want to learn something new.
+        </p>
+      </Card>
+
       <ul className="space-y-4">
         {MODULES.map((mod) => {
           const activityIds = getModuleActivities(mod).map((a) => a.id);
