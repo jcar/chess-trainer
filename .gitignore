@@ -42,3 +42,8 @@ next-env.d.ts
 
 # Copyrighted reference material (do not commit / distribute)
 /reference/
+
+# Raw Lichess puzzle DB (CC0, but multi-GB — never commit; only the curated
+# src/content/tactics-puzzles.json ships). Regenerate via scripts/import-lichess-puzzles.ts
+*.csv
+*.csv.zst

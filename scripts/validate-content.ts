@@ -12,7 +12,7 @@
 import { Chess } from "chess.js";
 import { MODULES, getModuleActivities } from "../src/content";
 import { OPENINGS } from "../src/content/openings";
-import { TACTICS_BANK } from "../src/content/tactics-bank";
+import lichessPuzzles from "../src/content/tactics-puzzles.json";
 import type { Activity, PuzzleActivity, PuzzleGoal } from "../src/content/types";
 import { getEngine, quitEngine, type Score } from "./lib/engine";
 
@@ -344,23 +344,58 @@ function checkOpeningLines(): number {
   return lineCount;
 }
 
-/** The standalone tactics bank — every puzzle engine-verified sound + unique. */
-async function checkTacticsBank(): Promise<number> {
-  for (const p of TACTICS_BANK) {
-    const where = `tactics-bank/${p.id}`;
+/** Curated Lichess puzzles (CC0). They're already engine-verified upstream, so we
+ *  do the cheap-but-thorough checks on ALL of them — legal position + every
+ *  solution move playable — and an engine SANITY sample (the solver's first move
+ *  should be the engine's best) rather than re-verifying thousands at depth. */
+async function checkImportedPuzzles(): Promise<number> {
+  const puzzles = lichessPuzzles as {
+    id: string;
+    fen: string;
+    solution: string[];
+  }[];
+
+  // 1) Legality + full playability for every puzzle (chess.js only — fast).
+  for (const p of puzzles) {
+    const where = `tactics-puzzles/${p.id}`;
     if (!assertLegalPosition(where, p.fen)) continue;
     const probe = new Chess(p.fen);
-    let ok = true;
     for (let i = 0; i < p.solution.length; i++) {
       if (!playUci(probe, p.solution[i])) {
         note(where, `solution move #${i + 1} ("${p.solution[i]}") is illegal`);
-        ok = false;
         break;
       }
     }
-    if (ok) await checkLineSound(where, p.fen, p.solution, p.goal);
   }
-  return TACTICS_BANK.length;
+
+  // 2) Engine sanity on an evenly-spaced sample: the solver's first move should be
+  //    the engine's best. Mismatches are warnings (alternate solutions exist); a
+  //    large fraction disagreeing would signal a mapping bug and fails.
+  const SAMPLE = 40;
+  const step = Math.max(1, Math.floor(puzzles.length / SAMPLE));
+  const engine = getEngine();
+  let checked = 0;
+  let mismatches = 0;
+  for (let i = 0; i < puzzles.length && checked < SAMPLE; i += step) {
+    const p = puzzles[i];
+    const { lines } = await engine.analyze(p.fen, { depth: EVAL_DEPTH, multiPV: 1 });
+    checked++;
+    const best = lines[0]?.move;
+    if (best && p.solution[0] && best !== p.solution[0]) {
+      mismatches++;
+      warn(
+        `tactics-puzzles/${p.id}`,
+        `sample: solver move ${p.solution[0]} != engine best ${best} (ok if an alternate solution)`,
+      );
+    }
+  }
+  if (checked && mismatches > checked / 3) {
+    note(
+      "tactics-puzzles",
+      `engine sample: ${mismatches}/${checked} first moves disagree with the engine — investigate the import mapping`,
+    );
+  }
+  return puzzles.length;
 }
 
 async function main() {
@@ -372,7 +407,7 @@ async function main() {
     }
   }
   const openingLineCount = checkOpeningLines();
-  const bankCount = await checkTacticsBank();
+  const puzzleCount = await checkImportedPuzzles();
   quitEngine();
 
   for (const w of warnings) console.warn(`  ⚠ ${w}`);
@@ -383,7 +418,7 @@ async function main() {
   }
   console.log(
     `\n✓ Content valid: ${count} activities across ${MODULES.length} module(s)` +
-      ` + ${openingLineCount} opening lines + ${bankCount} tactics-bank puzzles` +
+      ` + ${openingLineCount} opening lines + ${puzzleCount} Lichess puzzles` +
       (warnings.length ? ` (${warnings.length} warning(s))` : "") +
       `.`,
   );

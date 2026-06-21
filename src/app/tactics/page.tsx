@@ -17,6 +17,7 @@ import {
 import { useSrs, srsStore } from "@/lib/srs/useSrs";
 import { partitionQueue, dueCount } from "@/lib/srs/store";
 import { recordDailyActivity } from "@/lib/rewards/daily";
+import { shuffled } from "@/lib/shuffle";
 import { PuzzleRunner } from "@/components/tools/PuzzleRunner";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -26,6 +27,40 @@ import { buttonClasses } from "@/components/ui/Button";
 import { CheckIcon, StarIcon } from "@/components/icons";
 
 const SESSION_SIZE = 10;
+
+const fenKey = (fen: string) => fen.split(" ").slice(0, 2).join(" ");
+
+/** Order fresh puzzles for variety: shuffle, give each a light easy→harder lean
+ *  (difficulty + jitter), then round-robin across themes so no two consecutive
+ *  puzzles share a pattern. Different every session. */
+function interleaveForVariety(puzzles: TacticsPuzzle[]): TacticsPuzzle[] {
+  const groups = new Map<string, TacticsPuzzle[]>();
+  for (const p of shuffled(puzzles)) {
+    const g = groups.get(p.theme) ?? [];
+    g.push(p);
+    groups.set(p.theme, g);
+  }
+  for (const [, g] of groups) {
+    // Stable key computed once (Math.random in a comparator is unsafe).
+    const keyed = g.map((p) => ({ p, k: p.difficulty + Math.random() * 1.5 }));
+    keyed.sort((a, b) => a.k - b.k);
+    g.splice(0, g.length, ...keyed.map((x) => x.p));
+  }
+  const themeOrder = shuffled([...groups.keys()]);
+  const out: TacticsPuzzle[] = [];
+  for (let i = 0; ; i++) {
+    let added = false;
+    for (const t of themeOrder) {
+      const g = groups.get(t)!;
+      if (i < g.length) {
+        out.push(g[i]);
+        added = true;
+      }
+    }
+    if (!added) break;
+  }
+  return out;
+}
 const THEME_LABEL: Record<PuzzleTheme, string> = {
   mate: "Mates",
   fork: "Forks",
@@ -65,13 +100,22 @@ export default function TacticsPage() {
   function start() {
     const ids = candidates.map((p) => p.id);
     const { due, fresh } = partitionQueue(srs, ids, Date.now());
-    // Difficulty progression: serve fresh puzzles easiest-first within the session
-    // (due/missed ones keep their spaced-repetition priority).
-    const freshSorted = [...fresh].sort(
-      (a, b) => (byId.get(a)?.difficulty ?? 2) - (byId.get(b)?.difficulty ?? 2),
+    // Due/missed keep their spaced-repetition priority; fresh puzzles are shuffled
+    // and theme-interleaved for variety (no repeated pattern, different each time).
+    const duePuzzles = due.map((id) => byId.get(id)!).filter(Boolean);
+    const freshPuzzles = interleaveForVariety(
+      fresh.map((id) => byId.get(id)!).filter(Boolean),
     );
-    const ordered = [...due, ...freshSorted].slice(0, SESSION_SIZE);
-    const pick = ordered.map((id) => byId.get(id)!).filter(Boolean);
+    // Build the session, never repeating a position.
+    const seen = new Set<string>();
+    const pick: TacticsPuzzle[] = [];
+    for (const p of [...duePuzzles, ...freshPuzzles]) {
+      const key = fenKey(p.fen);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      pick.push(p);
+      if (pick.length >= SESSION_SIZE) break;
+    }
     if (pick.length) setQueue(pick);
   }
 
@@ -209,6 +253,11 @@ function TacticsSession({
           </button>
         </div>
         <ProgressBar pct={(idx / queue.length) * 100} />
+      </div>
+
+      <div className="flex items-center gap-2 text-sm">
+        <Chip tone="neutral">{THEME_LABEL[current.theme]}</Chip>
+        {current.rating != null && <Chip tone="amber">Rating {current.rating}</Chip>}
       </div>
 
       <PuzzleRunner

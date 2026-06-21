@@ -6,7 +6,7 @@
 
 import type { Orientation, PuzzleGoal } from "./types";
 import { MODULES, getModuleActivities } from "./index";
-import { TACTICS_BANK } from "./tactics-bank";
+import lichessPuzzles from "./tactics-puzzles.json";
 
 export type PuzzleTheme =
   | "mate"
@@ -32,10 +32,38 @@ export interface TacticsPuzzle {
   hints?: string[];
   theme: PuzzleTheme;
   difficulty: Difficulty;
-  /** Where it came from (module id), for reference. */
+  /** Glicko rating (imported Lichess puzzles only) — shown to the solver. */
+  rating?: number;
+  /** Where it came from (module id or "lichess"), for reference. */
   source: string;
   /** True for kid-module puzzles (gentler framing). */
   kid: boolean;
+}
+
+/** One curated Lichess puzzle (src/content/tactics-puzzles.json). */
+interface LichessPuzzle {
+  id: string;
+  fen: string;
+  orientation: Orientation;
+  solution: string[];
+  theme: PuzzleTheme;
+  difficulty: Difficulty;
+  rating: number;
+}
+
+/** A natural-language prompt for an imported puzzle (no per-puzzle prose). */
+function importedPrompt(
+  orientation: Orientation,
+  theme: PuzzleTheme,
+  solutionLen: number,
+): string {
+  const side = orientation === "white" ? "White" : "Black";
+  if (theme === "mate" || theme === "back-rank") {
+    const n = Math.ceil(solutionLen / 2);
+    return `${side} to play and mate in ${n}.`;
+  }
+  if (theme === "defense") return `${side} to play — find the saving move.`;
+  return `${side} to play and win material.`;
 }
 
 const THEME_PATTERNS: [RegExp, PuzzleTheme][] = [
@@ -107,23 +135,33 @@ export function getAllPuzzles(): TacticsPuzzle[] {
       }
     }
   }
-  // Standalone tactics bank — explicit tags, no derivation.
-  for (const p of TACTICS_BANK) {
+  // Curated Lichess puzzles (CC0) — the bulk of the tactics pool. Pre-verified by
+  // Lichess; explicitly tagged, no derivation.
+  for (const p of lichessPuzzles as LichessPuzzle[]) {
     out.push({
       id: p.id,
       fen: p.fen,
       orientation: p.orientation,
       solution: p.solution,
-      goal: p.goal,
-      prompt: p.prompt,
+      prompt: importedPrompt(p.orientation, p.theme, p.solution.length),
       theme: p.theme,
       difficulty: p.difficulty,
-      source: "tactics-bank",
+      rating: p.rating,
+      source: "lichess",
       kid: false,
     });
   }
-  cache = out;
-  return out;
+  // Dedup by position so the same FEN can never appear twice in the pool
+  // (authored module puzzles, added first, win over imported duplicates).
+  const seen = new Set<string>();
+  const deduped = out.filter((p) => {
+    const key = p.fen.split(" ").slice(0, 2).join(" "); // placement + side to move
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  cache = deduped;
+  return deduped;
 }
 
 /** Puzzles filtered by theme/difficulty/kid-friendliness. */
