@@ -5,7 +5,7 @@ import type { Lesson } from "../../types";
 
 export const ch12: Lesson = {
   id: "ch12-gambits",
-  title: "12. Gambits",
+  title: "10. Gambits",
   summary:
     "A gambit gives up a pawn (or more) to gain rapid development, open lines, and the initiative. Three classics — two for White, one for Black — and when the trade is worth it.",
   activities: [

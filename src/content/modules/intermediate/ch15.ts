@@ -5,7 +5,7 @@ import type { Lesson } from "../../types";
 
 export const ch15: Lesson = {
   id: "ch15-strategy",
-  title: "15. Positional Strategy",
+  title: "13. Positional Strategy",
   summary:
     "When there's no tactic, strategy decides: where pieces belong, which files and squares matter, and how to turn small edges into wins.",
   activities: [

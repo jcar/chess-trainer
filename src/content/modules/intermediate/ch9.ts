@@ -117,5 +117,18 @@ export const ch9: Lesson = {
       explanation:
         "Offbeat moves are usually slightly inferior. Don't try to refute them with a wild attack — just play principled chess. Good development almost always punishes a bad opening move on its own.",
     },
+    {
+      id: "ch9-build-it",
+      type: "concept",
+      title: "Now go build your repertoire",
+      blurb: "Where to actually choose and drill your openings.",
+      body:
+        "You now know HOW to study openings: learn plans and structures, keep your repertoire compact, and fall back on principles when an opponent surprises you. The next step is to pick your openings and drill them until they're second nature.\n\nThat's exactly what the Chess Openings course and the Openings Trainer are for. The course walks you through each opening's big idea, main line, and key variations — including dependable practical weapons like the London System and Vienna for White, and the Caro-Kann, Scandinavian, and Queen's Gambit Declined for Black. The Trainer then turns your chosen openings into spaced-repetition drills, resurfacing the lines you struggle with so they stick.",
+      points: [
+        "Choose a compact repertoire in the Chess Openings course (start with the Core openings).",
+        "Add them to the Openings Trainer and drill — it spaces out reviews and revisits your weak lines.",
+        "Come back here for the thinking that ties it together: plans over memorization.",
+      ],
+    },
   ],
 };

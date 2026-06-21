@@ -5,7 +5,7 @@ import type { Lesson } from "../../types";
 
 export const ch13: Lesson = {
   id: "ch13-endgames",
-  title: "13. Endgames That Decide Games",
+  title: "11. Endgames That Decide Games",
   summary:
     "King-and-pawn technique and rook-endgame principles win and save more games than any opening. Master the opposition, the square, and where the rook belongs.",
   activities: [

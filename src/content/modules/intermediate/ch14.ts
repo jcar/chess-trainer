@@ -5,7 +5,7 @@ import type { Lesson } from "../../types";
 
 export const ch14: Lesson = {
   id: "ch14-tactics",
-  title: "14. Sharper Tactics",
+  title: "12. Sharper Tactics",
   summary:
     "Calculate forcing moves first, then learn the recurring weapons: the discovered attack, removing the defender, deflection — and the prettiest mate of all.",
   activities: [
