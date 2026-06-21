@@ -160,7 +160,7 @@ export function Board({
   }
 
   return (
-    <div className="mx-auto w-full max-w-[min(92vw,560px)] touch-none select-none">
+    <div className="mx-auto w-full max-w-[min(92vw,560px,72svh)] touch-none select-none">
       <Chessboard
         options={{
           position: fen,

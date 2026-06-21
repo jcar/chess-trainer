@@ -40,8 +40,10 @@ export const viewport: Viewport = {
   themeColor: "#faf5ec",
   width: "device-width",
   initialScale: 1,
-  // Allow the board to use full width without accidental zoom on double-tap.
-  maximumScale: 1,
+  // `cover` is what makes env(safe-area-inset-*) report real values on notched
+  // / Dynamic-Island phones (and when added to the Home Screen). Pinch-zoom is
+  // left enabled (accessibility); the board itself blocks zoom via `touch-none`.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -56,11 +58,11 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-bg text-ink">
         <ProgressProvider>
-          <div className="mx-auto flex min-h-dvh max-w-2xl flex-col px-4 pb-[max(env(safe-area-inset-bottom),1.5rem)]">
-            <header className="flex items-center justify-center py-4">
+          <div className="mx-auto flex min-h-dvh max-w-2xl flex-col pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[env(safe-area-inset-top)] pb-[max(env(safe-area-inset-bottom),1.25rem)]">
+            <header className="flex items-center justify-center py-2.5 sm:py-3">
               <Wordmark />
             </header>
-            <div className="flex-1 pb-8">{children}</div>
+            <div className="flex-1 pb-6 sm:pb-8">{children}</div>
           </div>
         </ProgressProvider>
       </body>

@@ -336,7 +336,7 @@ export default function PlayPage() {
                       if (f) { setSelected(f); setPlainView(null); }
                       else { setSelected(null); setPlainView(p.fenAfter); }
                     }}
-                    className={`rounded px-1 ${active ? "bg-walnut text-[#fffdf7]" : "text-ink hover:bg-line"} ${f ? "font-semibold" : ""}`}
+                    className={`rounded px-2 py-1 ${active ? "bg-walnut text-[#fffdf7]" : "text-ink hover:bg-line"} ${f ? "font-semibold" : ""}`}
                   >
                     {p.san}{mark}
                   </button>

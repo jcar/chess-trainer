@@ -55,7 +55,7 @@ export function SortPlayer({ activity, onComplete }: Props) {
           const isCorrect = origIdx === activity.correctIndex;
           const isChosen = origIdx === selected;
           let cls =
-            "flex items-center justify-center gap-2 rounded-2xl border-4 px-4 py-5 text-xl font-extrabold transition active:scale-[0.98]";
+            "flex items-center justify-center gap-2 rounded-2xl border-4 px-3 py-5 text-lg font-extrabold transition active:scale-[0.98] sm:px-4 sm:text-xl";
           if (!answered) cls += " border-kid-teal/30 bg-card text-ink";
           else if (isCorrect) cls += " border-sage bg-sage/10 text-sage";
           else if (isChosen) cls += " border-clay bg-clay/10 text-clay";

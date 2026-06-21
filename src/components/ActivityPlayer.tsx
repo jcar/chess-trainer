@@ -117,7 +117,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
   const ActivityIcon = ACTIVITY_ICON[activity.type];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {kidMode && <Confetti fireKey={confettiKey} />}
 
       {kidMode && (
@@ -146,9 +146,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
             </p>
             <div className="flex items-center gap-2">
               <h1
-                className={`font-display font-semibold tracking-tight text-walnut-deep ${
-                  kidMode ? "text-2xl" : "text-2xl"
-                }`}
+                className="font-display text-xl font-semibold tracking-tight text-walnut-deep sm:text-2xl"
               >
                 {activity.title}
               </h1>
@@ -212,7 +210,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         <ConceptPlayer activity={activity} onComplete={handleComplete} kidMode={kidMode} />
       )}
 
-      <footer className="flex items-center justify-between gap-3 border-t border-line pt-5">
+      <footer className="flex items-center justify-between gap-3 border-t border-line pt-4 sm:pt-5">
         <Link
           href={`/modules/${mod.id}`}
           className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft transition hover:text-ink"
