@@ -30,6 +30,20 @@ const existingFens = new Set(
 
 const fresh = gen.filter((e) => !existingFens.has(e.fen));
 
+// Continue id numbering from the existing max per theme, so re-runs don't
+// collide with ids already in the bank (ids look like `tb-gen-<theme>-<n>`).
+const maxByTheme = new Map<string, number>();
+for (const m of src.matchAll(/id:\s*"tb-gen-(.+?)-(\d+)"/g)) {
+  const theme = m[1];
+  const n = Number(m[2]);
+  maxByTheme.set(theme, Math.max(maxByTheme.get(theme) ?? 0, n));
+}
+for (const e of fresh) {
+  const next = (maxByTheme.get(e.theme) ?? 0) + 1;
+  maxByTheme.set(e.theme, next);
+  e.id = `tb-gen-${e.theme}-${next}`;
+}
+
 const q = (s: string) => JSON.stringify(s);
 const goalStr = (g: Entry["goal"]) =>
   g.type === "mate"
@@ -51,10 +65,12 @@ const entries = fresh
   )
   .join("\n");
 
-const marker = "\n];";
-const idx = src.lastIndexOf(marker);
-if (idx < 0) throw new Error("could not find closing `];` in tactics-bank.ts");
-const out = src.slice(0, idx) + "\n" + entries + src.slice(idx + 1);
+const close = src.lastIndexOf("];");
+if (close < 0) throw new Error("could not find closing `];` in tactics-bank.ts");
+// Everything up to the last entry's trailing `,`, then our entries, then a
+// clean `\n];\n` close (robust across repeated runs).
+const head = src.slice(0, close).replace(/\s*$/, "");
+const out = `${head}\n${entries}\n];\n`;
 writeFileSync(BANK, out);
 console.log(
   `Appended ${fresh.length} puzzles (skipped ${gen.length - fresh.length} dup FENs). Bank now has ${existingFens.size + fresh.length} entries.`,

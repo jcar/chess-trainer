@@ -306,10 +306,10 @@ async function main() {
   const accepted: Gen[] = [];
   const seenFen = new Set<string>();
   const themeCap: Record<string, number> = {
-    mate: 55,
-    "back-rank": 30,
+    mate: 130,
+    "back-rank": 60,
     fork: 40,
-    "win-material": 55,
+    "win-material": 130,
   };
   const themeCount: Record<string, number> = {};
   let attempts = 0;
