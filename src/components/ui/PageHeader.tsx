@@ -32,11 +32,11 @@ export function PageHeader({
       <div className="flex items-end justify-between gap-3">
         <div className="space-y-1">
           {eyebrow && (
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brass">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
               {eyebrow}
             </p>
           )}
-          <h1 className="font-display text-3xl font-semibold tracking-tight text-walnut-deep">
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-primary-strong">
             {title}
           </h1>
           {subtitle && <p className="text-ink-soft">{subtitle}</p>}

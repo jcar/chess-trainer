@@ -7,12 +7,14 @@ export type ButtonVariant = "primary" | "accent" | "secondary" | "ghost";
 export type ButtonSize = "md" | "lg" | "kid";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass/50";
+  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50";
 
 const VARIANT: Record<ButtonVariant, string> = {
-  primary: "bg-walnut text-[#f6ecd9] shadow-soft hover:bg-walnut-deep",
-  accent: "bg-brass text-walnut-deep shadow-soft hover:brightness-[1.05]",
-  secondary: "bg-card text-ink border border-line hover:border-walnut/30",
+  // Solid blue main CTA.
+  primary: "bg-primary text-on-accent shadow-soft hover:bg-primary-strong",
+  // Soft-blue secondary CTA (same hue family, readable in both themes).
+  accent: "bg-primary/12 text-primary-strong border border-primary/30 hover:bg-primary/20",
+  secondary: "bg-card text-ink border border-line hover:border-primary/40",
   ghost: "text-ink-soft hover:text-ink",
 };
 

@@ -33,7 +33,7 @@ export function WhyCheckpoint({ opening, onContinue }: Props) {
       <Board fen={opening.tabiyaFen} orientation={color} interactive={false} />
 
       <div className="rounded-2xl bg-surface p-4 shadow-soft">
-        <p className="font-display text-lg font-semibold text-walnut-deep">
+        <p className="font-display text-lg font-semibold text-primary-strong">
           What&apos;s your plan in this position?
         </p>
         {revealed ? (

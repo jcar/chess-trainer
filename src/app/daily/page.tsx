@@ -42,7 +42,7 @@ export default function DailyPage() {
         <Card className="p-6 text-center text-ink-soft">Loading today&apos;s puzzle…</Card>
       ) : solved ? (
         <Card className="space-y-4 p-6 text-center">
-          <p className="font-display text-2xl font-semibold text-walnut-deep">
+          <p className="font-display text-2xl font-semibold text-primary-strong">
             Solved! <CheckIcon className="inline h-6 w-6 text-sage" />
           </p>
           <p className="text-ink-soft">

@@ -39,7 +39,7 @@ function moduleEmblem(mod: Module): {
   tone: string;
 } {
   if (mod.kidMode) return { Glyph: (p) => <StarIcon {...p} />, tone: "kid-teal" };
-  if (mod.id === "strategy") return { Glyph: PuzzleIcon, tone: "brass" };
+  if (mod.id === "strategy") return { Glyph: PuzzleIcon, tone: "accent" };
   if (mod.level === "Intermediate")
     return { Glyph: CrownGlyph, tone: "amber" };
   if (mod.level === "Advanced") return { Glyph: CrownGlyph, tone: "clay" };
@@ -55,7 +55,7 @@ export default function HomePage() {
   return (
     <main className="space-y-7">
       <section className="space-y-1.5 pt-1 text-center">
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-walnut-deep">
+        <h1 className="font-display text-3xl font-semibold tracking-tight text-primary-strong">
           Learn chess, beautifully.
         </h1>
         <p className="mx-auto max-w-md text-ink-soft">
@@ -70,12 +70,12 @@ export default function HomePage() {
           <Card interactive className="flex h-full items-center gap-3 p-4">
             <span
               className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
-              style={{ backgroundColor: "var(--color-brass)" }}
+              style={{ backgroundColor: "var(--color-accent)" }}
             >
-              <span className="text-[#fffdf7]"><FlameIcon className="h-6 w-6" /></span>
+              <span className="text-on-accent"><FlameIcon className="h-6 w-6" /></span>
             </span>
             <div className="min-w-0 flex-1">
-              <p className="font-display text-base font-semibold text-walnut-deep">
+              <p className="font-display text-base font-semibold text-primary-strong">
                 Puzzle of the Day
               </p>
               <p className="text-sm text-ink-soft">
@@ -100,10 +100,10 @@ export default function HomePage() {
               className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
               style={{ backgroundColor: "var(--color-sage)" }}
             >
-              <span className="text-[#fffdf7]"><PlayIcon className="h-6 w-6" /></span>
+              <span className="text-on-accent"><PlayIcon className="h-6 w-6" /></span>
             </span>
             <div className="min-w-0 flex-1">
-              <p className="font-display text-base font-semibold text-walnut-deep">
+              <p className="font-display text-base font-semibold text-primary-strong">
                 {cont ? "Continue learning" : "All caught up!"}
               </p>
               <p className="text-sm text-ink-soft">
@@ -118,7 +118,7 @@ export default function HomePage() {
       {/* Improver's Path — the fastest daily routine */}
       <Card className="space-y-3 p-5">
         <div className="flex items-center gap-2">
-          <h2 className="font-display text-lg font-semibold text-walnut-deep">
+          <h2 className="font-display text-lg font-semibold text-primary-strong">
             Improve fastest
           </h2>
           <Chip tone="sage">Daily routine</Chip>
@@ -136,7 +136,7 @@ export default function HomePage() {
           ].map((s) => (
             <li key={s.n}>
               <Link href={s.href} className="flex items-center gap-2.5 rounded-lg px-1 py-0.5 hover:bg-line/60">
-                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-walnut text-xs font-bold text-[#fffdf7]">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary text-xs font-bold text-on-accent">
                   {s.n}
                 </span>
                 <span className="font-medium text-ink">{s.label}</span>
@@ -163,14 +163,14 @@ export default function HomePage() {
                     className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
                     style={{ backgroundColor: `var(--color-${tone})`, opacity: 1 }}
                   >
-                    <span className="text-[#fffdf7]">
+                    <span className="text-on-accent">
                       <Glyph className="h-7 w-7" />
                     </span>
                   </span>
 
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                      <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                      <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
                         {mod.title}
                       </h2>
                       <LevelChip module={mod} />
@@ -195,7 +195,7 @@ export default function HomePage() {
       </ul>
 
       <section className="space-y-3">
-        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">
+        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
           Tools
         </h2>
         <Link href="/tactics" className="block">
@@ -204,13 +204,13 @@ export default function HomePage() {
               className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
               style={{ backgroundColor: "var(--color-amber)" }}
             >
-              <span className="text-[#fffdf7]">
+              <span className="text-on-accent">
                 <PuzzleIcon className="h-7 w-7" />
               </span>
             </span>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
                   Tactics Trainer
                 </h2>
                 <Chip tone="neutral">Practice</Chip>
@@ -228,16 +228,16 @@ export default function HomePage() {
           <Card interactive className="flex items-center gap-4 p-5">
             <span
               className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
-              style={{ backgroundColor: "var(--color-walnut)" }}
+              style={{ backgroundColor: "var(--color-primary)" }}
             >
-              <span className="text-[#fffdf7]">
+              <span className="text-on-accent">
                 <OpeningDrillIcon className="h-7 w-7" />
               </span>
             </span>
 
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
                   Openings Trainer
                 </h2>
                 <Chip tone="neutral">Practice</Chip>
@@ -265,13 +265,13 @@ export default function HomePage() {
               className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
               style={{ backgroundColor: "var(--color-clay)" }}
             >
-              <span className="text-[#fffdf7]">
+              <span className="text-on-accent">
                 <PlayIcon className="h-7 w-7" />
               </span>
             </span>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
                   Play &amp; Review
                 </h2>
                 <Chip tone="neutral">Practice</Chip>
@@ -291,13 +291,13 @@ export default function HomePage() {
               className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
               style={{ backgroundColor: "var(--color-sage)" }}
             >
-              <span className="text-[#fffdf7]">
+              <span className="text-on-accent">
                 <CrownGlyph className="h-7 w-7" />
               </span>
             </span>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
                   Endgame Trainer
                 </h2>
                 <Chip tone="neutral">Practice</Chip>

@@ -78,7 +78,7 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
       {answered && (
         <div
           className={`rounded-2xl p-4 text-lg ${
-            correct ? "bg-sage/10 text-sage" : "bg-brass/10 text-walnut-deep"
+            correct ? "bg-sage/10 text-sage" : "bg-accent/10 text-primary-strong"
           }`}
         >
           <div className="mb-1 flex items-center gap-2">

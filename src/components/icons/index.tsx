@@ -1,5 +1,5 @@
 // Chess Trainer icon set — one consistent line-icon family (stroke = currentColor),
-// replacing all emoji. Size & color via className (e.g. "h-5 w-5 text-brass").
+// replacing all emoji. Size & color via className (e.g. "h-5 w-5 text-accent").
 
 import type { ComponentType } from "react";
 import type { Activity } from "@/content/types";

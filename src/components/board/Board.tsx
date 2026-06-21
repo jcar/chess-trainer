@@ -95,9 +95,10 @@ const DANGER_STYLE: React.CSSProperties = {
   animation: "kidDanger 0.8s ease-in-out infinite",
 };
 
-// Last-move tint: warm gold for your move, cool slate for the opponent's.
-const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(201,154,51,0.50)" };
-const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(96,112,140,0.48)" };
+// Last-move tint: electric blue for your move, violet for the opponent's
+// (both clearly distinct from the slate board, the green move-dots, and each other).
+const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(59,130,246,0.45)" };
+const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(168,85,247,0.42)" };
 
 export function Board({
   fen,
@@ -154,7 +155,7 @@ export function Board({
       (arrows ?? []).map((a) => ({
         startSquare: a.from,
         endSquare: a.to,
-        color: a.color ?? "#f97316", // friendly orange
+        color: a.color ?? "#3b82f6", // accent blue
       })),
     [arrows],
   );
@@ -188,8 +189,8 @@ export function Board({
           squareStyles: computedStyles,
           arrows: boardArrows,
           showNotation,
-          darkSquareStyle: { backgroundColor: "#b58863" },
-          lightSquareStyle: { backgroundColor: "#f0d9b5" },
+          darkSquareStyle: { backgroundColor: "#7c93b5" },
+          lightSquareStyle: { backgroundColor: "#e6ecf5" },
           onSquareClick: onSquareTap
             ? ({ square }) => onSquareTap(square)
             : tapEnabled

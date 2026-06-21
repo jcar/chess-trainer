@@ -106,7 +106,7 @@ export function PracticeSetPlayer({ activity, onComplete }: Props) {
         {Array.from({ length: needed }, (_, i) => (
           <StarIcon
             key={i}
-            className={`h-6 w-6 ${i < correct ? "text-brass" : "text-ink/15"}`}
+            className={`h-6 w-6 ${i < correct ? "text-accent" : "text-ink/15"}`}
           />
         ))}
         <span className="ml-2 text-base font-bold text-ink-soft">

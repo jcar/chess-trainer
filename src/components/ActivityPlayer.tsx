@@ -135,18 +135,18 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         <div className="flex items-start gap-3">
           <span
             className={`mt-0.5 grid shrink-0 place-items-center rounded-xl ${
-              kidMode ? "h-11 w-11 bg-kid-teal/12 text-kid-teal" : "h-10 w-10 bg-walnut/8 text-walnut"
+              kidMode ? "h-11 w-11 bg-kid-teal/12 text-kid-teal" : "h-10 w-10 bg-primary/8 text-primary"
             }`}
           >
             <ActivityIcon className={kidMode ? "h-6 w-6" : "h-5 w-5"} />
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brass">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
               {TYPE_LABEL[activity.type]}
             </p>
             <div className="flex items-center gap-2">
               <h1
-                className="font-display text-xl font-semibold tracking-tight text-walnut-deep sm:text-2xl"
+                className="font-display text-xl font-semibold tracking-tight text-primary-strong sm:text-2xl"
               >
                 {activity.title}
               </h1>

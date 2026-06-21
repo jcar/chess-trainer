@@ -143,7 +143,7 @@ export function DrillPlayer({
     phase === "won"
       ? "bg-sage/10 text-sage"
       : phase === "lost"
-        ? "bg-brass/10 text-walnut-deep"
+        ? "bg-accent/10 text-primary-strong"
         : "bg-surface text-ink-soft shadow-soft";
 
   return (

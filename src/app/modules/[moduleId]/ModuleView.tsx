@@ -61,7 +61,7 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
         </div>
 
         <div className="space-y-1">
-          <h1 className="font-display text-3xl font-semibold tracking-tight text-walnut-deep">
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-primary-strong">
             {mod.title}
           </h1>
           <p className="text-ink-soft">{mod.description}</p>
@@ -82,17 +82,17 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
                     <span
                       className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl font-display text-lg font-semibold ${
                         complete
-                          ? "bg-sage text-[#fffdf7]"
-                          : "bg-kid-teal text-[#fffdf7]"
+                          ? "bg-sage text-on-accent"
+                          : "bg-kid-teal text-on-accent"
                       }`}
                     >
                       {complete ? <TrophyIcon className="h-6 w-6" /> : idx + 1}
                     </span>
                     <div className="flex-1">
-                      <h2 className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
+                      <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
                         {lesson.title}
                       </h2>
-                      <p className="flex items-center gap-1 text-sm font-semibold text-brass">
+                      <p className="flex items-center gap-1 text-sm font-semibold text-accent">
                         <StarIcon className="h-4 w-4" /> {stars} / {maxStars}
                       </p>
                     </div>
@@ -115,7 +115,7 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
                               {activity.title}
                             </span>
                             {s > 0 ? (
-                              <span className="flex items-center gap-0.5 text-brass">
+                              <span className="flex items-center gap-0.5 text-accent">
                                 {Array.from({ length: s }, (_, i) => (
                                   <StarIcon key={i} className="h-4 w-4" />
                                 ))}
@@ -151,7 +151,7 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
       {mod.lessons.map((lesson) => (
         <section key={lesson.id} className="space-y-3">
           <div>
-            <h2 className="font-display text-lg font-semibold text-walnut-deep">
+            <h2 className="font-display text-lg font-semibold text-primary-strong">
               {lesson.title}
             </h2>
             <p className="text-sm text-ink-soft">{lesson.summary}</p>
@@ -168,7 +168,7 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
                         className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${
                           done
                             ? "bg-sage/15 text-sage"
-                            : "bg-walnut/8 text-walnut"
+                            : "bg-primary/8 text-primary"
                         }`}
                       >
                         {done ? (

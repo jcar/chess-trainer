@@ -50,7 +50,7 @@ export function TrainerSession({ queue, recordLineResult, onExit }: Props) {
   if (done) {
     return (
       <div className="space-y-5 text-center">
-        <p className="font-display text-2xl font-semibold text-walnut-deep">
+        <p className="font-display text-2xl font-semibold text-primary-strong">
           Session complete!
         </p>
         <p className="text-ink-soft">

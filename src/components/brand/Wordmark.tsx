@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-// The Chess Trainer wordmark: a small knight mark in a brass-ringed walnut badge,
-// next to the name set in the display serif. Links home.
+// The Chess Trainer wordmark: a small knight mark in an accent-ringed primary
+// badge, next to the name set in the bold display grotesk. Links home.
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <Link
@@ -9,11 +9,11 @@ export function Wordmark({ className = "" }: { className?: string }) {
       aria-label="Chess Trainer — home"
       className={`group inline-flex items-center gap-2.5 ${className}`}
     >
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-walnut shadow-soft ring-1 ring-brass/40 transition group-active:scale-95">
-        <KnightMark className="h-5 w-5 text-[#f3e7cf]" />
+      <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary shadow-soft ring-1 ring-accent/40 transition group-active:scale-95">
+        <KnightMark className="h-5 w-5 text-on-accent" />
       </span>
-      <span className="font-display text-xl font-semibold tracking-tight text-walnut-deep">
-        Chess <span className="text-brass">Trainer</span>
+      <span className="font-display text-xl font-semibold tracking-tight text-primary-strong">
+        Chess <span className="text-accent">Trainer</span>
       </span>
     </Link>
   );

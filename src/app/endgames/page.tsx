@@ -49,7 +49,7 @@ export default function EndgamesPage() {
 
       <Card className="space-y-3 p-5">
         <div className="flex items-center justify-between">
-          <span className="font-display text-lg font-semibold text-walnut-deep">Mastery</span>
+          <span className="font-display text-lg font-semibold text-primary-strong">Mastery</span>
           <Chip tone="sage">{mastered} / {ENDGAMES.length} mastered</Chip>
         </div>
         <ProgressBar pct={(mastered / ENDGAMES.length) * 100} />
@@ -58,7 +58,7 @@ export default function EndgamesPage() {
 
       {ENDGAME_CATEGORIES.map((cat) => (
         <div key={cat} className="space-y-2">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">{cat}</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">{cat}</h2>
           <div className="space-y-2">
             {ENDGAMES.filter((e) => e.category === cat).map((e) => {
               const level = levelOf(srs, e.id);
@@ -66,7 +66,7 @@ export default function EndgamesPage() {
                 <button key={e.id} type="button" onClick={() => setActiveId(e.id)} className="block w-full text-left">
                   <Card interactive className="flex items-center gap-3 p-4">
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-walnut-deep">{e.name}</p>
+                      <p className="font-semibold text-primary-strong">{e.name}</p>
                       <p className="text-sm text-ink-soft">
                         {e.objective === "checkmate" ? "Checkmate the lone king" : "Promote a pawn"}
                       </p>

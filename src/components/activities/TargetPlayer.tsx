@@ -93,7 +93,7 @@ export function TargetPlayer({ activity, onComplete }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start gap-3 rounded-2xl bg-brass/10 p-4 text-lg text-walnut-deep">
+      <div className="flex items-start gap-3 rounded-2xl bg-accent/10 p-4 text-lg text-primary-strong">
         <p className="flex-1">{headerText}</p>
         <SpeakButton text={headerText} size="sm" />
       </div>

@@ -324,7 +324,7 @@ export default function PlayPage() {
         />
         <Card className="space-y-4 p-5">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Your color</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Your color</p>
             <div className="flex gap-2">
               {(["white", "black"] as Orientation[]).map((c) => (
                 <Pick key={c} active={color === c} onClick={() => setColor(c)}>
@@ -334,16 +334,16 @@ export default function PlayPage() {
             </div>
           </div>
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Opponent</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Opponent</p>
             <button
               type="button"
               onClick={() => setAdaptive(true)}
               className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${
-                adaptive ? "border-walnut bg-walnut/5" : "border-line bg-card hover:border-walnut/40"
+                adaptive ? "border-primary bg-primary/5" : "border-line bg-card hover:border-primary/40"
               }`}
             >
               <span className="min-w-0">
-                <span className="block font-display text-base font-semibold text-walnut-deep">Adaptive</span>
+                <span className="block font-display text-base font-semibold text-primary-strong">Adaptive</span>
                 <span className="block text-sm text-ink-soft">Matches your level and adjusts as you play</span>
               </span>
               <Chip tone="sage">{rating.rating}</Chip>
@@ -361,14 +361,14 @@ export default function PlayPage() {
                       setPickElo(o.elo);
                     }}
                     className={`rounded-xl border px-3 py-2 text-left transition ${
-                      on ? "border-walnut bg-walnut text-[#fffdf7]" : "border-line bg-card text-ink hover:border-walnut/40"
+                      on ? "border-primary bg-primary text-on-accent" : "border-line bg-card text-ink hover:border-primary/40"
                     }`}
                   >
                     <span className="block text-base font-bold">
                       {o.approx ? "~" : ""}
                       {o.elo}
                     </span>
-                    <span className={`block text-xs ${on ? "text-[#fffdf7]/80" : "text-ink-soft"}`}>{o.name}</span>
+                    <span className={`block text-xs ${on ? "text-on-accent/80" : "text-ink-soft"}`}>{o.name}</span>
                   </button>
                 );
               })}
@@ -379,11 +379,11 @@ export default function PlayPage() {
             type="button"
             onClick={() => setCoach((c) => !c)}
             className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${
-              coach ? "border-walnut bg-walnut/5" : "border-line bg-card hover:border-walnut/40"
+              coach ? "border-primary bg-primary/5" : "border-line bg-card hover:border-primary/40"
             }`}
           >
             <span className="min-w-0">
-              <span className="block font-display text-base font-semibold text-walnut-deep">Move coach</span>
+              <span className="block font-display text-base font-semibold text-primary-strong">Move coach</span>
               <span className="block text-sm text-ink-soft">Flags a blunder the moment you play it, with a chance to take it back</span>
             </span>
             <span
@@ -430,7 +430,7 @@ export default function PlayPage() {
           }
         />
         <Card className="flex items-center justify-between p-4">
-          <span className="font-display text-lg font-semibold text-walnut-deep">Accuracy</span>
+          <span className="font-display text-lg font-semibold text-primary-strong">Accuracy</span>
           <Chip tone={accuracy >= 80 ? "sage" : accuracy >= 60 ? "amber" : "clay"}>{accuracy}%</Chip>
         </Card>
 
@@ -442,8 +442,8 @@ export default function PlayPage() {
             arrows={
               flag
                 ? [
-                    { from: flag.playedUci.slice(0, 2), to: flag.playedUci.slice(2, 4), color: "#b0604a" },
-                    { from: flag.bestUci.slice(0, 2), to: flag.bestUci.slice(2, 4), color: "#5e7e58" },
+                    { from: flag.playedUci.slice(0, 2), to: flag.playedUci.slice(2, 4), color: "#ef4444" },
+                    { from: flag.bestUci.slice(0, 2), to: flag.bestUci.slice(2, 4), color: "#22c55e" },
                   ]
                 : []
             }
@@ -465,13 +465,13 @@ export default function PlayPage() {
 
         {flags.length > 0 && (
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Key moments</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Key moments</p>
             {flags.map((f) => (
               <button key={f.ply} type="button" onClick={() => { setSelected(f); setPlainView(null); }} className="block w-full text-left">
-                <Card interactive className={`flex items-center gap-3 p-3 ${selected?.ply === f.ply ? "ring-2 ring-walnut" : ""}`}>
+                <Card interactive className={`flex items-center gap-3 p-3 ${selected?.ply === f.ply ? "ring-2 ring-primary" : ""}`}>
                   <span className="font-mono text-sm text-ink-soft">{f.moveLabel}</span>
                   <span className="min-w-0 flex-1">
-                    <span className="font-semibold text-walnut-deep">{f.san}</span>
+                    <span className="font-semibold text-primary-strong">{f.san}</span>
                     <span className="text-ink-soft"> → better: {f.bestSan}</span>
                   </span>
                   <Chip tone={f.klass === "blunder" ? "clay" : f.klass === "mistake" ? "amber" : "neutral"}>
@@ -485,7 +485,7 @@ export default function PlayPage() {
 
         {/* Full move list — click any move to step through the game */}
         <div className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Move list</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Move list</p>
           <Card className="flex flex-wrap items-center gap-x-2 gap-y-1 p-4 font-mono text-sm">
             {history.map((p, i) => {
               const f = flagByPly(i);
@@ -500,7 +500,7 @@ export default function PlayPage() {
                       if (f) { setSelected(f); setPlainView(null); }
                       else { setSelected(null); setPlainView(p.fenAfter); }
                     }}
-                    className={`rounded px-2 py-1 ${active ? "bg-walnut text-[#fffdf7]" : "text-ink hover:bg-line"} ${f ? "font-semibold" : ""}`}
+                    className={`rounded px-2 py-1 ${active ? "bg-primary text-on-accent" : "text-ink hover:bg-line"} ${f ? "font-semibold" : ""}`}
                   >
                     {p.san}{mark}
                   </button>
@@ -538,7 +538,7 @@ export default function PlayPage() {
           <button
             type="button"
             onClick={() => setCoach((c) => !c)}
-            className="ml-auto rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink-soft transition hover:border-walnut/40"
+            className="ml-auto rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink-soft transition hover:border-primary/40"
           >
             Coach {coach ? "on" : "off"}
           </button>
@@ -563,15 +563,15 @@ export default function PlayPage() {
         arrows={
           coaching
             ? [
-                { from: coaching.playedUci.slice(0, 2), to: coaching.playedUci.slice(2, 4), color: "#b0604a" },
-                { from: coaching.bestUci.slice(0, 2), to: coaching.bestUci.slice(2, 4), color: "#5e7e58" },
+                { from: coaching.playedUci.slice(0, 2), to: coaching.playedUci.slice(2, 4), color: "#ef4444" },
+                { from: coaching.bestUci.slice(0, 2), to: coaching.bestUci.slice(2, 4), color: "#22c55e" },
               ]
             : undefined
         }
       />
 
       {coaching ? (
-        <Card className="space-y-3 border-2 border-brass/40 p-4">
+        <Card className="space-y-3 border-2 border-accent/40 p-4">
           <div className="flex items-center gap-2">
             <Chip tone={coaching.severity === "blunder" ? "clay" : "amber"}>
               {coaching.severity === "blunder" ? "Blunder" : "Mistake"}
@@ -610,11 +610,11 @@ export default function PlayPage() {
 
       {phase === "gameover" && ratingChange && (
         <Card className="flex items-center justify-between p-4">
-          <span className="font-display text-base font-semibold text-walnut-deep">Your rating</span>
+          <span className="font-display text-base font-semibold text-primary-strong">Your rating</span>
           <span className="flex items-center gap-2 text-sm">
             <span className="text-ink-soft">{ratingChange.before}</span>
             <span aria-hidden>→</span>
-            <span className="font-bold text-walnut-deep">{ratingChange.after}</span>
+            <span className="font-bold text-primary-strong">{ratingChange.after}</span>
             <Chip tone={ratingChange.delta >= 0 ? "sage" : "clay"}>
               {ratingChange.delta >= 0 ? "+" : ""}
               {ratingChange.delta}
@@ -664,7 +664,7 @@ function Pick({
       type="button"
       onClick={onClick}
       className={`rounded-full border px-4 py-1.5 text-sm font-medium transition ${
-        active ? "border-walnut bg-walnut text-[#fffdf7]" : "border-line bg-card text-ink-soft hover:border-walnut/40"
+        active ? "border-primary bg-primary text-on-accent" : "border-line bg-card text-ink-soft hover:border-primary/40"
       }`}
     >
       {children}

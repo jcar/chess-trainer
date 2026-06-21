@@ -26,7 +26,7 @@ export function MoveMapPlayer({ activity, onComplete }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start gap-3 rounded-2xl bg-kid-teal/10 p-4 text-lg leading-relaxed text-walnut-deep">
+      <div className="flex items-start gap-3 rounded-2xl bg-kid-teal/10 p-4 text-lg leading-relaxed text-primary-strong">
         <p className="flex-1">
           {explored ? activity.funFact : activity.intro}
         </p>

@@ -61,7 +61,7 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
       >
         <p className="flex-1 text-ink">
           {step > 0 && (
-            <span className="mr-2 font-mono font-semibold text-brass">
+            <span className="mr-2 font-mono font-semibold text-accent">
               {activity.steps[step - 1].san}
             </span>
           )}

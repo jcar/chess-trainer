@@ -31,7 +31,7 @@ export function SpeakButton({ text, className = "", size = "lg" }: Props) {
         unlockAudio();
         speak(text);
       }}
-      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-brass/15 text-brass shadow-sm transition hover:bg-brass/25 active:scale-90 ${dim} ${className}`}
+      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent shadow-sm transition hover:bg-accent/25 active:scale-90 ${dim} ${className}`}
     >
       <SpeakerIcon className={icon} />
     </button>

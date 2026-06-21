@@ -36,7 +36,7 @@ export function RepertoirePicker() {
         if (!list.length) return null;
         return (
           <div key={fam} className="space-y-2">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
               {FAMILY_LABEL[fam]}
             </h3>
             <div className="space-y-2">
@@ -56,13 +56,13 @@ export function RepertoirePicker() {
                     >
                       <span
                         className={`grid h-7 w-7 shrink-0 place-items-center rounded-full ${
-                          on ? "bg-sage text-[#fffdf7]" : "bg-ink/8 text-ink-soft"
+                          on ? "bg-sage text-on-accent" : "bg-ink/8 text-ink-soft"
                         }`}
                       >
                         {on && <CheckIcon className="h-4 w-4" />}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block font-semibold text-walnut-deep">
+                        <span className="block font-semibold text-primary-strong">
                           {o.name}
                         </span>
                         <span className="block truncate font-mono text-xs text-ink-soft">

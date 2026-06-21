@@ -82,7 +82,7 @@ export default function TrainerPage() {
 
       {!hasRepertoire ? (
         <Card className="space-y-4 p-6 text-center">
-          <p className="font-display text-xl font-semibold text-walnut-deep">
+          <p className="font-display text-xl font-semibold text-primary-strong">
             Start by choosing your openings
           </p>
           <p className="text-ink-soft">
@@ -103,7 +103,7 @@ export default function TrainerPage() {
         <>
           <Card className="space-y-3 p-5">
             <div className="flex items-center justify-between">
-              <span className="font-display text-lg font-semibold text-walnut-deep">
+              <span className="font-display text-lg font-semibold text-primary-strong">
                 Mastery
               </span>
               <Chip tone="sage">
@@ -141,7 +141,7 @@ export default function TrainerPage() {
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
               Your repertoire
             </h2>
             <RepertoireSummary />
@@ -164,7 +164,7 @@ function RepertoireSummary() {
         return (
           <Card key={id} className="flex items-center justify-between gap-3 p-3">
             <span className="min-w-0">
-              <span className="block font-semibold text-walnut-deep">
+              <span className="block font-semibold text-primary-strong">
                 {o.name}
               </span>
               <span className="block truncate font-mono text-xs text-ink-soft">

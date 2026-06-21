@@ -161,7 +161,7 @@ export function PuzzlePlayer({
       </div>
 
       {!kidMode && activity.hints && hintsShown > 0 && (
-        <ul className="list-disc space-y-1 rounded-xl bg-brass/8 p-4 pl-8 text-sm text-walnut-deep">
+        <ul className="list-disc space-y-1 rounded-xl bg-accent/8 p-4 pl-8 text-sm text-primary-strong">
           {activity.hints.slice(0, hintsShown).map((h, i) => (
             <li key={i}>{h}</li>
           ))}

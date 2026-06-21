@@ -45,7 +45,7 @@ export function CoordinatePlayer({ activity, onComplete }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start gap-3 rounded-2xl bg-kid-teal/10 p-4 text-2xl font-extrabold text-walnut-deep">
+      <div className="flex items-start gap-3 rounded-2xl bg-kid-teal/10 p-4 text-2xl font-extrabold text-primary-strong">
         <p className="flex-1 font-display">{done ? activity.successText : `Find: ${target}`}</p>
         <SpeakButton text={prompt} />
       </div>

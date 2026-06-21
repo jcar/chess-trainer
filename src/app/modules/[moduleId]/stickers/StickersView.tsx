@@ -19,7 +19,7 @@ import {
 
 // A rotating set of badge designs (icon + warm tone) for earned stickers.
 const BADGES: { Icon: (p: { className?: string }) => React.ReactNode; color: string }[] = [
-  { Icon: StarIcon, color: "brass" },
+  { Icon: StarIcon, color: "accent" },
   { Icon: CrownGlyph, color: "amber" },
   { Icon: TrophyIcon, color: "sage" },
   { Icon: FlameIcon, color: "kid-coral" },
@@ -69,7 +69,7 @@ export function StickersView({ moduleId }: { moduleId: string }) {
                 }
               >
                 {got ? (
-                  <span className="text-[#fffdf7]">
+                  <span className="text-on-accent">
                     <Icon className="h-8 w-8" />
                   </span>
                 ) : (
@@ -79,7 +79,7 @@ export function StickersView({ moduleId }: { moduleId: string }) {
                 )}
               </span>
               <span
-                className={`text-sm font-semibold ${got ? "text-walnut-deep" : "text-ink-soft/60"}`}
+                className={`text-sm font-semibold ${got ? "text-primary-strong" : "text-ink-soft/60"}`}
               >
                 {got ? lesson.title : "Locked"}
               </span>

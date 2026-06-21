@@ -137,7 +137,7 @@ export default function TacticsPage() {
 
       <Card className="space-y-3 p-5">
         <div className="flex items-center justify-between">
-          <span className="font-display text-lg font-semibold text-walnut-deep">Ready to train</span>
+          <span className="font-display text-lg font-semibold text-primary-strong">Ready to train</span>
           <Chip tone={due > 0 ? "amber" : "sage"}>{due} due now</Chip>
         </div>
         <p className="text-sm text-ink-soft">
@@ -147,7 +147,7 @@ export default function TacticsPage() {
       </Card>
 
       <div className="space-y-2">
-        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Theme</h2>
+        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Theme</h2>
         <div className="flex flex-wrap gap-2">
           <FilterChip active={theme === null} onClick={() => setTheme(null)}>All</FilterChip>
           {themes.map(({ theme: t, count }) => (
@@ -159,7 +159,7 @@ export default function TacticsPage() {
       </div>
 
       <div className="space-y-2">
-        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-brass">Difficulty</h2>
+        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Difficulty</h2>
         <div className="flex flex-wrap gap-2">
           {([1, 2, 3] as Difficulty[]).map((d) => (
             <FilterChip key={d} active={maxDifficulty === d} onClick={() => setMaxDifficulty(d)}>
@@ -199,8 +199,8 @@ function FilterChip({
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-sm font-medium transition ${
         active
-          ? "border-walnut bg-walnut text-[#fffdf7]"
-          : "border-line bg-card text-ink-soft hover:border-walnut/40"
+          ? "border-primary bg-primary text-on-accent"
+          : "border-line bg-card text-ink-soft hover:border-primary/40"
       }`}
     >
       {children}
@@ -227,7 +227,7 @@ function TacticsSession({
       <main className="space-y-5 text-center">
         <PageHeader eyebrow="Tactics" title="Session complete" />
         <Card className="space-y-4 p-6">
-          <p className="font-display text-2xl font-semibold text-walnut-deep">
+          <p className="font-display text-2xl font-semibold text-primary-strong">
             {solvedClean} / {queue.length} clean
           </p>
           <p className="text-ink-soft">
@@ -273,7 +273,7 @@ function TacticsSession({
 
       {doneState && (
         <div className="flex items-center justify-between gap-3 rounded-2xl bg-surface p-4 shadow-soft">
-          <span className={`text-sm font-semibold ${doneState.clean ? "text-sage" : "text-walnut-deep"}`}>
+          <span className={`text-sm font-semibold ${doneState.clean ? "text-sage" : "text-primary-strong"}`}>
             {doneState.clean ? (
               <><StarIcon className="mr-1 inline h-4 w-4" /> Clean solve!</>
             ) : (

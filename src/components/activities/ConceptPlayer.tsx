@@ -42,7 +42,7 @@ export function ConceptPlayer({ activity, onComplete, kidMode = false }: Props) 
               <li key={i} className="flex items-start gap-2">
                 <span
                   aria-hidden
-                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brass"
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                 />
                 <span className="text-ink-soft">{pt}</span>
               </li>

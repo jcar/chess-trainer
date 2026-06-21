@@ -57,7 +57,7 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
           if (!answered) {
             cls += kidMode
               ? " border-kid-teal/30 bg-card text-ink hover:border-kid-teal"
-              : " border-line bg-card text-ink hover:border-walnut/40";
+              : " border-line bg-card text-ink hover:border-primary/40";
           } else if (isCorrect) {
             cls += " border-sage bg-sage/10 text-sage";
           } else if (isChosen) {
@@ -79,9 +79,9 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
                     !answered
                       ? "bg-kid-teal/15 text-kid-teal"
                       : isCorrect
-                        ? "bg-sage text-[#fffdf7]"
+                        ? "bg-sage text-on-accent"
                         : isChosen
-                          ? "bg-clay text-[#fffdf7]"
+                          ? "bg-clay text-on-accent"
                           : "bg-ink/8 text-ink-soft/60"
                   }`}
                 >
@@ -97,7 +97,7 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
       {answered && (
         <div
           className={`rounded-2xl p-4 ${kidMode ? "text-lg" : "text-sm"} ${
-            correct ? "bg-sage/10 text-sage" : "bg-brass/10 text-walnut-deep"
+            correct ? "bg-sage/10 text-sage" : "bg-accent/10 text-primary-strong"
           }`}
         >
           <div className="mb-1 flex items-center gap-2">
