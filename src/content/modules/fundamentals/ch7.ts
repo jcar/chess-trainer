@@ -5,7 +5,7 @@ import type { Lesson } from "../../types";
 
 export const ch7: Lesson = {
   id: "ch7-tactics",
-  title: "7. Tactics: Winning Material",
+  title: "8. Tactics: Winning Material",
   summary:
     "Before strategy comes 'piece vision' — seeing what attacks what. Then the bread-and-butter tactics: the fork, the skewer, and simply taking what's hanging.",
   activities: [

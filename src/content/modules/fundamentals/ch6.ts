@@ -5,7 +5,7 @@ import type { Lesson } from "../../types";
 
 export const ch6: Lesson = {
   id: "ch6-draws",
-  title: "6. Draws",
+  title: "7. Draws",
   summary:
     "Half a point is sometimes the best result available. Know every way a game can end in a draw — both to claim them and to avoid them when you're winning.",
   activities: [

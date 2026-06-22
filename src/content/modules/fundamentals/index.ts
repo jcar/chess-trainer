@@ -7,6 +7,7 @@ import { ch2 } from "./ch2";
 import { ch3 } from "./ch3";
 import { ch4 } from "./ch4";
 import { ch5 } from "./ch5";
+import { pawnEndgames } from "./pawn-endgames";
 import { ch6 } from "./ch6";
 import { ch7 } from "./ch7";
 import { ch8 } from "./ch8";
@@ -17,5 +18,8 @@ export const fundamentals: Module = {
   description:
     "The beginner's path: how to win, opening principles, the basic checkmates, draws, tactics, and strategy. Hands-on, with engine-verified puzzles.",
   level: "Beginner",
-  lessons: [ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8],
+  // pawnEndgames inserted after the basic mates (ch5) — king-and-pawn technique is
+  // a core beginner essential. Existing lesson ids are unchanged (progress safe);
+  // only the visible chapter numbers in titles shift (Draws→7, Tactics→8, Strategy→9).
+  lessons: [ch1, ch2, ch3, ch4, ch5, pawnEndgames, ch6, ch7, ch8],
 };
