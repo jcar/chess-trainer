@@ -18,6 +18,7 @@ import {
 } from "@/content/puzzles";
 import { useSrs, srsStore } from "@/lib/srs/useSrs";
 import { partitionQueue, dueCount } from "@/lib/srs/store";
+import { useTacticsRating, tacticsRatingStore } from "@/lib/tactics/rating";
 import { recordDailyActivity } from "@/lib/rewards/daily";
 import { shuffled } from "@/lib/shuffle";
 import { PuzzleRunner } from "@/components/tools/PuzzleRunner";
@@ -105,9 +106,11 @@ function TacticsTrainer() {
     return m === 1 || m === 2 || m === 3 ? (m as Difficulty) : 3;
   })();
 
+  const tactics = useTacticsRating();
   const [theme, setTheme] = useState<PuzzleTheme | null>(initialTheme);
   const [maxDifficulty, setMaxDifficulty] = useState<Difficulty>(initialMax);
   const [kidOnly, setKidOnly] = useState(false);
+  const [adaptive, setAdaptive] = useState(false);
   const [queue, setQueue] = useState<TacticsPuzzle[] | null>(null);
 
   const candidates = useMemo(
@@ -126,9 +129,19 @@ function TacticsTrainer() {
     // Due/missed keep their spaced-repetition priority; fresh puzzles are shuffled
     // and theme-interleaved for variety (no repeated pattern, different each time).
     const duePuzzles = due.map((id) => byId.get(id)!).filter(Boolean);
-    const freshPuzzles = interleaveForVariety(
-      fresh.map((id) => byId.get(id)!).filter(Boolean),
-    );
+    const freshAll = fresh.map((id) => byId.get(id)!).filter(Boolean);
+    // Adaptive: serve fresh rated puzzles near the player's tactics rating
+    // (widening the band if too few match). Otherwise theme-interleave for variety.
+    const freshPuzzles = adaptive
+      ? (() => {
+          const rated = freshAll.filter((p) => p.rating != null);
+          for (const band of [120, 200, 300, 600, Infinity]) {
+            const near = rated.filter((p) => Math.abs((p.rating as number) - tactics.rating) <= band);
+            if (near.length >= SESSION_SIZE || band === Infinity) return shuffled(near);
+          }
+          return shuffled(rated);
+        })()
+      : interleaveForVariety(freshAll);
     // Build the session, never repeating a position.
     const seen = new Set<string>();
     const pick: TacticsPuzzle[] = [];
@@ -169,7 +182,29 @@ function TacticsTrainer() {
         </p>
       </Card>
 
-      <div className="space-y-2">
+      <button
+        type="button"
+        onClick={() => setAdaptive((a) => !a)}
+        className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-4 text-left transition ${
+          adaptive ? "border-primary bg-primary/5" : "border-line bg-card hover:border-primary/40"
+        }`}
+      >
+        <span className="min-w-0">
+          <span className="block font-display text-base font-semibold text-primary-strong">Adaptive difficulty</span>
+          <span className="block text-sm text-ink-soft">
+            Serves puzzles near your level and adjusts as you solve
+          </span>
+        </span>
+        <Chip tone="sage">{tactics.rating}</Chip>
+        <span
+          className={`relative h-6 w-11 shrink-0 rounded-full transition ${adaptive ? "bg-primary" : "bg-ink/20"}`}
+          aria-hidden
+        >
+          <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${adaptive ? "left-[1.375rem]" : "left-0.5"}`} />
+        </span>
+      </button>
+
+      <div className={`space-y-2 ${adaptive ? "opacity-50" : ""}`}>
         <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Theme</h2>
         <div className="flex flex-wrap gap-2">
           <FilterChip active={theme === null} onClick={() => setTheme(null)}>All</FilterChip>
@@ -288,6 +323,7 @@ function TacticsSession({
         puzzle={current}
         onDone={(clean) => {
           srsStore.record(current.id, clean);
+          tacticsRatingStore.record(current.rating, clean);
           recordDailyActivity();
           if (clean) setSolvedClean((n) => n + 1);
           setDoneState({ clean });
