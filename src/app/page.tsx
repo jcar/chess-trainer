@@ -51,6 +51,10 @@ export default function HomePage() {
   const { counts: trainerCounts } = useTrainer();
   const daily = useDailyStreak();
   const cont = firstIncomplete((id) => getActivityState(id).completed);
+  // Brand-new learner (no progress anywhere) → show a "start here" chooser.
+  const started = MODULES.some(
+    (mod) => moduleProgress(getModuleActivities(mod).map((a) => a.id)) > 0,
+  );
 
   return (
     <main className="space-y-7">
@@ -63,6 +67,29 @@ export default function HomePage() {
           very first move to confident, clever play.
         </p>
       </section>
+
+      {/* Onboarding: where to start (brand-new learners only) */}
+      {!started && (
+        <section className="space-y-2">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+            New here? Start in the right place
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { href: "/modules/chess-for-kids", title: "Brand new", sub: "Never played — or learning with a child" },
+              { href: "/modules/fundamentals", title: "I know the rules", sub: "Lock in the fundamentals" },
+              { href: "/tactics", title: "Get stronger", sub: "Train tactics & endgames" },
+            ].map((c) => (
+              <Link key={c.href} href={c.href} className="block">
+                <Card interactive className="flex h-full flex-col gap-1 p-4">
+                  <p className="font-display text-base font-semibold text-primary-strong">{c.title}</p>
+                  <p className="text-sm text-ink-soft">{c.sub}</p>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Today: daily puzzle + continue */}
       <section className="grid gap-3 sm:grid-cols-2">
