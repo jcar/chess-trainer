@@ -40,6 +40,7 @@ import { reti } from "./reti";
 import { larsen } from "./larsen";
 import { viennaGame } from "./vienna-game";
 import { alapinSicilian } from "./alapin-sicilian";
+import { queensGambit } from "./queens-gambit";
 
 // Ordered by family: 1.e4 e5 → other 1.e4 → 1.d4 → flank.
 export const OPENINGS: Opening[] = [
@@ -65,6 +66,7 @@ export const OPENINGS: Opening[] = [
   kingsIndian,
   nimzoIndian,
   londonSystem,
+  queensGambit,
   queensGambitAccepted,
   semiSlav,
   queensIndian,

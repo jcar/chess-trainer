@@ -38,6 +38,7 @@ import { retiLesson } from "./reti";
 import { larsenLesson } from "./larsen";
 import { viennaGameLesson } from "./vienna-game";
 import { alapinSicilianLesson } from "./alapin-sicilian";
+import { queensGambitLesson } from "./queens-gambit";
 
 // Short, catalog-specific framing (the openings taxonomy) — distinct from the
 // Intermediate module's coverage of general opening principles.
@@ -112,6 +113,7 @@ export const openings: Module = {
     kingsIndianLesson,
     nimzoIndianLesson,
     londonSystemLesson,
+    queensGambitLesson,
     queensGambitAcceptedLesson,
     semiSlavLesson,
     queensIndianLesson,
