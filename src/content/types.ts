@@ -304,6 +304,20 @@ export interface ConceptActivity extends ActivityBase {
   points?: string[];
   /** Optional illustrative diagrams (display-only). */
   diagrams?: { fen: string; orientation?: Orientation; caption?: string }[];
+  /**
+   * Optional "Practice now" handoff into a tool — turns a lesson into a
+   * teach → drill loop. Renders a button to the Tactics Trainer (optionally
+   * pre-filtered by theme/difficulty) or the Endgame Trainer.
+   */
+  practice?: {
+    tool: "tactics" | "endgames";
+    /** Tactics: pre-selected theme filter (a PuzzleTheme string). */
+    theme?: string;
+    /** Tactics: difficulty cap (1 easy … 3 all levels). */
+    maxDifficulty?: 1 | 2 | 3;
+    /** Button label; defaults to a sensible "Practice now …". */
+    label?: string;
+  };
 }
 
 export type Activity =

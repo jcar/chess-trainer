@@ -136,5 +136,14 @@ export const endgamesLesson: Lesson = {
       successText:
         "Promoted! Your king led the way and the opposition did the rest.",
     },
+    {
+      type: "concept",
+      id: "strategy-endgames-practice",
+      title: "Now drill it",
+      blurb: "Technique sticks through reps.",
+      body:
+        "King activity and the opposition decide king-and-pawn endings — and most endings simplify toward them. Drill the must-know endings against the engine until converting is automatic.",
+      practice: { tool: "endgames", label: "Open the Endgame Trainer" },
+    },
   ],
 };

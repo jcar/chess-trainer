@@ -6,11 +6,22 @@
 // "Got it" button that marks it complete. In kid mode the text is bigger and a
 // SpeakButton reads it aloud (pre-readers).
 
+import Link from "next/link";
 import type { ConceptActivity } from "@/content/types";
 import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { buttonClasses } from "@/components/ui/Button";
-import { CheckIcon } from "@/components/icons";
+import { CheckIcon, PuzzleIcon } from "@/components/icons";
+
+/** Build the "Practice now" href for a concept's optional handoff. */
+function practiceHref(p: NonNullable<ConceptActivity["practice"]>): string {
+  if (p.tool === "endgames") return "/endgames";
+  const q = new URLSearchParams();
+  if (p.theme) q.set("theme", p.theme);
+  if (p.maxDifficulty) q.set("max", String(p.maxDifficulty));
+  const s = q.toString();
+  return s ? `/tactics?${s}` : "/tactics";
+}
 
 interface Props {
   activity: ConceptActivity;
@@ -68,7 +79,15 @@ export function ConceptPlayer({ activity, onComplete, kidMode = false }: Props) 
         </div>
       )}
 
-      <div className="flex justify-end">
+      <div className="flex flex-wrap items-center justify-end gap-3">
+        {activity.practice && (
+          <Link
+            href={practiceHref(activity.practice)}
+            className={buttonClasses("accent", kidMode ? "kid" : "lg")}
+          >
+            <PuzzleIcon className="h-5 w-5" /> {activity.practice.label ?? "Practice now"}
+          </Link>
+        )}
         <button
           type="button"
           onClick={() => onComplete(100)}

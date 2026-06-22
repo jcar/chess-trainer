@@ -3,9 +3,11 @@
 // Tactics Trainer — a spaced-repetition puzzle stream drawn from the whole
 // curriculum's puzzle pool. Due/missed puzzles resurface first (mistake bank),
 // then fresh ones. Solving feeds the SRS + the daily streak. Filter by theme /
-// difficulty / kid-friendly. A no-params static route.
+// difficulty / kid-friendly. Accepts ?theme=&max= so lessons can deep-link a
+// pre-filtered "Practice now" session (wrapped in Suspense for static export).
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   getAllPuzzles,
   selectPuzzles,
@@ -75,7 +77,17 @@ const THEME_LABEL: Record<PuzzleTheme, string> = {
 };
 
 export default function TacticsPage() {
+  // useSearchParams needs a Suspense boundary under `output: export`.
+  return (
+    <Suspense fallback={<main className="space-y-6" />}>
+      <TacticsTrainer />
+    </Suspense>
+  );
+}
+
+function TacticsTrainer() {
   const srs = useSrs();
+  const params = useSearchParams();
   const byId = useMemo(() => {
     const m = new Map<string, TacticsPuzzle>();
     for (const p of getAllPuzzles()) m.set(p.id, p);
@@ -83,8 +95,18 @@ export default function TacticsPage() {
   }, []);
   const themes = useMemo(() => themeCounts().sort((a, b) => b.count - a.count), []);
 
-  const [theme, setTheme] = useState<PuzzleTheme | null>(null);
-  const [maxDifficulty, setMaxDifficulty] = useState<Difficulty>(3);
+  // Deep-link defaults from ?theme= / ?max= (a lesson's "Practice now" handoff).
+  const initialTheme = ((): PuzzleTheme | null => {
+    const t = params.get("theme");
+    return t && t in THEME_LABEL ? (t as PuzzleTheme) : null;
+  })();
+  const initialMax = ((): Difficulty => {
+    const m = Number(params.get("max"));
+    return m === 1 || m === 2 || m === 3 ? (m as Difficulty) : 3;
+  })();
+
+  const [theme, setTheme] = useState<PuzzleTheme | null>(initialTheme);
+  const [maxDifficulty, setMaxDifficulty] = useState<Difficulty>(initialMax);
   const [kidOnly, setKidOnly] = useState(false);
   const [queue, setQueue] = useState<TacticsPuzzle[] | null>(null);
 

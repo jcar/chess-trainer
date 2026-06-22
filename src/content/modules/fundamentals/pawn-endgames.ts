@@ -125,5 +125,18 @@ export const pawnEndgames: Lesson = {
       explanation:
         "Lead with the king IN FRONT of the pawn. The king clears the path and shoulders the enemy king aside; the pawn follows safely behind. A pawn that races ahead of its own king usually gets blockaded and lost.",
     },
+    {
+      id: "fund-pawn-endgames-practice",
+      type: "concept",
+      title: "Now drill it",
+      blurb: "Make the technique automatic.",
+      body:
+        "You've got the ideas — lead with the king, take the opposition, reach the key squares. Technique only sticks with reps. The Endgame Trainer lets you play the must-know endings against the engine (which defends) until you can convert them without thinking.",
+      points: [
+        "Drill king-and-pawn until the opposition is second nature.",
+        "Come back and convert it — every won game ends in technique.",
+      ],
+      practice: { tool: "endgames", label: "Open the Endgame Trainer" },
+    },
   ],
 };

@@ -151,5 +151,14 @@ export const calculationLesson: Lesson = {
         },
       ],
     },
+    {
+      type: "concept",
+      id: "calculation-practice",
+      title: "Now calculate for real",
+      blurb: "Train forcing-move calculation.",
+      body:
+        "Calculation is a muscle: list the forcing moves (checks, captures, threats), follow each to a quiet end, then pick the best. The Tactics Trainer is the gym — every puzzle is a calculation rep, and missed ones come back until they stick.",
+      practice: { tool: "tactics", label: "Train tactics now" },
+    },
   ],
 };

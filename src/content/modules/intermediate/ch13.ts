@@ -125,5 +125,14 @@ export const ch13: Lesson = {
       successText:
         "Promoted! That's the opposition under your own hands — the technique behind every king-and-pawn ending. (Drill the Lucena rook ending itself in the Endgame Trainer.)",
     },
+    {
+      id: "ch13-practice",
+      type: "concept",
+      title: "Now drill it",
+      blurb: "Convert real endings against the engine.",
+      body:
+        "These ideas — the opposition, the square of the pawn, the rook behind the passer, Lucena and Philidor — only win games once they're automatic. The Endgame Trainer drills the must-know positions (including the Lucena) against an engine that defends, so you can practice the technique until it's second nature.",
+      practice: { tool: "endgames", label: "Open the Endgame Trainer" },
+    },
   ],
 };

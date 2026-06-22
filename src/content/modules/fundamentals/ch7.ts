@@ -110,5 +110,14 @@ export const ch7: Lesson = {
       explanation:
         "Always ask 'if I take, what recaptures?' Capturing a defended pawn with a bishop loses a 3-point piece for 1 point. Good piece vision means seeing both attackers AND defenders before every capture.",
     },
+    {
+      id: "ch7-practice",
+      type: "concept",
+      title: "Now train your eyes",
+      blurb: "Spot tactics fast — with practice.",
+      body:
+        "Forks, skewers, and loose pieces win games at every level — but only if you SEE them in time. That's pattern recognition, built by reps. Train a stream of beginner-friendly tactics and watch your board vision sharpen; missed ones come back until they click.",
+      practice: { tool: "tactics", maxDifficulty: 1, label: "Train tactics now" },
+    },
   ],
 };

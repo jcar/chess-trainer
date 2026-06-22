@@ -126,5 +126,14 @@ export const ch14: Lesson = {
       explanation:
         "An overloaded piece can't be in two places at once. Deflection forces it away from one of its duties (often with a check or a capture it must answer), and you cash in on the square or piece it was forced to abandon — a classic back-rank theme.",
     },
+    {
+      id: "ch14-practice",
+      type: "concept",
+      title: "Now train the pattern",
+      blurb: "Reps turn motifs into instinct.",
+      body:
+        "Knowing the motifs isn't enough — you have to spot them in a split second over the board. That's pure pattern repetition. Train a stream of fresh tactics, with the ones you miss resurfacing until they stick.",
+      practice: { tool: "tactics", maxDifficulty: 2, label: "Train tactics now" },
+    },
   ],
 };
