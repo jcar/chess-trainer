@@ -20,6 +20,7 @@ import { weakPawnsLesson } from "./weak-pawns";
 import { weakSquaresLesson } from "./weak-squares";
 import { openFilesLesson } from "./open-files";
 import { initiativeLesson } from "./initiative";
+import { defenseLesson } from "./defense";
 import { synthesisLesson } from "./synthesis";
 
 export const strategy: Module = {
@@ -41,6 +42,7 @@ export const strategy: Module = {
     weakSquaresLesson,
     openFilesLesson,
     initiativeLesson,
+    defenseLesson,
     synthesisLesson,
   ],
 };
