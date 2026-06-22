@@ -111,5 +111,19 @@ export const ch13: Lesson = {
       explanation:
         "Rook endings are the most common of all. Lucena shows how the stronger side wins (build a bridge to shelter the king from checks); Philidor shows how the weaker side draws (keep the rook on the third rank until the pawn advances, then check from behind). Know both cold.",
     },
+    {
+      id: "ch13-kp-drill",
+      type: "drill",
+      title: "Drill: convert the king and pawn",
+      blurb: "Now play the technique yourself.",
+      fen: "3k4/8/3K4/3P4/8/8/8/8 w - - 0 1",
+      orientation: "white",
+      objective: "promote",
+      engineSkill: 10,
+      instructions:
+        "Your turn to convert the ending you just watched. Lead with the KING, seize the opposition to push the black king aside, then escort the pawn to promotion.",
+      successText:
+        "Promoted! That's the opposition under your own hands — the technique behind every king-and-pawn ending. (Drill the Lucena rook ending itself in the Endgame Trainer.)",
+    },
   ],
 };

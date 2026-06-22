@@ -124,5 +124,41 @@ export const ch15: Lesson = {
       explanation:
         "A move without a plan is a wasted move. Find the imbalances — weak pawns or squares, open files, your worst-placed piece — and play purposefully toward them. The classic prompt: 'What's my worst piece, and how do I make it better?'",
     },
+    {
+      id: "ch15-find-plan",
+      type: "sort",
+      title: "Apply it: find the plan",
+      blurb: "Quiet position — what's the idea?",
+      prompt:
+        "No tactic is available. The d-file is open and your pieces are ready. What is the most purposeful plan for White?",
+      fen: "2rq1rk1/pp2bppp/2n1pn2/8/2B5/2N1PN2/PP3PPP/2RQ1RK1 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "Contest and seize the open d-file, aiming for the 7th rank" },
+        { label: "Shuffle the king back and forth and wait" },
+        { label: "Trade every piece as fast as possible, with no goal" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "An open file is a highway. Double rooks (and the queen) on the d-file, fight for control, and look to invade the 7th rank. That's a concrete plan built from the position's main imbalance — far better than aimless shuffling or planless trades.",
+    },
+    {
+      id: "ch15-worst-piece",
+      type: "sort",
+      title: "Apply it: your worst piece",
+      blurb: "Improve the weakest link.",
+      prompt:
+        "It's quiet. Using the prompt 'what's my worst piece?', which White piece most needs improving?",
+      fen: "r1bq1rk1/ppp2ppp/2n2n2/3pp3/8/N1PP1NP1/PP2PPBP/R1BQ1RK1 w - - 0 1",
+      orientation: "white",
+      options: [
+        { label: "The knight on a3 — stuck on the rim, doing nothing" },
+        { label: "The fianchettoed bishop on g2 — already excellent" },
+        { label: "The knight on f3 — actively placed" },
+      ],
+      correctIndex: 0,
+      explanation:
+        "'A knight on the rim is dim.' The a3-knight is your worst piece — reroute it (a3–c2–e3–d5, or a3–c4) toward a strong central square. Improving your worst-placed piece is the most reliable plan when nothing forcing exists.",
+    },
   ],
 };
