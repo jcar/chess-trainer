@@ -161,5 +161,18 @@ export const synthesisLesson: Lesson = {
         },
       ],
     },
+    {
+      type: "concept",
+      id: "synthesis-practice",
+      title: "Now put it together",
+      blurb: "Strategy is learned by playing.",
+      body:
+        "You can't drill strategy with flashcards — it lives in real games. Play a full game, try to read the imbalances and make a plan, then run the review to see where your plan held up and where it slipped. That play → review loop is how positional understanding actually grows.",
+      points: [
+        "Pick a plan from the imbalances, not from memory.",
+        "Review every game — the mistakes are the lesson.",
+      ],
+      practice: { tool: "play", label: "Play a game & review it" },
+    },
   ],
 };

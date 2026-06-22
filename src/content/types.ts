@@ -310,7 +310,7 @@ export interface ConceptActivity extends ActivityBase {
    * pre-filtered by theme/difficulty) or the Endgame Trainer.
    */
   practice?: {
-    tool: "tactics" | "endgames";
+    tool: "tactics" | "endgames" | "play";
     /** Tactics: pre-selected theme filter (a PuzzleTheme string). */
     theme?: string;
     /** Tactics: difficulty cap (1 easy … 3 all levels). */

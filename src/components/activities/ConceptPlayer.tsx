@@ -16,6 +16,7 @@ import { CheckIcon, PuzzleIcon } from "@/components/icons";
 /** Build the "Practice now" href for a concept's optional handoff. */
 function practiceHref(p: NonNullable<ConceptActivity["practice"]>): string {
   if (p.tool === "endgames") return "/endgames";
+  if (p.tool === "play") return "/play";
   const q = new URLSearchParams();
   if (p.theme) q.set("theme", p.theme);
   if (p.maxDifficulty) q.set("max", String(p.maxDifficulty));

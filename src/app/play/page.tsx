@@ -5,6 +5,7 @@
 // shows the better move. Reuses the board + ChessGame + the engine client (now
 // with analyze()). A no-params static route.
 
+import Link from "next/link";
 import { useState } from "react";
 import type { Orientation } from "@/content/types";
 import { ChessGame, uciToMove, type SimpleMove } from "@/lib/chess/game";
@@ -432,6 +433,19 @@ export default function PlayPage() {
         <Card className="flex items-center justify-between p-4">
           <span className="font-display text-lg font-semibold text-primary-strong">Accuracy</span>
           <Chip tone={accuracy >= 80 ? "sage" : accuracy >= 60 ? "amber" : "clay"}>{accuracy}%</Chip>
+        </Card>
+
+        <Card className="space-y-3 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Practice your weak spots</p>
+          <p className="text-sm text-ink-soft">
+            {flags.length
+              ? "Most slips at this level are tactical. Sharpen your pattern recognition so you spot these in time — then drill the endgames where games are won and lost."
+              : "Clean game! Keep the edge with a few reps — tactics for sharpness, endgames for technique."}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/tactics" className={buttonClasses("primary", "md")}>Train tactics</Link>
+            <Link href="/endgames" className={buttonClasses("secondary", "md")}>Drill endgames</Link>
+          </div>
         </Card>
 
         {boardFen ? (
