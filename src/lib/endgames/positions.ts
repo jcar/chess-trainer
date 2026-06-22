@@ -130,6 +130,32 @@ export const ENDGAMES: EndgamePosition[] = [
       "Escort the pawn with your king and bishop. The bishop covers squares the enemy king can't, so it can never blockade you — promote.",
     successText: "Promoted! A bishop is a perfect escort — it controls squares from a distance.",
   },
+  {
+    id: "two-bishops-mate",
+    name: "Two Bishops vs King",
+    category: "Minor Pieces",
+    fen: "8/8/8/4k3/8/8/3BB3/4K3 w - - 0 1",
+    orientation: "white",
+    objective: "checkmate",
+    engineSkill: 10,
+    instructions:
+      "Two bishops force mate by working as a team. Keep them on neighbouring diagonals to build a wall, march your king up, and drive the enemy king into a CORNER (any corner) to deliver mate.",
+    successText:
+      "Checkmate! Two bishops mate in any corner — keep them side by side and let your king do the herding.",
+  },
+  {
+    id: "bishop-knight-mate",
+    name: "Bishop + Knight vs King",
+    category: "Minor Pieces",
+    fen: "8/8/8/4k3/8/8/4BN2/4K3 w - - 0 1",
+    orientation: "white",
+    objective: "checkmate",
+    engineSkill: 6,
+    instructions:
+      "The hardest basic mate. You can only mate in a corner the BISHOP controls. Use the knight's 'W' path to herd the king along the edge to the right-coloured corner, with your king and bishop in support. Take your time.",
+    successText:
+      "Checkmate! Bishop + knight is the toughest fundamental mate — pulling it off means your technique is sharp.",
+  },
 ];
 
 export const ENDGAME_CATEGORIES: string[] = [
