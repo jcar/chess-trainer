@@ -17,6 +17,7 @@ import { arcade } from "./arcade";
 import { goodFirstMoves } from "./good-first-moves";
 import { playingSmart } from "./playing-smart";
 import { trappingTheKing } from "./trapping-the-king";
+import { pawnPower } from "./pawn-power";
 
 export const chessForKids: Module = {
   id: "chess-for-kids",
@@ -27,7 +28,7 @@ export const chessForKids: Module = {
   kidMode: true,
   // Order: board & movement → arcade fun → capturing → playing smart →
   // check/mate → special moves → draws → openings → trapping & first mates →
-  // tricks → play vs Pip.
+  // tricks → walk the pawn home → play vs Pip.
   lessons: [
     l1,
     l2,
@@ -42,6 +43,7 @@ export const chessForKids: Module = {
     trappingTheKing,
     l8,
     l9,
+    pawnPower,
     l10,
   ],
 };
