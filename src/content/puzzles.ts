@@ -17,7 +17,8 @@ export type PuzzleTheme =
   | "sacrifice"
   | "back-rank"
   | "defense"
-  | "win-material";
+  | "win-material"
+  | "endgame";
 
 export type Difficulty = 1 | 2 | 3; // 1 = easy, 2 = medium, 3 = hard
 
@@ -63,6 +64,7 @@ function importedPrompt(
     return `${side} to play and mate in ${n}.`;
   }
   if (theme === "defense") return `${side} to play — find the saving move.`;
+  if (theme === "endgame") return `${side} to play — find the strongest move in the endgame.`;
   return `${side} to play and win material.`;
 }
 

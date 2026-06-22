@@ -71,6 +71,7 @@ const THEME_LABEL: Record<PuzzleTheme, string> = {
   "back-rank": "Back-rank",
   defense: "Defense",
   "win-material": "Win material",
+  endgame: "Endgames",
 };
 
 export default function TacticsPage() {

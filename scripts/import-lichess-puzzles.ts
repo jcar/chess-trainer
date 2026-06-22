@@ -17,7 +17,7 @@ import { Chess } from "chess.js";
 
 type Theme =
   | "mate" | "fork" | "pin" | "skewer" | "discovered"
-  | "sacrifice" | "back-rank" | "defense" | "win-material";
+  | "sacrifice" | "back-rank" | "defense" | "win-material" | "endgame";
 
 const OUT = "src/content/tactics-puzzles.json";
 
@@ -45,6 +45,10 @@ function mapTheme(themes: string[]): Theme {
   const t = new Set(themes);
   if (t.has("backRankMate")) return "back-rank";
   if (themes.some((x) => /mate/i.test(x))) return "mate"; // mateInN, smotheredMate, …
+  // Endgame technique/conversion (non-mate) — its own bucket for the endgame
+  // lessons & the Endgames filter. Matches generic "endgame" + the typed ones
+  // (rookEndgame, pawnEndgame, knightEndgame, bishopEndgame, queenEndgame, …).
+  if (themes.some((x) => /endgame/i.test(x))) return "endgame";
   if (t.has("fork")) return "fork";
   if (t.has("pin")) return "pin";
   if (t.has("skewer")) return "skewer";
