@@ -22,6 +22,24 @@ export const sicilianDefence: Opening = {
     "Take on d4 to trade a flank pawn for a central pawn, then develop flexibly " +
     "and counterattack on the queenside with the half-open c-file, aiming for an " +
     "unbalanced position with real winning chances.",
+  middlegamePlan:
+    "In the Najdorf after ...e5, the d5-square is the whole battle: it's a hole in your " +
+    "camp, so fight for control of it with ...Be6, ...Nbd7 and ...Rc8, and trade off the " +
+    "pieces that want to occupy it. Your counterplay is the queenside — expand with " +
+    "...b5–b4 to kick the c3-knight, pressure the half-open c-file, and aim for the freeing " +
+    "...d5 break. Meanwhile White attacks on the kingside, so it's a race: don't drift, push " +
+    "your queenside play while keeping d5 under control.",
+  ideaQuiz: {
+    question: "In the Najdorf after ...e5, what is the critical square for both sides?",
+    options: [
+      "d5 — the hole Black must fight to control.",
+      "h7 — Black's main weakness to defend.",
+      "a1 — the corner White targets.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Playing ...e5 gains space but leaves a hole on d5. Whoever controls d5 controls the game: Black contests it (...Be6, ...Nbd7, trading White's light pieces) while generating queenside counterplay. If White plants a piece on d5 unopposed, Black is in trouble.",
+  },
   tabiyaFen:
     "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
   lines: [
@@ -49,9 +67,22 @@ export const sicilianDefence: Opening = {
         "King safety.",
         "Black castles too; a rich, unbalanced middlegame lies ahead.",
       ],
+      commonMistakes: [
+        {
+          ply: 5,
+          move: "Nf6",
+          why: "Take on d4 first. If you develop with ...Nf6 and let White play dxc5, you lose the point of the Sicilian — trading your flank c-pawn for White's central d-pawn. Capture: ...cxd4.",
+        },
+        {
+          ply: 15,
+          move: "Nxe4",
+          why: "e4 is defended by the c3-knight — ...Nxe4 just drops a piece. Your counterplay comes from the queenside and the ...b5/...d5 breaks, not from grabbing e4. Castle and get organized.",
+        },
+      ],
     },
     {
       label: "Alapin Variation (2.c3)",
+      branch: { from: "Open Sicilian — Najdorf", atPly: 2, tryMove: "c3" },
       sans: [
         "e4", "c5", "c3", "Nf6", "e5", "Nd5", "d4", "cxd4",
         "Nf3", "e6", "cxd4", "d6",

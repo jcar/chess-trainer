@@ -24,6 +24,24 @@ export const londonSystem: Opening = {
     "Develop comfortably and challenge White's plan: contest the centre with " +
     "...c5 and ...e6, harass the f4-bishop, and decide whether to play in the " +
     "centre or fianchetto and pressure d4 from the side.",
+  middlegamePlan:
+    "The London is a setup, so once you've played Bf4–e3–c3–Nbd2 and Bd3, choose a plan. " +
+    "The classic one is a kingside attack: plant a knight on e5 (backed by Nd2–f3 and the " +
+    "f-pawn), aim Bd3 and Qf3/Qe2 at h7, and roll f4 (sometimes g4). The other is the e4 " +
+    "break once it's prepared. Keep your dark-squared bishop healthy — retreat Bg3 rather " +
+    "than trade it. Black's critical counter is ...c5 with ...Qb6 hitting b2; defend calmly " +
+    "(Qc1 or b3) and carry on with your plan.",
+  ideaQuiz: {
+    question: "After the standard London setup, what's White's classic attacking plan?",
+    options: [
+      "Knight to e5 + Bd3 aimed at h7, then f4/Qf3 — a kingside attack.",
+      "Trade the dark-squared bishop quickly to simplify.",
+      "Push the a- and b-pawns to attack on the queenside.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The London's harmonious setup points at the kingside: occupy e5 with a knight, put the light bishop on d3 eyeing h7, bring the queen to f3/e2, and advance f4 (and sometimes g4). The dark-squared bishop is your prize attacker — keep it (Bg3), don't trade it.",
+  },
   tabiyaFen:
     "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R b KQkq - 1 3",
   lines: [
@@ -48,9 +66,22 @@ export const londonSystem: Opening = {
         "Developing and offering to trade off the active f4-bishop.",
         "Sidestepping the trade and keeping the strong bishop on its diagonal.",
       ],
+      commonMistakes: [
+        {
+          ply: 4,
+          move: "e3",
+          why: "The one rule of the London: get the dark-squared bishop OUT to f4 BEFORE playing e3. Play e3 first and you've locked the bishop behind its own pawn — the exact 'bad bishop' problem the London is built to avoid. Bf4 first, then e3.",
+        },
+        {
+          ply: 12,
+          move: "Bxd6",
+          why: "Don't trade your best piece. The f4/g3-bishop is the soul of the London — when ...Bd6 offers the swap, sidestep with Bg3 and keep it. Trading hands Black easy equality and gives up your main attacker.",
+        },
+      ],
     },
     {
       label: "vs a King's-Indian setup",
+      branch: { from: "Main setup vs ...d5", atPly: 1, tryMove: "Nf6" },
       sans: [
         "d4", "Nf6", "Bf4", "g6",
         "Nf3", "Bg7", "e3", "O-O", "Be2", "d6", "h3",
@@ -71,6 +102,7 @@ export const londonSystem: Opening = {
     },
     {
       label: "Black hits back with ...c5 and ...Qb6",
+      branch: { from: "Main setup vs ...d5", atPly: 5, tryMove: "c5" },
       sans: [
         "d4", "d5", "Nf3", "Nf6", "Bf4", "c5",
         "e3", "Nc6", "c3", "Qb6", "Qc1", "Bf5",

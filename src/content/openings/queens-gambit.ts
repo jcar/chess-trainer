@@ -25,6 +25,26 @@ export const queensGambit: Opening = {
     "Decide how to meet the gambit: support d5 with ...e6 (solid but passive bishop) " +
     "or ...c6 (the Slav, freeing the bishop), or grab the pawn with ...dxc4 and give " +
     "back the centre. In each case, complete development and strike with ...c5 or ...e5.",
+  middlegamePlan:
+    "The Queen's Gambit isn't really a gambit — Black can't keep the c4-pawn, so you're " +
+    "playing for a durable central and developmental edge. After the Declined, pick the plan " +
+    "the structure dictates: in Exchange positions (pawns on d-file, symmetrical) run the " +
+    "minority attack — push b4–b5 to swap on c6 and saddle Black with a weak, backward c6-pawn " +
+    "to gnaw at down the half-open c-file. In other structures, finish developing (Nf3, Bd3, " +
+    "O-O, Qc2, Rad1) and prepare the central e3–e4 break to open lines against Black's slightly " +
+    "passive setup. Keep the Bg5 pin, pressure d5, and don't rush — your small, lasting edge " +
+    "is the asset.",
+  ideaQuiz: {
+    question: "After the Queen's Gambit Declined, what are White's two main winning plans?",
+    options: [
+      "The minority attack (b4–b5 to weaken c6), or the central e3–e4 break.",
+      "An immediate kingside pawn storm with g4–g5 and a mating attack.",
+      "Trade every piece to reach a quick, safe draw.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The QGD gives White a small, lasting structural edge, not an attack. In Exchange structures White runs the minority attack — b4–b5, trade on c6, and target the weak c6-pawn. Otherwise White prepares the central e3–e4 break to open the position against Black's cramped setup. Patient pressure, not a kingside storm.",
+  },
   tabiyaFen:
     "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
   lines: [
@@ -49,9 +69,17 @@ export const queensGambit: Opening = {
         "Black gains the bishop pair option with ...h6.",
         "Keep the bishop on the h4-d8 diagonal, holding the pin's pressure.",
       ],
+      commonMistakes: [
+        {
+          ply: 12,
+          move: "Bxf6",
+          why: "Don't relieve the pressure. When ...h6 questions the bishop, keep the pin with Bh4 — trading with Bxf6 hands Black the bishop pair and frees the d5-pawn from its main attacker for nothing. Your edge in the QGD is patient pressure on d5; don't give it away.",
+        },
+      ],
     },
     {
       label: "Accepted (2...dxc4)",
+      branch: { from: "Declined (2...e6)", atPly: 3, tryMove: "dxc4" },
       sans: [
         "d4", "d5", "c4", "dxc4", "Nf3", "Nf6", "e3", "e6",
         "Bxc4", "c5", "O-O",
@@ -72,6 +100,7 @@ export const queensGambit: Opening = {
     },
     {
       label: "Slav (2...c6)",
+      branch: { from: "Declined (2...e6)", atPly: 3, tryMove: "c6" },
       sans: [
         "d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3", "dxc4",
         "a4", "Bf5", "e3",

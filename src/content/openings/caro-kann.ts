@@ -22,6 +22,23 @@ export const caroKann: Opening = {
     "Develop the light-squared bishop outside the pawn chain to f5 or g6, then " +
     "play ...e6 with a sound, harmonious position, completing development and " +
     "aiming for a safe, resilient middlegame.",
+  middlegamePlan:
+    "The Caro's whole selling point is a healthy structure with NO bad bishop. Once the " +
+    "light bishop is out (f5/g6) and you've played ...e6, finish developing — ...Nd7, " +
+    "...Ngf6, ...Bd6 or ...Be7, castle — then free yourself with the ...c5 break against d4. " +
+    "Because your pieces are sound, happily trade when cramped and steer toward a solid " +
+    "middlegame or a good endgame, where White's extra space matters far less.",
+  ideaQuiz: {
+    question: "Why does Black develop ...Bf5 BEFORE playing ...e6 in the Caro-Kann?",
+    options: [
+      "So the light-squared bishop gets OUTSIDE the pawn chain and is never bad.",
+      "To attack the e4-pawn and win it.",
+      "To clear the way to castle queenside quickly.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "This is the single idea that defines the Caro-Kann. In the French, ...e6 traps the light bishop behind its own pawns. The Caro plays ...c6 and gets that bishop OUT to f5/g6 first — only then ...e6. Same solidity as the French, but no bad bishop.",
+  },
   tabiyaFen:
     "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
   lines: [
@@ -47,9 +64,17 @@ export const caroKann: Opening = {
         "Calm development, getting ready to castle.",
         "Developing the knight flexibly toward f6 or b6.",
       ],
+      commonMistakes: [
+        {
+          ply: 5,
+          move: "e6",
+          why: "That locks in your light-squared bishop — exactly the French problem the Caro-Kann exists to avoid. You'd just be a worse French (having also spent a move on ...c6). Resolve the centre with ...dxe4 first, get the bishop out to f5, THEN play ...e6.",
+        },
+      ],
     },
     {
       label: "Advance Variation",
+      branch: { from: "Classical Variation", atPly: 4, tryMove: "e5" },
       sans: [
         "e4", "c6", "d4", "d5", "e5", "Bf5", "Nf3", "e6", "Be2", "c5",
       ],
@@ -68,6 +93,7 @@ export const caroKann: Opening = {
     },
     {
       label: "Panov–Botvinnik Attack",
+      branch: { from: "Classical Variation", atPly: 4, tryMove: "exd5" },
       sans: [
         "e4", "c6", "d4", "d5", "exd5", "cxd5",
         "c4", "Nf6", "Nc3", "e6", "Nf3", "Bb4",

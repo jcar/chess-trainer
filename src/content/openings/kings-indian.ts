@@ -23,6 +23,24 @@ export const kingsIndian: Opening = {
     "Fianchetto with ...g6 and ...Bg7, castle, and strike at White's centre " +
     "with ...e5 (or ...c5); when the centre locks, storm the kingside with " +
     "...f5, ...f4 and a pawn avalanche toward the white king.",
+  middlegamePlan:
+    "The King's Indian is a race on opposite wings. Once ...e5 meets d5 and the centre " +
+    "LOCKS, Black attacks the king: play ...f5 (then ...f4), reroute the f6-knight " +
+    "(...Ne8 or ...Nd7) so the f-pawn can roll, lift a rook (...Rf6–h6), and throw ...g5–g4 " +
+    "at the white king. White counters on the queenside with c5 and b4–b5, opening the " +
+    "c-file. Whoever's attack arrives first wins — so don't defend passively; push your " +
+    "kingside pawns and pieces at maximum speed.",
+  ideaQuiz: {
+    question: "The centre locks (White's d5 against Black's e5). Where does Black attack?",
+    options: [
+      "The kingside — ...f5, ...f4 and a pawn storm at the white king.",
+      "The queenside, racing White's own play there.",
+      "The centre, by trading everything off into a draw.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "When the centre is closed, you attack where you have more room and toward the enemy king. White's space points him queenside (c5, b4–b5); Black's ...e5/...f5 setup points at the king, so Black storms the kingside with ...f5–f4 and ...g5–g4. It's a pure opposite-wing race — speed and pawns, not passive defence.",
+  },
   tabiyaFen:
     "rnbqkb1r/pppppp1p/5np1/8/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
   lines: [
@@ -48,9 +66,22 @@ export const kingsIndian: Opening = {
         "Castling into the coming battle.",
         "Piling pressure on d4 and inviting the central tension to resolve.",
       ],
+      commonMistakes: [
+        {
+          ply: 7,
+          move: "d5",
+          why: "In the King's Indian Black plays ...d6, not ...d5. After ...d5 exd5 White gets a big centre with tempo. The whole idea is to let White build the centre and strike it LATER with ...e5. (If you want ...d5, that's a different opening — the Grünfeld — played a move earlier.)",
+        },
+        {
+          ply: 11,
+          move: "b6",
+          why: "Don't drift. The King's Indian lives on the central strike — slow moves like ...b6 let White's space simply suffocate you. Hit the centre now with ...e5 (the move that unlocks your whole kingside plan).",
+        },
+      ],
     },
     {
       label: "Fianchetto Variation",
+      branch: { from: "Classical Variation", atPly: 4, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "g6", "Nf3", "Bg7", "g3", "O-O",
         "Bg2", "d6", "O-O", "Nbd7",
@@ -72,6 +103,7 @@ export const kingsIndian: Opening = {
     },
     {
       label: "Sämisch Variation",
+      branch: { from: "Classical Variation", atPly: 8, tryMove: "f3" },
       sans: [
         "d4", "Nf6", "c4", "g6", "Nc3", "Bg7",
         "e4", "d6", "f3", "O-O", "Be3", "e5",

@@ -23,6 +23,24 @@ export const queensGambitDeclined: Opening = {
     "Hold the d5-point solidly, finish development with ...Be7, ...O-O and " +
     "...Nf6, then free the position with ...b6 and ...Bb7 (or an eventual " +
     "...c5 / ...dxc4) once the pieces are out.",
+  middlegamePlan:
+    "The QGD is patient solidity. Hold d5 and complete development (...Be7, ...O-O, " +
+    "...Nbd7), then free the game: bring the queenside out with ...b6 and ...Bb7, and aim " +
+    "for a freeing break — ...c5, or ...dxc4 followed by ...c5/...e5. Watch for White's " +
+    "minority attack (b4–b5, trading to leave you a weak c6-pawn) and meet it by keeping " +
+    "your structure compact and finding a ...c5 or ...e5 counter-break before the c6-pawn " +
+    "becomes a long-term target.",
+  ideaQuiz: {
+    question: "In QGD Exchange structures White often plays a 'minority attack' (b4–b5). What's the idea?",
+    options: [
+      "Push b4–b5 to swap on c6 and leave Black a weak, backward c-pawn to target.",
+      "Gain kingside space to launch a mating attack.",
+      "Open the a-file so the rook can invade on a8.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "With fewer queenside pawns, White advances b4–b5 and trades on c6, leaving Black a weak c6-pawn on a half-open file — a long-term target. Black answers by keeping the structure tight and seeking the ...c5 or ...e5 break for counterplay before that weakness tells.",
+  },
   tabiyaFen:
     "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
   lines: [
@@ -48,9 +66,17 @@ export const queensGambitDeclined: Opening = {
         "Maintaining the pin rather than conceding the bishop.",
         "Preparing ...Bb7 to free the queenside and challenge the long diagonal.",
       ],
+      commonMistakes: [
+        {
+          ply: 7,
+          move: "c5",
+          why: "Too early. With your king still in the centre and the f6-knight pinned by Bg5, ...c5 opens the position to White's benefit (cxd5 and pressure down the c- and d-files). Complete development first — ...Be7, ...O-O, ...Nbd7 — THEN break with ...c5.",
+        },
+      ],
     },
     {
       label: "Exchange Variation",
+      branch: { from: "Classical main line", atPly: 6, tryMove: "cxd5" },
       sans: [
         "d4", "d5", "c4", "e6", "Nc3", "Nf6", "cxd5", "exd5",
         "Bg5", "c6", "e3", "Bf5",

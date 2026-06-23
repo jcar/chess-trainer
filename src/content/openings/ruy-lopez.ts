@@ -22,6 +22,24 @@ export const ruyLopez: Opening = {
     "Kick the bishop with ...a6 and ...b5 to win space on the queenside, keep " +
     "e5 well defended, develop with ...Be7 and ...d6, and castle into a solid, " +
     "resilient set-up.",
+  middlegamePlan:
+    "In the Closed Ruy, the position is locked and patient. White's textbook plan: " +
+    "reroute the queen's knight Nb1–d2–f1–g3 (the Chigorin maneuver), keep the centre " +
+    "with c3, and prepare a well-timed d4 while eyeing the kingside (Nf5, or a later f4). " +
+    "Don't rush d4 before e4 is safe — that's what Re1 and c3 are for. Black's counter is " +
+    "...Na5 hitting the b3-bishop, then ...c5 expanding on the queenside; meet it calmly and " +
+    "keep improving pieces. Whoever executes their plan more patiently usually wins.",
+  ideaQuiz: {
+    question: "Why does White almost always play c3 in the Closed Ruy?",
+    options: [
+      "To prepare the d4 break and give the bishop a retreat square on c2.",
+      "To open the c-file for the rook immediately.",
+      "To stop Black from ever playing ...b5.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "c3 is the linchpin: it supports a future d2–d4 (White's main central break) and opens b1–c2 so the bishop can drop back to c2 after ...Na5, staying on the b1–h7 diagonal. It's not about the c-file — it's about d4 and keeping the good bishop.",
+  },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
   lines: [
@@ -50,6 +68,18 @@ export const ruyLopez: Opening = {
         "Preparing the d4 break and a square on c2 for the bishop.",
         "Both sides are castled; now the slow strategic battle begins.",
       ],
+      commonMistakes: [
+        {
+          ply: 8,
+          move: "Nxe5",
+          why: "Don't grab e5 — it's defended. After ...Nxe5 (the c6-knight recaptures) you've given a knight for a single pawn. The Ruy bishop PRESSURES the e5-defender; it doesn't win the pawn outright. Castle and build up instead.",
+        },
+        {
+          ply: 12,
+          move: "Bxb5",
+          why: "When ...b5 hits the bishop, retreat — don't grab. Bxb5 axb5 hands over a bishop for one pawn. Drop back to b3, where the bishop keeps its strong diagonal aiming at f7.",
+        },
+      ],
     },
     {
       label: "Exchange Variation",
@@ -75,6 +105,7 @@ export const ruyLopez: Opening = {
     },
     {
       label: "Berlin Defence",
+      branch: { from: "Closed Ruy Lopez (Morphy Defence)", atPly: 5, tryMove: "Nf6" },
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bb5", "Nf6",
         "O-O", "Nxe4", "d4", "Nd6", "Bxc6", "dxc6",

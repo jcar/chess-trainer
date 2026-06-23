@@ -22,6 +22,23 @@ export const frenchDefence: Opening = {
     "Accept a slightly cramped position in return for a rock-solid structure, " +
     "then chip away at White's centre with the ...c5 break (and sometimes ...f6), " +
     "and find good homes for the pieces — especially the problem bishop.",
+  middlegamePlan:
+    "The French is a pawn-chain battle. Strike the BASE of White's chain with ...c5 " +
+    "(and sometimes ...f6 against an e5-chain) and pile up on d4 — don't release the " +
+    "tension early. Solve your 'French bishop' (the c8-bishop hemmed in by ...e6): trade " +
+    "it via ...b6 and ...Ba6, or activate it with ...Bd7–b5. Your play is on the queenside " +
+    "and against d4; White's is the kingside, so push your break before White's attack lands.",
+  ideaQuiz: {
+    question: "White has a pawn chain (e5–d4). Where does Black strike at it?",
+    options: [
+      "At the BASE with ...c5 (and sometimes ...f6).",
+      "At the head with ...e5.",
+      "On the flank with ...h5 and ...g5.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "You attack a pawn chain at its base. White's chain rests on d4, so ...c5 (hitting d4) is the thematic French break, often backed by ...Nc6 and ...Qb6. Undermine the base and the whole chain — and White's space — starts to crumble.",
+  },
   tabiyaFen:
     "rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
   lines: [
@@ -41,6 +58,18 @@ export const frenchDefence: Opening = {
         "Piling more pressure on the d4-pawn.",
         "Defending d4 again and developing.",
         "Hitting d4 a third time and eyeing the weak b2-pawn.",
+      ],
+      commonMistakes: [
+        {
+          ply: 5,
+          move: "Nf6",
+          why: "Careful — White's e5-pawn covers f6, so ...Nf6?? simply hangs the knight to exf6. In the Advance French the knight develops to e7 (or h6); you fight the centre with the ...c5 break, not ...Nf6.",
+        },
+        {
+          ply: 7,
+          move: "cxd4",
+          why: "Don't release the tension early. After ...cxd4 cxd4 White's centre is rock-solid and you've given up your main lever. Keep the pressure on d4 (...Nc6, ...Qb6) and make White resolve it.",
+        },
       ],
     },
     {
@@ -66,6 +95,7 @@ export const frenchDefence: Opening = {
     },
     {
       label: "Classical Variation (3.Nc3)",
+      branch: { from: "Advance Variation", atPly: 4, tryMove: "Nc3" },
       sans: [
         "e4", "e6", "d4", "d5", "Nc3", "Nf6", "Bg5", "Be7",
         "e5", "Nfd7", "Bxe7", "Qxe7",
@@ -87,6 +117,7 @@ export const frenchDefence: Opening = {
     },
     {
       label: "Tarrasch Variation (3.Nd2)",
+      branch: { from: "Advance Variation", atPly: 4, tryMove: "Nd2" },
       sans: [
         "e4", "e6", "d4", "d5", "Nd2", "c5", "exd5", "exd5",
         "Ngf3", "Nc6", "Bb5", "Bd6",
