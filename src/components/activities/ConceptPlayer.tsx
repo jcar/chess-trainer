@@ -11,7 +11,7 @@ import type { ConceptActivity } from "@/content/types";
 import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { buttonClasses } from "@/components/ui/Button";
-import { CheckIcon, PuzzleIcon } from "@/components/icons";
+import { ChevronRightIcon, PuzzleIcon } from "@/components/icons";
 
 /** Build the "Practice now" href for a concept's optional handoff. */
 function practiceHref(p: NonNullable<ConceptActivity["practice"]>): string {
@@ -27,10 +27,20 @@ function practiceHref(p: NonNullable<ConceptActivity["practice"]>): string {
 interface Props {
   activity: ConceptActivity;
   onComplete: (score: number) => void;
+  /** Where the single forward button goes — completes AND advances in one tap. */
+  advanceHref: string;
+  /** Label for the forward button (e.g. "Got it" mid-lesson, "All done!" at the end). */
+  advanceLabel: string;
   kidMode?: boolean;
 }
 
-export function ConceptPlayer({ activity, onComplete, kidMode = false }: Props) {
+export function ConceptPlayer({
+  activity,
+  onComplete,
+  advanceHref,
+  advanceLabel,
+  kidMode = false,
+}: Props) {
   const paragraphs = activity.body.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
   const speakText = [activity.body, ...(activity.points ?? [])].join(". ");
 
@@ -89,13 +99,13 @@ export function ConceptPlayer({ activity, onComplete, kidMode = false }: Props) 
             <PuzzleIcon className="h-5 w-5" /> {activity.practice.label ?? "Practice now"}
           </Link>
         )}
-        <button
-          type="button"
+        <Link
+          href={advanceHref}
           onClick={() => onComplete(100)}
           className={buttonClasses("primary", kidMode ? "kid" : "lg")}
         >
-          Got it <CheckIcon className="h-5 w-5" />
-        </button>
+          {advanceLabel} <ChevronRightIcon className="h-5 w-5" />
+        </Link>
       </div>
     </div>
   );

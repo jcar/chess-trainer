@@ -68,6 +68,9 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
 
   const state = getActivityState(activity.id);
   const next = getNextActivity(mod, activity.id);
+  // Single forward target, reused by the footer and by players (like the concept
+  // card) whose own completion button doubles as the "advance" button.
+  const advanceHref = next ? `/modules/${mod.id}/${next.id}` : `/modules/${mod.id}`;
 
   const handleComplete = useCallback(
     (score: number) => {
@@ -207,7 +210,13 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         />
       )}
       {activity.type === "concept" && (
-        <ConceptPlayer activity={activity} onComplete={handleComplete} kidMode={kidMode} />
+        <ConceptPlayer
+          activity={activity}
+          onComplete={handleComplete}
+          advanceHref={advanceHref}
+          advanceLabel={next ? "Got it" : kidMode ? "All done!" : "Finish"}
+          kidMode={kidMode}
+        />
       )}
 
       <footer className="flex items-center justify-between gap-3 border-t border-line pt-4 sm:pt-5">
@@ -218,17 +227,19 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           <ArrowLeftIcon className="h-4 w-4" />
           <span className="max-w-[9rem] truncate">{mod.title}</span>
         </Link>
-        {state.completed ? (
+        {/* The concept card's own button completes AND advances in one tap, so
+            it owns the forward action — don't render a second one here. */}
+        {activity.type === "concept" ? null : state.completed ? (
           next ? (
             <Link
-              href={`/modules/${mod.id}/${next.id}`}
+              href={advanceHref}
               className={buttonClasses("primary", kidMode ? "kid" : "lg")}
             >
               Next <ChevronRightIcon className="h-5 w-5" />
             </Link>
           ) : (
             <Link
-              href={`/modules/${mod.id}`}
+              href={advanceHref}
               className={buttonClasses("primary", kidMode ? "kid" : "lg")}
             >
               {kidMode ? "All done!" : "Finish"} <CheckIcon className="h-5 w-5" />
