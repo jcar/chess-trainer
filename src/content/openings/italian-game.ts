@@ -23,6 +23,25 @@ export const italianGame: Opening = {
     "Mirror White's healthy development with ...Bc5 and ...Nf6, keep e5 " +
     "defended, castle, and be ready to hit back in the centre with ...d5 once " +
     "pieces are out.",
+  middlegamePlan:
+    "In the quiet Giuoco Pianissimo, both sides are castled and nothing is forced — " +
+    "so improve your pieces and prepare a break. White's signature plan is to reroute " +
+    "the b1-knight: Nbd2–f1–g3 (eyeing f5) or Nbd2–f1–e3 (eyeing d5/f5), then play for " +
+    "d4 or a kingside expansion with h3 and g4. Black's freeing idea is ...d5 (often " +
+    "prepared by ...a6, ...Ba7, ...Re8); if you let it land for free, your edge " +
+    "evaporates. So: knight to g3/e3, restrain ...d5, and pick the wing where you're better.",
+  ideaQuiz: {
+    question:
+      "It's a quiet Giuoco Pianissimo and nothing is forced. What's White's typical plan with the b1-knight?",
+    options: [
+      "Reroute it Nbd2–f1–g3 (or e3) toward the kingside / d5.",
+      "Trade it off as fast as possible to simplify.",
+      "Leave it on b1 and attack on the queenside with the a- and b-pawns.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The b1-knight has no good square on the queenside, so the standard maneuver is Nbd2–f1–g3 (heading for f5) or Nbd2–f1–e3 (eyeing d5 and f5). It joins a kingside build-up and helps restrain Black's ...d5 break — a far better use than trading or leaving it passive.",
+  },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
   lines: [
@@ -45,6 +64,18 @@ export const italianGame: Opening = {
         "Black answers in kind, keeping the centre firm.",
         "King safety first.",
         "Both sides are castled and developed; now a rich maneuvering game begins.",
+      ],
+      commonMistakes: [
+        {
+          ply: 6,
+          move: "Ng5",
+          why: "Too early. The knight lunge at f7 just gets hit by ...d5 (or ...h6), and you lose time chasing nothing. In the quiet Italian you build slowly — c3 and d3 first.",
+        },
+        {
+          ply: 8,
+          move: "Bxf7+",
+          why: "Sacking the bishop for one pawn: after ...Kxf7 the king is perfectly safe and you're simply down a piece. The bishop's job is to PRESSURE f7, not give itself up without a concrete follow-up.",
+        },
       ],
     },
     {
@@ -88,6 +119,27 @@ export const italianGame: Opening = {
         "Retreating but keeping the bishop active on the diagonal.",
         "Cashing in on the lead in development to build a broad centre.",
         "Black grabs another pawn, but White's lead and open lines are the payment.",
+      ],
+    },
+    {
+      label: "Two Knights (3...Nf6 instead of ...Bc5)",
+      branch: { from: "Giuoco Pianissimo (quiet main line)", atPly: 5, tryMove: "Nf6" },
+      sans: [
+        "e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6",
+        "d3", "Be7", "O-O", "O-O", "Re1",
+      ],
+      notes: [
+        "Claiming the centre.",
+        "A symmetrical reply.",
+        "Developing and pressuring e5.",
+        "Defending e5 and developing.",
+        "The Italian bishop eyes f7.",
+        "The Two Knights: instead of mirroring with ...Bc5, Black develops the knight and counter-attacks e4.",
+        "Keep it quiet — calmly defend e4. (The sharp 4.Ng5 exists, but d3 gives a sound, easy game and sidesteps the wild Fried Liver theory.)",
+        "Black develops and prepares to castle.",
+        "King safety first.",
+        "Black castles too.",
+        "Reinforce e4 and steer into the same plan: Nbd2–f1–g3 and a patient build-up.",
       ],
     },
   ],
