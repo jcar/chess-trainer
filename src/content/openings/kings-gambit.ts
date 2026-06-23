@@ -21,6 +21,24 @@ export const kingsGambit: Opening = {
     "Either grab the gambit pawn and try to hold it with ...g5, returning it " +
     "later for a good game, or simply decline with ...Bc5 and develop soundly " +
     "while White's kingside stays loose.",
+  middlegamePlan:
+    "The King's Gambit isn't about the pawn — it's about the open f-file, a big d4-centre, " +
+    "and a lead in development aimed at f7. After ...exf4, build with d4 and Bc4, castle to " +
+    "connect a rook to the f-file, and attack the black king before Black untangles the " +
+    "kingside (Black's ...g5 holds the pawn but loosens his king). Initiative is the " +
+    "currency: if you win the f4-pawn back, do it on your terms, never at the cost of " +
+    "momentum — a King's Gambit played for material is a King's Gambit lost.",
+  ideaQuiz: {
+    question: "What does White get in return for the gambit pawn in the King's Gambit?",
+    options: [
+      "The open f-file, a big centre with d4, and a fast attack on f7 and the black king.",
+      "An immediate forced checkmate.",
+      "A safer king than Black's.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "White sacrifices the f-pawn for activity, not safety — White's own king is, if anything, the more exposed one. The compensation is concrete: the half-open f-file for the rook, a pawn duo on d4/e4, and a developmental head start to throw at f7 before Black consolidates the extra pawn.",
+  },
   tabiyaFen:
     "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
   lines: [
@@ -45,6 +63,7 @@ export const kingsGambit: Opening = {
     },
     {
       label: "King's Gambit Declined",
+      branch: { from: "Kieseritzky Gambit", atPly: 3, tryMove: "Bc5" },
       sans: [
         "e4", "e5", "f4", "Bc5", "Nf3", "d6",
         "Nc3", "Nf6", "Bc4", "Nc6",

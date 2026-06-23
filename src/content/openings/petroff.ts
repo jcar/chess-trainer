@@ -21,6 +21,24 @@ export const petroff: Opening = {
     "Recover the pawn by counterattacking e4, develop quickly and harmoniously, " +
     "and reach a sound, symmetrical middlegame where there are no weaknesses to " +
     "target.",
+  middlegamePlan:
+    "The Petroff is about harmony and zero weaknesses. After you regain the pawn with " +
+    "...Nxe4, don't cling to that knight — be ready to retreat it (...Nf6/...Nd6) the moment " +
+    "it's challenged. Develop everything to natural squares (...Be7 or ...Bd6, ...O-O, " +
+    "...Nc6, an active ...Bf5 or ...Bg4), contest the open e-file with a rook, and steer " +
+    "toward a sound, symmetrical position where White's first-move edge simply fizzles. " +
+    "Accuracy and patience, not counterattack, win Petroff games.",
+  ideaQuiz: {
+    question: "After 3.Nxe5, why does Black play 3...d6 first instead of grabbing 3...Nxe4 at once?",
+    options: [
+      "3...Nxe4?? walks into 4.Qe2! — the knight is loose and 4...Nf6?? 5.Nc6+ even wins the queen.",
+      "To open the light-squared bishop's diagonal before recapturing.",
+      "To prepare quick queenside castling.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The signature Petroff trap. Recapturing immediately with 3...Nxe4?? loses, because 4.Qe2 pins/skewers along the e-file and threatens the knight; if Black unpins with 4...Nf6?? then 5.Nc6+ forks king and queen. So Black kicks the e5-knight first with 3...d6, and only then plays ...Nxe4 safely.",
+  },
   tabiyaFen:
     "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
   lines: [
@@ -47,9 +65,17 @@ export const petroff: Opening = {
         "King safety.",
         "Black castles too — a balanced, healthy position for both sides.",
       ],
+      commonMistakes: [
+        {
+          ply: 5,
+          move: "Nxe4",
+          why: "The Petroff trap! Grabbing the pawn at once with 3...Nxe4?? runs into 4.Qe2 — the knight is loose and the e-file pins it. Worse, 4...Nf6?? 5.Nc6+ forks king and queen. Kick the e5-knight first with 3...d6, THEN recapture on e4 safely.",
+        },
+      ],
     },
     {
       label: "Steinitz Variation (3.d4)",
+      branch: { from: "Classical Variation", atPly: 4, tryMove: "d4" },
       sans: [
         "e4", "e5", "Nf3", "Nf6", "d4", "exd4",
         "e5", "Ne4", "Qxd4", "d5", "exd6", "Nxd6",

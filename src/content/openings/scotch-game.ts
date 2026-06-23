@@ -20,6 +20,24 @@ export const scotchGame: Opening = {
     "Capture on d4 to keep things balanced, develop pieces actively with ...Nf6 " +
     "or ...Bc5, challenge White's centralized knight, and aim for the freeing " +
     "...d5 break.",
+  middlegamePlan:
+    "The Scotch trades the centre pawns early, so the game is about piece activity, not " +
+    "pawn structure. Your d4-knight is the star — keep it centralised, or trade it with " +
+    "Nxc6 to saddle Black with doubled, immobile c-pawns you can target. Finish developing " +
+    "fast (Nc3, Bd3, O-O), put the rooks on the open d- and e-files, and press with your " +
+    "lead in development before Black untangles with the freeing ...d5. Don't chase pawns — " +
+    "chase activity.",
+  ideaQuiz: {
+    question: "Why does White play 3.d4, giving up the central tension so soon?",
+    options: [
+      "To open the position at once and play for fast development and piece activity.",
+      "To win the e5-pawn by force.",
+      "To set up a slow positional squeeze like the Ruy Lopez.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The Scotch trades the d- and e-pawns immediately, opening lines for the pieces. White isn't winning material — White is buying time: rapid development, a strong central knight on d4, and open files. It's the opposite of the slow Ruy Lopez manoeuvring; activity is the whole point.",
+  },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
   lines: [
@@ -46,9 +64,17 @@ export const scotchGame: Opening = {
         "A natural, active square for the bishop, eyeing the kingside.",
         "Black hits back with the freeing central break.",
       ],
+      commonMistakes: [
+        {
+          ply: 6,
+          move: "Qxd4",
+          why: "This drops the queen! Black's knight is already on c6 (developed back on move 2), and it attacks d4 — so 4.Qxd4 Nxd4 simply wins it. (The queen recapture only works in the Center Game, where the knight hasn't reached c6 yet.) Recapture with the knight: Nxd4.",
+        },
+      ],
     },
     {
       label: "Classical Variation (4...Bc5)",
+      branch: { from: "Main line (4...Nf6)", atPly: 7, tryMove: "Bc5" },
       sans: [
         "e4", "e5", "Nf3", "Nc6", "d4", "exd4",
         "Nxd4", "Bc5", "Be3", "Qf6", "c3", "Nge7",

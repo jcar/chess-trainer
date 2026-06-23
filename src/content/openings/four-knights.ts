@@ -22,6 +22,23 @@ export const fourKnights: Opening = {
     "Match White's development move for move, keep the position solid and " +
     "symmetrical, and look to free the game with a timely ...d5 break once the " +
     "pieces are out.",
+  middlegamePlan:
+    "The Four Knights is about a one-tempo edge in a symmetrical position. Don't force " +
+    "matters — complete development (Bb5 or d4, O-O, d3), then break the symmetry in your " +
+    "favour: a well-timed Nd5 outpost, Bxc6 to inflict doubled pawns, or the central d4 " +
+    "break. Pressure e5, claim the half-open lines that open after trades, and convert the " +
+    "small initiative patiently rather than hunting a knockout.",
+  ideaQuiz: {
+    question: "In a dead-symmetrical Four Knights, where does White's small advantage come from?",
+    options: [
+      "The extra tempo of moving first — use it to break the symmetry first (Nd5, Bxc6, or d4).",
+      "A direct attack on the f7-square.",
+      "Winning the e5-pawn outright.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Symmetry favours the player to move — White is effectively one tempo ahead. The plan isn't a quick attack or a pawn grab; it's to be the first to change the structure on good terms: jump a knight into d5, double Black's pawns with Bxc6, or strike with d4. Whoever breaks the symmetry well gets the pull.",
+  },
   tabiyaFen:
     "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
   lines: [

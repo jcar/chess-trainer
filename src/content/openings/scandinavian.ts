@@ -22,6 +22,25 @@ export const scandinavian: Opening = {
     "Recapture on d5, tuck the queen onto a safe square, and develop quickly " +
     "and simply with ...Nf6, ...c6, ...Bf5 and a kingside castle, reaching a " +
     "solid, easy-to-play position with no weaknesses.",
+  middlegamePlan:
+    "The Scandinavian is solid and scheme-like — you build the same healthy setup almost " +
+    "every game. After tucking the queen away, play ...Nf6, then ...c6 (vital: it gives the " +
+    "queen a permanent c7 bolt-hole and stops Nb5 ideas), get the light bishop OUT with " +
+    "...Bf5 or ...Bg4 before ...e6 locks it in, then ...e6, ...Bd6 or ...Be7, ...O-O, " +
+    "...Nbd7. You have no weaknesses; free yourself later with ...c5 or ...e5 and head for a " +
+    "comfortable middlegame or endgame. The one rule: never leave the queen where a knight " +
+    "or bishop hits it with real tempo.",
+  ideaQuiz: {
+    question: "Developing the queen early usually breaks the rules. Why is ...Qxd5 (and ...Qa5) fine here?",
+    options: [
+      "The queen retreats to a safe square and Black develops fast with no weaknesses; ...c6 gives it a permanent bolt-hole.",
+      "Because the early queen threatens immediate checkmate.",
+      "Because White is not allowed to attack the queen.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "White does win a tempo or two chasing the queen — but only a couple, and Black's structure is so sound that it's a fair trade. The key is ...c6: it hands the queen a safe c7 retreat and kills Nb5 tricks, so after that the queen is never harassed with real tempo again.",
+  },
   tabiyaFen:
     "rnb1kbnr/ppp1pppp/8/3q4/8/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 3",
   lines: [
@@ -44,6 +63,13 @@ export const scandinavian: Opening = {
         "A useful move: it gives the queen the c7-square and supports ...d5 ideas.",
         "The Italian bishop comes out to an active diagonal.",
         "The light-squared bishop develops outside the pawn chain — a fine set-up.",
+      ],
+      commonMistakes: [
+        {
+          ply: 5,
+          move: "Qe5+",
+          why: "A tempting check that misplaces the queen. After 3...Qe5+?? 4.Be2 the queen sits exposed in the centre and White gains tempo developing (Nf3 hits it next). Retreat to a safe, useful square instead — 3...Qa5 (eyeing c3 and the a-file) or 3...Qd6.",
+        },
       ],
     },
     {

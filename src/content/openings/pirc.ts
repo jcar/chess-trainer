@@ -21,6 +21,24 @@ export const pirc: Opening = {
     "Fianchetto the bishop to g7, castle, and stay compact, then hit the centre " +
     "with a well-timed ...e5 or ...c5 to free the position and turn White's " +
     "space into overextension.",
+  middlegamePlan:
+    "The Pirc is a coiled spring: fianchetto ...Bg7, castle, stay compact, and let White " +
+    "overextend — then uncoil with ...e5 or ...c5 to hit the centre. Route your pieces " +
+    "behind the break (...Nc6 or ...Nbd7, ...Re8, sometimes ...Nf6–d7 to free the g7-bishop " +
+    "and the f-pawn). Against the Austrian Attack (f4) don't sit still — White wants f5 and " +
+    "a kingside storm, so strike back in the centre at once with ...c5 or ...e5 and trade " +
+    "off the attackers before the pawn avalanche arrives.",
+  ideaQuiz: {
+    question: "Black has fianchettoed and castled, conceding the big centre. What's the plan now?",
+    options: [
+      "Counterattack the centre with a well-timed ...e5 or ...c5 and exploit any overextension.",
+      "Sit tight and shuffle pieces, hoping White runs out of ideas.",
+      "Launch an immediate kingside pawn storm of Black's own.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Like all hypermodern defences, the Pirc concedes space on purpose, then challenges it. Once developed and safe, Black breaks with ...e5 or ...c5 to open lines for the g7-bishop and the rooks, turning White's broad centre into a target. Passive shuffling just lets the space crush you.",
+  },
   tabiyaFen:
     "rnbqkb1r/ppp1pp1p/3p1np1/8/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4",
   lines: [
@@ -46,6 +64,7 @@ export const pirc: Opening = {
     },
     {
       label: "Austrian Attack",
+      branch: { from: "Classical Variation", atPly: 6, tryMove: "f4" },
       sans: [
         "e4", "d6", "d4", "Nf6", "Nc3", "g6",
         "f4", "Bg7", "Nf3", "O-O", "Bd3", "Nc6",

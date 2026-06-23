@@ -22,6 +22,23 @@ export const viennaGame: Opening = {
     "Develop naturally and contest the centre. Against the quiet lines mirror " +
     "with ...Nc6, ...Nf6 and ...Bc5; against f4, hit back in the centre with " +
     "...d5 rather than grabbing the pawn.",
+  middlegamePlan:
+    "The Vienna's flexibility is the whole point: the c3-knight already guards e4, so you " +
+    "choose the plan. Quiet route — Bc4, d3, Nf3, O-O, then expand or pop a knight into d5. " +
+    "Aggressive route — play f4, and once the f-file opens, aim Bc4 and the f1-rook at f7 " +
+    "and the black king. Because the knight defends e4, f4 never simply drops a pawn — meet " +
+    "...d5 counters calmly and keep developing toward the attack.",
+  ideaQuiz: {
+    question: "Why is the Vienna Gambit (an early f4) sound, when a loose f-pawn push usually isn't?",
+    options: [
+      "The knight already on c3 guards e4, so f4 doesn't leave e4 hanging.",
+      "Because it forces an immediate checkmate.",
+      "Because Black is not allowed to capture on f4.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "In most ...e5 lines an early f4 abandons e4. The Vienna plays 2.Nc3 first, so the knight covers e4 — now f4 opens the f-file and challenges the centre without dropping anything. That extra defender is exactly why the gambit is respectable rather than reckless.",
+  },
   tabiyaFen:
     "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
   lines: [
@@ -42,6 +59,7 @@ export const viennaGame: Opening = {
     },
     {
       label: "Vienna Gambit",
+      branch: { from: "Quiet main line", atPly: 3, tryMove: "Nf6" },
       sans: ["e4", "e5", "Nc3", "Nf6", "f4", "d5", "fxe5", "Nxe4", "Nf3"],
       notes: [
         "Claiming the centre.",
@@ -53,6 +71,13 @@ export const viennaGame: Opening = {
         "Taking the e-pawn.",
         "Black regains the pawn on e4.",
         "Developing and fighting for the initiative in a lively position.",
+      ],
+      commonMistakes: [
+        {
+          ply: 8,
+          move: "d3",
+          why: "Develop the knight, not the pawn. After 4...Nxe4, the move 5.d3? kicks the knight but walks into 5...Qh4+! 6.g3 Nxg3! 7.hxg3 Qxg3+ and Black wins material with a raging attack. Play 5.Nf3 — it develops and covers h4.",
+        },
       ],
     },
   ],
