@@ -22,6 +22,24 @@ export const grunfeld: Opening = {
     "Let White overextend, then strike with ...c5 and the g7-bishop down the " +
     "long diagonal, hitting d4 and the queenside until White's proud centre " +
     "becomes a target rather than a strength.",
+  middlegamePlan:
+    "The Grünfeld is the Alekhine's big brother: invite White's d4/e4 centre, then tear it " +
+    "down. The g7-bishop rakes the long diagonal, and ...c5 (backed by ...Nc6, ...Qa5, " +
+    "...Bg4 and ...Rd8) hammers d4 and White's pawns. In the Exchange line, target the " +
+    "c3-pawn White creates — pile up until the proud centre cracks. Don't sit still: the " +
+    "moment White's pawns advance, attack them, because a centre you can't pressure is a " +
+    "centre that simply wins.",
+  ideaQuiz: {
+    question: "White builds a big d4/e4 pawn centre in the Grünfeld. How should Black treat it?",
+    options: [
+      "As a target — attack it at once with ...c5, the g7-bishop and piece pressure.",
+      "As unstoppable — settle into a passive defensive crouch.",
+      "By copying it with Black's own central pawns.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The Grünfeld is hypermodern to its core: a pawn centre is only strong if it can't be hit. Black hands White the centre, then assaults it — ...c5 and ...Bg7 strike d4, ...Nc6/...Qa5/...Rd8 pile on, and in the Exchange the doubled c3-pawn becomes a chronic target. Activity, not occupation.",
+  },
   tabiyaFen:
     "rnbqkb1r/ppp1pp1p/5np1/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 4",
   lines: [
@@ -47,9 +65,17 @@ export const grunfeld: Opening = {
         "The classic Grünfeld bishop, eyeing f7.",
         "The thematic break — Black hits the proud centre at last.",
       ],
+      commonMistakes: [
+        {
+          ply: 9,
+          move: "Nb6",
+          why: "Trade on c3 first. Retreating with 5...Nb6 lets White keep a broad, healthy e4/d4 centre with NO weakened c-pawns — you've handed back the Grünfeld's main trump. Play ...Nxc3 to saddle White with the doubled c-pawn, then attack d4 with ...c5, ...Bg7 and ...Nc6.",
+        },
+      ],
     },
     {
       label: "Russian System",
+      branch: { from: "Exchange Variation", atPly: 6, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "g6", "Nc3", "d5",
         "Nf3", "Bg7", "Qb3", "dxc4", "Qxc4", "O-O",

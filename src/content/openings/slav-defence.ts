@@ -20,6 +20,24 @@ export const slavDefence: Opening = {
   blackPlan:
     "Keep d5 supported by ...c6, get the light bishop out to f5 (or g4) before " +
     "playing ...e6, and complete development comfortably while staying solid.",
+  middlegamePlan:
+    "The Slav's edge over the QGD is that your light-squared bishop gets OUT to f5 or g4 " +
+    "before ...e6 ever locks it in — so you never own a bad bishop. The scheme: support d5 " +
+    "with ...c6, develop the bishop actively, then ...e6, ...Be7 (or ...Bb4), ...O-O, " +
+    "...Nbd7. If you take on c4, don't cling to the pawn with ...b5 (a4 hits it) — give it " +
+    "back and enjoy free development. Free the game with a timely ...c5 or ...e5 and steer " +
+    "toward a sound, comfortable middlegame.",
+  ideaQuiz: {
+    question: "What does the Slav (...c6) do better than the Queen's Gambit Declined (...e6)?",
+    options: [
+      "It keeps the light-squared bishop free to reach f5/g4 before ...e6 — so no bad bishop.",
+      "It wins the c4-pawn by force.",
+      "It launches a quick kingside attack.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Both defences prop up d5, but the QGD's ...e6 shuts in the c8-bishop. The Slav plays ...c6 instead, so that bishop can come out to f5 or g4 first; only then ...e6. Same rock-solid structure, but with Black's problem piece solved — that's why it's a world-champion favourite.",
+  },
   tabiyaFen:
     "rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
   lines: [
@@ -45,9 +63,17 @@ export const slavDefence: Opening = {
         "Regaining the pawn with a healthy development edge.",
         "Pinning the knight and fighting for the centre.",
       ],
+      commonMistakes: [
+        {
+          ply: 9,
+          move: "b5",
+          why: "Don't try to hold the gambit pawn. After 6.a4, the move 6...b5?? 7.axb5 cxb5 8.Nxb5 just drops material and rips open the a-file onto your rook. The Slav cheerfully gives c4 back: develop the bishop with ...Bf5 and finish your easy game.",
+        },
+      ],
     },
     {
       label: "Exchange Variation",
+      branch: { from: "Main line (4...dxc4)", atPly: 4, tryMove: "cxd5" },
       sans: [
         "d4", "d5", "c4", "c6", "cxd5", "cxd5", "Nc3", "Nf6",
         "Nf3", "Nc6", "Bf4",

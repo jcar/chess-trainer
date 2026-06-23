@@ -22,6 +22,24 @@ export const benoni: Opening = {
     "Embrace the imbalance: fianchetto on g7, push the queenside majority with " +
     "...a6 and ...b5, and use the half-open e-file and active pieces to make " +
     "the cramped position bite back.",
+  middlegamePlan:
+    "The Benoni is a deliberate imbalance: you give White central space for a queenside pawn " +
+    "majority, a monster g7-bishop, and the half-open e-file. The plan is dynamite, not " +
+    "defence — fianchetto, castle, then roll the majority with ...a6 and ...b5 (the thematic " +
+    "break), put rooks on the b- and e-files, and pressure e4. Keep the pieces active around " +
+    "the d6/c5 chain. White's danger is a central e4–e5 push or an f4 storm; blunt it with " +
+    "...Re8 and ...Na6–c7, then counterpunch on the queenside where you're stronger.",
+  ideaQuiz: {
+    question: "Black is cramped in the Benoni. Where does the counterplay come from?",
+    options: [
+      "The queenside majority and the ...b5 break, plus the g7-bishop and half-open e-file.",
+      "A direct kingside mating attack straight from the opening.",
+      "Trading queens and grinding the cramped position to a draw.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The Benoni trades space for dynamism. Black's assets are all on the queenside and the long diagonal: a 3-vs-2 majority that rolls with ...a6/...b5, the fianchettoed bishop hitting d4, and rooks on the open b- and e-files. The cramp is the price; the queenside break is the payoff.",
+  },
   tabiyaFen:
     "rnbqkb1r/pp1p1ppp/4pn2/2pP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
   lines: [
@@ -49,6 +67,7 @@ export const benoni: Opening = {
     },
     {
       label: "Fianchetto Variation",
+      branch: { from: "Modern Benoni", atPly: 10, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "c5", "d5", "e6",
         "Nc3", "exd5", "cxd5", "d6", "Nf3", "g6", "g3", "Bg7",

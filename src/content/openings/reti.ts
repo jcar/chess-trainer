@@ -22,6 +22,24 @@ export const reti: Opening = {
     "Decide how to meet the c4 pressure — support d5, exchange on c4, or push " +
     "...d4 to gain space — then develop soundly and contest the long diagonal " +
     "White is fighting over.",
+  middlegamePlan:
+    "The Réti is a way of thinking: pressure the centre from the wings, stay flexible, and " +
+    "transpose into whatever favours you. Fianchetto Bg2, castle, and keep options open — " +
+    "trade on d5 and pressure it, expand with b3/Bb2 (double fianchetto), or play d4 and " +
+    "slide into a Catalan/QGD a tempo up. If Black overextends with ...d4, undermine it " +
+    "(e3, the c-pawn, or a quick b4) rather than blockading. Let Black commit the structure " +
+    "first, then pick the one that suits you.",
+  ideaQuiz: {
+    question: "What is the core Réti idea behind 1.Nf3 and 2.c4?",
+    options: [
+      "Pressure Black's centre (especially d5) from the flank and stay flexible to transpose.",
+      "Build a big pawn centre with e4 and d4 immediately.",
+      "Launch a direct attack on f7.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The Réti is hypermodern: rather than occupy the centre, White attacks it from a distance with c4 and a g2-fianchetto, keeping the pawns flexible. Its strength is transpositional — White lets Black commit, then steers into the most favourable structure (often a reversed/extra-tempo Catalan or QGD).",
+  },
   tabiyaFen:
     "rnbqkbnr/ppp1pppp/8/3p4/2P5/5N2/PP1PPPPP/RNBQKB1R b KQkq - 0 2",
   lines: [
@@ -46,6 +64,7 @@ export const reti: Opening = {
     },
     {
       label: "Advance (2...d4)",
+      branch: { from: "Main Line", atPly: 3, tryMove: "d4" },
       sans: [
         "Nf3", "d5", "c4", "d4",
         "e3", "Nc6", "exd4", "Nxd4", "Nxd4", "Qxd4",

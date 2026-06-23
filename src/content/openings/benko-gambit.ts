@@ -22,6 +22,24 @@ export const benkoGambit: Opening = {
     "Give up the b-pawn for lasting initiative: open the a- and b-files, " +
     "fianchetto on g7, double rooks against White's queenside, and let the " +
     "pressure grind — comfortable even without the pawn.",
+  middlegamePlan:
+    "The Benko is the most positionally clear gambit in chess: you give the b-pawn for " +
+    "permanent, low-risk pressure. Open the a- and b-files, fianchetto ...Bg7 on the long " +
+    "diagonal, play ...d6 and ...Nbd7, then double rooks on the a- and b-files and pile onto " +
+    "White's queenside (a2, b2, and the loose pawns). The beauty is that the pressure never " +
+    "expires — even in an endgame a pawn down, White stays tied up. Don't chase a quick " +
+    "attack; just squeeze the queenside until something drops.",
+  ideaQuiz: {
+    question: "What does Black get for the pawn in the Benko Gambit?",
+    options: [
+      "Permanent pressure on the open a- and b-files and the long diagonal — lasting even into endgames.",
+      "A fast checkmate against the white king.",
+      "An extra pawn back within a few moves by force.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Unlike most gambits, the Benko isn't about a quick attack — it's about lasting structural pressure. The half-open a- and b-files plus the g7-bishop bear down on White's queenside for the entire game, and uniquely the compensation persists into the endgame, which is why it's so safe to play a pawn down.",
+  },
   tabiyaFen:
     "rnbqkb1r/p2ppppp/5n2/1ppP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
   lines: [
@@ -51,6 +69,7 @@ export const benkoGambit: Opening = {
     },
     {
       label: "Declined (4.Nf3)",
+      branch: { from: "Accepted", atPly: 6, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "c5", "d5", "b5",
         "Nf3", "bxc4", "Nc3", "d6", "e4", "g6",

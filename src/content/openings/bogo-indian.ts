@@ -21,6 +21,24 @@ export const bogoIndian: Opening = {
     "Trade or retreat the b4-bishop to finish development smoothly, keep the " +
     "position solid and flexible, and aim for the freeing ...d6/...e5 or ...d5 " +
     "breaks once the pieces are out.",
+  middlegamePlan:
+    "The Bogo is a low-theory cousin of the Nimzo: the check ...Bb4+ eases development and " +
+    "dodges sharp preparation. After White blocks (Bd2 or Nbd2), trade or back up the " +
+    "bishop, then aim for the classic ...d6 and ...e5 freeing break (sometimes ...d5 " +
+    "instead), with ...Qe7 and ...Nc6 supporting it. You're not refuting anything — develop " +
+    "smoothly, keep the position sound and flexible, and equalise comfortably while White's " +
+    "extra space stays harmless.",
+  ideaQuiz: {
+    question: "What is the point of the early check 3...Bb4+ in the Bogo-Indian?",
+    options: [
+      "It eases development and sidesteps heavy theory; the bishop then trades or retreats.",
+      "It wins the d4-pawn by force.",
+      "It sets up an immediate kingside attack.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The Bogo is the practical, low-maintenance Indian. ...Bb4+ develops with tempo and avoids the dense theory of the Nimzo and Queen's Indian; after White interposes, Black trades or retreats the bishop and settles into a solid, flexible position aiming for ...e5 or ...d5. It's about ease, not a knockout.",
+  },
   tabiyaFen:
     "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 2 4",
   lines: [
@@ -47,6 +65,7 @@ export const bogoIndian: Opening = {
     },
     {
       label: "Nimzowitsch (4.Nbd2)",
+      branch: { from: "Main Line (4.Bd2)", atPly: 6, tryMove: "Nbd2" },
       sans: [
         "d4", "Nf6", "c4", "e6", "Nf3", "Bb4+",
         "Nbd2", "O-O", "a3", "Bxd2+", "Bxd2", "d6",

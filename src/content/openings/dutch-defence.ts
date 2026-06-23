@@ -22,6 +22,24 @@ export const dutchDefence: Opening = {
     "Stake a kingside claim with ...f5, fight for the e4-square, develop the " +
     "pieces behind the pawn, and aim for a kingside initiative or a firm grip " +
     "on the centre.",
+  middlegamePlan:
+    "The Dutch is about e4 and a kingside initiative — pick a setup and commit. The " +
+    "Leningrad (...g6, ...Bg7, ...d6) is King's-Indian-style: castle and break with ...e5. " +
+    "The Classical (...e6, ...d6, ...Be7) prepares the same ...e5. The Stonewall (...d5, " +
+    "...e6, ...c6) clamps e4 and parks a knight on e4 for a direct kingside attack. Whichever " +
+    "you choose, develop the pieces behind the f5-pawn, mind the e6/king light squares, and " +
+    "play for ...e5 or a piece-led assault on White's king.",
+  ideaQuiz: {
+    question: "What does 1...f5 fight for in the Dutch, and at what cost?",
+    options: [
+      "It fights for the e4-square and a kingside initiative, at the cost of slightly loosening the king.",
+      "It wins the d4-pawn immediately.",
+      "It guarantees Black a safer king than White's.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "1...f5 stakes a kingside claim and grips e4, the square the Dutch is built around. The trade-off is honest: the f-pawn's advance loosens the king's diagonal (watch the e6/g6 light squares), but in return Black gets an unbalanced fight and genuine attacking chances most 1.d4 players dislike facing.",
+  },
   tabiyaFen:
     "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
   lines: [

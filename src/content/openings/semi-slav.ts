@@ -21,6 +21,25 @@ export const semiSlav: Opening = {
     "Hold the d5 strongpoint with ...c6 and ...e6, then unwind: capture on c4, " +
     "play ...b5 to gain queenside space, develop the light-squared bishop " +
     "actively, and aim for a freeing ...c5 or ...e5 break.",
+  middlegamePlan:
+    "The Semi-Slav is a fortress that turns into a battering ram. You prop up d5 with BOTH " +
+    "...c6 and ...e6, then unwind on the queenside: take ...dxc4, play ...b5 to gain space " +
+    "and chase the bishop, develop ...Bb7 on the long diagonal, and prepare the freeing " +
+    "...c5 break. The Meran (after e3) is the main road — fast queenside play; the Botvinnik " +
+    "and Anti-Moscow lines (Bg5) are razor-sharp and reward exact preparation. Your trumps " +
+    "are the active light-squared bishop and queenside space; race them against White's " +
+    "central majority.",
+  ideaQuiz: {
+    question: "How does Black turn the solid Semi-Slav wall into active play?",
+    options: [
+      "Take ...dxc4 and expand on the queenside with ...b5, ...Bb7 and a later ...c5.",
+      "Castle queenside and storm the kingside with ...g5.",
+      "Trade every piece for a dead-drawn endgame.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The ...c6/...e6 wall is solid but passive on its own. Black animates it by grabbing c4 and then expanding: ...b5 gains space and hits the bishop, ...Bb7 activates the problem piece on the long diagonal, and ...c5 frees the centre. Solidity first, then queenside dynamism.",
+  },
   tabiyaFen:
     "rnbqkb1r/pp3ppp/2p1pn2/3p4/2PP4/2N2N2/PP2PPPP/R1BQKB1R w KQkq - 0 5",
   lines: [
@@ -49,6 +68,7 @@ export const semiSlav: Opening = {
     },
     {
       label: "Botvinnik Variation (5.Bg5)",
+      branch: { from: "Meran Variation", atPly: 8, tryMove: "Bg5" },
       sans: [
         "d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3",
         "e6", "Bg5", "dxc4", "e4", "b5",

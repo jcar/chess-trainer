@@ -23,6 +23,24 @@ export const larsen: Opening = {
     "Grab the centre with ...e5/...d5 and develop naturally; challenge the b2 " +
     "bishop's diagonal (e.g. defending e5 solidly) and aim to prove the " +
     "fianchetto is slow.",
+  middlegamePlan:
+    "Larsen's Opening is all about the b2-bishop on the long dark diagonal, pressuring e5 " +
+    "and the centre from the wing. Fianchetto b3–Bb2, restrain the centre with e3, develop " +
+    "the knights (Nf3, sometimes a Bird-like f4 clamp on e5), then choose a central break — " +
+    "c4, d4, or f4 — once you're ready. Keep pressure on e5 (Bb5 pins, Nf3, f4) so Black " +
+    "never gets a free, unchallenged big centre. It's a plans-over-moves opening: keep the " +
+    "diagonal open and trade off Black's best defenders of the dark squares.",
+  ideaQuiz: {
+    question: "What is the key piece in Larsen's Opening (1.b3)?",
+    options: [
+      "The b2-bishop, raking the long a1–h8 diagonal and pressuring e5 and the centre.",
+      "The queen, swinging out early to attack.",
+      "The a-pawn, storming the queenside.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "1.b3 prepares Bb2, and that bishop is the whole point — from b2 it controls the long dark-squared diagonal, eyeing e5 and the centre from the flank. White's plans (the e3 restraint, the c4/d4/f4 breaks, even a Bird-like f4) all revolve around keeping that diagonal working.",
+  },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/4p3/8/1P2P3/PBPP1PPP/RN1QKBNR b KQkq - 0 3",
   lines: [
@@ -49,6 +67,7 @@ export const larsen: Opening = {
     },
     {
       label: "Reversed setup (1...d5)",
+      branch: { from: "Classical (1...e5)", atPly: 1, tryMove: "d5" },
       sans: [
         "b3", "d5", "Bb2", "Nf6", "e3", "e6",
         "f4", "Be7", "Nf3", "O-O", "Be2", "c5",

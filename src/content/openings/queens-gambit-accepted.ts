@@ -21,6 +21,24 @@ export const queensGambitAccepted: Opening = {
     "Don't cling to the extra pawn — develop quickly, complete kingside " +
     "castling, and strike at White's centre with a well-timed ...c5 (and often " +
     "...a6 to gain queenside space), giving the pawn back for free play.",
+  middlegamePlan:
+    "The QGA's golden rule: don't be greedy — the c4-pawn is a loan, not a prize. Give it " +
+    "back, develop fast (...Nf6, ...e6, ...Be7, ...O-O), and hit the centre with ...c5. Gain " +
+    "queenside space with ...a6 and ...b5 to kick White's c4-bishop, then fianchetto with " +
+    "...Bb7. Once you've traded ...cxd4 and freed your game, you get easy, active piece play " +
+    "against White's slightly loose centre. Clinging to the pawn (an early ...b5 to defend " +
+    "c4) just loses time and walks into a4/b3 hits.",
+  ideaQuiz: {
+    question: "What's the correct attitude toward the extra c4-pawn in the QGA?",
+    options: [
+      "Treat it as a loan — give it back for fast development and the freeing ...c5 break.",
+      "Defend it at all costs with ...b5 and ...a6.",
+      "It guarantees a winning endgame a pawn up.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The c4-pawn can't be held without falling badly behind in development. The whole point of accepting is to deflect White's d-pawn, then return the c-pawn at leisure and emerge with free, active pieces and the ...c5 break. Hoarding it is the classic beginner's error.",
+  },
   tabiyaFen:
     "rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
   lines: [
@@ -44,9 +62,17 @@ export const queensGambitAccepted: Opening = {
         "King safety first.",
         "Gaining queenside space and preparing ...b5 to chase the bishop.",
       ],
+      commonMistakes: [
+        {
+          ply: 7,
+          move: "b5",
+          why: "Don't cling to the pawn. Trying to hold c4 with 4...b5?? runs into 5.a4! c6 6.axb5 cxb5 7.b3! and the queenside falls apart, costing material. Give the pawn back: play ...e6, develop, and break with ...c5.",
+        },
+      ],
     },
     {
       label: "Central Variation (3.e4)",
+      branch: { from: "Main Line", atPly: 4, tryMove: "e4" },
       sans: [
         "d4", "d5", "c4", "dxc4", "e4", "e5",
         "Nf3", "exd4", "Bxc4", "Nc6",

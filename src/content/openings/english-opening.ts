@@ -24,6 +24,24 @@ export const englishOpening: Opening = {
     "Contest the centre and the d5-square in return — either mirror White " +
     "symmetrically or grab the centre with ...e5 and play for a reversed " +
     "Sicilian, developing harmoniously before committing the structure.",
+  middlegamePlan:
+    "The English is a fight for d5 and a flexible, transpositional game. Fianchetto Bg2, " +
+    "develop Nc3 and Nf3, castle, then pick the plan the centre allows: queenside expansion " +
+    "(Rb1, a3, b4–b5 — a reversed-Sicilian space push), the central d4 break, or simply " +
+    "piling on d5. In the Symmetrical, use your extra tempo to break the symmetry first; in " +
+    "reversed-Sicilian lines, you're playing Black's favourite opening a move up. Understand " +
+    "the plans and the moves follow.",
+  ideaQuiz: {
+    question: "Which central square does the English fight hardest to control?",
+    options: [
+      "d5 — pressured by the c-pawn, the c3-knight and the g2-bishop.",
+      "e4 — by occupying it with a pawn as soon as possible.",
+      "f7 — as the target of a quick attack.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "1.c4 is a flank move that fights for the centre from the side, and its laser focus is d5: the c-pawn, a knight on c3, and the fianchettoed g2-bishop all bear down on it. Control d5 (or trade to fix it as a target) and the flexible English plans — queenside expansion or a d4 break — flow naturally.",
+  },
   tabiyaFen:
     "rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq - 0 1",
   lines: [
@@ -50,6 +68,7 @@ export const englishOpening: Opening = {
     },
     {
       label: "Reversed Sicilian",
+      branch: { from: "Symmetrical Variation", atPly: 1, tryMove: "e5" },
       sans: [
         "c4", "e5", "Nc3", "Nf6",
         "Nf3", "Nc6", "g3", "Bb4", "Bg2", "O-O",

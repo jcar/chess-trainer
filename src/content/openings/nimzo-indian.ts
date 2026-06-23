@@ -23,6 +23,24 @@ export const nimzoIndian: Opening = {
     "Pin and pressure the c3-knight, dispute the e4-square, and be ready to " +
     "trade the bishop for the knight to leave White with doubled, vulnerable " +
     "pawns. Strike at the centre with ...c5 and ...d5 once developed.",
+  middlegamePlan:
+    "The Nimzo is a battle over e4 and White's pawns. Your bishop pins c3 and, at the right " +
+    "moment, takes it — saddling White with doubled, immobile c-pawns. Then play against " +
+    "them: clamp with ...c5 and ...d6, route a knight to a5 (or ...Na6–c7) to hit c4, and " +
+    "blockade the light squares (...b6, ...Ba6, ...Qa6 piling on c4). If instead you keep " +
+    "the bishop (Rubinstein), break with ...d5 and ...c5 for a classical centre fight. " +
+    "Either way: control e4, and make those doubled pawns a long-term target.",
+  ideaQuiz: {
+    question: "Why is Black happy to give up the bishop for a knight with ...Bxc3 in the Nimzo?",
+    options: [
+      "It leaves White with doubled, immobile c-pawns and hands Black the light squares (above all e4).",
+      "It wins a pawn on the spot.",
+      "It opens an immediate direct attack on the white king.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The Nimzo trades a long-term concession (the bishop pair) for a structural one (White's shattered c-pawns) plus firm control of e4 and the light squares. Black then blockades and targets the c4/c3 pawns. It's the classic 'structure vs bishops' trade-off — and Black's structure usually does the talking.",
+  },
   tabiyaFen:
     "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 2 4",
   lines: [
@@ -49,6 +67,7 @@ export const nimzoIndian: Opening = {
     },
     {
       label: "Classical (Qc2) Variation",
+      branch: { from: "Rubinstein Variation", atPly: 6, tryMove: "Qc2" },
       sans: [
         "d4", "Nf6", "c4", "e6", "Nc3", "Bb4",
         "Qc2", "O-O", "a3", "Bxc3+", "Qxc3", "b6",

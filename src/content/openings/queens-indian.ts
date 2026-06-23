@@ -20,6 +20,24 @@ export const queensIndian: Opening = {
     "Develop the bishop to b7 (or a6 to hit c4), control e4, complete " +
     "development with ...Be7 and castling, and look for the freeing ...d5 or " +
     "...c5 breaks at the right moment.",
+  middlegamePlan:
+    "The Queen's Indian is a quiet fight for one square: e4. Your b7-bishop (or ...Ba6, " +
+    "hitting c4) controls it from afar; back it up with ...Ne4 jumps, ...d5, or ...f5 ideas. " +
+    "Finish developing (...Be7, ...O-O, then ...d5 or ...c5), neutralise White's central " +
+    "space by trading, and aim for a rock-solid position where White's edge is symbolic. " +
+    "...Ba6 is the sharp try — it pressures c4 directly and provokes a concession (b3) " +
+    "before you reposition the bishop.",
+  ideaQuiz: {
+    question: "What single square is the whole Queen's Indian struggle about?",
+    options: [
+      "e4 — Black's b7-bishop and pieces contest it from a distance.",
+      "h7 — defending against a kingside mating attack.",
+      "d4 — winning White's centre pawn outright.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The Queen's Indian is hypermodern control, not occupation. Black doesn't grab the centre with pawns; the b7-bishop (reinforced by ...Ne4, ...d5 or ...f5) fights for e4 from afar. Deny White a free e4 and the big centre never fully forms — Black equalises by control.",
+  },
   tabiyaFen:
     "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 0 4",
   lines: [
