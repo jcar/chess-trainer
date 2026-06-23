@@ -6,6 +6,7 @@
 // the app shell from the root layout. All data is embedded (OPENINGS) — fully
 // static, no fetch.
 
+import Link from "next/link";
 import { useState } from "react";
 import { getOpening } from "@/content/openings";
 import type { TrainerLine } from "@/lib/trainer/lines";
@@ -171,9 +172,18 @@ function RepertoireSummary() {
                 {o.firstMoves}
               </span>
             </span>
-            <Chip tone={someDue ? "amber" : "sage"}>
-              {someDue ? "In progress" : "Mastered"}
-            </Chip>
+            <span className="flex shrink-0 items-center gap-2">
+              <Chip tone={someDue ? "amber" : "sage"}>
+                {someDue ? "In progress" : "Mastered"}
+              </Chip>
+              <Link
+                href={`/play?fen=${encodeURIComponent(o.tabiyaFen)}&color=${o.trainerColor}`}
+                className="rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink-soft transition hover:border-primary/40 hover:text-ink"
+                title="Play this position out vs the engine"
+              >
+                Spar
+              </Link>
+            </span>
           </Card>
         );
       })}

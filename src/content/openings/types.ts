@@ -23,6 +23,17 @@ export interface OpeningLine {
   notes?: (string | undefined)[];
   /** Optional start position; defaults to the standard initial position. */
   startFen?: string;
+  /**
+   * Marks this line as an opponent DEVIATION from another line, so the trainer
+   * can frame it: "at move N of {from}, the opponent plays {tryMove} instead —
+   * your move?". Presentational only; the drill mechanic is unchanged.
+   */
+  branch?: { from: string; atPly: number; tryMove: string };
+  /**
+   * Common WRONG learner replies, by ply (0-based index into `sans`), each with a
+   * teaching explanation shown when the learner plays that move in the drill.
+   */
+  commonMistakes?: { ply: number; move: string; why: string }[];
 }
 
 /** A complete opening: its character, plans, key position, and lines. */
@@ -51,6 +62,19 @@ export interface Opening {
   blackPlan: string;
   /** Key tabiya FEN (the position after the defining moves). */
   tabiyaFen: string;
+  /**
+   * The concrete plan once the opening/theory ends — the pawn break to aim for,
+   * where the pieces belong, the typical maneuver. Richer than whitePlan/blackPlan
+   * (which describe the opening's idea); this is "now what do I actually do?".
+   */
+  middlegamePlan?: string;
+  /** A multiple-choice "what's the idea?" question for the trainer's checkpoint. */
+  ideaQuiz?: {
+    question: string;
+    options: string[];
+    correctIndex: number;
+    explanation: string;
+  };
   /** Main line first; key variations after. At least one. */
   lines: OpeningLine[];
 }

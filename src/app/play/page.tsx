@@ -6,7 +6,8 @@
 // with analyze()). A no-params static route.
 
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import type { Orientation } from "@/content/types";
 import { ChessGame, uciToMove, type SimpleMove } from "@/lib/chess/game";
 import { getEngine } from "@/lib/chess/stockfish";
@@ -78,9 +79,43 @@ function moveLabel(plyIndex: number): string {
 type Phase = "setup" | "playing" | "gameover" | "reviewing" | "done";
 
 export default function PlayPage() {
+  // useSearchParams needs a Suspense boundary under `output: export`.
+  return (
+    <Suspense fallback={<main className="space-y-5" />}>
+      <PlayGame />
+    </Suspense>
+  );
+}
+
+function PlayGame() {
   const rating = usePlayRating();
+  const params = useSearchParams();
+  // #4 Spar from a position: optional ?fen= (+ ?color=) seeds the game's start
+  // (e.g. the Openings Trainer's "play it out"). Falls back to the normal start.
+  const startFen = useMemo(() => {
+    const f = params.get("fen");
+    if (f) {
+      try {
+        new ChessGame(f);
+        return f;
+      } catch {
+        /* invalid FEN — ignore and use the standard start */
+      }
+    }
+    return START;
+  }, [params]);
+  const startColor: Orientation =
+    params.get("color") === "black"
+      ? "black"
+      : params.get("color") === "white"
+        ? "white"
+        : new ChessGame(startFen).turn === "b"
+          ? "black"
+          : "white";
+  const custom = startFen !== START;
+
   const [phase, setPhase] = useState<Phase>("setup");
-  const [color, setColor] = useState<Orientation>("white");
+  const [color, setColor] = useState<Orientation>(startColor);
   // The opponent for the NEXT game (setup selection).
   const [adaptive, setAdaptive] = useState(true);
   const [pickElo, setPickElo] = useState(1100);
@@ -88,7 +123,7 @@ export default function PlayPage() {
   const [gameElo, setGameElo] = useState(1100);
   const [gameAdaptive, setGameAdaptive] = useState(true);
   const [ratingChange, setRatingChange] = useState<RatingChange | null>(null);
-  const [fen, setFen] = useState(START);
+  const [fen, setFen] = useState(startFen);
   const [history, setHistory] = useState<Ply[]>([]);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState("");
@@ -219,13 +254,15 @@ export default function PlayPage() {
     setCoaching(null);
     setPraise("");
     setUsedTakeback(false);
-    setFen(START);
+    setFen(startFen);
     setHistory([]);
     setResult("");
     setFlags([]);
     setSelected(null);
     setPhase("playing");
-    if (color === "black") void engineReply(START, [], elo);
+    // If it's the opponent's move in the starting position, let the engine open.
+    const learnerSide = color === "white" ? "w" : "b";
+    if (new ChessGame(startFen).turn !== learnerSide) void engineReply(startFen, [], elo);
   }
 
   function handleMove(from: string, to: string): boolean {
@@ -323,6 +360,12 @@ export default function PlayPage() {
           title="Play & Review"
           subtitle="Play a full game against the engine, then get a review that flags your biggest mistakes and shows the better move."
         />
+        {custom && (
+          <Card className="flex items-center gap-2 p-4 text-sm text-ink-soft">
+            <Chip tone="sage">From your opening</Chip>
+            Starting from the position you set up — play out the middlegame.
+          </Card>
+        )}
         <Card className="space-y-4 p-5">
           <div className="space-y-2">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Your color</p>

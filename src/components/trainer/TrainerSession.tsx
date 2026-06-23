@@ -124,13 +124,17 @@ function LineDrill({
     return sans.length;
   }, [fens, sans.length, learnerTurn]);
 
+  // #1 Opponent-branch framing: if this line is an authored deviation, say so.
+  const branch = item.line.branch;
+  const branchIntro = branch
+    ? `Same opening — the opponent plays ${branch.tryMove} (move ${Math.floor(branch.atPly / 2) + 1}) instead of the main line. Find your reply.`
+    : `Your move as ${color === "white" ? "White" : "Black"}. Play your repertoire move.`;
+
   const [ply, setPly] = useState(firstPly);
   const [clean, setClean] = useState(true);
+  const [wrongCount, setWrongCount] = useState(0);
   const [arrowHint, setArrowHint] = useState<{ from: string; to: string }[]>([]);
-  const [feedback, setFeedback] = useState<Feedback>({
-    kind: "info",
-    text: `Your move as ${color === "white" ? "White" : "Black"}. Play your repertoire move.`,
-  });
+  const [feedback, setFeedback] = useState<Feedback>({ kind: "info", text: branchIntro });
 
   const finished = ply >= sans.length;
   const currentFen = fens[Math.min(ply, sans.length)];
@@ -159,13 +163,25 @@ function LineDrill({
     }
     if (res.san !== expected) {
       setClean(false);
+      // #3 Teaching feedback: if this wrong move is an authored common mistake,
+      // explain WHY it's wrong; otherwise escalate to a nudge toward "Show me".
+      const mistake = item.line.commonMistakes?.find(
+        (m) => m.ply === ply && m.move === res.san,
+      );
+      const n = wrongCount + 1;
+      setWrongCount(n);
       setFeedback({
         kind: "error",
-        text: "Not your repertoire move. Try again — or use Show me.",
+        text: mistake
+          ? mistake.why
+          : n >= 2
+            ? "Still not your repertoire move — tap “Show me” to see the move and why it's played."
+            : "Not your repertoire move here. Think about your plan, try again, or use Show me.",
       });
       return false;
     }
     // Correct.
+    setWrongCount(0);
     setArrowHint([]);
     const next = ply + 1;
     if (next >= sans.length) {
@@ -217,6 +233,7 @@ function LineDrill({
     <div className="space-y-3">
       <div className="flex items-center gap-2">
         <Chip tone="neutral">{item.opening.name}</Chip>
+        {branch && <Chip tone="amber">Deviation</Chip>}
         <span className="text-xs text-ink-soft">{item.line.label}</span>
       </div>
 
