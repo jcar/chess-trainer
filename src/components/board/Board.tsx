@@ -7,7 +7,7 @@
 //     light up its legal squares as dots, then tap a square to move. This is the
 //     friendly path for young children / small fingers.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import type { Orientation } from "@/content/types";
 
@@ -100,6 +100,30 @@ const DANGER_STYLE: React.CSSProperties = {
 const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(59,130,246,0.45)" };
 const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(168,85,247,0.42)" };
 
+// react-chessboard (via @dnd-kit) restores focus to the moved piece after a
+// drag/tap using element.focus() WITHOUT { preventScroll: true }, which scrolls
+// the window to the board on every move — jarring when you've scrolled down to
+// play. The library exposes no option for it, so once (globally) we make focus()
+// skip the scroll for elements inside a board. Scoped via the data-chessboard
+// marker, so focus behaviour everywhere else is untouched. This prevents the jump
+// at the source rather than undoing it afterward (no flicker / double-bounce).
+let boardFocusPatched = false;
+function patchBoardFocusScroll(): void {
+  if (boardFocusPatched || typeof HTMLElement === "undefined") return;
+  boardFocusPatched = true;
+  const original = HTMLElement.prototype.focus;
+  HTMLElement.prototype.focus = function focus(
+    this: HTMLElement,
+    options?: FocusOptions,
+  ): void {
+    if (this.closest?.("[data-chessboard]")) {
+      original.call(this, { ...options, preventScroll: true });
+    } else {
+      original.call(this, options);
+    }
+  };
+}
+
 export function Board({
   fen,
   orientation,
@@ -118,31 +142,9 @@ export function Board({
 }: BoardProps) {
   const tapEnabled = Boolean(getLegalMoves && onMove);
 
-  // react-chessboard (via @dnd-kit) restores focus to the moved piece after a
-  // drag/tap using element.focus() WITHOUT preventScroll, which yanks the window
-  // up to the board — jarring when you've scrolled down to play. We keep the last
-  // user scroll position and restore it the moment focus lands inside the board.
-  // focusin fires synchronously during focus(), before the (async) scroll event,
-  // so `last` is still the pre-jump position → the revert is flicker-free.
-  const wrapRef = useRef<HTMLDivElement>(null);
+  // Stop react-chessboard's post-move focus from scrolling the page to the board.
   useEffect(() => {
-    const wrap = wrapRef.current;
-    if (!wrap) return;
-    let last = { x: window.scrollX, y: window.scrollY };
-    const track = () => {
-      last = { x: window.scrollX, y: window.scrollY };
-    };
-    const restore = () => {
-      if (window.scrollX !== last.x || window.scrollY !== last.y) {
-        window.scrollTo(last.x, last.y);
-      }
-    };
-    window.addEventListener("scroll", track, { passive: true });
-    wrap.addEventListener("focusin", restore);
-    return () => {
-      window.removeEventListener("scroll", track);
-      wrap.removeEventListener("focusin", restore);
-    };
+    patchBoardFocusScroll();
   }, []);
   // The selection is tied to the position it was made on; if the FEN changes
   // (a move was played, or Reset), the selection is treated as cleared. This
@@ -206,7 +208,7 @@ export function Board({
 
   return (
     <div
-      ref={wrapRef}
+      data-chessboard
       className="mx-auto w-full max-w-[min(92vw,560px,72svh)] touch-none select-none"
     >
       <Chessboard
