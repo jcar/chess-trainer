@@ -62,13 +62,26 @@ export function OpeningDrillPlayer({
   const currentFen = fens[Math.min(ply, activity.line.length)];
   const learnerToMove = !done && new ChessGame(currentFen).turn === learnerTurn;
 
+  // The opponent's reply is APPENDED below the learner's note (never replaces
+  // it), so the "why" behind the learner's own move stays readable until they
+  // move again (or, at line end, until they tap the footer's Next).
+  const opponentLabel = activity.learnerColor === "white" ? "Black" : "White";
+  function replyLine(san: string, note?: string) {
+    return note
+      ? `${opponentLabel} replies ${san} — ${note}`
+      : `${opponentLabel} replies ${san}.`;
+  }
+
   function sound(name: Parameters<typeof playSound>[0]) {
     if (kidMode) playSound(name);
   }
 
-  function finish(atPly: number) {
+  function finish(atPly: number, lead?: string) {
     setPly(atPly);
-    setFeedback({ kind: "success", text: activity.successText });
+    setFeedback({
+      kind: "success",
+      text: [lead, activity.successText].filter(Boolean).join("\n\n"),
+    });
     sound("success");
     onComplete(100);
   }
@@ -119,7 +132,7 @@ export function OpeningDrillPlayer({
     const next = ply + 1;
 
     if (next >= activity.line.length) {
-      finish(next);
+      finish(next, note);
       return true;
     }
 
@@ -130,17 +143,18 @@ export function OpeningDrillPlayer({
       setFeedback({ kind: "info", text: note ?? "Good — that's the move." });
       setTimeout(() => {
         const after = next + 1;
+        const reply = replyLine(activity.line[next], activity.notes?.[next]);
         setPly(after);
         sound(activity.line[next].includes("x") ? "capture" : "move");
         if (after >= activity.line.length) {
-          finish(after);
+          finish(after, [note, reply].filter(Boolean).join("\n\n"));
         } else {
           setFeedback({
             kind: "info",
-            text: activity.notes?.[next] ?? "Your move.",
+            text: [note, reply].filter(Boolean).join("\n\n"),
           });
         }
-      }, 450);
+      }, 550);
     } else {
       setPly(next);
       setFeedback({ kind: "info", text: note ?? "Your move." });
@@ -182,7 +196,7 @@ export function OpeningDrillPlayer({
       <div
         className={`flex items-start gap-3 rounded-2xl p-4 leading-relaxed ${kidMode ? "text-lg" : "text-sm"} ${feedbackCls}`}
       >
-        <p className="flex-1">{feedback.text}</p>
+        <p className="flex-1 whitespace-pre-line">{feedback.text}</p>
         {kidMode && <SpeakButton text={feedback.text} size="sm" />}
       </div>
 

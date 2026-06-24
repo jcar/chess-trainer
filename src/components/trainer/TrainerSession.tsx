@@ -141,6 +141,16 @@ function LineDrill({
   const learnerToMove =
     !finished && new ChessGame(currentFen).turn === learnerTurn;
 
+  // The opponent's reply is APPENDED below the learner's note (never replaces
+  // it), so the "why" behind the learner's own move stays readable at their own
+  // pace until they move again.
+  const opponentLabel = color === "white" ? "Black" : "White";
+  function replyLine(san: string, note?: string) {
+    return note
+      ? `${opponentLabel} replies ${san} — ${note}`
+      : `${opponentLabel} replies ${san}.`;
+  }
+
   function showMe() {
     if (finished) return;
     const sq = moveSquares[ply];
@@ -183,32 +193,41 @@ function LineDrill({
     // Correct.
     setWrongCount(0);
     setArrowHint([]);
+    const note = item.line.notes?.[ply]; // the WHY behind the learner's move
     const next = ply + 1;
     if (next >= sans.length) {
+      // Learner played the final move. Show the why and wait — the finished
+      // state renders a Continue button, so the note can be read in full.
       setPly(next);
-      setFeedback({ kind: "success", text: "Line complete!" });
-      // Defer so the final position renders before we advance the session.
-      setTimeout(() => onDone(clean), 550);
+      setFeedback({
+        kind: "success",
+        text: [note, "Line complete!"].filter(Boolean).join("\n\n"),
+      });
       return true;
     }
-    const note = item.line.notes?.[ply];
     const nextIsOpponent = new ChessGame(fens[next]).turn !== learnerTurn;
     if (nextIsOpponent) {
+      // Show the learner's why immediately; the opponent's reply lands on the
+      // board after a beat and its note is APPENDED below — the why is never
+      // wiped, and the combined text stays until the learner's next move.
       setPly(next);
       setFeedback({ kind: "info", text: note ?? "Good." });
       setTimeout(() => {
         const after = next + 1;
+        const reply = replyLine(sans[next], item.line.notes?.[next]);
         setPly(after);
         if (after >= sans.length) {
-          setFeedback({ kind: "success", text: "Line complete!" });
-          setTimeout(() => onDone(clean), 550);
+          setFeedback({
+            kind: "success",
+            text: [note, reply, "Line complete!"].filter(Boolean).join("\n\n"),
+          });
         } else {
           setFeedback({
             kind: "info",
-            text: item.line.notes?.[next] ?? "Your move.",
+            text: [note, reply].filter(Boolean).join("\n\n"),
           });
         }
-      }, 420);
+      }, 600);
     } else {
       setPly(next);
       setFeedback({ kind: "info", text: note ?? "Your move." });
@@ -253,20 +272,34 @@ function LineDrill({
         highlightSquares={arrowHint.flatMap((a) => [a.from, a.to])}
       />
 
-      <div className={`rounded-2xl p-4 text-sm leading-relaxed ${feedbackCls}`}>
+      <div
+        className={`whitespace-pre-line rounded-2xl p-4 text-sm leading-relaxed ${feedbackCls}`}
+      >
         {feedback.text}
       </div>
 
-      {learnerToMove && (
+      {finished ? (
         <div className="flex justify-end">
           <button
             type="button"
-            onClick={showMe}
-            className={buttonClasses("secondary", "md")}
+            onClick={() => onDone(clean)}
+            className={buttonClasses("primary", "md")}
           >
-            Show me
+            Continue
           </button>
         </div>
+      ) : (
+        learnerToMove && (
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={showMe}
+              className={buttonClasses("secondary", "md")}
+            >
+              Show me
+            </button>
+          </div>
+        )
       )}
     </div>
   );
