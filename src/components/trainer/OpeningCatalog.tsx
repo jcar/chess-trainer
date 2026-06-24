@@ -42,29 +42,30 @@ export function OpeningCatalog() {
               {list.map((o) => {
                 const c = masteryCounts(srs, [o.id]);
                 return (
-                  <div key={o.id} className="space-y-1.5">
-                    <Link href={`/trainer?opening=${o.id}`} className="block">
-                      <Card interactive className="flex items-center gap-3 p-3">
-                        <span className="min-w-0 flex-1">
-                          <span className="block font-semibold text-primary-strong">
-                            {o.name}
-                          </span>
-                          <span className="block truncate font-mono text-xs text-ink-soft">
-                            {o.firstMoves}
-                          </span>
+                  <Card key={o.id} className="overflow-hidden">
+                    <Link
+                      href={`/trainer?opening=${o.id}`}
+                      className="flex items-center gap-3 px-4 py-3 transition hover:bg-ink/5"
+                    >
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-semibold text-primary-strong">
+                          {o.name}
                         </span>
-                        {o.tier === "core" && <Chip tone="sage">Core</Chip>}
-                        <Chip tone="neutral">
-                          {o.trainerColor === "white" ? "White" : "Black"}
-                        </Chip>
-                        <span className="shrink-0 text-xs font-semibold text-ink-soft">
-                          {c.mastered}/{c.total}
+                        <span className="block truncate font-mono text-xs text-ink-soft">
+                          {o.firstMoves}
                         </span>
-                        <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-soft" />
-                      </Card>
+                      </span>
+                      {o.tier === "core" && <Chip tone="sage">Core</Chip>}
+                      <Chip tone="neutral">
+                        {o.trainerColor === "white" ? "White" : "Black"}
+                      </Chip>
+                      <span className="shrink-0 text-xs font-semibold text-ink-soft">
+                        {c.mastered}/{c.total}
+                      </span>
+                      <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-soft" />
                     </Link>
-                    <OpeningSummary opening={o} triggerLabel="Strategy" />
-                  </div>
+                    <OpeningSummary opening={o} triggerLabel="Strategy" embedded />
+                  </Card>
                 );
               })}
             </div>
