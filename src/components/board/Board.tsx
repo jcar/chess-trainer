@@ -111,14 +111,25 @@ function patchBoardScrollJump(): void {
   if (boardScrollPatched || typeof window === "undefined") return;
   boardScrollPatched = true;
 
-  // Programmatic focus must never scroll. (User-initiated focus — tapping an
+  // Programmatic focus must never scroll. @dnd-kit restores focus to the moved
+  // piece after a drag/tap with element.focus() and no { preventScroll }. The
+  // piece is an SVG element, and focus() lives on SVGElement.prototype SEPARATELY
+  // from HTMLElement.prototype (the HTMLOrSVGElement mixin) — so patch BOTH, or
+  // the SVG focus slips through and scrolls. (User-initiated focus — tapping an
   // input, Tab navigation — is unaffected; only element.focus() calls are.)
-  const origFocus = HTMLElement.prototype.focus;
+  const origHtmlFocus = HTMLElement.prototype.focus;
   HTMLElement.prototype.focus = function focus(
     this: HTMLElement,
     options?: FocusOptions,
   ): void {
-    origFocus.call(this, { ...options, preventScroll: true });
+    origHtmlFocus.call(this, { ...options, preventScroll: true });
+  };
+  const origSvgFocus = SVGElement.prototype.focus;
+  SVGElement.prototype.focus = function focus(
+    this: SVGElement,
+    options?: FocusOptions,
+  ): void {
+    origSvgFocus.call(this, { ...options, preventScroll: true });
   };
 
   // Ignore scrollIntoView fired from inside a board (scoped via the
