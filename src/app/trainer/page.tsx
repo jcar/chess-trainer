@@ -18,6 +18,7 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { buttonClasses } from "@/components/ui/Button";
 import { RepertoirePicker } from "@/components/trainer/RepertoirePicker";
 import { TrainerSession } from "@/components/trainer/TrainerSession";
+import { OpeningSummary } from "@/components/trainer/OpeningSummary";
 
 type Phase = "dashboard" | "edit" | "session";
 
@@ -163,28 +164,31 @@ function RepertoireSummary() {
         if (!o) return null;
         const someDue = dueIds.has(id);
         return (
-          <Card key={id} className="flex items-center justify-between gap-3 p-3">
-            <span className="min-w-0">
-              <span className="block font-semibold text-primary-strong">
-                {o.name}
+          <div key={id} className="space-y-1.5">
+            <Card className="flex items-center justify-between gap-3 p-3">
+              <span className="min-w-0">
+                <span className="block font-semibold text-primary-strong">
+                  {o.name}
+                </span>
+                <span className="block truncate font-mono text-xs text-ink-soft">
+                  {o.firstMoves}
+                </span>
               </span>
-              <span className="block truncate font-mono text-xs text-ink-soft">
-                {o.firstMoves}
+              <span className="flex shrink-0 items-center gap-2">
+                <Chip tone={someDue ? "amber" : "sage"}>
+                  {someDue ? "In progress" : "Mastered"}
+                </Chip>
+                <Link
+                  href={`/play?fen=${encodeURIComponent(o.tabiyaFen)}&color=${o.trainerColor}`}
+                  className="rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink-soft transition hover:border-primary/40 hover:text-ink"
+                  title="Play this position out vs the engine"
+                >
+                  Spar
+                </Link>
               </span>
-            </span>
-            <span className="flex shrink-0 items-center gap-2">
-              <Chip tone={someDue ? "amber" : "sage"}>
-                {someDue ? "In progress" : "Mastered"}
-              </Chip>
-              <Link
-                href={`/play?fen=${encodeURIComponent(o.tabiyaFen)}&color=${o.trainerColor}`}
-                className="rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink-soft transition hover:border-primary/40 hover:text-ink"
-                title="Play this position out vs the engine"
-              >
-                Spar
-              </Link>
-            </span>
-          </Card>
+            </Card>
+            <OpeningSummary opening={o} triggerLabel="Strategy" />
+          </div>
         );
       })}
     </div>

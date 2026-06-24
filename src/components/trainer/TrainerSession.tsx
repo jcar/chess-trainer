@@ -13,6 +13,7 @@ import { buttonClasses } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { WhyCheckpoint } from "./WhyCheckpoint";
+import { OpeningSummary } from "./OpeningSummary";
 
 interface Props {
   queue: TrainerLine[];
@@ -255,6 +256,8 @@ function LineDrill({
         {branch && <Chip tone="amber">Deviation</Chip>}
         <span className="text-xs text-ink-soft">{item.line.label}</span>
       </div>
+
+      <OpeningSummary opening={item.opening} />
 
       <Board
         fen={currentFen}
