@@ -652,7 +652,9 @@ function PlayGame() {
           </div>
         </Card>
       ) : (
-        <div className="rounded-2xl bg-surface p-4 text-sm text-ink-soft shadow-soft">
+        // Reserve height so the status text changing length (or wrapping) per move
+        // can't shrink the page and clamp the scroll when you're scrolled down.
+        <div className="flex min-h-[3.75rem] items-center rounded-2xl bg-surface p-4 text-sm text-ink-soft shadow-soft">
           {phase === "gameover"
             ? result
             : checking

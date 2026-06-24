@@ -7,7 +7,7 @@
 //     light up its legal squares as dots, then tap a square to move. This is the
 //     friendly path for young children / small fingers.
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import type { Orientation } from "@/content/types";
 
@@ -100,50 +100,6 @@ const DANGER_STYLE: React.CSSProperties = {
 const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(59,130,246,0.45)" };
 const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(168,85,247,0.42)" };
 
-// react-chessboard (via @dnd-kit) yanks the window to the board after a move by
-// (a) restoring focus to the moved piece with element.focus() and no
-// { preventScroll: true }, and (b) sometimes calling scrollIntoView on a board
-// node. The library exposes no option for either, so once (globally) we neutralize
-// both at the source — preventing the jump rather than undoing it afterward (which
-// caused the visible bounce). Done once, idempotently.
-let boardScrollPatched = false;
-function patchBoardScrollJump(): void {
-  if (boardScrollPatched || typeof window === "undefined") return;
-  boardScrollPatched = true;
-
-  // Programmatic focus must never scroll. @dnd-kit restores focus to the moved
-  // piece after a drag/tap with element.focus() and no { preventScroll }. The
-  // piece is an SVG element, and focus() lives on SVGElement.prototype SEPARATELY
-  // from HTMLElement.prototype (the HTMLOrSVGElement mixin) — so patch BOTH, or
-  // the SVG focus slips through and scrolls. (User-initiated focus — tapping an
-  // input, Tab navigation — is unaffected; only element.focus() calls are.)
-  const origHtmlFocus = HTMLElement.prototype.focus;
-  HTMLElement.prototype.focus = function focus(
-    this: HTMLElement,
-    options?: FocusOptions,
-  ): void {
-    origHtmlFocus.call(this, { ...options, preventScroll: true });
-  };
-  const origSvgFocus = SVGElement.prototype.focus;
-  SVGElement.prototype.focus = function focus(
-    this: SVGElement,
-    options?: FocusOptions,
-  ): void {
-    origSvgFocus.call(this, { ...options, preventScroll: true });
-  };
-
-  // Ignore scrollIntoView fired from inside a board (scoped via the
-  // data-chessboard marker so the rest of the app behaves normally).
-  const origScrollIntoView = Element.prototype.scrollIntoView;
-  Element.prototype.scrollIntoView = function scrollIntoView(
-    this: Element,
-    ...args: unknown[]
-  ): void {
-    if (this.closest?.("[data-chessboard]")) return;
-    (origScrollIntoView as (...a: unknown[]) => void).apply(this, args);
-  };
-}
-
 export function Board({
   fen,
   orientation,
@@ -161,11 +117,6 @@ export function Board({
   showNotation = true,
 }: BoardProps) {
   const tapEnabled = Boolean(getLegalMoves && onMove);
-
-  // Stop react-chessboard's post-move focus/scrollIntoView from scrolling the page.
-  useEffect(() => {
-    patchBoardScrollJump();
-  }, []);
   // The selection is tied to the position it was made on; if the FEN changes
   // (a move was played, or Reset), the selection is treated as cleared. This
   // derives the cleared state instead of clearing it in an effect.
