@@ -188,6 +188,13 @@ export const ArrowLeftIcon = ({ className }: IconProps) => (
   </Line>
 );
 
+export const SearchIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    <circle cx="10.5" cy="10.5" r="6.5" />
+    <path d="M20 20l-4.8-4.8" />
+  </Line>
+);
+
 export const SpeakerIcon = ({ className }: IconProps) => (
   <Line className={className}>
     <path d="M4 9.5h3l4-3.2v11.4l-4-3.2H4z" />

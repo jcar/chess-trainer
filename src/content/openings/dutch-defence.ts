@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const dutchDefence: Opening = {
   id: "dutch-defence",
   name: "Dutch Defence",
+  aliases: ["Stonewall","Leningrad"],
   eco: "A80–A99",
   family: "1d4",
   trainerColor: "black",

@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const sicilianDefence: Opening = {
   id: "sicilian-defence",
   name: "Sicilian Defence",
+  aliases: ["Najdorf","Rossolimo"],
   eco: "B20–B99",
   family: "1e4-other",
   trainerColor: "black",

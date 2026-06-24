@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const caroKann: Opening = {
   id: "caro-kann",
   name: "Caro-Kann Defence",
+  aliases: ["Caro Kann"],
   eco: "B10–B19",
   family: "1e4-other",
   trainerColor: "black",

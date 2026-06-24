@@ -48,6 +48,8 @@ export interface Opening {
   id: string;
   /** Display name, e.g. "Italian Game". */
   name: string;
+  /** Common nicknames/alternate names for search (e.g. ["Spanish"] for the Ruy). */
+  aliases?: string[];
   /** ECO code or range (public reference), e.g. "C50–C54". */
   eco?: string;
   family: OpeningFamily;

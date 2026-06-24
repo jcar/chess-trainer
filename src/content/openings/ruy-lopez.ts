@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const ruyLopez: Opening = {
   id: "ruy-lopez",
   name: "Ruy Lopez",
+  aliases: ["Spanish","Spanish Game"],
   eco: "C60–C99",
   family: "1e4-e5",
   trainerColor: "white",

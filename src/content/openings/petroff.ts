@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const petroff: Opening = {
   id: "petroff",
   name: "Petroff Defence",
+  aliases: ["Petrov","Russian Defence","Russian Game"],
   eco: "C42–C43",
   family: "1e4-e5",
   trainerColor: "black",

@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const scandinavian: Opening = {
   id: "scandinavian",
   name: "Scandinavian Defence",
+  aliases: ["Center Counter","Centre Counter"],
   eco: "B01",
   family: "1e4-other",
   trainerColor: "black",

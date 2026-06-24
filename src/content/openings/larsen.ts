@@ -5,6 +5,7 @@ import type { Opening } from "./types";
 export const larsen: Opening = {
   id: "larsen",
   name: "Larsen's Opening",
+  aliases: ["Nimzo-Larsen","Nimzowitsch-Larsen","b3"],
   eco: "A01",
   family: "flank",
   trainerColor: "white",

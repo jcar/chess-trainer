@@ -7,6 +7,7 @@ import type { Opening } from "./types";
 export const queensGambit: Opening = {
   id: "queens-gambit",
   name: "Queen's Gambit (for White)",
+  aliases: ["QG"],
   eco: "D06–D69",
   family: "1d4",
   trainerColor: "white",

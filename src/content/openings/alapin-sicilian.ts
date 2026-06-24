@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const alapinSicilian: Opening = {
   id: "alapin-sicilian",
   name: "Alapin Sicilian (2.c3)",
+  aliases: ["c3 Sicilian","Sicilian c3"],
   eco: "B22",
   family: "1e4-other",
   trainerColor: "white",

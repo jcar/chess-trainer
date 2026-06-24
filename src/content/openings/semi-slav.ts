@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const semiSlav: Opening = {
   id: "semi-slav",
   name: "Semi-Slav Defence",
+  aliases: ["Meran","Semi Slav"],
   eco: "D43–D49",
   family: "1d4",
   trainerColor: "black",

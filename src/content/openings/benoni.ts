@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const benoni: Opening = {
   id: "benoni",
   name: "Benoni Defence",
+  aliases: ["Modern Benoni"],
   eco: "A60–A79",
   family: "1d4",
   trainerColor: "black",

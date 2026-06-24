@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const bogoIndian: Opening = {
   id: "bogo-indian",
   name: "Bogo-Indian Defence",
+  aliases: ["Bogo Indian"],
   eco: "E11",
   family: "1d4",
   trainerColor: "black",

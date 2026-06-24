@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const kingsGambit: Opening = {
   id: "kings-gambit",
   name: "King's Gambit",
+  aliases: ["KGA"],
   eco: "C30–C39",
   family: "1e4-e5",
   trainerColor: "white",

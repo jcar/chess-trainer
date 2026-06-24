@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const benkoGambit: Opening = {
   id: "benko-gambit",
   name: "Benko Gambit",
+  aliases: ["Volga","Volga Gambit"],
   eco: "A57–A59",
   family: "1d4",
   trainerColor: "black",

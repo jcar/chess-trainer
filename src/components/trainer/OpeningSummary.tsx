@@ -13,7 +13,6 @@
 import { useState } from "react";
 import type { Opening } from "@/content/openings/types";
 import { Card } from "@/components/ui/Card";
-import { Chip } from "@/components/ui/Chip";
 import { ChevronRightIcon } from "@/components/icons";
 
 interface Props {
@@ -52,15 +51,14 @@ export function OpeningSummary({
           }`}
         />
         <span className="font-semibold text-primary-strong">{triggerLabel}</span>
-        {opening.eco && <Chip tone="neutral">{opening.eco}</Chip>}
-        <span className="ml-auto shrink-0 text-xs text-ink-soft">
-          Playing {sideLabel}
-        </span>
       </button>
 
       {open && (
         <div className="space-y-4 border-t border-line px-4 pb-4 pt-3 text-sm leading-relaxed">
-          <p className="font-mono text-xs text-ink-soft">{opening.firstMoves}</p>
+          <p className="font-mono text-xs text-ink-soft">
+            {opening.eco ? `${opening.eco} · ` : ""}
+            {opening.firstMoves}
+          </p>
           <Section label="The idea">{opening.character}</Section>
           <Section label={`Your plan (${sideLabel})`}>{plan}</Section>
           {opening.middlegamePlan && (

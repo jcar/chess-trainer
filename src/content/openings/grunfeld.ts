@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const grunfeld: Opening = {
   id: "grunfeld",
   name: "Grünfeld Defence",
+  aliases: ["Gruenfeld"],
   eco: "D70–D99",
   family: "1d4",
   trainerColor: "black",

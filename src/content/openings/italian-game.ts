@@ -4,6 +4,7 @@ import type { Opening } from "./types";
 export const italianGame: Opening = {
   id: "italian-game",
   name: "Italian Game",
+  aliases: ["Giuoco Piano"],
   eco: "C50–C54",
   family: "1e4-e5",
   trainerColor: "white",
