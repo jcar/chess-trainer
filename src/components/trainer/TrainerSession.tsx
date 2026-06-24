@@ -275,18 +275,14 @@ function LineDrill({
         highlightSquares={arrowHint.flatMap((a) => [a.from, a.to])}
       />
 
-      {/* Reserve height so a shorter message (or the opponent's reply beat)
-          doesn't shrink the page and clamp the scroll — the cause of the
-          "bounce up then back down" when scrolled down mid-drill. */}
       <div
-        className={`min-h-[6rem] whitespace-pre-line rounded-2xl p-4 text-sm leading-relaxed ${feedbackCls}`}
+        className={`whitespace-pre-line rounded-2xl p-4 text-sm leading-relaxed ${feedbackCls}`}
       >
         {feedback.text}
       </div>
 
-      {/* Stable-height row so the button mounting/unmounting never shifts layout. */}
-      <div className="flex min-h-[2.75rem] justify-end">
-        {finished ? (
+      {finished ? (
+        <div className="flex justify-end">
           <button
             type="button"
             onClick={() => onDone(clean)}
@@ -294,16 +290,20 @@ function LineDrill({
           >
             Continue
           </button>
-        ) : learnerToMove ? (
-          <button
-            type="button"
-            onClick={showMe}
-            className={buttonClasses("secondary", "md")}
-          >
-            Show me
-          </button>
-        ) : null}
-      </div>
+        </div>
+      ) : (
+        learnerToMove && (
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={showMe}
+              className={buttonClasses("secondary", "md")}
+            >
+              Show me
+            </button>
+          </div>
+        )
+      )}
     </div>
   );
 }

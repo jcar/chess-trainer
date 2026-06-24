@@ -74,6 +74,25 @@ function occupiedSquares(fen: string): Set<string> {
   return out;
 }
 
+// Generic scroll-bounce guard: after a board move, content BELOW the board often
+// changes height for a beat (a feedback line shrinking, a button toggling, an
+// opponent's auto-reply). If you're scrolled near the bottom, that transient
+// shrink drops max-scroll below your position, so the browser clamps you up, then
+// scroll-anchoring drops you back — a visible "bounce". Briefly pinning the
+// document's min-height to its pre-move value keeps the page from shrinking
+// during the transient, so there's nothing to clamp. One place → every board is
+// covered (current and future). See memory: board-scroll-bounce.
+let releaseHeightTimer: ReturnType<typeof setTimeout> | undefined;
+function holdDocumentHeight(ms = 1200): void {
+  if (typeof document === "undefined") return;
+  const h = document.documentElement.scrollHeight;
+  document.body.style.minHeight = `${h}px`;
+  clearTimeout(releaseHeightTimer);
+  releaseHeightTimer = setTimeout(() => {
+    document.body.style.minHeight = "";
+  }, ms);
+}
+
 const DOT_STYLE: React.CSSProperties = {
   background:
     "radial-gradient(circle, rgba(16,185,129,0.65) 24%, transparent 26%)",
@@ -165,6 +184,7 @@ export function Board({
     if (selected && selectedDests.includes(square)) {
       const from = selected;
       setSel(null);
+      holdDocumentHeight();
       onMove(from, square);
       return;
     }
@@ -201,6 +221,7 @@ export function Board({
               : undefined,
           onPieceDrop: ({ sourceSquare, targetSquare }) => {
             if (!onDrop || !targetSquare) return false;
+            holdDocumentHeight();
             return onDrop(sourceSquare, targetSquare);
           },
         }}
