@@ -64,6 +64,27 @@ export function selectTotalStars(
   return activityIds.reduce((sum, id) => sum + selectStars(data, id), 0);
 }
 
+/**
+ * Kid-mode stars (0–3): completing is never punishing. 3 = solved cleanly (full
+ * score); 2 = completed after exploring; 0 = not done. Unlike `selectStars`, this
+ * does NOT dock stars for taking several tries — for ages ~5–8, effort and
+ * persistence are rewarded, not penalized. Pairs with the retry-until-right
+ * players (a clean solve scores 100 → 3; a solve after a miss scores 90 → 2).
+ */
+export function selectStarsKid(data: ProgressData, activityId: string): number {
+  const s = data[activityId];
+  if (!s?.completed) return 0;
+  return s.score >= 100 ? 3 : 2;
+}
+
+/** Total kid-mode stars across a set of activities. */
+export function selectTotalStarsKid(
+  data: ProgressData,
+  activityIds: string[],
+): number {
+  return activityIds.reduce((sum, id) => sum + selectStarsKid(data, id), 0);
+}
+
 /** Whether every activity in the set is completed (e.g. a lesson trophy). */
 export function selectAllComplete(
   data: ProgressData,

@@ -11,6 +11,12 @@ export const l4: Lesson = {
     {
       id: "kids-l4-capturing-values-concept",
       type: "concept",
+      check: {
+        question: "Which piece is worth the most points?",
+        options: ["The queen","The rook","A pawn"],
+        correctIndex: 0,
+        explanation: "The queen is worth about 9 — the most of all the pieces!",
+      },
       title: "Some Pieces Are Bigger Prizes",
       blurb: "What's worth the most?",
       body: "When you capture an enemy piece, you take it off the board! But some pieces are worth more than others, so grab the big ones safely.",

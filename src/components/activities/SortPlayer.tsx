@@ -16,9 +16,12 @@ interface Props {
 }
 
 export function SortPlayer({ activity, onComplete }: Props) {
-  const [selected, setSelected] = useState<number | null>(null);
-  const answered = selected !== null;
-  const correct = selected === activity.correctIndex;
+  // Retry-until-right (kids): a wrong tap teaches and lets them try again; we
+  // only lock + complete on the correct answer, so exploring is never punished.
+  const [solved, setSolved] = useState(false);
+  const [missed, setMissed] = useState(false);
+  const [wrongPicks, setWrongPicks] = useState<number[]>([]);
+  const showTeach = solved || wrongPicks.length > 0;
 
   // Shuffle label order so the correct one isn't always in the same slot.
   const order = useMemo(
@@ -27,11 +30,16 @@ export function SortPlayer({ activity, onComplete }: Props) {
   );
 
   function choose(i: number) {
-    if (answered) return;
-    setSelected(i);
-    const isRight = i === activity.correctIndex;
-    playSound(isRight ? "success" : "tryAgain");
-    onComplete(isRight ? 100 : 50);
+    if (solved) return;
+    if (i === activity.correctIndex) {
+      playSound("success");
+      setSolved(true);
+      onComplete(missed ? 90 : 100); // 100 first try → 3 stars; 90 after a miss → 2
+    } else {
+      playSound("tryAgain");
+      setMissed(true);
+      setWrongPicks((w) => (w.includes(i) ? w : [...w, i]));
+    }
   }
 
   return (
@@ -53,15 +61,15 @@ export function SortPlayer({ activity, onComplete }: Props) {
         {order.map((origIdx) => {
           const opt = activity.options[origIdx];
           const isCorrect = origIdx === activity.correctIndex;
-          const isChosen = origIdx === selected;
+          const isWrongPick = wrongPicks.includes(origIdx);
           let cls =
             "flex items-center justify-center gap-2 rounded-2xl border-4 px-3 py-5 text-lg font-extrabold transition active:scale-[0.98] sm:px-4 sm:text-xl";
-          if (!answered) cls += " border-kid-teal/30 bg-card text-ink";
-          else if (isCorrect) cls += " border-sage bg-sage/10 text-sage";
-          else if (isChosen) cls += " border-clay bg-clay/10 text-clay";
-          else cls += " border-line bg-surface text-ink-soft/60";
+          if (solved && isCorrect) cls += " border-sage bg-sage/10 text-sage";
+          else if (solved) cls += " border-line bg-surface text-ink-soft/60";
+          else if (isWrongPick) cls += " border-clay bg-clay/10 text-clay";
+          else cls += " border-kid-teal/30 bg-card text-ink";
           return (
-            <button key={origIdx} type="button" onClick={() => choose(origIdx)} disabled={answered} className={cls}>
+            <button key={origIdx} type="button" onClick={() => choose(origIdx)} disabled={solved} className={cls}>
               {opt.emoji && <span aria-hidden>{opt.emoji}</span>}
               <span>{opt.label}</span>
             </button>
@@ -69,14 +77,14 @@ export function SortPlayer({ activity, onComplete }: Props) {
         })}
       </div>
 
-      {answered && (
+      {showTeach && (
         <div
           className={`rounded-2xl p-4 text-lg ${
-            correct ? "bg-sage/10 text-sage" : "bg-accent/10 text-primary-strong"
+            solved ? "bg-sage/10 text-sage" : "bg-accent/10 text-primary-strong"
           }`}
         >
           <div className="mb-1 flex items-center gap-2">
-            <p className="font-bold">{correct ? "Yay, correct!" : "Good try!"}</p>
+            <p className="font-bold">{solved ? "Yay, correct!" : "Good try — try again!"}</p>
             <SpeakButton text={activity.explanation} size="sm" />
           </div>
           <p>{activity.explanation}</p>

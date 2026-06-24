@@ -16,9 +16,12 @@ interface Props {
 }
 
 export function PictureQuizPlayer({ activity, onComplete }: Props) {
-  const [selected, setSelected] = useState<number | null>(null);
-  const answered = selected !== null;
-  const correct = selected === activity.correctIndex;
+  // Retry-until-right (kids): wrong taps teach and stay live; lock + complete
+  // only on the correct picture, so exploring is never punished.
+  const [solved, setSolved] = useState(false);
+  const [missed, setMissed] = useState(false);
+  const [wrongPicks, setWrongPicks] = useState<number[]>([]);
+  const showTeach = solved || wrongPicks.length > 0;
 
   // Shuffle picture order so the correct one isn't always in the same slot.
   const order = useMemo(
@@ -27,11 +30,16 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
   );
 
   function choose(index: number) {
-    if (answered) return;
-    setSelected(index);
-    const isRight = index === activity.correctIndex;
-    playSound(isRight ? "success" : "tryAgain");
-    onComplete(isRight ? 100 : 50);
+    if (solved) return;
+    if (index === activity.correctIndex) {
+      playSound("success");
+      setSolved(true);
+      onComplete(missed ? 90 : 100);
+    } else {
+      playSound("tryAgain");
+      setMissed(true);
+      setWrongPicks((w) => (w.includes(index) ? w : [...w, index]));
+    }
   }
 
   return (
@@ -45,21 +53,16 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
         {order.map((origIdx) => {
           const opt = activity.options[origIdx];
           const isCorrect = origIdx === activity.correctIndex;
-          const isChosen = origIdx === selected;
+          const isWrongPick = wrongPicks.includes(origIdx);
           let ring = "border-kid-teal/30";
-          if (answered) {
-            ring = isCorrect
-              ? "border-sage"
-              : isChosen
-                ? "border-clay"
-                : "border-line opacity-60";
-          }
+          if (solved) ring = isCorrect ? "border-sage" : "border-line opacity-60";
+          else if (isWrongPick) ring = "border-clay";
           return (
             <button
               key={origIdx}
               type="button"
               onClick={() => choose(origIdx)}
-              disabled={answered}
+              disabled={solved}
               className={`flex flex-col items-center gap-2 rounded-2xl border-4 bg-card p-2 transition active:scale-[0.97] ${ring}`}
             >
               <MiniBoard
@@ -75,14 +78,14 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
         })}
       </div>
 
-      {answered && (
+      {showTeach && (
         <div
           className={`rounded-2xl p-4 text-lg ${
-            correct ? "bg-sage/10 text-sage" : "bg-accent/10 text-primary-strong"
+            solved ? "bg-sage/10 text-sage" : "bg-accent/10 text-primary-strong"
           }`}
         >
           <div className="mb-1 flex items-center gap-2">
-            <p className="font-bold">{correct ? "Yay, correct!" : "Good try!"}</p>
+            <p className="font-bold">{solved ? "Yay, correct!" : "Good try — try again!"}</p>
             <SpeakButton text={activity.explanation} size="sm" />
           </div>
           <p>{activity.explanation}</p>

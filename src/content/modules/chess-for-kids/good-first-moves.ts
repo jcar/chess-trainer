@@ -12,6 +12,12 @@ export const goodFirstMoves: Lesson = {
     {
       id: "kids-good-first-moves-concept",
       type: "concept",
+      check: {
+        question: "What is a great way to start a game?",
+        options: ["Grab the middle and get your pieces out","Bring the queen out right away","Move the same pawn over and over"],
+        correctIndex: 0,
+        explanation: "Control the center and develop your knights and bishops — then castle to safety!",
+      },
       title: "Start Like a Champ",
       blurb: "How to begin a game.",
       body: "Every game has a start! Grab the middle of the board, bring your pieces out, and tuck your king somewhere safe.",

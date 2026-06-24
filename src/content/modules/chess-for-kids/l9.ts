@@ -11,6 +11,12 @@ export const l9: Lesson = {
     {
       id: "kids-l9-tricks-concept",
       type: "concept",
+      check: {
+        question: "A fork is when one piece…",
+        options: ["Attacks two pieces at once","Moves two times in a row","Hides behind a pawn"],
+        correctIndex: 0,
+        explanation: "A fork attacks two things at once — they cannot both run away!",
+      },
       title: "Clever Tricks",
       blurb: "Win pieces with a trick!",
       body: "There are clever tricks that win you extra pieces! Let's learn the fork and the skewer and start winning.",

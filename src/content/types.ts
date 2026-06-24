@@ -305,6 +305,17 @@ export interface ConceptActivity extends ActivityBase {
   /** Optional illustrative diagrams (display-only). */
   diagrams?: { fen: string; orientation?: Orientation; caption?: string }[];
   /**
+   * Optional check-for-understanding (kid mode): a quick multiple-choice question
+   * shown after the teaching, gating "Got it" until answered correctly
+   * (retry-until-right). Turns a passive read into active retrieval.
+   */
+  check?: {
+    question: string;
+    options: string[];
+    correctIndex: number;
+    explanation: string;
+  };
+  /**
    * Optional "Practice now" handoff into a tool — turns a lesson into a
    * teach → drill loop. Renders a button to the Tactics Trainer (optionally
    * pre-filtered by theme/difficulty) or the Endgame Trainer.

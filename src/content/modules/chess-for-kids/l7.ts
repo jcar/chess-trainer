@@ -11,6 +11,12 @@ export const l7: Lesson = {
     {
       id: "kids-l7-draws-concept",
       type: "concept",
+      check: {
+        question: "Stalemate means no legal move but the king is NOT in check. That is a…",
+        options: ["Draw (a tie)","Win","Loss"],
+        correctIndex: 0,
+        explanation: "Careful — stalemate is only a tie, even if you have way more pieces!",
+      },
       title: "Sometimes Nobody Wins",
       blurb: "A tie is called a draw.",
       body: "Not every game has a winner! Sometimes a game ends in a tie, which we call a draw. Let's learn how that can happen.",

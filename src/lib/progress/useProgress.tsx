@@ -18,8 +18,11 @@ import {
   selectModuleProgress,
   selectStars,
   selectTotalStars,
+  selectStarsKid,
+  selectTotalStarsKid,
   selectAllComplete,
   type ActivityState,
+  type ProgressData,
   type ProgressStore,
 } from "./store";
 
@@ -30,8 +33,14 @@ interface ProgressContextValue {
   activityStars: (activityId: string) => number;
   /** Total stars across a set of activities (e.g. a lesson). */
   totalStars: (activityIds: string[]) => number;
+  /** Kid-mode stars (never docked for retries) for one activity. */
+  activityStarsKid: (activityId: string) => number;
+  /** Total kid-mode stars across a set of activities. */
+  totalStarsKid: (activityIds: string[]) => number;
   /** Whether every activity in the set is complete (e.g. a lesson trophy). */
   allComplete: (activityIds: string[]) => boolean;
+  /** Raw progress snapshot — for deriving belts/badges in event handlers. */
+  snapshot: () => ProgressData;
   markComplete: (activityId: string, score?: number) => void;
   recordAttempt: (activityId: string) => void;
   reset: () => void;
@@ -55,7 +64,10 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       moduleProgress: (ids) => selectModuleProgress(data, ids),
       activityStars: (id) => selectStars(data, id),
       totalStars: (ids) => selectTotalStars(data, ids),
+      activityStarsKid: (id) => selectStarsKid(data, id),
+      totalStarsKid: (ids) => selectTotalStarsKid(data, ids),
       allComplete: (ids) => selectAllComplete(data, ids),
+      snapshot: () => data,
       markComplete: (id, score) => store.markComplete(id, score),
       recordAttempt: (id) => store.recordAttempt(id),
       reset: () => store.reset(),

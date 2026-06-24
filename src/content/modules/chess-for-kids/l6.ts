@@ -11,6 +11,12 @@ export const l6: Lesson = {
     {
       id: "kids-l6-special-moves-concept",
       type: "concept",
+      check: {
+        question: "When a pawn reaches the far side, what can it become?",
+        options: ["A queen, rook, bishop, or knight","Another pawn","The king"],
+        correctIndex: 0,
+        explanation: "That is promotion! Most players choose a queen, the strongest piece.",
+      },
       title: "Special Tricks",
       blurb: "Three fun extra moves.",
       body: "Chess has a few special moves! You can tuck your king away, turn a pawn into a queen, and even make a sneaky pawn capture.",

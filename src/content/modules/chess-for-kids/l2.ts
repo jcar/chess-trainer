@@ -12,6 +12,12 @@ export const l2: Lesson = {
     {
       id: "kids-l2-straight-diagonal-concept",
       type: "concept",
+      check: {
+        question: "Which piece can move both straight AND diagonally?",
+        options: ["The queen","The rook","The bishop"],
+        correctIndex: 0,
+        explanation: "The queen is the most powerful — she slides straight like a rook and diagonally like a bishop!",
+      },
       title: "Sliders!",
       blurb: "Pieces that glide.",
       body: "The rook, the bishop, and the queen love to slide across the board. Let's see where each one can go!",

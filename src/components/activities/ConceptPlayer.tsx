@@ -7,9 +7,11 @@
 // SpeakButton reads it aloud (pre-readers).
 
 import Link from "next/link";
+import { useState } from "react";
 import type { ConceptActivity } from "@/content/types";
 import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { ChoiceCheck } from "@/components/kids/ChoiceCheck";
 import { buttonClasses } from "@/components/ui/Button";
 import { ChevronRightIcon, PuzzleIcon } from "@/components/icons";
 
@@ -43,6 +45,11 @@ export function ConceptPlayer({
 }: Props) {
   const paragraphs = activity.body.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
   const speakText = [activity.body, ...(activity.points ?? [])].join(". ");
+
+  // Kid check-for-understanding gates the advance button until answered right.
+  const hasCheck = kidMode && !!activity.check;
+  const [checkSolved, setCheckSolved] = useState(false);
+  const gateOpen = !hasCheck || checkSolved;
 
   return (
     <div className="space-y-5">
@@ -90,6 +97,19 @@ export function ConceptPlayer({
         </div>
       )}
 
+      {hasCheck && activity.check && (
+        <div className="rounded-2xl bg-card p-5 shadow-soft">
+          <ChoiceCheck
+            question={activity.check.question}
+            options={activity.check.options}
+            correctIndex={activity.check.correctIndex}
+            explanation={activity.check.explanation}
+            seed={`${activity.id}:check`}
+            onSolved={() => setCheckSolved(true)}
+          />
+        </div>
+      )}
+
       <div className="flex flex-wrap items-center justify-end gap-3">
         {activity.practice && (
           <Link
@@ -99,13 +119,19 @@ export function ConceptPlayer({
             <PuzzleIcon className="h-5 w-5" /> {activity.practice.label ?? "Practice now"}
           </Link>
         )}
-        <Link
-          href={advanceHref}
-          onClick={() => onComplete(100)}
-          className={buttonClasses("primary", kidMode ? "kid" : "lg")}
-        >
-          {advanceLabel} <ChevronRightIcon className="h-5 w-5" />
-        </Link>
+        {gateOpen ? (
+          <Link
+            href={advanceHref}
+            onClick={() => onComplete(100)}
+            className={buttonClasses("primary", kidMode ? "kid" : "lg")}
+          >
+            {advanceLabel} <ChevronRightIcon className="h-5 w-5" />
+          </Link>
+        ) : (
+          <span className="text-sm font-medium text-ink-soft/70">
+            Answer the question to keep going!
+          </span>
+        )}
       </div>
     </div>
   );

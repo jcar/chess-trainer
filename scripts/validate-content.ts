@@ -317,6 +317,12 @@ async function checkActivity(moduleId: string, a: Activity) {
     case "concept": {
       // Read-only teaching card; diagrams are display-only. Just require text.
       if (!a.body || !a.body.trim()) note(where, "concept card has no body text");
+      if (a.check) {
+        if (a.check.options.length < 2) note(where, "concept check needs ≥2 options");
+        if (a.check.correctIndex < 0 || a.check.correctIndex >= a.check.options.length) {
+          note(where, `concept check correctIndex ${a.check.correctIndex} out of range`);
+        }
+      }
       break;
     }
   }

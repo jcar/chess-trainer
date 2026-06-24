@@ -12,6 +12,12 @@ export const l1: Lesson = {
     {
       id: "kids-l1-board-concept",
       type: "concept",
+      check: {
+        question: "How many squares are on a chess board?",
+        options: ["64","32","100"],
+        correctIndex: 0,
+        explanation: "An 8×8 grid — 8 rows of 8 squares makes 64!",
+      },
       title: "Welcome to the Board",
       blurb: "Where chess happens.",
       body: "Hi, I'm Pip! Chess is played on a board of squares, light and dark. Let's get to know it together!",

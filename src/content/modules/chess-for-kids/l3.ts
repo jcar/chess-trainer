@@ -11,6 +11,12 @@ export const l3: Lesson = {
     {
       id: "kids-l3-king-knight-pawn-concept",
       type: "concept",
+      check: {
+        question: "Which piece can jump over other pieces?",
+        options: ["The knight","The king","The pawn"],
+        correctIndex: 0,
+        explanation: "Only the knight can hop over pieces, in its L-shape!",
+      },
       title: "Three More Friends",
       blurb: "King, knight, and pawn.",
       body: "The king takes tiny steps, the knight hops in an L, and the pawn marches ahead. Let's meet them all!",

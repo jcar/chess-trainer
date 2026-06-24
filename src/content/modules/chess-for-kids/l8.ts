@@ -11,6 +11,12 @@ export const l8: Lesson = {
     {
       id: "kids-l8-first-mates-concept",
       type: "concept",
+      check: {
+        question: "To checkmate with a king and queen, you push the enemy king to the…",
+        options: ["Edge of the board","Middle of the board","Square it started on"],
+        correctIndex: 0,
+        explanation: "Drive the lonely king to the edge, then your king helps the queen finish!",
+      },
       title: "Time to Win!",
       blurb: "Your first checkmates.",
       body: "Now you get to win for real! Let's practice some easy checkmates you'll use over and over again.",

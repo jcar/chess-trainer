@@ -35,8 +35,14 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
 
 export function ModuleView({ moduleId }: { moduleId: string }) {
   const mod = getModule(moduleId);
-  const { getActivityState, activityStars, totalStars, allComplete } =
-    useProgress();
+  const {
+    getActivityState,
+    activityStars,
+    totalStars,
+    activityStarsKid,
+    totalStarsKid,
+    allComplete,
+  } = useProgress();
 
   if (!mod) notFound();
   const kid = !!mod.kidMode;
@@ -70,7 +76,7 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
         <ol className="space-y-4">
           {mod.lessons.map((lesson, idx) => {
             const ids = lesson.activities.map((a) => a.id);
-            const stars = totalStars(ids);
+            const stars = totalStarsKid(ids);
             const maxStars = ids.length * 3;
             const complete = allComplete(ids);
             return (
@@ -100,7 +106,7 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
 
                   <ul className="mt-3 space-y-2">
                     {lesson.activities.map((activity) => {
-                      const s = activityStars(activity.id);
+                      const s = activityStarsKid(activity.id);
                       const Icon = ACTIVITY_ICON[activity.type];
                       return (
                         <li key={activity.id}>

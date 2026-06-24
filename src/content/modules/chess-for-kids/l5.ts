@@ -11,6 +11,12 @@ export const l5: Lesson = {
     {
       id: "kids-l5-check-mate-concept",
       type: "concept",
+      check: {
+        question: "What is checkmate?",
+        options: ["The king is attacked and cannot escape","The king is attacked but can move away","Nobody has any pieces left"],
+        correctIndex: 0,
+        explanation: "Checkmate ends the game — the king is in check with no way out!",
+      },
       title: "Keep the King Safe",
       blurb: "Check and checkmate.",
       body: "When the king is attacked, that's a check, and he must get to safety. If he can't escape at all, that's checkmate and the game is won!",
