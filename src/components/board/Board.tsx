@@ -7,7 +7,7 @@
 //     light up its legal squares as dots, then tap a square to move. This is the
 //     friendly path for young children / small fingers.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import type { Orientation } from "@/content/types";
 
@@ -117,6 +117,33 @@ export function Board({
   showNotation = true,
 }: BoardProps) {
   const tapEnabled = Boolean(getLegalMoves && onMove);
+
+  // react-chessboard (via @dnd-kit) restores focus to the moved piece after a
+  // drag/tap using element.focus() WITHOUT preventScroll, which yanks the window
+  // up to the board — jarring when you've scrolled down to play. We keep the last
+  // user scroll position and restore it the moment focus lands inside the board.
+  // focusin fires synchronously during focus(), before the (async) scroll event,
+  // so `last` is still the pre-jump position → the revert is flicker-free.
+  const wrapRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    let last = { x: window.scrollX, y: window.scrollY };
+    const track = () => {
+      last = { x: window.scrollX, y: window.scrollY };
+    };
+    const restore = () => {
+      if (window.scrollX !== last.x || window.scrollY !== last.y) {
+        window.scrollTo(last.x, last.y);
+      }
+    };
+    window.addEventListener("scroll", track, { passive: true });
+    wrap.addEventListener("focusin", restore);
+    return () => {
+      window.removeEventListener("scroll", track);
+      wrap.removeEventListener("focusin", restore);
+    };
+  }, []);
   // The selection is tied to the position it was made on; if the FEN changes
   // (a move was played, or Reset), the selection is treated as cleared. This
   // derives the cleared state instead of clearing it in an effect.
@@ -178,7 +205,10 @@ export function Board({
   }
 
   return (
-    <div className="mx-auto w-full max-w-[min(92vw,560px,72svh)] touch-none select-none">
+    <div
+      ref={wrapRef}
+      className="mx-auto w-full max-w-[min(92vw,560px,72svh)] touch-none select-none"
+    >
       <Chessboard
         options={{
           position: fen,
