@@ -45,6 +45,7 @@ export const semiSlav: Opening = {
   lines: [
     {
       label: "Meran Variation",
+      summary: "After e3 you grab ...dxc4 and fire off ...b5, gaining queenside space, chasing the bishop and racing your majority against White's centre.",
       sans: [
         "d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3",
         "e6", "e3", "Nbd7", "Bd3", "dxc4", "Bxc4", "b5",
@@ -68,6 +69,7 @@ export const semiSlav: Opening = {
     },
     {
       label: "Botvinnik Variation (5.Bg5)",
+      summary: "You snatch the c4-pawn and cling to it through razor-sharp complications, banking on queenside space and the bishop pair where exact prep decides everything.",
       branch: { from: "Meran Variation", atPly: 8, tryMove: "Bg5" },
       sans: [
         "d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3",

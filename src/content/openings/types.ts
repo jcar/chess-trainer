@@ -17,6 +17,12 @@ export type OpeningFamily = "1e4-e5" | "1e4-other" | "1d4" | "flank";
 export interface OpeningLine {
   /** e.g. "Main line", "Exchange Variation". */
   label: string;
+  /**
+   * One-sentence theory of this specific line — what it's about / what each side
+   * is going for — shown on the opening page next to the line. (The move-by-move
+   * "why" lives in `notes`; this is the line-level overview.)
+   */
+  summary?: string;
   /** Moves in SAN from `startFen` (or the standard start). */
   sans: string[];
   /** Per-move annotations, parallel to `sans` (sparse entries allowed). */

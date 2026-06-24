@@ -46,6 +46,7 @@ export const alekhine: Opening = {
   lines: [
     {
       label: "Modern Variation",
+      summary: "White develops calmly rather than over-pushing; you provoke and then undermine the centre with ...d6 and ...dxe5, fianchettoing to g7 to pressure it.",
       sans: [
         "e4", "Nf6", "e5", "Nd5", "d4", "d6",
         "Nf3", "dxe5", "Nxe5", "g6", "Be2", "Bg7",
@@ -74,6 +75,7 @@ export const alekhine: Opening = {
     },
     {
       label: "Four Pawns Attack",
+      summary: "White builds a huge but loose pawn front; you strike fast with ...dxe5 and ...Nc6, attacking the overextended d4 and e5 pawns before they stabilise.",
       branch: { from: "Modern Variation", atPly: 6, tryMove: "c4" },
       sans: [
         "e4", "Nf6", "e5", "Nd5", "d4", "d6",

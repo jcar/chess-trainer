@@ -44,6 +44,7 @@ export const kingsGambit: Opening = {
   lines: [
     {
       label: "Kieseritzky Gambit",
+      summary: "After Black holds the pawn with ...g5, you play h4 and Ne5 to leap into the centre and attack a king loosened by its own pawns.",
       sans: [
         "e4", "e5", "f4", "exf4", "Nf3", "g5",
         "h4", "g4", "Ne5", "Nf6",
@@ -63,6 +64,7 @@ export const kingsGambit: Opening = {
     },
     {
       label: "King's Gambit Declined",
+      summary: "Black declines with ...Bc5 to eye f2 and keep things solid, so you develop naturally toward f7 for a tense, more positional game.",
       branch: { from: "Kieseritzky Gambit", atPly: 3, tryMove: "Bc5" },
       sans: [
         "e4", "e5", "f4", "Bc5", "Nf3", "d6",

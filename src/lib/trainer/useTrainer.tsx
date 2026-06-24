@@ -1,45 +1,38 @@
 "use client";
 
-// React binding for the trainer store. Like lib/rewards/streak.ts this is a
-// provider-less singleton read via useSyncExternalStore, so SSR and the first
-// client render share the frozen-empty snapshot (no hydration mismatch).
+// React binding for the trainer's spaced-repetition state. Like
+// lib/rewards/streak.ts this reads a provider-less singleton via
+// useSyncExternalStore, so SSR and the first client render share the
+// frozen-empty snapshot (no hydration mismatch).
+//
+// The trainer is now single-opening focused (no multi-select repertoire), so the
+// SRS data is a per-line SKILL meter: `counts` summarise mastery across the whole
+// catalog (for the home tile / catalog), and `srs` is exposed so per-opening and
+// per-line views can derive their own state via the helpers in ./lines.
 
-import { useSyncExternalStore } from "react";
-import { trainerStore, type TrainerData } from "./store";
-import { masteryCounts, dueQueue, srsKey, type MasteryCounts, type TrainerLine } from "./lines";
+import { allOpenings, masteryCounts, srsKey, type MasteryCounts } from "./lines";
+import { trainerStore } from "./store";
 import { useSrs, srsStore } from "../srs/useSrs";
-
-export function useTrainerData(): TrainerData {
-  return useSyncExternalStore(
-    trainerStore.subscribe,
-    trainerStore.getSnapshot,
-    trainerStore.getServerSnapshot,
-  );
-}
+import type { SrsData } from "../srs/store";
 
 export interface TrainerApi {
-  data: TrainerData;
+  /** Raw SRS snapshot — feed to `lineState` / `masteryCounts` for a given opening. */
+  srs: SrsData;
+  /** Mastery across ALL openings (powers the home-page tile and overall progress). */
   counts: MasteryCounts;
-  due: TrainerLine[];
-  inRepertoire: (openingId: string) => boolean;
-  toggleOpening: (openingId: string) => void;
-  setRepertoire: (ids: string[]) => void;
   recordLineResult: (key: string, clean: boolean) => void;
   reset: () => void;
 }
 
+const ALL_OPENING_IDS = allOpenings().map((o) => o.id);
+
 export function useTrainer(): TrainerApi {
-  const data = useTrainerData();
   const srs = useSrs();
   return {
-    data,
-    counts: masteryCounts(srs, data.repertoire),
-    due: dueQueue(srs, data.repertoire),
-    inRepertoire: (openingId) => data.repertoire.includes(openingId),
-    toggleOpening: trainerStore.toggleOpening,
-    setRepertoire: trainerStore.setRepertoire,
+    srs,
+    counts: masteryCounts(srs, ALL_OPENING_IDS),
     // True spaced repetition: a clean recall pushes the line further out; a miss
-    // resets it to be reviewed again soon.
+    // resets it to be reviewed again soon. Also drives the per-line skill meter.
     recordLineResult: (key, clean) => srsStore.record(srsKey(key), clean),
     reset: () => {
       trainerStore.reset();

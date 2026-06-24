@@ -46,6 +46,7 @@ export const larsen: Opening = {
   lines: [
     {
       label: "Classical (1...e5)",
+      summary: "Against ...e5 you fianchetto to b2 and pile on the central pawn with Bb5 and Nf3, pressuring Black's strong point from the wing.",
       sans: [
         "b3", "e5", "Bb2", "Nc6", "e3", "Nf6",
         "Bb5", "Bd6", "Nf3", "e4", "Nd4", "O-O",
@@ -67,6 +68,7 @@ export const larsen: Opening = {
     },
     {
       label: "Reversed setup (1...d5)",
+      summary: "Against ...d5 you clamp e5 Bird-style with f4 while the b2-bishop rakes the long diagonal, building kingside space before Black breaks with ...c5.",
       branch: { from: "Classical (1...e5)", atPly: 1, tryMove: "d5" },
       sans: [
         "b3", "d5", "Bb2", "Nf6", "e3", "e6",

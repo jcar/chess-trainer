@@ -46,6 +46,7 @@ export const queensGambitDeclined: Opening = {
   lines: [
     {
       label: "Classical main line",
+      summary: "You decline the gambit and build a solid wall on d5, then unravel patiently with ...b6 and ...Bb7 before seeking a freeing break.",
       sans: [
         "d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5", "Be7",
         "e3", "O-O", "Nf3", "h6", "Bh4", "b6",
@@ -76,6 +77,7 @@ export const queensGambitDeclined: Opening = {
     },
     {
       label: "Exchange Variation",
+      summary: "White clarifies with cxd5 and eyes the minority attack b4–b5 at your c6-pawn; develop your bishop actively and ready a ...c5 or ...e5 break.",
       branch: { from: "Classical main line", atPly: 6, tryMove: "cxd5" },
       sans: [
         "d4", "d5", "c4", "e6", "Nc3", "Nf6", "cxd5", "exd5",
@@ -98,6 +100,7 @@ export const queensGambitDeclined: Opening = {
     },
     {
       label: "Facing the Catalan (3.g3)",
+      summary: "White fianchettoes the g2-bishop to rake the long diagonal; you grab the c4-pawn with a tempo to ease the cramp before giving it back.",
       sans: [
         "d4", "Nf6", "c4", "e6", "g3", "d5", "Bg2", "Be7",
         "Nf3", "O-O", "O-O", "dxc4",

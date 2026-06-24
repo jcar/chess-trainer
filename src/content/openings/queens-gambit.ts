@@ -50,6 +50,7 @@ export const queensGambit: Opening = {
   lines: [
     {
       label: "Declined (2...e6)",
+      summary: "Black props up d5 with ...e6 and a slightly passive bishop; you pin with Bg5, keep pressure on d5, and play for the minority attack or an e4 break.",
       sans: [
         "d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5", "Be7",
         "e3", "O-O", "Nf3", "h6", "Bh4",
@@ -79,6 +80,7 @@ export const queensGambit: Opening = {
     },
     {
       label: "Accepted (2...dxc4)",
+      summary: "Black grabs the c-pawn but can't hold it; develop calmly, recapture with Bxc4 aiming at f7, and enjoy a lead in development and central space.",
       branch: { from: "Declined (2...e6)", atPly: 3, tryMove: "dxc4" },
       sans: [
         "d4", "d5", "c4", "dxc4", "Nf3", "Nf6", "e3", "e6",
@@ -100,6 +102,7 @@ export const queensGambit: Opening = {
     },
     {
       label: "Slav (2...c6)",
+      summary: "Black supports d5 with ...c6 to free the light bishop; after ...dxc4 you play a4 to stop ...b5, regain the pawn with Bxc4, and keep the freer game.",
       branch: { from: "Declined (2...e6)", atPly: 3, tryMove: "c6" },
       sans: [
         "d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3", "dxc4",

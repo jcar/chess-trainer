@@ -46,6 +46,7 @@ export const nimzoIndian: Opening = {
   lines: [
     {
       label: "Rubinstein Variation",
+      summary: "Against the quiet e3 set-up you keep the bishop and fight for the centre, striking with ...d5 and ...c5 for a balanced classical battle.",
       sans: [
         "d4", "Nf6", "c4", "e6", "Nc3", "Bb4",
         "e3", "O-O", "Bd3", "d5", "Nf3", "c5",
@@ -67,6 +68,7 @@ export const nimzoIndian: Opening = {
     },
     {
       label: "Classical (Qc2) Variation",
+      summary: "White keeps a healthy structure with Qc2 and gains the bishop pair after ...Bxc3+; you fight back by controlling the light squares with ...b6 and ...Bb7.",
       branch: { from: "Rubinstein Variation", atPly: 6, tryMove: "Qc2" },
       sans: [
         "d4", "Nf6", "c4", "e6", "Nc3", "Bb4",

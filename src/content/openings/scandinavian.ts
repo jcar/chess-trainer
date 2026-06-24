@@ -46,6 +46,7 @@ export const scandinavian: Opening = {
   lines: [
     {
       label: "Main Line (3...Qa5)",
+      summary: "You recapture with the queen and tuck it on a5, then play ...Nf6, ...c6 and ...Bf5 for a solid, scheme-like setup with no weaknesses.",
       sans: [
         "e4", "d5", "exd5", "Qxd5", "Nc3", "Qa5",
         "d4", "Nf6", "Nf3", "c6", "Bc4", "Bf5",
@@ -74,6 +75,7 @@ export const scandinavian: Opening = {
     },
     {
       label: "Modern (2...Nf6)",
+      summary: "Instead of the queen, you recapture d5 with the knight and fianchetto to g7, keeping the queen at home for a sound, comfortable game.",
       sans: [
         "e4", "d5", "exd5", "Nf6", "d4", "Nxd5",
         "Nf3", "g6", "Be2", "Bg7",

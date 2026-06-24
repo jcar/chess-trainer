@@ -44,6 +44,7 @@ export const bogoIndian: Opening = {
   lines: [
     {
       label: "Main Line (4.Bd2)",
+      summary: "After White blocks with the bishop, you back up with ...Qe7 and ...Nc6, trade off cleanly on d2, and head for a smooth ...e5 break.",
       sans: [
         "d4", "Nf6", "c4", "e6", "Nf3", "Bb4+",
         "Bd2", "Qe7", "g3", "Nc6", "Bg2", "Bxd2+",
@@ -65,6 +66,7 @@ export const bogoIndian: Opening = {
     },
     {
       label: "Nimzowitsch (4.Nbd2)",
+      summary: "White blocks with the knight to keep the bishop pair; you castle, trade on d2 anyway, and settle into a solid ...d6 and ...e5 setup.",
       branch: { from: "Main Line (4.Bd2)", atPly: 6, tryMove: "Nbd2" },
       sans: [
         "d4", "Nf6", "c4", "e6", "Nf3", "Bb4+",

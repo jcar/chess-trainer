@@ -63,6 +63,28 @@ export function interleave<T>(groups: T[][]): T[] {
   return out;
 }
 
+export type LineStatus = "new" | "learning" | "mastered";
+
+export interface LineState {
+  status: LineStatus;
+  /** Leitner box (0–5); a coarse "how good are you at this line" meter. */
+  box: number;
+  reps: number;
+  lapses: number;
+}
+
+/** Per-line skill state for the opening page's line list. */
+export function lineState(srs: SrsData, l: TrainerLine): LineState {
+  const it = srs[srsKey(l.key)];
+  if (!it) return { status: "new", box: 0, reps: 0, lapses: 0 };
+  return {
+    status: it.box >= MASTER_BOX ? "mastered" : "learning",
+    box: it.box,
+    reps: it.reps,
+    lapses: it.lapses,
+  };
+}
+
 export interface MasteryCounts {
   mastered: number;
   learning: number;

@@ -47,6 +47,7 @@ export const englishOpening: Opening = {
   lines: [
     {
       label: "Symmetrical Variation",
+      summary: "Black mirrors your moves, so use your extra tempo to break the symmetry first — fight for d5 and expand on the queenside before Black does.",
       sans: [
         "c4", "c5", "Nc3", "Nc6", "g3", "g6",
         "Bg2", "Bg7", "Nf3", "Nf6", "O-O", "O-O",
@@ -68,6 +69,7 @@ export const englishOpening: Opening = {
     },
     {
       label: "Reversed Sicilian",
+      summary: "When Black grabs the centre with ...e5, you play a Sicilian a tempo up — press on d5, fianchetto to g2, and steer the reversed-colours middlegame.",
       branch: { from: "Symmetrical Variation", atPly: 1, tryMove: "e5" },
       sans: [
         "c4", "e5", "Nc3", "Nf6",

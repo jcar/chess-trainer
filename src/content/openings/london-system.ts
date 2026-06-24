@@ -47,6 +47,7 @@ export const londonSystem: Opening = {
   lines: [
     {
       label: "Main setup vs ...d5",
+      summary: "You build the trademark Bf4, e3, c3, Nbd2 structure and keep the bishop with Bg3, aiming a knight at e5 and your pieces at the kingside.",
       sans: [
         "d4", "d5", "Nf3", "Nf6", "Bf4", "e6",
         "e3", "c5", "c3", "Nc6", "Nbd2", "Bd6", "Bg3",
@@ -81,6 +82,7 @@ export const londonSystem: Opening = {
     },
     {
       label: "vs a King's-Indian setup",
+      summary: "Get the bishop out to f4 early before ...d6 can hit it, settle into your solid structure, and add h3 to deny Black's pieces the g4-square.",
       branch: { from: "Main setup vs ...d5", atPly: 1, tryMove: "Nf6" },
       sans: [
         "d4", "Nf6", "Bf4", "g6",
@@ -102,6 +104,7 @@ export const londonSystem: Opening = {
     },
     {
       label: "Black hits back with ...c5 and ...Qb6",
+      summary: "Black's sharpest try hits b2 and d4 with ...c5 and ...Qb6; defend calmly with Qc1 (or b3), hold your structure, and carry on with your usual plan.",
       branch: { from: "Main setup vs ...d5", atPly: 5, tryMove: "c5" },
       sans: [
         "d4", "d5", "Nf3", "Nf6", "Bf4", "c5",

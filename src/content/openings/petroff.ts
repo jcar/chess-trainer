@@ -44,6 +44,7 @@ export const petroff: Opening = {
   lines: [
     {
       label: "Classical Variation",
+      summary: "You kick the e5-knight before recapturing on e4, then develop harmoniously into a sound, symmetrical position with no weaknesses to target.",
       sans: [
         "e4", "e5", "Nf3", "Nf6", "Nxe5", "d6",
         "Nf3", "Nxe4", "d4", "d5", "Bd3", "Be7",
@@ -75,6 +76,7 @@ export const petroff: Opening = {
     },
     {
       label: "Steinitz Variation (3.d4)",
+      summary: "When White strikes with d4 instead of grabbing e5, you hit back with ...d5 and ...exd6 to reach a lively, roughly balanced middlegame.",
       branch: { from: "Classical Variation", atPly: 4, tryMove: "d4" },
       sans: [
         "e4", "e5", "Nf3", "Nf6", "d4", "exd4",

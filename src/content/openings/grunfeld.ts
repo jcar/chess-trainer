@@ -45,6 +45,7 @@ export const grunfeld: Opening = {
   lines: [
     {
       label: "Exchange Variation",
+      summary: "You let White build a big d4/e4 centre, then tear it down with ...c5, the g7-bishop and pressure on d4 and the doubled c3-pawn.",
       sans: [
         "d4", "Nf6", "c4", "g6", "Nc3", "d5",
         "cxd5", "Nxd5", "e4", "Nxc3", "bxc3", "Bg7", "Bc4", "c5",
@@ -75,6 +76,7 @@ export const grunfeld: Opening = {
     },
     {
       label: "Russian System",
+      summary: "White's queen swings to b3 to recover the c4-pawn; you finish the fianchetto, castle, and unleash ...c5 to strike the broad centre.",
       branch: { from: "Exchange Variation", atPly: 6, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "g6", "Nc3", "d5",

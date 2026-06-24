@@ -44,6 +44,7 @@ export const alapinSicilian: Opening = {
   lines: [
     {
       label: "vs 2...d5",
+      summary: "Black trades on d5 and recaptures with the queen; you build the centre with d4 and gain tempo chasing the exposed queen for an easy, free game.",
       sans: ["e4", "c5", "c3", "d5", "exd5", "Qxd5", "d4", "Nc6", "Nf3"],
       notes: [
         "Claiming the centre.",
@@ -59,6 +60,7 @@ export const alapinSicilian: Opening = {
     },
     {
       label: "vs 2...Nf6",
+      summary: "Black pokes e4, so you push e5 to kick the knight and grab space, then build d4 and Nf3 for a comfortable central edge.",
       branch: { from: "vs 2...d5", atPly: 3, tryMove: "Nf6" },
       sans: ["e4", "c5", "c3", "Nf6", "e5", "Nd5", "d4", "cxd4", "Nf3"],
       notes: [

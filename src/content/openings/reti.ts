@@ -45,6 +45,7 @@ export const reti: Opening = {
   lines: [
     {
       label: "Main Line",
+      summary: "You pressure d5 from the flank with c4 and a g2-fianchetto, staying flexible to transpose into whatever favourable structure Black's setup allows.",
       sans: [
         "Nf3", "d5", "c4", "e6",
         "g3", "Nf6", "Bg2", "Be7", "O-O", "O-O",
@@ -64,6 +65,7 @@ export const reti: Opening = {
     },
     {
       label: "Advance (2...d4)",
+      summary: "When Black pushes ...d4 to grab space, you don't blockade it — undermine the advanced pawn with e3, opening lines toward a balanced, lively centre.",
       branch: { from: "Main Line", atPly: 3, tryMove: "d4" },
       sans: [
         "Nf3", "d5", "c4", "d4",

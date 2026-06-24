@@ -44,6 +44,7 @@ export const pirc: Opening = {
   lines: [
     {
       label: "Classical Variation",
+      summary: "White develops naturally with Nf3 and Be2; you fianchetto to g7, castle, and stay compact, waiting to uncoil with a well-timed ...e5 or ...c5.",
       sans: [
         "e4", "d6", "d4", "Nf6", "Nc3", "g6",
         "Nf3", "Bg7", "Be2", "O-O", "O-O",
@@ -64,6 +65,7 @@ export const pirc: Opening = {
     },
     {
       label: "Austrian Attack",
+      summary: "White grabs maximum space with f4 and eyes a kingside storm; you counter in the centre at once with ...Nc6 and ...e5 before the avalanche arrives.",
       branch: { from: "Classical Variation", atPly: 6, tryMove: "f4" },
       sans: [
         "e4", "d6", "d4", "Nf6", "Nc3", "g6",

@@ -43,6 +43,7 @@ export const slavDefence: Opening = {
   lines: [
     {
       label: "Main line (4...dxc4)",
+      summary: "You support d5 with ...c6, get the bishop out to f5, then take on c4 and give the pawn back for comfortable, free development.",
       sans: [
         "d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3", "dxc4",
         "a4", "Bf5", "e3", "e6", "Bxc4", "Bb4",
@@ -73,6 +74,7 @@ export const slavDefence: Opening = {
     },
     {
       label: "Exchange Variation",
+      summary: "White clarifies into a symmetrical structure for a quiet game; develop naturally and aim for a sound, balanced middlegame with easy equality.",
       branch: { from: "Main line (4...dxc4)", atPly: 4, tryMove: "cxd5" },
       sans: [
         "d4", "d5", "c4", "c6", "cxd5", "cxd5", "Nc3", "Nf6",

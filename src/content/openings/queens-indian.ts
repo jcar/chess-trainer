@@ -43,6 +43,7 @@ export const queensIndian: Opening = {
   lines: [
     {
       label: "Main Line (4.g3 Bb7)",
+      summary: "You fianchetto on b7 to fight for e4 from afar, then finish development and aim for ...d5 or ...c5, reducing White's edge to a symbol.",
       sans: [
         "d4", "Nf6", "c4", "e6", "Nf3", "b6",
         "g3", "Bb7", "Bg2", "Be7", "O-O", "O-O",
@@ -64,6 +65,7 @@ export const queensIndian: Opening = {
     },
     {
       label: "4...Ba6",
+      summary: "Your bishop hits c4 directly, provoking a concession like b3 before you reroute it — a sharper, more concrete way to challenge White's setup.",
       sans: [
         "d4", "Nf6", "c4", "e6", "Nf3", "b6",
         "g3", "Ba6", "b3", "Bb4+", "Bd2", "Be7",

@@ -45,6 +45,7 @@ export const ruyLopez: Opening = {
   lines: [
     {
       label: "Closed Ruy Lopez (Morphy Defence)",
+      summary: "You pressure the c6-knight, complete development, and prepare a patient d4 break — slowly squeezing while Black expands on the queenside.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bb5", "a6",
         "Ba4", "Nf6", "O-O", "Be7", "Re1", "b5",
@@ -83,6 +84,7 @@ export const ruyLopez: Opening = {
     },
     {
       label: "Exchange Variation",
+      summary: "You trade on c6 to give Black doubled pawns, then steer toward an endgame where your healthier structure is a lasting edge.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bb5", "a6",
         "Bxc6", "dxc6", "O-O", "f6", "d4", "exd4", "Nxd4",
@@ -105,6 +107,7 @@ export const ruyLopez: Opening = {
     },
     {
       label: "Berlin Defence",
+      summary: "Black counterattacks e4 and heads for the famously solid queenless Berlin endgame, leaving you to squeeze patiently without queens.",
       branch: { from: "Closed Ruy Lopez (Morphy Defence)", atPly: 5, tryMove: "Nf6" },
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bb5", "Nf6",

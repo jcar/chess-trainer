@@ -44,6 +44,7 @@ export const fourKnights: Opening = {
   lines: [
     {
       label: "Spanish Four Knights",
+      summary: "You borrow the Ruy idea with Bb5 in a symmetrical setup, develop calmly, and use your extra tempo to break the symmetry first.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Nc3", "Nf6",
         "Bb5", "Bb4", "O-O", "O-O", "d3", "d6",
@@ -65,6 +66,7 @@ export const fourKnights: Opening = {
     },
     {
       label: "Scotch Four Knights",
+      summary: "You strike with d4 instead of pinning, then trade on c6 to inflict doubled pawns and play around them for a small, durable pull.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Nc3", "Nf6",
         "d4", "exd4", "Nxd4", "Bb4", "Nxc6", "bxc6",

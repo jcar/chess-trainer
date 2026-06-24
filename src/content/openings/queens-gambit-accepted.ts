@@ -44,6 +44,7 @@ export const queensGambitAccepted: Opening = {
   lines: [
     {
       label: "Main Line",
+      summary: "You take the c4-pawn as a loan, develop fast, then break with ...c5 and expand with ...a6 and ...b5 to chase White's bishop and free your game.",
       sans: [
         "d4", "d5", "c4", "dxc4", "Nf3", "Nf6",
         "e3", "e6", "Bxc4", "c5", "O-O", "a6",
@@ -72,6 +73,7 @@ export const queensGambitAccepted: Opening = {
     },
     {
       label: "Central Variation (3.e4)",
+      summary: "When White grabs the whole centre with e4, hit back at once with ...e5; trade on d4 and develop quickly to pressure White's loose central pawns.",
       branch: { from: "Main Line", atPly: 4, tryMove: "e4" },
       sans: [
         "d4", "d5", "c4", "dxc4", "e4", "e5",

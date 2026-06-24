@@ -44,6 +44,7 @@ export const frenchDefence: Opening = {
   lines: [
     {
       label: "Advance Variation",
+      summary: "White locks the centre with e5; you pile up on the d4-base with ...c5, ...Nc6 and ...Qb6, attacking the chain instead of releasing the tension.",
       sans: [
         "e4", "e6", "d4", "d5", "e5", "c5", "c3", "Nc6", "Nf3", "Qb6",
       ],
@@ -74,6 +75,7 @@ export const frenchDefence: Opening = {
     },
     {
       label: "Winawer Variation",
+      summary: "You pin and trade on c3 to wreck White's queenside pawns, accepting a cramped but resilient structure with dynamic counterplay against the doubled pawns.",
       sans: [
         "e4", "e6", "d4", "d5", "Nc3", "Bb4", "e5", "c5",
         "a3", "Bxc3+", "bxc3", "Ne7",
@@ -95,6 +97,7 @@ export const frenchDefence: Opening = {
     },
     {
       label: "Classical Variation (3.Nc3)",
+      summary: "You develop ...Nf6 and meet Bg5 calmly; after White pushes e5 you regroup with ...Nfd7 and break with ...c5 against the d4-base.",
       branch: { from: "Advance Variation", atPly: 4, tryMove: "Nc3" },
       sans: [
         "e4", "e6", "d4", "d5", "Nc3", "Nf6", "Bg5", "Be7",
@@ -117,6 +120,7 @@ export const frenchDefence: Opening = {
     },
     {
       label: "Tarrasch Variation (3.Nd2)",
+      summary: "White develops quietly with Nd2; you strike at once with ...c5 and accept an isolated d-pawn, getting fast, active piece play in return.",
       branch: { from: "Advance Variation", atPly: 4, tryMove: "Nd2" },
       sans: [
         "e4", "e6", "d4", "d5", "Nd2", "c5", "exd5", "exd5",

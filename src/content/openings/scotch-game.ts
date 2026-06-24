@@ -43,6 +43,7 @@ export const scotchGame: Opening = {
   lines: [
     {
       label: "Main line (4...Nf6)",
+      summary: "You open the centre, then trade with Nxc6 to hand Black doubled c-pawns and play on your lead in development before ...d5 frees him.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "d4", "exd4",
         "Nxd4", "Nf6", "Nc3", "Bb4", "Nxc6", "bxc6",
@@ -74,6 +75,7 @@ export const scotchGame: Opening = {
     },
     {
       label: "Classical Variation (4...Bc5)",
+      summary: "Black aims the bishop at your d4-knight; you bolster it with Be3 and c3 and fight to keep your central post and active pieces.",
       branch: { from: "Main line (4...Nf6)", atPly: 7, tryMove: "Bc5" },
       sans: [
         "e4", "e5", "Nf3", "Nc6", "d4", "exd4",

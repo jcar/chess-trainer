@@ -44,6 +44,7 @@ export const caroKann: Opening = {
   lines: [
     {
       label: "Classical Variation",
+      summary: "You trade on e4 and develop the bishop to f5 before ...e6 locks it in, reaching a sound structure with no bad pieces.",
       sans: [
         "e4", "c6", "d4", "d5", "Nc3", "dxe4", "Nxe4", "Bf5",
         "Ng3", "Bg6", "h4", "h6", "Nf3", "Nd7",
@@ -74,6 +75,7 @@ export const caroKann: Opening = {
     },
     {
       label: "Advance Variation",
+      summary: "White grabs space with e5; you get the light-squared bishop out to f5 before ...e6, then chip at d4 with ...c5.",
       branch: { from: "Classical Variation", atPly: 4, tryMove: "e5" },
       sans: [
         "e4", "c6", "d4", "d5", "e5", "Bf5", "Nf3", "e6", "Be2", "c5",
@@ -93,6 +95,7 @@ export const caroKann: Opening = {
     },
     {
       label: "Panov–Botvinnik Attack",
+      summary: "White opens the game with c4 and an isolated d-pawn; you blockade and pressure d5 with ...Nf6, ...e6 and the ...Bb4 pin for active piece play.",
       branch: { from: "Classical Variation", atPly: 4, tryMove: "exd5" },
       sans: [
         "e4", "c6", "d4", "d5", "exd5", "cxd5",

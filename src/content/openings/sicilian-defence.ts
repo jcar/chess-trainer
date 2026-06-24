@@ -45,6 +45,7 @@ export const sicilianDefence: Opening = {
   lines: [
     {
       label: "Open Sicilian — Najdorf",
+      summary: "You play the flexible ...a6 and ...e5, fighting for the d5-hole while expanding on the queenside as White attacks the kingside.",
       sans: [
         "e4", "c5", "Nf3", "d6", "d4", "cxd4", "Nxd4", "Nf6",
         "Nc3", "a6", "Be2", "e5", "Nb3", "Be7", "O-O", "O-O",
@@ -82,6 +83,7 @@ export const sicilianDefence: Opening = {
     },
     {
       label: "Alapin Variation (2.c3)",
+      summary: "White sidesteps the Open Sicilian, building a big pawn centre with c3 and d4; you hit it early with ...Nf6 and ...d6 to keep things fluid.",
       branch: { from: "Open Sicilian — Najdorf", atPly: 2, tryMove: "c3" },
       sans: [
         "e4", "c5", "c3", "Nf6", "e5", "Nd5", "d4", "cxd4",
@@ -104,6 +106,7 @@ export const sicilianDefence: Opening = {
     },
     {
       label: "Najdorf — 6.Bg5 main line",
+      summary: "White pins on g5 and storms with f4 and Qf3; you castle into a sharp race, defending e6/d6 while grabbing the c-file with ...Qc7.",
       sans: [
         "e4", "c5", "Nf3", "d6", "d4", "cxd4", "Nxd4", "Nf6",
         "Nc3", "a6", "Bg5", "e6", "f4", "Be7", "Qf3", "Qc7",
@@ -129,6 +132,7 @@ export const sicilianDefence: Opening = {
     },
     {
       label: "Facing the Rossolimo (3.Bb5)",
+      summary: "White avoids the Open lines by pinning the c6-knight; you fianchetto to g7 and play ...e5, accepting the structure and aiming for a sound, harmonious game.",
       sans: [
         "e4", "c5", "Nf3", "Nc6", "Bb5", "g6", "O-O", "Bg7",
         "Re1", "e5", "c3", "Nge7",

@@ -45,6 +45,7 @@ export const benkoGambit: Opening = {
   lines: [
     {
       label: "Accepted",
+      summary: "You give the b-pawn for lasting pressure down the open a- and b-files and the long diagonal — comfort that even lingers into the endgame.",
       sans: [
         "d4", "Nf6", "c4", "c5", "d5", "b5",
         "cxb5", "a6", "bxa6", "Bxa6", "Nc3", "d6", "e4", "Bxf1", "Kxf1", "g6",
@@ -69,6 +70,7 @@ export const benkoGambit: Opening = {
     },
     {
       label: "Declined (4.Nf3)",
+      summary: "White waves off the pawn and develops; you snatch on c4 instead, then fianchetto and build the same active queenside piece play.",
       branch: { from: "Accepted", atPly: 6, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "c5", "d5", "b5",

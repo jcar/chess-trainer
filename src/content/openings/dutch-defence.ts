@@ -45,6 +45,7 @@ export const dutchDefence: Opening = {
   lines: [
     {
       label: "Classical Variation",
+      summary: "You develop behind the f5-pawn with ...e6, ...Be7 and ...d6, gripping e4 and preparing the thematic ...e5 break for a kingside initiative.",
       sans: [
         "d4", "f5", "g3", "Nf6", "Bg2", "e6",
         "Nf3", "Be7", "O-O", "O-O", "c4", "d6",
@@ -66,6 +67,7 @@ export const dutchDefence: Opening = {
     },
     {
       label: "Leningrad Variation",
+      summary: "You fianchetto on g7 King's-Indian style, castle, and fight for e4, then strike with ...e5 to open the centre and the long diagonal.",
       sans: [
         "d4", "f5", "g3", "Nf6", "Bg2", "g6",
         "Nf3", "Bg7", "O-O", "O-O", "c4", "d6",

@@ -44,6 +44,7 @@ export const viennaGame: Opening = {
   lines: [
     {
       label: "Quiet main line",
+      summary: "You develop Italian-style with Bc4, d3 and Nf3, eyeing f7 and d5 for a comfortable, flexible game with f4 still in reserve.",
       sans: ["e4", "e5", "Nc3", "Nc6", "Bc4", "Nf6", "d3", "Bc5", "Nf3"],
       notes: [
         "Claiming the centre.",
@@ -59,6 +60,7 @@ export const viennaGame: Opening = {
     },
     {
       label: "Vienna Gambit",
+      summary: "You strike with f4, sound because the c3-knight already guards e4, opening the f-file to fight for the initiative against Black's king.",
       branch: { from: "Quiet main line", atPly: 3, tryMove: "Nf6" },
       sans: ["e4", "e5", "Nc3", "Nf6", "f4", "d5", "fxe5", "Nxe4", "Nf3"],
       notes: [

@@ -45,6 +45,7 @@ export const benoni: Opening = {
   lines: [
     {
       label: "Modern Benoni",
+      summary: "You trade space for dynamism: a queenside majority that rolls with ...a6 and ...b5, the monster g7-bishop, and the half-open e-file.",
       sans: [
         "d4", "Nf6", "c4", "c5", "d5", "e6",
         "Nc3", "exd5", "cxd5", "d6", "e4", "g6", "Nf3", "Bg7",
@@ -67,6 +68,7 @@ export const benoni: Opening = {
     },
     {
       label: "Fianchetto Variation",
+      summary: "White meets your setup with g3 and a fianchetto of his own, blunting the long diagonal, so you press the queenside majority patiently from there.",
       branch: { from: "Modern Benoni", atPly: 10, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "c5", "d5", "e6",

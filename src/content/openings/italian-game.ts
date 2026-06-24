@@ -47,6 +47,7 @@ export const italianGame: Opening = {
   lines: [
     {
       label: "Giuoco Pianissimo (quiet main line)",
+      summary: "You build slowly with c3 and d3, then reroute the b1-knight toward f5 or d5 and pick the wing where you stand better.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5",
         "c3", "Nf6", "d3", "d6", "O-O", "O-O",
@@ -80,6 +81,7 @@ export const italianGame: Opening = {
     },
     {
       label: "Classical c3 + d4 break",
+      summary: "You prepare with c3 and strike with d4 to claim a broad pawn centre and open lines for a fast, classical initiative.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5",
         "c3", "Nf6", "d4", "exd4", "cxd4", "Bb4+", "Nc3",
@@ -102,6 +104,7 @@ export const italianGame: Opening = {
     },
     {
       label: "Evans Gambit",
+      summary: "You sacrifice the b-pawn with b4 to deflect Black's bishop, gain time with c3 and d4, and build a big attacking centre.",
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5",
         "b4", "Bxb4", "c3", "Ba5", "d4", "exd4",
@@ -123,6 +126,7 @@ export const italianGame: Opening = {
     },
     {
       label: "Two Knights (3...Nf6 instead of ...Bc5)",
+      summary: "When Black counters e4 with ...Nf6, you keep it calm with d3, sidestepping the wild Fried Liver and steering into a quiet build-up.",
       branch: { from: "Giuoco Pianissimo (quiet main line)", atPly: 5, tryMove: "Nf6" },
       sans: [
         "e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6",

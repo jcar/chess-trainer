@@ -46,6 +46,7 @@ export const kingsIndian: Opening = {
   lines: [
     {
       label: "Classical Variation",
+      summary: "You let White build the big centre, then strike it with ...e5; once it locks, storm the kingside with ...f5–f4 while White races on the queenside.",
       sans: [
         "d4", "Nf6", "c4", "g6", "Nc3", "Bg7", "e4", "d6",
         "Nf3", "O-O", "Be2", "e5", "O-O", "Nc6",
@@ -81,6 +82,7 @@ export const kingsIndian: Opening = {
     },
     {
       label: "Fianchetto Variation",
+      summary: "White fianchettoes too for a calmer, solid set-up; you prepare ...e5 with ...Nbd7 and play for the central break against White's restrained centre.",
       branch: { from: "Classical Variation", atPly: 4, tryMove: "Nf3" },
       sans: [
         "d4", "Nf6", "c4", "g6", "Nf3", "Bg7", "g3", "O-O",
@@ -103,6 +105,7 @@ export const kingsIndian: Opening = {
     },
     {
       label: "Sämisch Variation",
+      summary: "White shields e4 with f3 and builds a huge centre; you castle and counter with ...e5, then a kingside pawn avalanche with ...f5 and ...g5.",
       branch: { from: "Classical Variation", atPly: 8, tryMove: "f3" },
       sans: [
         "d4", "Nf6", "c4", "g6", "Nc3", "Bg7",
