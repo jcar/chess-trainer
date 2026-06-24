@@ -100,27 +100,36 @@ const DANGER_STYLE: React.CSSProperties = {
 const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(59,130,246,0.45)" };
 const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(168,85,247,0.42)" };
 
-// react-chessboard (via @dnd-kit) restores focus to the moved piece after a
-// drag/tap using element.focus() WITHOUT { preventScroll: true }, which scrolls
-// the window to the board on every move — jarring when you've scrolled down to
-// play. The library exposes no option for it, so once (globally) we make focus()
-// skip the scroll for elements inside a board. Scoped via the data-chessboard
-// marker, so focus behaviour everywhere else is untouched. This prevents the jump
-// at the source rather than undoing it afterward (no flicker / double-bounce).
-let boardFocusPatched = false;
-function patchBoardFocusScroll(): void {
-  if (boardFocusPatched || typeof HTMLElement === "undefined") return;
-  boardFocusPatched = true;
-  const original = HTMLElement.prototype.focus;
+// react-chessboard (via @dnd-kit) yanks the window to the board after a move by
+// (a) restoring focus to the moved piece with element.focus() and no
+// { preventScroll: true }, and (b) sometimes calling scrollIntoView on a board
+// node. The library exposes no option for either, so once (globally) we neutralize
+// both at the source — preventing the jump rather than undoing it afterward (which
+// caused the visible bounce). Done once, idempotently.
+let boardScrollPatched = false;
+function patchBoardScrollJump(): void {
+  if (boardScrollPatched || typeof window === "undefined") return;
+  boardScrollPatched = true;
+
+  // Programmatic focus must never scroll. (User-initiated focus — tapping an
+  // input, Tab navigation — is unaffected; only element.focus() calls are.)
+  const origFocus = HTMLElement.prototype.focus;
   HTMLElement.prototype.focus = function focus(
     this: HTMLElement,
     options?: FocusOptions,
   ): void {
-    if (this.closest?.("[data-chessboard]")) {
-      original.call(this, { ...options, preventScroll: true });
-    } else {
-      original.call(this, options);
-    }
+    origFocus.call(this, { ...options, preventScroll: true });
+  };
+
+  // Ignore scrollIntoView fired from inside a board (scoped via the
+  // data-chessboard marker so the rest of the app behaves normally).
+  const origScrollIntoView = Element.prototype.scrollIntoView;
+  Element.prototype.scrollIntoView = function scrollIntoView(
+    this: Element,
+    ...args: unknown[]
+  ): void {
+    if (this.closest?.("[data-chessboard]")) return;
+    (origScrollIntoView as (...a: unknown[]) => void).apply(this, args);
   };
 }
 
@@ -142,9 +151,9 @@ export function Board({
 }: BoardProps) {
   const tapEnabled = Boolean(getLegalMoves && onMove);
 
-  // Stop react-chessboard's post-move focus from scrolling the page to the board.
+  // Stop react-chessboard's post-move focus/scrollIntoView from scrolling the page.
   useEffect(() => {
-    patchBoardFocusScroll();
+    patchBoardScrollJump();
   }, []);
   // The selection is tied to the position it was made on; if the FEN changes
   // (a move was played, or Reset), the selection is treated as cleared. This
