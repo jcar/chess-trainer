@@ -6,6 +6,7 @@
 // Browser-only — guard calls behind `typeof window !== "undefined"`.
 
 import { withBasePath } from "@/lib/basePath";
+import { createScriptedEngine, isScriptedEngineEnabled } from "./scriptedEngine";
 
 // The worker is a hand-built absolute URL, so it must include the deploy base
 // path (Next does not auto-prefix raw `new Worker("/...")` strings). The worker
@@ -14,6 +15,22 @@ const ENGINE_URL = withBasePath("/stockfish/stockfish-18-lite-single.js");
 
 /** UCI skill levels run 0 (weakest) to 20 (full strength). */
 export type SkillLevel = number;
+
+/** Evaluation returned by `analyze` (from the side-to-move's perspective). */
+export interface Analysis {
+  cp: number | null;
+  mate: number | null;
+  bestMove: string | null;
+}
+
+/** The engine surface the app depends on. `getEngine()` returns this so a
+ *  deterministic scripted engine can stand in during e2e tests. */
+export interface EngineLike {
+  getBestMove(fen: string, skill?: SkillLevel, moveTimeMs?: number): Promise<string | null>;
+  getMoveAtElo(fen: string, elo: number, moveTimeMs?: number): Promise<string | null>;
+  analyze(fen: string, depth?: number): Promise<Analysis>;
+  dispose(): void;
+}
 
 /** Approximate sub-1320-Elo play by limiting search depth + skill (the engine
  *  has no native Elo setting below 1320). Shallower search = weaker, beatable
@@ -24,7 +41,7 @@ function weakConfigForElo(elo: number): { skill: number; depth: number } {
   return { skill: 2, depth: 4 }; // ~1100 up to the 1320 native floor
 }
 
-class StockfishEngine {
+class StockfishEngine implements EngineLike {
   private worker: Worker | null = null;
   private ready: Promise<void> | null = null;
   private listeners = new Set<(line: string) => void>();
@@ -193,9 +210,15 @@ class StockfishEngine {
 
 // One shared engine per page. Drills reuse it; creating/destroying a worker per
 // move would be wasteful and slow.
-let singleton: StockfishEngine | null = null;
+let singleton: EngineLike | null = null;
 
-export function getEngine(): StockfishEngine {
-  if (!singleton) singleton = new StockfishEngine();
+export function getEngine(): EngineLike {
+  if (!singleton) {
+    // e2e test seam: when the scripted-engine flag is set (client-only, never in
+    // production), return a deterministic engine instead of real Stockfish.
+    singleton = isScriptedEngineEnabled()
+      ? createScriptedEngine()
+      : new StockfishEngine();
+  }
   return singleton;
 }
