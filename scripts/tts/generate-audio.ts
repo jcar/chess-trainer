@@ -36,21 +36,6 @@ const manifestPath = join(here, "manifest.json");
 const audioDir = join(repoRoot, "public", "audio", "dialogue");
 const clipManifestPath = join(repoRoot, "src", "lib", "audio", "clipManifest.ts");
 
-const apiKey = process.env.GEMINI_API_KEY;
-if (!apiKey) {
-  console.error("Set GEMINI_API_KEY (see .env.example) before running tts:generate.");
-  process.exit(1);
-}
-if (!existsSync(manifestPath)) {
-  console.error("No manifest.json — run `npm run tts:extract` first.");
-  process.exit(1);
-}
-
-const manifest: Entry[] = JSON.parse(readFileSync(manifestPath, "utf8"));
-mkdirSync(audioDir, { recursive: true });
-const ai = new GoogleGenAI({ apiKey });
-const haveFfmpeg = spawnSync("ffmpeg", ["-version"]).status === 0;
-
 // Per-character base style + per-line mood → a natural-language delivery hint.
 const STYLE: Record<string, string> = {
   pip: "warm, small and eager",
@@ -96,11 +81,35 @@ function pcmToWav(pcm: Buffer, sampleRate = 24000): Buffer {
   return Buffer.concat([h, pcm]);
 }
 
-const clipFiles: Record<string, string> = {};
-let generated = 0;
-let reused = 0;
+const THROTTLE_MS = 6500; // stay under the ~10 requests/minute TTS quota
+const MAX_RETRIES = 8;
+const MAX_WAIT_S = 90; // a longer required wait means the DAILY quota is gone — stop and resume later
+function sleep(ms: number): Promise<void> {
+  return new Promise((r) => setTimeout(r, ms));
+}
 
-for (const e of manifest) {
+async function main() {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    console.error("Set GEMINI_API_KEY (see .env.example) before running tts:generate.");
+    process.exit(1);
+  }
+  if (!existsSync(manifestPath)) {
+    console.error("No manifest.json — run `npm run tts:extract` first.");
+    process.exit(1);
+  }
+
+  const manifest: Entry[] = JSON.parse(readFileSync(manifestPath, "utf8"));
+  mkdirSync(audioDir, { recursive: true });
+  const ai = new GoogleGenAI({ apiKey });
+  const haveFfmpeg = spawnSync("ffmpeg", ["-version"]).status === 0;
+
+  const clipFiles: Record<string, string> = {};
+  let generated = 0;
+  let reused = 0;
+  let stop = false; // set when the daily quota is exhausted — finish up gracefully
+
+  for (const e of manifest) {
   const mp3 = `${e.key}.mp3`;
   const wav = `${e.key}.wav`;
   if (existsSync(join(audioDir, mp3))) {
@@ -114,20 +123,46 @@ for (const e of manifest) {
     continue;
   }
 
-  const resp = await ai.models.generateContent({
-    model: "gemini-2.5-flash-preview-tts",
-    contents: prompt(e),
-    config: {
-      responseModalities: [Modality.AUDIO],
-      speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: e.voice } } },
-    },
-  });
-
-  const b64 = resp.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
-  if (!b64) {
-    console.error(`✗ no audio returned for ${e.key} — "${e.text.slice(0, 40)}…"`);
-    continue;
+  // Generate, retrying on 429 (rate limit) honoring the API's retryDelay.
+  let b64: string | undefined;
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const resp = await ai.models.generateContent({
+        model: "gemini-2.5-flash-preview-tts",
+        contents: prompt(e),
+        config: {
+          responseModalities: [Modality.AUDIO],
+          speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: e.voice } } },
+        },
+      });
+      b64 = resp.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
+      break;
+    } catch (err) {
+      const msg = (err as Error).message ?? "";
+      const rateLimited = /\b429\b|RESOURCE_EXHAUSTED|quota/i.test(msg);
+      if (rateLimited) {
+        const m = msg.match(/retry in ([\d.]+)s/i) ?? msg.match(/"retryDelay":\s*"(\d+)s"/);
+        const waitS = m ? Math.ceil(parseFloat(m[1])) + 2 : 20;
+        if (waitS > MAX_WAIT_S) {
+          console.error(
+            `✗ ${e.key}: needs a ${waitS}s wait — daily quota exhausted. Stopping; ` +
+              `re-run \`npm run tts:generate\` after it resets (it resumes incrementally).`,
+          );
+          stop = true;
+          break;
+        }
+        if (attempt <= MAX_RETRIES) {
+          console.log(`  …rate-limited on ${e.key}, waiting ${waitS}s (attempt ${attempt})`);
+          await sleep(waitS * 1000);
+          continue;
+        }
+      }
+      console.error(`✗ ${e.key}: ${msg.slice(0, 140)}`);
+      break;
+    }
   }
+  if (stop) break;
+  if (!b64) continue;
 
   writeFileSync(join(audioDir, wav), pcmToWav(Buffer.from(b64, "base64")));
   let file = wav;
@@ -145,6 +180,7 @@ for (const e of manifest) {
   clipFiles[e.key] = file;
   generated++;
   console.log(`✓ ${e.key} (${e.voice})`);
+  await sleep(THROTTLE_MS);
 }
 
 // Prune any audio files no longer referenced by the manifest.
@@ -170,6 +206,9 @@ writeFileSync(
     `export const CLIP_FILES: Record<string, string> = {\n${body}\n};\n`,
 );
 
-console.log(
-  `\nDone: ${generated} generated, ${reused} reused, ${Object.keys(clipFiles).length} total clips.`,
-);
+  console.log(
+    `\nDone: ${generated} generated, ${reused} reused, ${Object.keys(clipFiles).length} total clips.`,
+  );
+}
+
+void main();
