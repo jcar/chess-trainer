@@ -156,6 +156,56 @@ export const ENDGAMES: EndgamePosition[] = [
     successText:
       "Checkmate! Bishop + knight is the toughest fundamental mate — pulling it off means your technique is sharp.",
   },
+  // ---- Queen Endgames ----
+  {
+    id: "queen-vs-pawn",
+    name: "Queen vs a Pawn on the 7th",
+    category: "Queen Endgames",
+    fen: "8/8/8/8/8/3k4/3p4/3K2Q1 w - - 0 1",
+    orientation: "white",
+    objective: "checkmate",
+    engineSkill: 14,
+    instructions:
+      "A queen beats a lone pawn one step from promoting — check the king, then step closer, repeating until you win the pawn and mate. (Careful: a ROOK- or BISHOP-pawn can draw by stalemate tricks — but this central pawn is a clean win.)",
+    successText: "Won! Check, approach, repeat — that's how the queen rounds up a runner and mates.",
+  },
+  {
+    id: "queen-vs-rook",
+    name: "Queen vs Rook",
+    category: "Queen Endgames",
+    fen: "8/8/8/4k3/8/5r2/8/3QK3 w - - 0 1",
+    orientation: "white",
+    objective: "checkmate",
+    engineSkill: 12,
+    instructions:
+      "Queen beats rook — but it takes technique. Keep the enemy king and rook apart, use checks and forks to win the rook, then mate with king and queen.",
+    successText: "Checkmate! Splitting the king from the rook and forking them is the key to Q-vs-R.",
+  },
+  // ---- Rook Endgames (more) ----
+  {
+    id: "two-passers-vs-rook",
+    name: "Two Connected Passers vs Rook",
+    category: "Rook Endgames",
+    fen: "8/8/1PP5/8/8/8/6r1/k1K5 w - - 0 1",
+    orientation: "white",
+    objective: "promote",
+    engineSkill: 14,
+    instructions:
+      "Two connected passed pawns on the sixth are too much for a lone rook. Push them as a team — the rook can't stop both — and promote one.",
+    successText: "Promoted! Connected passers on the sixth beat a rook — they defend each other to the end.",
+  },
+  {
+    id: "rook-pawn-vs-knight",
+    name: "Rook + Pawn vs Knight",
+    category: "Rook Endgames",
+    fen: "8/8/8/4k3/8/4n3/4P3/R3K3 w - - 0 1",
+    orientation: "white",
+    objective: "checkmate",
+    engineSkill: 12,
+    instructions:
+      "You're up a rook for a knight, with a pawn too. Trade or sideline the knight, escort the pawn or bring the rook and king, and finish with a checkmate.",
+    successText: "Won! Convert the extra material calmly — neutralise the knight, then mate.",
+  },
 ];
 
 export const ENDGAME_CATEGORIES: string[] = [

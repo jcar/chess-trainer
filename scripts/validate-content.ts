@@ -21,6 +21,7 @@ import type {
   SceneBackdropId,
 } from "../src/content/types";
 import { isKnownCharacter } from "../src/content/kids/characters";
+import { ENDGAMES } from "../src/lib/endgames/positions";
 import { getEngine, quitEngine, type Score } from "./lib/engine";
 
 // Valid story backdrops (mirrors SceneBackdropId; kept inline so the validator
@@ -469,6 +470,26 @@ async function checkImportedPuzzles(): Promise<number> {
   return puzzles.length;
 }
 
+/** Endgame Trainer positions (src/lib/endgames) must be legal and clearly
+ *  favorable for the side to move. NB: many basic-mate wins (B+N, two bishops,
+ *  Lucena) are *technique* wins the engine scores only modestly at fixed depth
+ *  without tablebases, so this is a "clearly winning, not drawn/losing" sanity
+ *  gate (cp ≥ 100 or a mate), not a strict proof — it still catches a position
+ *  that is actually equal or lost. */
+async function checkEndgames(): Promise<number> {
+  for (const e of ENDGAMES) {
+    const where = `endgame:${e.id}`;
+    if (!assertLegalPosition(where, e.fen)) continue;
+    const { lines } = await getEngine().analyze(e.fen, { depth: EVAL_DEPTH, multiPV: 1 });
+    const s = lines[0]?.score;
+    const winning = s && (isMate(s) ? s.mate > 0 : s.cp >= 100);
+    if (!winning) {
+      note(where, `endgame not clearly winning for the side to move (engine: ${JSON.stringify(s)})`);
+    }
+  }
+  return ENDGAMES.length;
+}
+
 async function main() {
   let count = 0;
   for (const mod of MODULES) {
@@ -478,6 +499,7 @@ async function main() {
     }
   }
   const openingLineCount = checkOpeningLines();
+  const endgameCount = await checkEndgames();
   const puzzleCount = await checkImportedPuzzles();
   quitEngine();
 
@@ -489,7 +511,7 @@ async function main() {
   }
   console.log(
     `\n✓ Content valid: ${count} activities across ${MODULES.length} module(s)` +
-      ` + ${openingLineCount} opening lines + ${puzzleCount} Lichess puzzles` +
+      ` + ${endgameCount} endgames + ${openingLineCount} opening lines + ${puzzleCount} Lichess puzzles` +
       (warnings.length ? ` (${warnings.length} warning(s))` : "") +
       `.`,
   );
