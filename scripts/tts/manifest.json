@@ -1,0 +1,912 @@
+[
+  {
+    "key": "aurora-37kc09",
+    "speaker": "aurora",
+    "voice": "Leda",
+    "mood": "idle",
+    "text": "Here sleeps King Cedric, where the Grey is strongest. Only real games will break it."
+  },
+  {
+    "key": "aurora-3l5l3c",
+    "speaker": "aurora",
+    "voice": "Leda",
+    "mood": "happy",
+    "text": "Light… at last. I am Queen Aurora. You have woken almost the whole kingdom, brave Caller."
+  },
+  {
+    "key": "aurora-nek2dx",
+    "speaker": "aurora",
+    "voice": "Leda",
+    "mood": "idle",
+    "text": "Only the King still sleeps. To wake him, Pip must cross to the far side and become a queen."
+  },
+  {
+    "key": "belle-10gp4km",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "idle",
+    "text": "Watch closely — the king and a rook move together. That secret move is called castling!"
+  },
+  {
+    "key": "belle-12dr1xr",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "idle",
+    "text": "You learn quickly, Caller. But there is one more thing every player must know…"
+  },
+  {
+    "key": "belle-148tfqp",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "idle",
+    "text": "Mmm… who climbs so high? I am Bishop Belle. Up here we keep the kingdom's SECRET moves."
+  },
+  {
+    "key": "belle-1q0c8tb",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "happy",
+    "text": "The mountains shine again! Thank you, Caller — I am wide awake."
+  },
+  {
+    "key": "belle-1vnvr57",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "idle",
+    "text": "Not every game is won, little one. Sometimes a game ends in a tie — a draw."
+  },
+  {
+    "key": "belle-d3dwg",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "worried",
+    "text": "Beware STALEMATE: if a king can't move but isn't in check, the game is a draw — not a win!"
+  },
+  {
+    "key": "belle-dd5rn8",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "idle",
+    "text": "Look — the king has no move, but he is NOT in check. What does that make it?"
+  },
+  {
+    "key": "belle-mn8pfy",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "happy",
+    "text": "Castling, en passant, and a pawn becoming a queen — special moves that surprise your foe."
+  },
+  {
+    "key": "belle-nlom56",
+    "speaker": "belle",
+    "voice": "Kore",
+    "mood": "idle",
+    "text": "You are ready, Caller. Answer Murk, and the heights are ours."
+  },
+  {
+    "key": "cedric-sdnzq",
+    "speaker": "cedric",
+    "voice": "Algieba",
+    "mood": "happy",
+    "text": "Ho! The Grey is lifted and I am awake. Thank you, Caller — you saved the Kingdom of Sixty-Four!"
+  },
+  {
+    "key": "murk-13yy741",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "worried",
+    "text": "Gah! You actually passed? Fine, fine — the gate is open."
+  },
+  {
+    "key": "murk-186osb3",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "worried",
+    "text": "Two friends woken… this is getting out of hand!"
+  },
+  {
+    "key": "murk-1blro4x",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "My forest! Here I hide my favorite tricks — forks, pins, and skewers. You'll never learn them!"
+  },
+  {
+    "key": "murk-1c0ggx4",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "worried",
+    "text": "Hmph. Beginner's luck. The high cliffs of Castle Heights will stop you!"
+  },
+  {
+    "key": "murk-1cxjedb",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Bah — I was SAVING that trick. No fair learning it!"
+  },
+  {
+    "key": "murk-1hoy6ff",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Tee-hee! Wrong square. Find the back row!"
+  },
+  {
+    "key": "murk-1k567qx",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Ha! Missed it. Only the knight can reach him now!"
+  },
+  {
+    "key": "murk-1puu1vb",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Ha! Missed me. You'll have to do better than that!"
+  },
+  {
+    "key": "murk-1qr2lhg",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Stop right there! No one crosses my gate without passing my riddles."
+  },
+  {
+    "key": "murk-1uscwz2",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "My trickiest riddles yet! Forks, pins, pawns — get them ALL right, or turn back!"
+  },
+  {
+    "key": "murk-1wursf7",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Missed! These trees are full of tricks."
+  },
+  {
+    "key": "murk-1wx695i",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Bet you can't beat them all. I'll be watching… and giggling."
+  },
+  {
+    "key": "murk-1y2rqzu",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Hee-hee! That's not check. Try again, hero."
+  },
+  {
+    "key": "murk-3cyn3c",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "worried",
+    "text": "Hey! Those are MY tricks! …this isn't going how I planned."
+  },
+  {
+    "key": "murk-3g4uzm",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "worried",
+    "text": "No, no, NO! Stay out of my Trickster Forest — it's full of nasty surprises!"
+  },
+  {
+    "key": "murk-3jizp1",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Hee! Rushing again? That is how I catch you."
+  },
+  {
+    "key": "murk-50np5z",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Hee-hee! A pawn playing hero? You'll never wake them all, little Pip."
+  },
+  {
+    "key": "murk-6pnnc",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "This is your LAST step, Pip. Play me, level by level… I won't make it easy!"
+  },
+  {
+    "key": "murk-6xzohr",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "None shall pass the cliff gate without proving they can win AND stay safe!"
+  },
+  {
+    "key": "murk-8sc6ip",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Hee! My forest fooled you. Look again!"
+  },
+  {
+    "key": "murk-c0cvea",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "worried",
+    "text": "I… I only made trouble because nobody ever played with me. Could… could I stay?"
+  },
+  {
+    "key": "murk-c292iq",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Nope! A pin is a sneaky thing — think harder."
+  },
+  {
+    "key": "murk-cp3o0e",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Hee! That's not the mate. Look at f7 again!"
+  },
+  {
+    "key": "murk-djfyu5",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Pfft. Knowing the moves and USING them are very different, hero."
+  },
+  {
+    "key": "murk-es79sj",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "One last gate, deep in the trees. Pass it… if you dare."
+  },
+  {
+    "key": "murk-iu10sh",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Worth, schmorth. You'll give away your queen the moment you stop looking!"
+  },
+  {
+    "key": "murk-ki8g55",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Riddles about squares, roads, and pieces. Get them right… if you can!"
+  },
+  {
+    "key": "murk-sw16m8",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Wrong! Tee-hee… my forest muddles your thinking."
+  },
+  {
+    "key": "murk-t3dmgc",
+    "speaker": "murk",
+    "voice": "Algenib",
+    "mood": "sly",
+    "text": "Clever, clever. But my gate on the heights is trickier than the last…"
+  },
+  {
+    "key": "nim-13chqjh",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Boing! Watch closely, Caller — see how the bishop and queen gang up on f7!"
+  },
+  {
+    "key": "nim-1chzipt",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Boing! Boing! Hi-hi-hi! I'm Nim the knight — fastest hopper on Champions' Road!"
+  },
+  {
+    "key": "nim-1mq3u6u",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Ready for my favorites, Caller? Mates where the king is trapped by its OWN pieces!"
+  },
+  {
+    "key": "nim-1mqa664",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "This is my favorite, Caller — the king's boxed in by its own friends. Hop in!"
+  },
+  {
+    "key": "nim-1na46z3",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "To catch a king, build a BOX! Take away his squares one by one until he's stuck."
+  },
+  {
+    "key": "nim-1nuuvlm",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "We've got this, Caller. Show Murk how sharp you are!"
+  },
+  {
+    "key": "nim-1sr6ovc",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Which way do we chase the king, Caller? Toward the edge — pick it!"
+  },
+  {
+    "key": "nim-1vevx21",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "The back-rank mate and the smothered mate — sneaky and beautiful. Let's spring them!"
+  },
+  {
+    "key": "nim-41wqre",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Wanna win? START strong! Grab the middle, wake your pieces up, keep your king cozy."
+  },
+  {
+    "key": "nim-50avo",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "They left f7 wide open, Caller — finish it in one move!"
+  },
+  {
+    "key": "nim-5n7v8",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Boing! You spotted it AND turned it around. Four-move traps don't scare us!"
+  },
+  {
+    "key": "nim-9ddcmf",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Ooh, you're GOOD. Can I come with you? I wanna help wake everyone too!"
+  },
+  {
+    "key": "nim-a0a19y",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Back-rank AND smothered — you've got a whole bag of checkmates now!"
+  },
+  {
+    "key": "nim-a14vn9",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Boom! Mate! The whole road is sparkling again. Three friends awake!"
+  },
+  {
+    "key": "nim-ac8sok",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "That's YOUR dream, Pip! Let's practice walking pawns home, step by step."
+  },
+  {
+    "key": "nim-coo0v3",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "One move, two targets — that's a FORK! Find it, Caller!"
+  },
+  {
+    "key": "nim-df07qp",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Oh-ho, a FORK hits two things at once! We can use Murk's own tricks against him!"
+  },
+  {
+    "key": "nim-dhv3t7",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "idle",
+    "text": "They gang up on one square — f7. Learn to see it, and nobody can ever catch you with it!"
+  },
+  {
+    "key": "nim-esyxt4",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "The king's stuck behind its pawns, Caller — slide in for mate!"
+  },
+  {
+    "key": "nim-gcx8ra",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Boxed him in! You're a natural king-catcher, Caller!"
+  },
+  {
+    "key": "nim-n5vu0s",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "A skewer pokes through one piece to grab the big one behind it. Go!"
+  },
+  {
+    "key": "nim-oo3l7n",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Psst, Caller — some tricksters try to win in just FOUR moves! It's called Scholar's Mate."
+  },
+  {
+    "key": "nim-rkxlze",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Watch the two rooks climb like a ladder, pushing the king to the edge!"
+  },
+  {
+    "key": "nim-taq8i1",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Two rooks, a queen, a single rook — each one can checkmate a lonely king. Let's learn the patterns!"
+  },
+  {
+    "key": "nim-umooj4",
+    "speaker": "nim",
+    "voice": "Fenrir",
+    "mood": "happy",
+    "text": "Boing! Grab the middle of the board — that's how champions begin!"
+  },
+  {
+    "key": "pip-10etfxd",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Of course, Nim! Now we're a team of three — me, Nim, and you, Caller!"
+  },
+  {
+    "key": "pip-10y7e9t",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Castling AND turning a pawn into a queen? These are wonderful!"
+  },
+  {
+    "key": "pip-13d6hr2",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "We'll show Murk what we can do. Ready, Caller?"
+  },
+  {
+    "key": "pip-14mi17y",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Show the Grey what we've learned, Caller. Find the checkmate!"
+  },
+  {
+    "key": "pip-15b5696",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Down to Champions' Road, Caller. I hear something fast and bouncy down there…"
+  },
+  {
+    "key": "pip-1bcsscb",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Learn the roads with me, and we can reach anyone who needs us!"
+  },
+  {
+    "key": "pip-1biw8xy",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Look, Caller! The whole Square Kingdom has its colors back!"
+  },
+  {
+    "key": "pip-1bvjp9f",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "More color is coming back. The kingdom is waking up, bit by bit!"
+  },
+  {
+    "key": "pip-1cr99ic",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Surprises don't scare us anymore. Into the forest, team!"
+  },
+  {
+    "key": "pip-1e38an2",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Every square has a secret name, Caller. Find the ones I call out and the kingdom listens!"
+  },
+  {
+    "key": "pip-1exnr8i",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "I looked before I leaped — and nothing got taken for free!"
+  },
+  {
+    "key": "pip-1fscnwd",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Did you see? They wiggled! Learning their moves is waking them up."
+  },
+  {
+    "key": "pip-1jmqesq",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "This part is close to my heart, Caller — help me find where a pawn becomes a queen!"
+  },
+  {
+    "key": "pip-1l5nde9",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "That's Murk, the trickster magpie. Don't worry — we'll prove him wrong, Caller!"
+  },
+  {
+    "key": "pip-1o1l578",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Each one moves in its own special way. If we learn how they move, we can wake them!"
+  },
+  {
+    "key": "pip-1ow6mm2",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Secret moves?! Teach us every one, Belle!"
+  },
+  {
+    "key": "pip-1rst5j3",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "To wake the sleeping pieces, we must travel the kingdom's roads."
+  },
+  {
+    "key": "pip-1seth02",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "We've learned so much, Caller. Answer Murk's questions and the gate will open!"
+  },
+  {
+    "key": "pip-1sqbgzs",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "You found them all! See — a little more color already."
+  },
+  {
+    "key": "pip-1tx8zrp",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Everything we've learned leads here. Checkmate, Caller!"
+  },
+  {
+    "key": "pip-1uok1z7",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "Like herding a sheep into a pen. Let's practice the trap, Caller!"
+  },
+  {
+    "key": "pip-1vnru4f",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "We cleared the playground! Our moves are quick now."
+  },
+  {
+    "key": "pip-1wbudfx",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "Let's master every trick, Caller — and find who's sleeping deep in these trees."
+  },
+  {
+    "key": "pip-1wfu4vp",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Next, Caller — the great king-and-queen and king-and-rook mates. Let's finish the road!"
+  },
+  {
+    "key": "pip-1wxt1nr",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Of course, Murk. Every kingdom needs a trickster friend. We did it, Caller — together!"
+  },
+  {
+    "key": "pip-1x26is7",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Walk the king to the edge, then snap the trap shut. You can do it, Caller!"
+  },
+  {
+    "key": "pip-1xd2tix",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "I'm Pip, the smallest pawn. And YOU are my Caller. Together we can bring the colors back!"
+  },
+  {
+    "key": "pip-1xhw5ib",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Now I can see the roads glowing! Straight ones and slanted ones."
+  },
+  {
+    "key": "pip-1yd1ei2",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "I reached the far side… I'm a QUEEN! The crown is mine!"
+  },
+  {
+    "key": "pip-1zqmyi",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "worried",
+    "text": "Everyone is fast asleep. The Grey put them to sleep — even the King!"
+  },
+  {
+    "key": "pip-6me8pz",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "First I must learn this place. Help me explore the board of 64 squares!"
+  },
+  {
+    "key": "pip-8vtmar",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "worried",
+    "text": "Oh… where are all the colors? The whole kingdom turned grey!"
+  },
+  {
+    "key": "pip-9abang",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Forks, pins, skewers — they're OURS now!"
+  },
+  {
+    "key": "pip-9v5b05",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Every pawn made it home! My own dream feels closer than ever."
+  },
+  {
+    "key": "pip-c3kks8",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Our first friend! Come on — Battle Meadow is waiting!"
+  },
+  {
+    "key": "pip-ecpurx",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Teach us, Sir Rookwell! Help us learn what each piece is worth, Caller."
+  },
+  {
+    "key": "pip-f18ue5",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "Some roads go straight — up, down, and across. Some go slanted, like a diagonal."
+  },
+  {
+    "key": "pip-g4wulc",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "The grass is turning green! We know what the pieces are worth now."
+  },
+  {
+    "key": "pip-gk2qou",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "The far side… my dream! Come on, team — to Pip's Arena!"
+  },
+  {
+    "key": "pip-n8l0as",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Now let's turn those traps into real checkmates."
+  },
+  {
+    "key": "pip-nl0nm1",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "So I must be careful NOT to stalemate when I'm winning. Got it!"
+  },
+  {
+    "key": "pip-panp1p",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Then let's practice, Caller — to the playground!"
+  },
+  {
+    "key": "pip-r4upd3",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Look! When we learned the squares, a tiny bit of color came back!"
+  },
+  {
+    "key": "pip-rsbgpz",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Time to play! These games make our moves quick and strong."
+  },
+  {
+    "key": "pip-s3mofx",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "worried",
+    "text": "But up ahead I see a big grey gate, and Murk is sitting on it…"
+  },
+  {
+    "key": "pip-uhtn2r",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "Here are three sleepy friends: the King, the Knight, and another little pawn like me."
+  },
+  {
+    "key": "pip-vqm5yw",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "idle",
+    "text": "Watch closely, Caller — the sleepy pieces are stretching awake and stepping out!"
+  },
+  {
+    "key": "pip-xb76jv",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Everything we learned comes down to this. Play with me, Caller — all the way to the crown!"
+  },
+  {
+    "key": "pip-xfxmgt",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Up we climb, Caller — someone is sleeping on the heights, and we'll wake her too!"
+  },
+  {
+    "key": "pip-xzd54r",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "Good first moves! Show us, Caller — let's open like champions."
+  },
+  {
+    "key": "pip-z3tdof",
+    "speaker": "pip",
+    "voice": "Puck",
+    "mood": "happy",
+    "text": "This part is close to my heart, Caller. A pawn who marches all the way home becomes a QUEEN."
+  },
+  {
+    "key": "rookwell-157kbt",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "Attack the enemy king — give check!"
+  },
+  {
+    "key": "rookwell-15fljhm",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "When the king is attacked, that's CHECK — he must escape at once."
+  },
+  {
+    "key": "rookwell-1aenzmm",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "happy",
+    "text": "Checkmate! You did it. Battle Meadow is green and golden once more."
+  },
+  {
+    "key": "rookwell-1g5iksz",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "A brave piece is also a CAREFUL one. Before every move, look: is anything in danger?"
+  },
+  {
+    "key": "rookwell-1g7le30",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "happy",
+    "text": "When he's attacked and CAN'T escape — that's checkmate. That's how chess is won!"
+  },
+  {
+    "key": "rookwell-1gw1ccn",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "…Who woke me? I am Sir Rookwell. Beyond this gate, in Battle Meadow, I will teach you to be brave."
+  },
+  {
+    "key": "rookwell-1qvbayv",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "But some pieces are worth more than others. A wise fighter knows what to trade."
+  },
+  {
+    "key": "rookwell-1yg2ovi",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "Before you leap, look for danger. Is this knight safe where it stands?"
+  },
+  {
+    "key": "rookwell-aay1p",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "Murk loves it when you forget to check. Let's not give him the chance."
+  },
+  {
+    "key": "rookwell-c0e4lk",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "Well done, Caller. Now for the most important move of all… the checkmate."
+  },
+  {
+    "key": "rookwell-xg09w4",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "Some pieces are worth more than others, Caller. Tap the most valuable one!"
+  },
+  {
+    "key": "rookwell-zc1ss0",
+    "speaker": "rookwell",
+    "voice": "Charon",
+    "mood": "idle",
+    "text": "Welcome to Battle Meadow! Here, pieces can bump enemies off the board. That's a capture!"
+  }
+]

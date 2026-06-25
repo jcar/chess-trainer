@@ -6,6 +6,23 @@
 // invoke speak() from a tap handler (e.g. the SpeakButton).
 
 import { CHARACTERS, type CharacterId } from "@/content/kids/characters";
+import { withBasePath } from "@/lib/basePath";
+import { dialogueKey } from "@/lib/audio/dialogueKey";
+import { CLIP_FILES } from "@/lib/audio/clipManifest";
+
+// A pre-generated clip currently playing (so a new line / stop can interrupt it).
+let currentAudio: HTMLAudioElement | null = null;
+
+function stopAudio(): void {
+  if (currentAudio) {
+    try {
+      currentAudio.pause();
+    } catch {
+      /* ignore */
+    }
+    currentAudio = null;
+  }
+}
 
 function synth(): SpeechSynthesis | null {
   if (typeof window === "undefined") return null;
@@ -62,15 +79,36 @@ export function speak(text: string): void {
 }
 
 /**
- * Speak text in a specific character's voice (Pip & the Grey). A single
- * synthesized voice is re-shaped per character via pitch/rate — distinct enough
- * to read as different speakers without bundling extra voices.
+ * Speak a character's line (Pip & the Grey). If a pre-generated Gemini voice clip
+ * exists for this exact line (keyed by speaker + text), play that natural audio;
+ * otherwise fall back to the Web Speech voice (re-shaped per character via
+ * pitch/rate). The clip path is the only difference — every character-dialogue
+ * caller already routes through here.
  */
 export function speakAs(text: string, characterId: CharacterId): void {
   const v = CHARACTERS[characterId].voice;
+  const file = CLIP_FILES[dialogueKey(characterId, text)];
+
+  if (file && typeof window !== "undefined") {
+    try {
+      synth()?.cancel(); // stop any Web Speech in flight
+      stopAudio();
+      const audio = new Audio(withBasePath(`/audio/dialogue/${file}`));
+      currentAudio = audio;
+      // If the clip can't load/play (missing file, autoplay denied), fall back.
+      audio.play().catch(() => {
+        if (currentAudio === audio) currentAudio = null;
+        speakWith(text, v.pitch, v.rate);
+      });
+      return;
+    } catch {
+      /* fall through to Web Speech */
+    }
+  }
   speakWith(text, v.pitch, v.rate);
 }
 
 export function stopSpeaking(): void {
   synth()?.cancel();
+  stopAudio();
 }

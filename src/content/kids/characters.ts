@@ -33,6 +33,9 @@ export interface Character {
   voice: { pitch: number; rate: number };
   /** Accent color (hex) — name chips, portrait tint, map markers. */
   color: string;
+  /** Gemini TTS prebuilt voice name used to render this character's clips
+   *  (scripts/tts/generate-audio.ts). Tweak + regenerate to change a voice. */
+  geminiVoice: string;
 }
 
 export const CHARACTERS: Record<CharacterId, Character> = {
@@ -42,6 +45,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the smallest pawn",
     voice: { pitch: 1.35, rate: 0.95 },
     color: "#16959c",
+    geminiVoice: "Puck",
   },
   rookwell: {
     id: "rookwell",
@@ -49,6 +53,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the brave rook",
     voice: { pitch: 0.7, rate: 0.82 },
     color: "#b45309",
+    geminiVoice: "Charon",
   },
   belle: {
     id: "belle",
@@ -56,6 +61,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the wise bishop",
     voice: { pitch: 1.15, rate: 0.88 },
     color: "#7c3aed",
+    geminiVoice: "Kore",
   },
   nim: {
     id: "nim",
@@ -63,6 +69,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the leaping knight",
     voice: { pitch: 1.5, rate: 1.12 },
     color: "#0ea5e9",
+    geminiVoice: "Fenrir",
   },
   aurora: {
     id: "aurora",
@@ -70,6 +77,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the shining queen",
     voice: { pitch: 1.0, rate: 0.9 },
     color: "#db2777",
+    geminiVoice: "Leda",
   },
   cedric: {
     id: "cedric",
@@ -77,6 +85,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the sleeping king",
     voice: { pitch: 0.65, rate: 0.8 },
     color: "#a16207",
+    geminiVoice: "Algieba",
   },
   murk: {
     id: "murk",
@@ -87,6 +96,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the trickster magpie",
     voice: { pitch: 0.55, rate: 1.12 },
     color: "#475569",
+    geminiVoice: "Algenib",
   },
   caller: {
     id: "caller",
@@ -94,6 +104,7 @@ export const CHARACTERS: Record<CharacterId, Character> = {
     role: "the Caller",
     voice: { pitch: 1.08, rate: 0.92 },
     color: "#0f766e",
+    geminiVoice: "Zephyr",
   },
 };
 

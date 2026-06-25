@@ -10,7 +10,9 @@
     "validate": "tsx scripts/validate-content.ts",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed",
+    "tts:extract": "tsx scripts/tts/extract-dialogue.ts",
+    "tts:generate": "tsx scripts/tts/generate-audio.ts"
   },
   "dependencies": {
     "chess.js": "^1.4.0",
@@ -21,6 +23,7 @@
     "stockfish": "^18.0.7"
   },
   "devDependencies": {
+    "@google/genai": "^2.10.0",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
