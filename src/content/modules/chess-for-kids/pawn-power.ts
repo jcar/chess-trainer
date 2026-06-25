@@ -26,6 +26,9 @@ export const pawnPower: Lesson = {
     },
     {
       id: "kids-pawn-power-where",
+      dialogue: {
+        intro: { speaker: "pip", mood: "happy", text: "This part is close to my heart, Caller — help me find where a pawn becomes a queen!" },
+      },
       type: "sort",
       title: "Where should your king go?",
       blurb: "Lead the way!",

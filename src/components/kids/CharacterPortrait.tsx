@@ -130,20 +130,23 @@ function Body({ id, c, tint, mood }: { id: CharacterId; c: string; tint: string;
         </>
       );
     case "nim":
-      // A knight: angular horse head.
+      // A knight: the classic chess horse-head profile (facing left), with an
+      // ear, a flowing mane down the neck, a muzzle, eye and nostril.
       return (
         <>
           <path
-            d="M34 86 L34 60 Q30 50 40 44 Q42 34 56 30 Q70 34 66 50 L64 60 Q66 72 64 86 Z"
+            d="M36 88 L38 58 Q31 58 26 62 Q19 56 28 50 Q33 47 40 46 L42 38 Q44 27 55 25 L50 14 L60 26 Q73 33 69 56 L70 88 Z"
             fill={tint}
             stroke={stroke}
             strokeWidth="3"
             strokeLinejoin="round"
           />
-          {/* ear + mane */}
-          <path d="M56 30 L60 22 L65 30" fill={tint} stroke={stroke} strokeWidth="3" strokeLinejoin="round" />
-          <circle cx="49" cy="46" r="2.6" fill="#0f172a" />
-          <path d="M41 52 Q46 56 52 53" fill="none" stroke="#0f172a" strokeWidth="2.6" strokeLinecap="round" />
+          {/* mane down the back of the neck */}
+          <path d="M56 26 Q66 32 64 54" fill="none" stroke={stroke} strokeWidth="2.6" strokeLinecap="round" />
+          {/* eye */}
+          <circle cx="46" cy="43" r="2.6" fill="#0f172a" />
+          {/* nostril / mouth on the muzzle */}
+          <path d="M29 55 Q34 58 39 56" fill="none" stroke="#0f172a" strokeWidth="2.4" strokeLinecap="round" />
         </>
       );
     case "aurora":
@@ -193,26 +196,23 @@ function Body({ id, c, tint, mood }: { id: CharacterId; c: string; tint: string;
         </>
       );
     case "murk":
-      // The trickster magpie: a black-and-white bird with a sharp beak.
+      // The trickster magpie (facing left): round body, white belly, a long
+      // pointed tail behind, a head with a sharp beak, and a beady eye.
       return (
         <>
-          {/* tail + body */}
-          <path
-            d="M22 80 L40 64 Q46 50 58 48 Q74 46 74 60 Q74 74 58 78 Q44 82 22 80 Z"
-            fill="#1f2937"
-            stroke={stroke}
-            strokeWidth="3"
-            strokeLinejoin="round"
-          />
-          {/* white wing patch */}
-          <path d="M50 58 Q60 56 66 62 Q60 70 50 68 Z" fill="#e5e7eb" />
+          {/* tail, behind to the lower right */}
+          <path d="M66 56 L88 86 L62 70 Z" fill="#111827" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+          {/* body */}
+          <ellipse cx="52" cy="58" rx="20" ry="16" fill="#1f2937" stroke={stroke} strokeWidth="3" />
+          {/* white belly patch */}
+          <path d="M43 50 Q57 49 61 65 Q52 71 43 67 Z" fill="#e5e7eb" />
           {/* head */}
-          <circle cx="62" cy="44" r="11" fill="#1f2937" stroke={stroke} strokeWidth="3" />
-          {/* beak */}
-          <path d="M73 44 L86 41 L73 49 Z" fill="#f59e0b" stroke={stroke} strokeWidth="2" strokeLinejoin="round" />
+          <circle cx="40" cy="39" r="13" fill="#1f2937" stroke={stroke} strokeWidth="3" />
+          {/* beak, pointing left */}
+          <path d="M27 38 L12 35 L27 45 Z" fill="#f59e0b" stroke={stroke} strokeWidth="1.5" strokeLinejoin="round" />
           {/* eye */}
-          <circle cx="64" cy="42" r="2.4" fill="#fde68a" />
-          <circle cx="64.6" cy="42.4" r="1.1" fill="#0f172a" />
+          <circle cx="41" cy="36" r="3" fill="#fde68a" />
+          <circle cx="40.5" cy="36.5" r="1.3" fill="#0f172a" />
         </>
       );
   }

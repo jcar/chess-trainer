@@ -38,6 +38,10 @@ export const l5: Lesson = {
     },
     {
       id: "give-check-1",
+      dialogue: {
+        intro: { speaker: "rookwell", mood: "idle", text: "Attack the enemy king — give check!" },
+        onWrong: { speaker: "murk", mood: "sly", text: "Hee-hee! That's not check. Try again, hero." },
+      },
       type: "puzzle",
       title: "Give a check!",
       blurb: "Attack the king in one move.",

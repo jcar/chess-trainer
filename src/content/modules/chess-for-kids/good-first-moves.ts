@@ -24,6 +24,9 @@ export const goodFirstMoves: Lesson = {
     },
     {
       id: "gfm-center-target",
+      dialogue: {
+        intro: { speaker: "nim", mood: "happy", text: "Boing! Grab the middle of the board — that's how champions begin!" },
+      },
       type: "target",
       title: "Grab the Middle!",
       blurb: "Put a pawn in the center.",

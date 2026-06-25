@@ -23,6 +23,9 @@ export const l8: Lesson = {
     },
     {
       id: "ladder-replay",
+      dialogue: {
+        intro: { speaker: "nim", mood: "happy", text: "Watch the two rooks climb like a ladder, pushing the king to the edge!" },
+      },
       type: "replay",
       title: "The Two-Rook Ladder",
       blurb: "Two rooks walk the king to the edge.",

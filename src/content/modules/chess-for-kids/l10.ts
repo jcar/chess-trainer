@@ -20,6 +20,10 @@ export const l10: Lesson = {
     },
     {
       id: "pip-level-1-mate",
+      dialogue: {
+        intro: { speaker: "pip", mood: "happy", text: "Everything we've learned leads here. Checkmate, Caller!" },
+        onWrong: { speaker: "murk", mood: "sly", text: "Ha! Missed me. You'll have to do better than that!" },
+      },
       type: "puzzle",
       title: "Level 1: Beat Pip in One!",
       blurb: "One move to win.",

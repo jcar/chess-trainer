@@ -33,6 +33,13 @@ export const playingSmart: Lesson = {
     },
     {
       id: "smart-is-knight-safe",
+      dialogue: {
+        intro: {
+          speaker: "rookwell",
+          text: "Before you leap, look for danger. Is this knight safe where it stands?",
+          mood: "idle",
+        },
+      },
       type: "sort",
       title: "Is the knight safe?",
       blurb: "Look for attackers.",

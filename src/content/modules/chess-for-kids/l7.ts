@@ -23,6 +23,9 @@ export const l7: Lesson = {
     },
     {
       id: "stalemate-sort",
+      dialogue: {
+        intro: { speaker: "belle", mood: "idle", text: "Look — the king has no move, but he is NOT in check. What does that make it?" },
+      },
       type: "sort",
       title: "Checkmate or Stalemate?",
       blurb: "King stuck, but is it check?",

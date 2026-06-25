@@ -23,6 +23,9 @@ export const l4: Lesson = {
     },
     {
       id: "most-valuable",
+      dialogue: {
+        intro: { speaker: "rookwell", mood: "idle", text: "Some pieces are worth more than others, Caller. Tap the most valuable one!" },
+      },
       type: "sort",
       title: "Who's worth the most?",
       blurb: "Pick the biggest prize.",

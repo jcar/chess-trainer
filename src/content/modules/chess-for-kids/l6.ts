@@ -23,6 +23,9 @@ export const l6: Lesson = {
     },
     {
       id: "castle-replay",
+      dialogue: {
+        intro: { speaker: "belle", mood: "idle", text: "Watch closely — the king and a rook move together. That secret move is called castling!" },
+      },
       type: "replay",
       title: "Castling: tuck your king away",
       blurb: "King and rook move together.",

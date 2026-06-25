@@ -37,6 +37,10 @@ export const l9: Lesson = {
     },
     {
       id: "fork-puzzle",
+      dialogue: {
+        intro: { speaker: "nim", mood: "happy", text: "One move, two targets — that's a FORK! Find it, Caller!" },
+        onWrong: { speaker: "murk", mood: "sly", text: "Hee! My forest fooled you. Look again!" },
+      },
       type: "puzzle",
       title: "Make a fork!",
       blurb: "Win the queen with a jump.",
@@ -64,6 +68,10 @@ export const l9: Lesson = {
     },
     {
       id: "skewer-puzzle",
+      dialogue: {
+        intro: { speaker: "nim", mood: "happy", text: "A skewer pokes through one piece to grab the big one behind it. Go!" },
+        onWrong: { speaker: "murk", mood: "sly", text: "Missed! These trees are full of tricks." },
+      },
       type: "puzzle",
       title: "The skewer — win the queen!",
       blurb: "Check the king, grab what's behind.",

@@ -19,6 +19,9 @@ export const trappingTheKing: Lesson = {
     },
     {
       id: "trap-where",
+      dialogue: {
+        intro: { speaker: "nim", mood: "happy", text: "Which way do we chase the king, Caller? Toward the edge — pick it!" },
+      },
       type: "quiz",
       title: "The checkmate secret",
       blurb: "Where do you trap the king?",
