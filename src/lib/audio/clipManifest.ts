@@ -96,4 +96,6 @@ export const CLIP_FILES: Record<string, string> = {
   "pip-1wfu4vp": "pip-1wfu4vp.mp3",
   "pip-1wxt1nr": "pip-1wxt1nr.mp3",
   "pip-1x26is7": "pip-1x26is7.mp3",
+  "pip-1xd2tix": "pip-1xd2tix.mp3",
+  "pip-1xhw5ib": "pip-1xhw5ib.mp3",
 };

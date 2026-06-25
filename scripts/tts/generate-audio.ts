@@ -81,17 +81,27 @@ function pcmToWav(pcm: Buffer, sampleRate = 24000): Buffer {
   return Buffer.concat([h, pcm]);
 }
 
+// Preview TTS model. Override with TTS_MODEL to use a different model (each model
+// has its OWN per-day request quota, so the Pro model is a useful fallback once
+// the Flash model's daily cap is spent): TTS_MODEL=gemini-2.5-pro-preview-tts.
+const MODEL = process.env.TTS_MODEL ?? "gemini-2.5-flash-preview-tts";
 const THROTTLE_MS = 6500; // stay under the ~10 requests/minute TTS quota
-const MAX_RETRIES = 8;
+const MAX_RETRIES = 12;
 const MAX_WAIT_S = 90; // a longer required wait means the DAILY quota is gone — stop and resume later
 function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
 async function main() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    console.error("Set GEMINI_API_KEY (see .env.example) before running tts:generate.");
+  // One or more keys (comma-separated GEMINI_API_KEYS, or a single GEMINI_API_KEY).
+  // Each project has its own per-day TTS quota, so we rotate to the next key when
+  // one is daily-capped — finishing in a single run.
+  const keys = (process.env.GEMINI_API_KEYS ?? process.env.GEMINI_API_KEY ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (!keys.length) {
+    console.error("Set GEMINI_API_KEY or GEMINI_API_KEYS (see .env.example) before tts:generate.");
     process.exit(1);
   }
   if (!existsSync(manifestPath)) {
@@ -101,7 +111,8 @@ async function main() {
 
   const manifest: Entry[] = JSON.parse(readFileSync(manifestPath, "utf8"));
   mkdirSync(audioDir, { recursive: true });
-  const ai = new GoogleGenAI({ apiKey });
+  let ki = 0;
+  let ai = new GoogleGenAI({ apiKey: keys[ki] });
   const haveFfmpeg = spawnSync("ffmpeg", ["-version"]).status === 0;
 
   const clipFiles: Record<string, string> = {};
@@ -128,7 +139,7 @@ async function main() {
   for (let attempt = 1; ; attempt++) {
     try {
       const resp = await ai.models.generateContent({
-        model: "gemini-2.5-flash-preview-tts",
+        model: MODEL,
         contents: prompt(e),
         config: {
           responseModalities: [Modality.AUDIO],
@@ -144,9 +155,16 @@ async function main() {
         const m = msg.match(/retry in ([\d.]+)s/i) ?? msg.match(/"retryDelay":\s*"(\d+)s"/);
         const waitS = m ? Math.ceil(parseFloat(m[1])) + 2 : 20;
         if (waitS > MAX_WAIT_S) {
+          // Daily quota on this key is gone — rotate to the next key if we have one.
+          if (ki + 1 < keys.length) {
+            ki++;
+            ai = new GoogleGenAI({ apiKey: keys[ki] });
+            console.log(`  key #${ki} daily-capped — switching to key #${ki + 1} of ${keys.length}`);
+            continue; // retry this line on the fresh key
+          }
           console.error(
-            `✗ ${e.key}: needs a ${waitS}s wait — daily quota exhausted. Stopping; ` +
-              `re-run \`npm run tts:generate\` after it resets (it resumes incrementally).`,
+            `✗ ${e.key}: all ${keys.length} key(s) daily-capped. Stopping; re-run later ` +
+              `(it resumes incrementally).`,
           );
           stop = true;
           break;
