@@ -31,18 +31,13 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
   practiceSet: "Practice",
   openingDrill: "Drill",
   concept: "Learn",
+  reviewCheckpoint: "Challenge",
 };
 
 export function ModuleView({ moduleId }: { moduleId: string }) {
   const mod = getModule(moduleId);
-  const {
-    getActivityState,
-    activityStars,
-    totalStars,
-    activityStarsKid,
-    totalStarsKid,
-    allComplete,
-  } = useProgress();
+  const { getActivityState, activityStarsKid, totalStarsKid, allComplete } =
+    useProgress();
 
   if (!mod) notFound();
   const kid = !!mod.kidMode;

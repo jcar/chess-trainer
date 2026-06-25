@@ -22,12 +22,16 @@ import { CoordinatePlayer } from "@/components/activities/CoordinatePlayer";
 import { PracticeSetPlayer } from "@/components/activities/PracticeSetPlayer";
 import { OpeningDrillPlayer } from "@/components/activities/OpeningDrillPlayer";
 import { ConceptPlayer } from "@/components/activities/ConceptPlayer";
+import { PipChallengePlayer } from "@/components/activities/PipChallengePlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
 import { recordResult, useStreak } from "@/lib/rewards/streak";
 import { recordDailyActivity } from "@/lib/rewards/daily";
 import { playSound } from "@/lib/audio/sounds";
+import { conceptForActivity, conceptSrsKey } from "@/lib/kids/concepts";
+import { srsStore } from "@/lib/srs/useSrs";
+import { selectBelt } from "@/lib/kids/belts";
 import { buttonClasses } from "@/components/ui/Button";
 import {
   ACTIVITY_ICON,
@@ -50,6 +54,7 @@ const TYPE_LABEL: Record<Activity["type"], string> = {
   practiceSet: "Practice",
   openingDrill: "Opening drill",
   concept: "Learn",
+  reviewCheckpoint: "Pip's Challenge",
 };
 
 interface Props {
@@ -58,7 +63,7 @@ interface Props {
 }
 
 export function ActivityPlayer({ module: mod, activity }: Props) {
-  const { markComplete, recordAttempt, getActivityState } = useProgress();
+  const { markComplete, recordAttempt, getActivityState, snapshot } = useProgress();
   const kidMode = !!mod.kidMode;
 
   const [confettiKey, setConfettiKey] = useState(0);
@@ -74,22 +79,35 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
 
   const handleComplete = useCallback(
     (score: number) => {
-      // Capture whether this activity was ALREADY completed before this attempt
-      // (i.e. we're replaying it) — read before markComplete mutates the store.
-      const wasAlreadyComplete = getActivityState(activity.id).completed;
+      // Snapshot BEFORE the write so we can compute belt/lesson deltas.
+      const before = snapshot();
+      const wasAlreadyComplete = before[activity.id]?.completed ?? false;
       markComplete(activity.id, score);
       recordDailyActivity(); // any activity completion counts toward the daily streak
       if (!kidMode) return;
-      const success = score >= 100;
-      recordResult(success);
-      if (!success) {
-        setPipMood("think");
-        setPipSays("Keep trying!");
+
+      // Feed the concept SRS so Pip's Challenge can resurface weak spots later.
+      const concept = conceptForActivity(activity.id);
+      if (concept) srsStore.record(conceptSrsKey(concept), score >= 100);
+
+      recordResult(score >= 100); // clean solves build the "in a row" hot streak
+
+      // Belt-up takes priority: does completing this activity earn a new belt?
+      const after = {
+        ...before,
+        [activity.id]: { completed: true, score, attempts: 1 },
+      };
+      const beltBefore = selectBelt(before);
+      const beltAfter = selectBelt(after);
+      if (!wasAlreadyComplete && beltAfter.index > beltBefore.index && beltAfter.earned) {
+        setConfettiKey((k) => k + 1);
+        playSound("fanfare");
+        setPipMood("cheer");
+        setPipSays(`New belt: ${beltAfter.earned.name}! 🥋`);
         return;
       }
-      // Big celebration (confetti + fanfare) only when this completion NEWLY
-      // finishes the whole lesson — not on every replay of an already-done
-      // lesson, and not on a single activity. Otherwise just a calm reward.
+
+      // Otherwise celebrate a newly-finished lesson; else a calm "Nice!".
       const lesson = mod.lessons.find((l) =>
         l.activities.some((a) => a.id === activity.id),
       );
@@ -110,7 +128,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         setPipSays("Nice!");
       }
     },
-    [markComplete, activity.id, kidMode, mod.lessons, getActivityState],
+    [markComplete, activity.id, kidMode, mod.lessons, getActivityState, snapshot],
   );
   const handleAttempt = useCallback(
     () => recordAttempt(activity.id),
@@ -217,6 +235,9 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           advanceLabel={next ? "Got it" : kidMode ? "All done!" : "Finish"}
           kidMode={kidMode}
         />
+      )}
+      {activity.type === "reviewCheckpoint" && (
+        <PipChallengePlayer activity={activity} onComplete={handleComplete} />
       )}
 
       <footer className="flex items-center justify-between gap-3 border-t border-line pt-4 sm:pt-5">

@@ -237,4 +237,5 @@ export const ACTIVITY_ICON: Record<
   practiceSet: PracticeIcon,
   openingDrill: OpeningDrillIcon,
   concept: ConceptIcon,
+  reviewCheckpoint: TrophyIcon,
 };

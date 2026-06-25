@@ -18,6 +18,9 @@ import { goodFirstMoves } from "./good-first-moves";
 import { playingSmart } from "./playing-smart";
 import { trappingTheKing } from "./trapping-the-king";
 import { pawnPower } from "./pawn-power";
+import { checkpoint1 } from "./checkpoint-1";
+import { checkpoint2 } from "./checkpoint-2";
+import { checkpoint3 } from "./checkpoint-3";
 
 export const chessForKids: Module = {
   id: "chess-for-kids",
@@ -34,16 +37,19 @@ export const chessForKids: Module = {
     l2,
     l3,
     arcade,
+    checkpoint1,
     l4,
     playingSmart,
     l5,
     l6,
     l7,
+    checkpoint2,
     goodFirstMoves,
     trappingTheKing,
     l8,
     l9,
     pawnPower,
+    checkpoint3,
     l10,
   ],
 };

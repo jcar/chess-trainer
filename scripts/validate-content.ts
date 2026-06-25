@@ -314,6 +314,21 @@ async function checkActivity(moduleId: string, a: Activity) {
       break;
     }
 
+    case "reviewCheckpoint": {
+      // MCQ review over earlier concepts (display-only) — no engine check needed.
+      if (a.items.length < 1) note(where, "review checkpoint has no items");
+      if (a.masteryBar <= 0 || a.masteryBar > 1) {
+        note(where, `masteryBar ${a.masteryBar} must be in (0, 1]`);
+      }
+      a.items.forEach((it, i) => {
+        if (it.options.length < 2) note(where, `item ${i} needs ≥2 options`);
+        if (it.correctIndex < 0 || it.correctIndex >= it.options.length) {
+          note(where, `item ${i} correctIndex ${it.correctIndex} out of range`);
+        }
+        if (!it.conceptId) note(where, `item ${i} missing conceptId`);
+      });
+      break;
+    }
     case "concept": {
       // Read-only teaching card; diagrams are display-only. Just require text.
       if (!a.body || !a.body.trim()) note(where, "concept card has no body text");

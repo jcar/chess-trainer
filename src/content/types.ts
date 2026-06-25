@@ -331,6 +331,29 @@ export interface ConceptActivity extends ActivityBase {
   };
 }
 
+/** One review item in a Pip's Challenge checkpoint — an MCQ tagged with the
+ *  concept it reinforces (so the SRS can resurface a child's weak spots first). */
+export interface ReviewItem {
+  /** Concept id (matches CONCEPT_FOR_ACTIVITY values in lib/kids/concepts). */
+  conceptId: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}
+
+/** "Pip's Challenge" — a mixed, mastery-based review that interleaves earlier
+ *  concepts. Items are ordered by the SRS (most-overdue / most-missed first),
+ *  with a gentle mastery bar and no fail state. */
+export interface ReviewCheckpointActivity extends ActivityBase {
+  type: "reviewCheckpoint";
+  intro: string;
+  /** Fraction of presented items the child must get right to pass (e.g. 0.8). */
+  masteryBar: number;
+  successText: string;
+  items: ReviewItem[];
+}
+
 export type Activity =
   | PuzzleActivity
   | DrillActivity
@@ -343,7 +366,8 @@ export type Activity =
   | CoordinateActivity
   | PracticeSetActivity
   | OpeningDrillActivity
-  | ConceptActivity;
+  | ConceptActivity
+  | ReviewCheckpointActivity;
 
 export type ActivityType = Activity["type"];
 
