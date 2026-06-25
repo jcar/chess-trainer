@@ -3,8 +3,9 @@
 // A big, friendly "read it to me" button for young children. Tapping it reads
 // the supplied text aloud (Web Speech API) and unlocks audio for sound effects.
 
-import { speak, speechSupported } from "@/lib/audio/speech";
+import { speak, speakAs, speechSupported } from "@/lib/audio/speech";
 import { unlockAudio } from "@/lib/audio/sounds";
+import type { CharacterId } from "@/content/kids/characters";
 import { SpeakerIcon } from "@/components/icons";
 
 interface Props {
@@ -14,9 +15,11 @@ interface Props {
   className?: string;
   /** Smaller variant for inline use next to a line of text. */
   size?: "lg" | "sm";
+  /** If set, read in this character's voice (Pip & the Grey) instead of the default. */
+  characterId?: CharacterId;
 }
 
-export function SpeakButton({ text, className = "", size = "lg" }: Props) {
+export function SpeakButton({ text, className = "", size = "lg", characterId }: Props) {
   // Render nothing if the browser can't speak (keeps the UI honest).
   if (typeof window !== "undefined" && !speechSupported()) return null;
 
@@ -29,7 +32,8 @@ export function SpeakButton({ text, className = "", size = "lg" }: Props) {
       aria-label="Read aloud"
       onClick={() => {
         unlockAudio();
-        speak(text);
+        if (characterId) speakAs(text, characterId);
+        else speak(text);
       }}
       className={`inline-flex shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent shadow-sm transition hover:bg-accent/25 active:scale-90 ${dim} ${className}`}
     >

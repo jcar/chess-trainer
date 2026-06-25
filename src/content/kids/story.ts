@@ -4,18 +4,27 @@
 // quest map, story beats, and the certificate. Grouping follows the module's
 // actual lesson order.
 
+import type { CharacterId } from "./characters";
+import type { SceneBackdropId } from "../types";
+
 export interface Land {
   id: string;
   name: string;
   tagline: string;
   lessonIds: string[];
+  /** The friend Pip wakes by restoring this land (shown on the map as it blooms). */
+  wakes: CharacterId;
+  /** The story backdrop for this land (matches the lands' scenes). */
+  backdrop: SceneBackdropId;
 }
 
 export const LANDS: Land[] = [
   {
     id: "square-kingdom",
     name: "The Square Kingdom",
-    tagline: "Where Pip learns the board and meets the pieces.",
+    tagline: "Where Pip wakes and learns the board.",
+    wakes: "pip",
+    backdrop: "kingdom",
     lessonIds: [
       "kids-l1-board",
       "kids-l2-straight-diagonal",
@@ -27,7 +36,9 @@ export const LANDS: Land[] = [
   {
     id: "battle-meadow",
     name: "Battle Meadow",
-    tagline: "Capturing, staying safe, and the all-important checkmate.",
+    tagline: "Sir Rookwell teaches capturing, safety, and checkmate.",
+    wakes: "rookwell",
+    backdrop: "meadow",
     lessonIds: [
       "kids-l4-capturing-values",
       "kids-playing-smart",
@@ -37,13 +48,17 @@ export const LANDS: Land[] = [
   {
     id: "castle-heights",
     name: "Castle Heights",
-    tagline: "Special moves and the sneaky ways a game can tie.",
+    tagline: "Bishop Belle shows special moves and sneaky draws.",
+    wakes: "belle",
+    backdrop: "heights",
     lessonIds: ["kids-l6-special-moves", "kids-l7-draws", "kids-checkpoint-2"],
   },
   {
     id: "champions-road",
     name: "Champions' Road",
-    tagline: "Great openings, trapping the king, and your first real mates.",
+    tagline: "Nim leaps in: openings, trapping the king, first mates.",
+    wakes: "nim",
+    backdrop: "road",
     lessonIds: [
       "kids-good-first-moves",
       "kids-trapping-king",
@@ -53,13 +68,17 @@ export const LANDS: Land[] = [
   {
     id: "trickster-forest",
     name: "Trickster Forest",
-    tagline: "Forks, pins, skewers — and walking a pawn all the way home.",
+    tagline: "Queen Aurora's tricks: forks, pins, skewers, and pawn power.",
+    wakes: "aurora",
+    backdrop: "forest",
     lessonIds: ["kids-l9-tricks", "kids-pawn-power", "kids-checkpoint-3"],
   },
   {
     id: "pips-arena",
     name: "Pip's Arena",
-    tagline: "Everything you've learned — now play, and win the crown!",
+    tagline: "Wake King Cedric — play, win, and earn your crown!",
+    wakes: "cedric",
+    backdrop: "throne",
     lessonIds: ["kids-l10-play"],
   },
 ];
@@ -98,7 +117,7 @@ export function guardianFor(lessonId: string): Guardian | undefined {
 
 export const STORY = {
   intro:
-    "Pip the pawn dreams of becoming a queen. Help Pip cross the kingdom, one land at a time!",
+    "The kingdom turned grey and its pieces fell asleep. Help Pip wake them, land by land, and bring the colors back!",
   crown:
-    "Pip reached the far side and became a QUEEN — and so did you. You're a real chess player now! 👑",
+    "Pip reached the far side, woke King Cedric, and became a QUEEN — and so did you. The Grey is gone. You're a real chess player now! 👑",
 };

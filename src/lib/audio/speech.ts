@@ -5,6 +5,8 @@
 // iOS/Safari only allows speech to start from a user gesture, so callers should
 // invoke speak() from a tap handler (e.g. the SpeakButton).
 
+import { CHARACTERS, type CharacterId } from "@/content/kids/characters";
+
 function synth(): SpeechSynthesis | null {
   if (typeof window === "undefined") return null;
   return window.speechSynthesis ?? null;
@@ -26,11 +28,8 @@ function chooseVoice(s: SpeechSynthesis): SpeechSynthesisVoice | null {
   );
 }
 
-/**
- * Speak the given text aloud. Cancels any in-progress speech first so taps feel
- * responsive. Rate/pitch are tuned to be clear and friendly for kids.
- */
-export function speak(text: string): void {
+/** Speak with explicit pitch/rate shaping (shared by speak + speakAs). */
+function speakWith(text: string, pitch: number, rate: number): void {
   const s = synth();
   if (!s || !text.trim()) return;
   try {
@@ -39,13 +38,31 @@ export function speak(text: string): void {
     const voice = chooseVoice(s);
     if (voice) u.voice = voice;
     u.lang = voice?.lang ?? "en-US";
-    u.rate = 0.92; // a touch slower for young listeners
-    u.pitch = 1.08; // slightly brighter
+    u.rate = rate;
+    u.pitch = pitch;
     u.volume = 1;
     s.speak(u);
   } catch {
     // Speech is best-effort; never throw into the UI.
   }
+}
+
+/**
+ * Speak the given text aloud. Cancels any in-progress speech first so taps feel
+ * responsive. Rate/pitch are tuned to be clear and friendly for kids.
+ */
+export function speak(text: string): void {
+  speakWith(text, 1.08, 0.92); // slightly brighter, a touch slower for kids
+}
+
+/**
+ * Speak text in a specific character's voice (Pip & the Grey). A single
+ * synthesized voice is re-shaped per character via pitch/rate — distinct enough
+ * to read as different speakers without bundling extra voices.
+ */
+export function speakAs(text: string, characterId: CharacterId): void {
+  const v = CHARACTERS[characterId].voice;
+  speakWith(text, v.pitch, v.rate);
 }
 
 export function stopSpeaking(): void {

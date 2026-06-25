@@ -10,7 +10,8 @@ type SoundName =
   | "tryAgain"
   | "step"
   | "star"
-  | "fanfare";
+  | "fanfare"
+  | "blip";
 
 let ctx: AudioContext | null = null;
 let muted = false;
@@ -75,6 +76,10 @@ export function playSound(name: SoundName): void {
       break;
     case "step":
       tone(c, 520, t, 70, "sine", 0.1);
+      break;
+    case "blip":
+      // A tiny, quiet tick as each line of dialogue advances.
+      tone(c, 740, t, 45, "sine", 0.06);
       break;
     case "success":
       // A happy little C–E–G–C arpeggio.

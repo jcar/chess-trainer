@@ -13,8 +13,36 @@ import { Chess } from "chess.js";
 import { MODULES, getModuleActivities } from "../src/content";
 import { OPENINGS } from "../src/content/openings";
 import lichessPuzzles from "../src/content/tactics-puzzles.json";
-import type { Activity, PuzzleActivity, PuzzleGoal } from "../src/content/types";
+import type {
+  Activity,
+  DialogueLine,
+  PuzzleActivity,
+  PuzzleGoal,
+  SceneBackdropId,
+} from "../src/content/types";
+import { isKnownCharacter } from "../src/content/kids/characters";
 import { getEngine, quitEngine, type Score } from "./lib/engine";
+
+// Valid story backdrops (mirrors SceneBackdropId; kept inline so the validator
+// doesn't import the client-only SceneArt component).
+const SCENE_BACKDROPS: SceneBackdropId[] = [
+  "kingdom",
+  "meadow",
+  "heights",
+  "road",
+  "forest",
+  "throne",
+];
+
+/** Validate one dialogue line: a known speaker and non-empty text. */
+function checkDialogueLine(where: string, label: string, line: DialogueLine) {
+  if (!isKnownCharacter(line.speaker)) {
+    note(where, `${label}: unknown speaker "${line.speaker}"`);
+  }
+  if (!line.text || !line.text.trim()) {
+    note(where, `${label}: empty dialogue text`);
+  }
+}
 
 const MATE_DEPTH = 24; // mates are found fast; go deep enough to be certain
 const EVAL_DEPTH = 20;
@@ -174,6 +202,14 @@ async function checkPuzzleEngine(where: string, a: PuzzleActivity) {
 
 async function checkActivity(moduleId: string, a: Activity) {
   const where = `${moduleId}/${a.id}`;
+
+  // Optional in-character dialogue can hang off any activity (kid mode).
+  if (a.dialogue) {
+    if (a.dialogue.intro) checkDialogueLine(where, "dialogue.intro", a.dialogue.intro);
+    if (a.dialogue.onCorrect) checkDialogueLine(where, "dialogue.onCorrect", a.dialogue.onCorrect);
+    if (a.dialogue.onWrong) checkDialogueLine(where, "dialogue.onWrong", a.dialogue.onWrong);
+  }
+
   switch (a.type) {
     case "quiz":
       if (a.correctIndex < 0 || a.correctIndex >= a.options.length) {
@@ -337,6 +373,20 @@ async function checkActivity(moduleId: string, a: Activity) {
         if (a.check.correctIndex < 0 || a.check.correctIndex >= a.check.options.length) {
           note(where, `concept check correctIndex ${a.check.correctIndex} out of range`);
         }
+      }
+      break;
+    }
+
+    case "scene": {
+      // Display-only story beat — no board / chess rules. Validate structure.
+      if (!SCENE_BACKDROPS.includes(a.backdrop)) {
+        note(where, `unknown backdrop "${a.backdrop}"`);
+      }
+      if (!a.lines || a.lines.length === 0) note(where, "scene has no lines");
+      a.lines.forEach((line, i) => checkDialogueLine(where, `line #${i + 1}`, line));
+      if (!a.cta || !a.cta.trim()) note(where, "scene has no cta label");
+      if (a.colorAmount !== undefined && (a.colorAmount < 0 || a.colorAmount > 1)) {
+        note(where, `colorAmount ${a.colorAmount} must be in [0, 1]`);
       }
       break;
     }

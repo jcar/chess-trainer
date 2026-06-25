@@ -27,6 +27,18 @@ export const l1: Lesson = {
       type: "coordinate",
       title: "Square Hunt",
       blurb: "Find the squares!",
+      dialogue: {
+        intro: {
+          speaker: "pip",
+          text: "Every square has a secret name, Caller. Find the ones I call out and the kingdom listens!",
+          mood: "happy",
+        },
+        onCorrect: {
+          speaker: "pip",
+          text: "You found them all! See — a little more color already.",
+          mood: "happy",
+        },
+      },
       orientation: "white",
       rounds: ["e4", "a1", "h8", "d5", "c6"],
       intro: "Every square has a name — a letter and a number. Find the square I call out!",
@@ -68,6 +80,13 @@ export const l1: Lesson = {
       type: "replay",
       title: "Watch the Army Wake Up",
       blurb: "The first few moves.",
+      dialogue: {
+        intro: {
+          speaker: "pip",
+          text: "Watch closely, Caller — the sleepy pieces are stretching awake and stepping out!",
+          mood: "idle",
+        },
+      },
       orientation: "white",
       intro:
         "Here's the start of a game. Watch a few pieces step out from the back row, ready for fun!",

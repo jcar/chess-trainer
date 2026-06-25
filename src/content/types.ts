@@ -9,8 +9,29 @@
 // registered in `src/content/index.ts`. There is no backend — content ships
 // with the app and progress lives in the browser (see `src/lib/progress`).
 
+import type { CharacterId } from "./kids/characters";
+
 /** Board orientation — whose pieces sit at the bottom. */
 export type Orientation = "white" | "black";
+
+/** The illustrated storybook backdrops a `scene` can use (kid mode). The art for
+ *  each lives in components/kids/SceneArt.tsx. */
+export type SceneBackdropId =
+  | "kingdom"
+  | "meadow"
+  | "heights"
+  | "road"
+  | "forest"
+  | "throne";
+
+/** One spoken line of dialogue, attributed to a character (drives the portrait,
+ *  name chip, and synthesized voice). */
+export interface DialogueLine {
+  speaker: CharacterId;
+  text: string;
+  /** Optional expression hint for the portrait. */
+  mood?: "idle" | "happy" | "worried" | "sly";
+}
 
 /** Common fields every activity shares. */
 interface ActivityBase {
@@ -20,6 +41,17 @@ interface ActivityBase {
   title: string;
   /** Optional one-line teaser shown in the activity list. */
   blurb?: string;
+  /**
+   * Optional kid-mode story dialogue layered around the activity (Pip & the
+   * Grey). `intro` frames the task in-character above the board; `onCorrect`
+   * cheers a solve; `onWrong` is a gentle Murk taunt. `onWrong` is only wired
+   * for players that report attempts (puzzle / openingDrill) for now.
+   */
+  dialogue?: {
+    intro?: DialogueLine;
+    onCorrect?: DialogueLine;
+    onWrong?: DialogueLine;
+  };
 }
 
 /**
@@ -354,6 +386,26 @@ export interface ReviewCheckpointActivity extends ActivityBase {
   items: ReviewItem[];
 }
 
+/**
+ * Story scene (kid mode, "Pip & the Grey"): a display-only screen that plays a
+ * short sequence of character `lines` over an illustrated `backdrop`, then a
+ * `cta` button that completes + advances (like a concept card). Each line is
+ * spoken in its character's voice. No board, no chess rules — exempt from
+ * engine/legality validation. Hooks and resolutions are injected around lessons
+ * by content/kids/withStory.ts.
+ */
+export interface SceneActivity extends ActivityBase {
+  type: "scene";
+  backdrop: SceneBackdropId;
+  /** How much color the backdrop shows: 0 = fully grey, 1 = full color.
+   *  Defaults to 1. A "hook" scene before color is restored might use a low
+   *  value; a "resolve" scene uses a high one. */
+  colorAmount?: number;
+  lines: DialogueLine[];
+  /** Label on the button that ends the scene, e.g. "Wake the rook!". */
+  cta: string;
+}
+
 export type Activity =
   | PuzzleActivity
   | DrillActivity
@@ -367,7 +419,8 @@ export type Activity =
   | PracticeSetActivity
   | OpeningDrillActivity
   | ConceptActivity
-  | ReviewCheckpointActivity;
+  | ReviewCheckpointActivity
+  | SceneActivity;
 
 export type ActivityType = Activity["type"];
 

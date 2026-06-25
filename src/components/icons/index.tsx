@@ -126,6 +126,14 @@ export const OpeningDrillIcon = ({ className }: IconProps) => (
   </Line>
 );
 
+export const SceneIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    {/* an open storybook — "a story beat" */}
+    <path d="M12 6.5C10 5 6.5 5 4.5 5.5v12C6.5 17 10 17 12 18.5 14 17 17.5 17 19.5 17.5v-12C17.5 5 14 5 12 6.5Z" />
+    <path d="M12 6.5v12" />
+  </Line>
+);
+
 /* ---- Status / reward icons ---- */
 
 export const StarIcon = ({
@@ -238,4 +246,5 @@ export const ACTIVITY_ICON: Record<
   openingDrill: OpeningDrillIcon,
   concept: ConceptIcon,
   reviewCheckpoint: TrophyIcon,
+  scene: SceneIcon,
 };

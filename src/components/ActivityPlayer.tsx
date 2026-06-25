@@ -7,7 +7,7 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import type { Activity, Module } from "@/content/types";
+import type { Activity, DialogueLine, Module } from "@/content/types";
 import { getNextActivity } from "@/content";
 import { useProgress } from "@/lib/progress/useProgress";
 import { QuizPlayer } from "@/components/activities/QuizPlayer";
@@ -23,7 +23,10 @@ import { PracticeSetPlayer } from "@/components/activities/PracticeSetPlayer";
 import { OpeningDrillPlayer } from "@/components/activities/OpeningDrillPlayer";
 import { ConceptPlayer } from "@/components/activities/ConceptPlayer";
 import { PipChallengePlayer } from "@/components/activities/PipChallengePlayer";
+import { ScenePlayer } from "@/components/activities/ScenePlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { SpeakingCharacter } from "@/components/kids/SpeakingCharacter";
+import { speakAs } from "@/lib/audio/speech";
 import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
 import { BadgeToast } from "@/components/kids/BadgeToast";
@@ -61,6 +64,7 @@ const TYPE_LABEL: Record<Activity["type"], string> = {
   openingDrill: "Opening drill",
   concept: "Learn",
   reviewCheckpoint: "Pip's Challenge",
+  scene: "Story",
 };
 
 interface Props {
@@ -80,6 +84,14 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
     emoji: "",
     title: "",
   });
+  // In-character reaction panel (Pip & the Grey): a cheer on solve, a Murk taunt
+  // on a wrong attempt. Counter-keyed so the same line can re-trigger.
+  const [reactionKey, setReactionKey] = useState(0);
+  const [reaction, setReaction] = useState<{
+    line: DialogueLine;
+    tone: "card" | "warn";
+  } | null>(null);
+  const dialogue = activity.dialogue;
   const streak = useStreak();
   const { best: dailyBest } = useDailyStreak();
   const prefs = useKidsPrefs();
@@ -105,6 +117,13 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       markComplete(activity.id, score);
       recordDailyActivity(); // any activity completion counts toward the daily streak
       if (!kidMode) return;
+
+      // In-character cheer on a solve (spoken — audio is already unlocked).
+      if (dialogue?.onCorrect) {
+        setReaction({ line: dialogue.onCorrect, tone: "card" });
+        setReactionKey((k) => k + 1);
+        speakAs(dialogue.onCorrect.text, dialogue.onCorrect.speaker);
+      }
 
       // Feed the concept SRS so Pip's Challenge can resurface weak spots later.
       const concept = conceptForActivity(activity.id);
@@ -176,12 +195,18 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       getActivityState,
       snapshot,
       dailyBest,
+      dialogue,
     ],
   );
-  const handleAttempt = useCallback(
-    () => recordAttempt(activity.id),
-    [recordAttempt, activity.id],
-  );
+  const handleAttempt = useCallback(() => {
+    recordAttempt(activity.id);
+    // A gentle Murk taunt on a wrong move (puzzle / opening drill report attempts).
+    if (kidMode && dialogue?.onWrong) {
+      setReaction({ line: dialogue.onWrong, tone: "warn" });
+      setReactionKey((k) => k + 1);
+      speakAs(dialogue.onWrong.text, dialogue.onWrong.speaker);
+    }
+  }, [recordAttempt, activity.id, kidMode, dialogue]);
 
   const ActivityIcon = ACTIVITY_ICON[activity.type];
 
@@ -232,6 +257,17 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           </p>
         )}
       </header>
+
+      {/* In-character framing of the task (no autoplay — tap the speaker). */}
+      {kidMode && dialogue?.intro && activity.type !== "scene" && (
+        <SpeakingCharacter line={dialogue.intro} />
+      )}
+      {/* Cheer / Murk taunt reaction (counter-keyed so it can re-fire). */}
+      {kidMode && reaction && (
+        <div key={reactionKey}>
+          <SpeakingCharacter line={reaction.line} tone={reaction.tone} />
+        </div>
+      )}
 
       {activity.type === "quiz" && (
         <QuizPlayer activity={activity} onComplete={handleComplete} kidMode={kidMode} />
@@ -288,6 +324,14 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       {activity.type === "reviewCheckpoint" && (
         <PipChallengePlayer activity={activity} onComplete={handleComplete} />
       )}
+      {activity.type === "scene" && (
+        <ScenePlayer
+          activity={activity}
+          onComplete={handleComplete}
+          advanceHref={advanceHref}
+          advanceLabel={next ? activity.cta : kidMode ? "All done!" : "Finish"}
+        />
+      )}
 
       <footer className="flex items-center justify-between gap-3 border-t border-line pt-4 sm:pt-5">
         <Link
@@ -297,9 +341,9 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           <ArrowLeftIcon className="h-4 w-4" />
           <span className="max-w-[9rem] truncate">{mod.title}</span>
         </Link>
-        {/* The concept card's own button completes AND advances in one tap, so
-            it owns the forward action — don't render a second one here. */}
-        {activity.type === "concept" ? null : state.completed ? (
+        {/* The concept card and story scene own their forward action (their own
+            button completes AND advances in one tap) — don't render a second. */}
+        {activity.type === "concept" || activity.type === "scene" ? null : state.completed ? (
           next ? (
             <Link
               href={advanceHref}

@@ -31,6 +31,7 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
   openingDrill: "Drill",
   concept: "Learn",
   reviewCheckpoint: "Challenge",
+  scene: "Story",
 };
 
 export function ModuleView({ moduleId }: { moduleId: string }) {
@@ -52,6 +53,12 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
             ← Home
           </Link>
           <div className="flex items-center gap-2">
+            <Link
+              href={`/modules/${mod.id}/story`}
+              className={buttonClasses("secondary", "md")}
+            >
+              Story
+            </Link>
             <Link
               href={`/modules/${mod.id}/closet`}
               className={buttonClasses("secondary", "md")}

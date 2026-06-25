@@ -21,6 +21,7 @@ import { pawnPower } from "./pawn-power";
 import { checkpoint1 } from "./checkpoint-1";
 import { checkpoint2 } from "./checkpoint-2";
 import { checkpoint3 } from "./checkpoint-3";
+import { withStory } from "../../kids/withStory";
 
 export const chessForKids: Module = {
   id: "chess-for-kids",
@@ -32,6 +33,9 @@ export const chessForKids: Module = {
   // Order: board & movement → arcade fun → capturing → playing smart →
   // check/mate → special moves → draws → openings → trapping & first mates →
   // tricks → walk the pawn home → play vs Pip.
+  // Each lesson is wrapped with its story hook/resolve scenes (withStory) so the
+  // play itself becomes the "Pip & the Grey" adventure. Lessons without an
+  // episode pass through unchanged.
   lessons: [
     l1,
     l2,
@@ -51,5 +55,5 @@ export const chessForKids: Module = {
     pawnPower,
     checkpoint3,
     l10,
-  ],
+  ].map(withStory),
 };
