@@ -320,6 +320,52 @@ export const EPISODES: Record<string, Episode> = {
       ],
     }),
   },
+  "kids-scholars-mate": {
+    hook: scene("kids-scholars-mate", "hook", {
+      title: "A Sneaky Trap",
+      backdrop: "road",
+      colorAmount: 0.5,
+      cta: "Learn the trap!",
+      lines: [
+        { speaker: "nim", text: "Psst, Caller — some tricksters try to win in just FOUR moves! It's called Scholar's Mate.", mood: "happy" },
+        { speaker: "nim", text: "They gang up on one square — f7. Learn to see it, and nobody can ever catch you with it!", mood: "idle" },
+      ],
+    }),
+    resolve: scene("kids-scholars-mate", "resolve", {
+      title: "Trap Defused",
+      backdrop: "road",
+      colorAmount: 0.6,
+      cta: "Keep going!",
+      lines: [
+        { speaker: "nim", text: "Boing! You spotted it AND turned it around. Four-move traps don't scare us!", mood: "happy" },
+        { speaker: "murk", text: "Bah — I was SAVING that trick. No fair learning it!", mood: "sly" },
+      ],
+    }),
+  },
+
+  "kids-more-mates": {
+    hook: scene("kids-more-mates", "hook", {
+      title: "Sneaky Checkmates",
+      backdrop: "road",
+      colorAmount: 0.7,
+      cta: "Learn new mates!",
+      lines: [
+        { speaker: "nim", text: "Ready for my favorites, Caller? Mates where the king is trapped by its OWN pieces!", mood: "happy" },
+        { speaker: "nim", text: "The back-rank mate and the smothered mate — sneaky and beautiful. Let's spring them!", mood: "happy" },
+      ],
+    }),
+    resolve: scene("kids-more-mates", "resolve", {
+      title: "Sneaky Mates Mastered",
+      backdrop: "road",
+      colorAmount: 0.85,
+      cta: "On to the big mates!",
+      lines: [
+        { speaker: "nim", text: "Back-rank AND smothered — you've got a whole bag of checkmates now!", mood: "happy" },
+        { speaker: "pip", text: "Next, Caller — the great king-and-queen and king-and-rook mates. Let's finish the road!", mood: "happy" },
+      ],
+    }),
+  },
+
   "kids-trapping-king": {
     hook: scene("kids-trapping-king", "hook", {
       title: "Build the Box",

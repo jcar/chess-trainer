@@ -61,7 +61,9 @@ export const LANDS: Land[] = [
     backdrop: "road",
     lessonIds: [
       "kids-good-first-moves",
+      "kids-scholars-mate",
       "kids-trapping-king",
+      "kids-more-mates",
       "kids-l8-first-mates",
     ],
   },

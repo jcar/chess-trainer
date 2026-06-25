@@ -15,6 +15,8 @@ import { l9 } from "./l9";
 import { l10 } from "./l10";
 import { arcade } from "./arcade";
 import { goodFirstMoves } from "./good-first-moves";
+import { scholarsMate } from "./scholars-mate";
+import { moreMates } from "./more-mates";
 import { playingSmart } from "./playing-smart";
 import { trappingTheKing } from "./trapping-the-king";
 import { pawnPower } from "./pawn-power";
@@ -49,7 +51,9 @@ export const chessForKids: Module = {
     l7,
     checkpoint2,
     goodFirstMoves,
+    scholarsMate,
     trappingTheKing,
+    moreMates,
     l8,
     l9,
     pawnPower,

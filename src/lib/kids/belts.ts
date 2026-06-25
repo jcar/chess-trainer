@@ -51,7 +51,9 @@ export const BELTS: Belt[] = [
     color: "#4ade80",
     lessons: [
       "kids-good-first-moves",
+      "kids-scholars-mate",
       "kids-trapping-king",
+      "kids-more-mates",
       "kids-l8-first-mates",
     ],
   },
