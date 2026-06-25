@@ -1,8 +1,12 @@
 "use client";
 
 // Pip — an original, friendly pawn-with-a-face guide for young learners.
-// Three moods change the expression; "cheer" adds a happy bounce. Pure inline
-// SVG (no assets). Pip is our own character (not from any book).
+// Three moods change the expression; "cheer" adds a happy bounce. An unlockable
+// outfit (from kids prefs) adds a little accessory. Pure inline SVG (no assets).
+// Pip is our own character (not from any book).
+
+import { useKidsPrefs } from "@/lib/kids/prefs";
+import { getPipOutfit } from "@/lib/kids/cosmetics";
 
 type Mood = "idle" | "cheer" | "think";
 
@@ -15,8 +19,19 @@ interface Props {
 }
 
 export function PipMascot({ mood = "idle", size = 72, says }: Props) {
+  const outfit = getPipOutfit(useKidsPrefs().pipOutfitId);
   return (
     <div className="flex items-center gap-3">
+      <span className="relative inline-flex shrink-0">
+        {outfit.accessory && (
+          <span
+            aria-hidden
+            className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/3 leading-none"
+            style={{ fontSize: size * 0.32 }}
+          >
+            {outfit.accessory}
+          </span>
+        )}
       <svg
         width={size}
         height={size}
@@ -59,6 +74,7 @@ export function PipMascot({ mood = "idle", size = 72, says }: Props) {
           </>
         )}
       </svg>
+      </span>
       {says && (
         <div className="relative rounded-2xl bg-card px-4 py-2 text-lg font-bold text-primary-strong shadow-soft">
           {says}

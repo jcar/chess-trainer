@@ -53,12 +53,20 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
           >
             ← Home
           </Link>
-          <Link
-            href={`/modules/${mod.id}/stickers`}
-            className={buttonClasses("accent", "md")}
-          >
-            <TrophyIcon className="h-4 w-4" /> My Stickers
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href={`/modules/${mod.id}/closet`}
+              className={buttonClasses("secondary", "md")}
+            >
+              Closet
+            </Link>
+            <Link
+              href={`/modules/${mod.id}/stickers`}
+              className={buttonClasses("accent", "md")}
+            >
+              <TrophyIcon className="h-4 w-4" /> Trophies
+            </Link>
+          </div>
         </div>
 
         <div className="space-y-1">

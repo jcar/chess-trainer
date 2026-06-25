@@ -212,8 +212,10 @@ export function Board({
           squareStyles: computedStyles,
           arrows: boardArrows,
           showNotation,
-          darkSquareStyle: { backgroundColor: "#7c93b5" },
-          lightSquareStyle: { backgroundColor: "#e6ecf5" },
+          // CSS vars let kid screens reskin the board (see lib/kids/cosmetics);
+          // the hex fallbacks keep every other board exactly as before.
+          darkSquareStyle: { backgroundColor: "var(--board-dark, #7c93b5)" },
+          lightSquareStyle: { backgroundColor: "var(--board-light, #e6ecf5)" },
           onSquareClick: onSquareTap
             ? ({ square }) => onSquareTap(square)
             : tapEnabled

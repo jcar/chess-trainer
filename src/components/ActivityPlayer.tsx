@@ -36,6 +36,8 @@ import { selectBelt } from "@/lib/kids/belts";
 import { ACHIEVEMENTS, earnedAchievementIds } from "@/lib/kids/achievements";
 import { badgeSeenStore } from "@/lib/kids/badgeSeen";
 import { selectTotalStarsKid } from "@/lib/progress/store";
+import { useKidsPrefs } from "@/lib/kids/prefs";
+import { getBoardTheme } from "@/lib/kids/cosmetics";
 import { buttonClasses } from "@/components/ui/Button";
 import {
   ACTIVITY_ICON,
@@ -80,6 +82,14 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
   });
   const streak = useStreak();
   const { best: dailyBest } = useDailyStreak();
+  const prefs = useKidsPrefs();
+  const boardTheme = getBoardTheme(prefs.boardThemeId);
+  const themeVars = kidMode
+    ? ({
+        "--board-light": boardTheme.light,
+        "--board-dark": boardTheme.dark,
+      } as React.CSSProperties)
+    : undefined;
 
   const state = getActivityState(activity.id);
   const next = getNextActivity(mod, activity.id);
@@ -176,7 +186,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
   const ActivityIcon = ACTIVITY_ICON[activity.type];
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4 sm:space-y-6" style={themeVars}>
       {kidMode && <Confetti fireKey={confettiKey} />}
       {kidMode && <BadgeToast fireKey={badgeKey} emoji={badge.emoji} title={badge.title} />}
 
