@@ -33,7 +33,6 @@ function speakWith(text: string, pitch: number, rate: number): void {
   const s = synth();
   if (!s || !text.trim()) return;
   try {
-    s.cancel();
     const u = new SpeechSynthesisUtterance(text);
     const voice = chooseVoice(s);
     if (voice) u.voice = voice;
@@ -41,7 +40,14 @@ function speakWith(text: string, pitch: number, rate: number): void {
     u.rate = rate;
     u.pitch = pitch;
     u.volume = 1;
+    // Chrome drops a speak() that immediately follows cancel(), so only cancel
+    // when something is actually playing/queued (the common case — advancing a
+    // line after the previous one finished — then needs no cancel at all and
+    // plays cleanly). Done synchronously to stay inside the iOS user gesture.
+    if (s.speaking || s.pending) s.cancel();
     s.speak(u);
+    // Nudge Chrome out of the occasional post-cancel "stalled" state.
+    s.resume();
   } catch {
     // Speech is best-effort; never throw into the UI.
   }

@@ -81,8 +81,11 @@ export const CHARACTERS: Record<CharacterId, Character> = {
   murk: {
     id: "murk",
     name: "Murk",
+    // Low + quick + sly — deliberately far from Pip's high, slow voice so a
+    // child can instantly tell the trickster apart (same browser voice, only
+    // pitch/rate differ, so the spread has to be wide to read as a new speaker).
     role: "the trickster magpie",
-    voice: { pitch: 1.25, rate: 1.05 },
+    voice: { pitch: 0.55, rate: 1.12 },
     color: "#475569",
   },
   caller: {
