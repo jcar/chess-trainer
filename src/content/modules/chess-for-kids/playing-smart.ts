@@ -80,7 +80,10 @@ export const playingSmart: Lesson = {
       title: "Your piece is attacked!",
       blurb: "What now?",
       prompt: "Your bishop is being attacked and can be taken for free next move. What should you do?",
-      fen: "4k3/8/8/8/6p1/8/4B3/4K3 w - - 0 1",
+      // Black pawn on f5 attacks e4 (pawns capture diagonally forward). The
+      // bishop on e4 is undefended — the king is tucked away on g1 — so it really
+      // would be lost for free. White to move.
+      fen: "4k3/8/8/5p2/4B3/8/8/6K1 w - - 0 1",
       orientation: "white",
       options: [
         { label: "Move it to safety", emoji: "🏃" },
