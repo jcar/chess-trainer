@@ -26,12 +26,16 @@ import { PipChallengePlayer } from "@/components/activities/PipChallengePlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
+import { BadgeToast } from "@/components/kids/BadgeToast";
 import { recordResult, useStreak } from "@/lib/rewards/streak";
-import { recordDailyActivity } from "@/lib/rewards/daily";
+import { recordDailyActivity, useDailyStreak } from "@/lib/rewards/daily";
 import { playSound } from "@/lib/audio/sounds";
 import { conceptForActivity, conceptSrsKey } from "@/lib/kids/concepts";
 import { srsStore } from "@/lib/srs/useSrs";
 import { selectBelt } from "@/lib/kids/belts";
+import { ACHIEVEMENTS, earnedAchievementIds } from "@/lib/kids/achievements";
+import { badgeSeenStore } from "@/lib/kids/badgeSeen";
+import { selectTotalStarsKid } from "@/lib/progress/store";
 import { buttonClasses } from "@/components/ui/Button";
 import {
   ACTIVITY_ICON,
@@ -69,7 +73,13 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
   const [confettiKey, setConfettiKey] = useState(0);
   const [pipMood, setPipMood] = useState<"idle" | "cheer" | "think">("idle");
   const [pipSays, setPipSays] = useState<string>("");
+  const [badgeKey, setBadgeKey] = useState(0);
+  const [badge, setBadge] = useState<{ emoji: string; title: string }>({
+    emoji: "",
+    title: "",
+  });
   const streak = useStreak();
+  const { best: dailyBest } = useDailyStreak();
 
   const state = getActivityState(activity.id);
   const next = getNextActivity(mod, activity.id);
@@ -99,6 +109,26 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       };
       const beltBefore = selectBelt(before);
       const beltAfter = selectBelt(after);
+
+      // Newly-earned achievement badges → a one-time "new badge!" toast.
+      const allIds = mod.lessons.flatMap((l) => l.activities.map((a) => a.id));
+      const fresh = badgeSeenStore.markSeen(
+        earnedAchievementIds({
+          data: after,
+          dailyBest,
+          beltIndex: beltAfter.index,
+          totalStars: selectTotalStarsKid(after, allIds),
+        }),
+      );
+      if (fresh.length) {
+        const a = ACHIEVEMENTS.find((x) => x.id === fresh[0]);
+        if (a) {
+          setBadge({ emoji: a.emoji, title: a.title });
+          setBadgeKey((k) => k + 1);
+          playSound("star");
+        }
+      }
+
       if (!wasAlreadyComplete && beltAfter.index > beltBefore.index && beltAfter.earned) {
         setConfettiKey((k) => k + 1);
         playSound("fanfare");
@@ -128,7 +158,15 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         setPipSays("Nice!");
       }
     },
-    [markComplete, activity.id, kidMode, mod.lessons, getActivityState, snapshot],
+    [
+      markComplete,
+      activity.id,
+      kidMode,
+      mod.lessons,
+      getActivityState,
+      snapshot,
+      dailyBest,
+    ],
   );
   const handleAttempt = useCallback(
     () => recordAttempt(activity.id),
@@ -140,6 +178,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
   return (
     <div className="space-y-4 sm:space-y-6">
       {kidMode && <Confetti fireKey={confettiKey} />}
+      {kidMode && <BadgeToast fireKey={badgeKey} emoji={badge.emoji} title={badge.title} />}
 
       {kidMode && (
         <div className="flex items-center justify-between gap-3">
