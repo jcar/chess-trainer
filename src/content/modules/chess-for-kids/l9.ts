@@ -23,6 +23,9 @@ export const l9: Lesson = {
     },
     {
       id: "what-is-fork",
+      dialogue: {
+        onWrong: { speaker: "murk", mood: "sly", text: "Wrong! Tee-hee… my forest muddles your thinking." },
+      },
       type: "quiz",
       title: "What is a fork?",
       blurb: "Attack two things at once.",
@@ -54,6 +57,9 @@ export const l9: Lesson = {
     },
     {
       id: "what-is-pin",
+      dialogue: {
+        onWrong: { speaker: "murk", mood: "sly", text: "Nope! A pin is a sneaky thing — think harder." },
+      },
       type: "quiz",
       title: "What is a pin?",
       blurb: "Stuck in place.",
@@ -85,6 +91,9 @@ export const l9: Lesson = {
     },
     {
       id: "look-for-tricks",
+      dialogue: {
+        onWrong: { speaker: "murk", mood: "sly", text: "Hee! Rushing again? That is how I catch you." },
+      },
       type: "quiz",
       title: "How to spot tricks",
       blurb: "Pip's top tip!",

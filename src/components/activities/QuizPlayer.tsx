@@ -9,12 +9,14 @@ import { seededOrder } from "@/lib/shuffle";
 interface Props {
   activity: QuizActivity;
   onComplete: (score: number) => void;
+  /** Reports a wrong answer (kid mode) — lets ActivityPlayer fire a Murk taunt. */
+  onAttempt?: () => void;
   kidMode?: boolean;
 }
 
 const BADGES = ["A", "B", "C", "D"];
 
-export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
+export function QuizPlayer({ activity, onComplete, onAttempt, kidMode = false }: Props) {
   // Non-kid: lock on first answer (score 100/50). Kid: retry-until-right — a
   // wrong tap teaches and stays live; we lock + complete only on the correct
   // answer (100 first try → 3 stars, 90 after a miss → 2), so exploring is free.
@@ -44,6 +46,7 @@ export function QuizPlayer({ activity, onComplete, kidMode = false }: Props) {
         playSound("tryAgain");
         setMissed(true);
         setWrong((w) => (w.includes(index) ? w : [...w, index]));
+        onAttempt?.();
       }
       return;
     }

@@ -270,7 +270,12 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       )}
 
       {activity.type === "quiz" && (
-        <QuizPlayer activity={activity} onComplete={handleComplete} kidMode={kidMode} />
+        <QuizPlayer
+          activity={activity}
+          onComplete={handleComplete}
+          onAttempt={handleAttempt}
+          kidMode={kidMode}
+        />
       )}
       {activity.type === "replay" && (
         <ReplayPlayer activity={activity} onComplete={handleComplete} kidMode={kidMode} />
@@ -290,13 +295,17 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         <MoveMapPlayer activity={activity} onComplete={handleComplete} />
       )}
       {activity.type === "pictureQuiz" && (
-        <PictureQuizPlayer activity={activity} onComplete={handleComplete} />
+        <PictureQuizPlayer
+          activity={activity}
+          onComplete={handleComplete}
+          onAttempt={handleAttempt}
+        />
       )}
       {activity.type === "target" && (
         <TargetPlayer activity={activity} onComplete={handleComplete} />
       )}
       {activity.type === "sort" && (
-        <SortPlayer activity={activity} onComplete={handleComplete} />
+        <SortPlayer activity={activity} onComplete={handleComplete} onAttempt={handleAttempt} />
       )}
       {activity.type === "coordinate" && (
         <CoordinatePlayer activity={activity} onComplete={handleComplete} />

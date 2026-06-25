@@ -13,9 +13,11 @@ import { seededOrder } from "@/lib/shuffle";
 interface Props {
   activity: SortActivity;
   onComplete: (score: number) => void;
+  /** Reports a wrong tap — lets ActivityPlayer fire a Murk taunt. */
+  onAttempt?: () => void;
 }
 
-export function SortPlayer({ activity, onComplete }: Props) {
+export function SortPlayer({ activity, onComplete, onAttempt }: Props) {
   // Retry-until-right (kids): a wrong tap teaches and lets them try again; we
   // only lock + complete on the correct answer, so exploring is never punished.
   const [solved, setSolved] = useState(false);
@@ -39,6 +41,7 @@ export function SortPlayer({ activity, onComplete }: Props) {
       playSound("tryAgain");
       setMissed(true);
       setWrongPicks((w) => (w.includes(i) ? w : [...w, i]));
+      onAttempt?.();
     }
   }
 
