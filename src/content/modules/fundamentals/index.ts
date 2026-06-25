@@ -11,6 +11,7 @@ import { pawnEndgames } from "./pawn-endgames";
 import { ch6 } from "./ch6";
 import { ch7 } from "./ch7";
 import { ch8 } from "./ch8";
+import { defense } from "./defense";
 
 export const fundamentals: Module = {
   id: "fundamentals",
@@ -21,5 +22,5 @@ export const fundamentals: Module = {
   // pawnEndgames inserted after the basic mates (ch5) — king-and-pawn technique is
   // a core beginner essential. Existing lesson ids are unchanged (progress safe);
   // only the visible chapter numbers in titles shift (Draws→7, Tactics→8, Strategy→9).
-  lessons: [ch1, ch2, ch3, ch4, ch5, pawnEndgames, ch6, ch7, ch8],
+  lessons: [ch1, ch2, ch3, ch4, ch5, pawnEndgames, ch6, ch7, ch8, defense],
 };
