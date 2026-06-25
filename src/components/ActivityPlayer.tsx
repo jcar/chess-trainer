@@ -347,6 +347,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           next ? (
             <Link
               href={advanceHref}
+              data-testid="advance"
               className={buttonClasses("primary", kidMode ? "kid" : "lg")}
             >
               Next <ChevronRightIcon className="h-5 w-5" />
@@ -354,6 +355,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           ) : (
             <Link
               href={advanceHref}
+              data-testid="advance"
               className={buttonClasses("primary", kidMode ? "kid" : "lg")}
             >
               {kidMode ? "All done!" : "Finish"} <CheckIcon className="h-5 w-5" />

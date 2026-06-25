@@ -82,6 +82,7 @@ export function ScenePlayer({ activity, onComplete, advanceHref, advanceLabel }:
               playSound("step");
               onComplete(100);
             }}
+            data-testid="advance"
             className={buttonClasses("primary", "kid")}
           >
             {advanceLabel ?? activity.cta} <ChevronRightIcon className="h-5 w-5" />

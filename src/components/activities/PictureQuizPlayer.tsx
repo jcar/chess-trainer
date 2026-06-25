@@ -61,6 +61,7 @@ export function PictureQuizPlayer({ activity, onComplete }: Props) {
             <button
               key={origIdx}
               type="button"
+              data-testid="picture-option"
               onClick={() => choose(origIdx)}
               disabled={solved}
               className={`flex flex-col items-center gap-2 rounded-2xl border-4 bg-card p-2 transition active:scale-[0.97] ${ring}`}

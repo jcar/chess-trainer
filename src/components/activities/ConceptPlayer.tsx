@@ -123,6 +123,7 @@ export function ConceptPlayer({
           <Link
             href={advanceHref}
             onClick={() => onComplete(100)}
+            data-testid="advance"
             className={buttonClasses("primary", kidMode ? "kid" : "lg")}
           >
             {advanceLabel} <ChevronRightIcon className="h-5 w-5" />
