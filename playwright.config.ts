@@ -29,6 +29,6 @@ export default defineConfig({
     command: `npm run build && npx serve out -l ${PORT} --no-port-switching --no-clipboard`,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
-    timeout: 240_000,
+    timeout: 300_000, // CI cold build + serve
   },
 });
