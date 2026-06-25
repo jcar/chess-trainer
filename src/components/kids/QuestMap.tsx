@@ -11,6 +11,7 @@ import { useProgress } from "@/lib/progress/useProgress";
 import { selectBelt } from "@/lib/kids/belts";
 import { LANDS, guardianFor, STORY } from "@/content/kids/story";
 import { PipMascot } from "@/components/kids/PipMascot";
+import { buttonClasses } from "@/components/ui/Button";
 import { StarIcon, TrophyIcon, PlayIcon } from "@/components/icons";
 
 export function QuestMap({ module: mod }: { module: Module }) {
@@ -42,6 +43,14 @@ export function QuestMap({ module: mod }: { module: Module }) {
               : "Top belt earned — champion! 🏆"}
           </p>
         </div>
+        {!belt.next && belt.earned && (
+          <Link
+            href={`/modules/${mod.id}/certificate`}
+            className={buttonClasses("accent", "md")}
+          >
+            <TrophyIcon className="h-5 w-5" /> Certificate
+          </Link>
+        )}
       </div>
 
       <p className="text-center text-ink-soft">{STORY.intro}</p>

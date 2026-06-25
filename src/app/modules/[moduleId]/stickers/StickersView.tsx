@@ -4,6 +4,7 @@
 // finished lesson, and the achievement badges you've collected. A motivating
 // place to see everything you've won.
 
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getModule } from "@/content";
 import { useProgress } from "@/lib/progress/useProgress";
@@ -11,6 +12,7 @@ import { useDailyStreak } from "@/lib/rewards/daily";
 import { selectBelt } from "@/lib/kids/belts";
 import { ACHIEVEMENTS, earnedAchievementIds } from "@/lib/kids/achievements";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { buttonClasses } from "@/components/ui/Button";
 import {
   StarIcon,
   TrophyIcon,
@@ -75,6 +77,14 @@ export function StickersView({ moduleId }: { moduleId: string }) {
               : "Top belt earned — you're a champion! 🏆"}
           </p>
         </div>
+        {belt.earned && (
+          <Link
+            href={`/modules/${mod.id}/certificate`}
+            className={buttonClasses("accent", "md")}
+          >
+            <TrophyIcon className="h-5 w-5" /> Certificate
+          </Link>
+        )}
       </div>
 
       {/* Achievement badges */}
