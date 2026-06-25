@@ -215,7 +215,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
       {kidMode && <Confetti fireKey={confettiKey} />}
       {kidMode && <BadgeToast fireKey={badgeKey} emoji={badge.emoji} title={badge.title} />}
 
-      {kidMode && (
+      {kidMode && activity.type !== "scene" && (
         <div className="flex items-center justify-between gap-3">
           <PipMascot mood={pipMood} size={56} says={pipSays || undefined} />
           {streak >= 3 && (

@@ -36,6 +36,18 @@ export const UNSOLVED_TYPES = new Set<Activity["type"]>([
   "reviewCheckpoint",
 ]);
 
+/** Types solveActivity can drive to completion (deterministic). */
+export const SOLVABLE_TYPES = new Set<Activity["type"]>([
+  "scene",
+  "concept",
+  "quiz",
+  "sort",
+  "pictureQuiz",
+  "coordinate",
+  "puzzle",
+  "replay",
+]);
+
 async function clickOptionByText(page: Page, text: string) {
   await page
     .getByRole("button")
