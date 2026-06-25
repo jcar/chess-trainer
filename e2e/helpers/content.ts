@@ -78,9 +78,18 @@ export async function solveActivity(page: Page, activity: Activity): Promise<boo
       return true;
     }
     case "coordinate":
+      // Each round prompts "Find: <sq>". Tap it, then wait for that prompt to
+      // disappear (round advanced); retry once in case the board wasn't ready.
       for (const sq of activity.rounds) {
+        const prompt = page.getByText(`Find: ${sq}`, { exact: true });
+        await expect(prompt).toBeVisible();
         await clickSquare(page, sq, activity.orientation);
-        await page.waitForTimeout(150);
+        try {
+          await expect(prompt).toBeHidden({ timeout: 3000 });
+        } catch {
+          await clickSquare(page, sq, activity.orientation);
+          await expect(prompt).toBeHidden({ timeout: 3000 });
+        }
       }
       return true;
     case "puzzle":

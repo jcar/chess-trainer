@@ -10,12 +10,8 @@ export type Orientation = "white" | "black";
 
 const FILES = "abcdefgh";
 
-async function squareCenter(page: Page, square: string, orientation: Orientation) {
-  const board = page.locator("[data-chessboard]").first();
-  await expect(board).toBeVisible();
-  const box = await board.boundingBox();
-  if (!box) throw new Error(`board has no bounding box (square ${square})`);
-
+/** Square center as an offset relative to the board element's top-left. */
+function squareOffset(boxW: number, boxH: number, square: string, orientation: Orientation) {
   const file = FILES.indexOf(square[0]); // a..h -> 0..7
   const rank = Number(square[1]); // 1..8
   if (file < 0 || rank < 1 || rank > 8) throw new Error(`bad square "${square}"`);
@@ -27,15 +23,20 @@ async function squareCenter(page: Page, square: string, orientation: Orientation
     row = rank - 1;
   }
   return {
-    x: box.x + (col + 0.5) * (box.width / 8),
-    y: box.y + (row + 0.5) * (box.height / 8),
+    x: (col + 0.5) * (boxW / 8),
+    y: (row + 0.5) * (boxH / 8),
   };
 }
 
-/** Tap a single named square. */
+/** Tap a single named square. Clicks the board element at the square's offset
+ *  (relative position → reliable event dispatch + auto-scroll/visibility wait). */
 export async function clickSquare(page: Page, square: string, orientation: Orientation) {
-  const { x, y } = await squareCenter(page, square, orientation);
-  await page.mouse.click(x, y);
+  const board = page.locator("[data-chessboard]").first();
+  await expect(board).toBeVisible();
+  const box = await board.boundingBox();
+  if (!box) throw new Error(`board has no bounding box (square ${square})`);
+  const { x, y } = squareOffset(box.width, box.height, square, orientation);
+  await board.click({ position: { x, y } });
 }
 
 /**
