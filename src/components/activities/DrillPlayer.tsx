@@ -10,6 +10,7 @@ import {
 } from "@/lib/chess/game";
 import { getEngine } from "@/lib/chess/stockfish";
 import { Board } from "@/components/board/Board";
+import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
@@ -147,39 +148,45 @@ export function DrillPlayer({
         : "bg-surface text-ink-soft shadow-soft";
 
   return (
-    <div className="space-y-4">
-      <Board
-        fen={fen}
-        orientation={activity.orientation}
-        onDrop={onDrop}
-        interactive={phase === "playing"}
-        dangerSquares={
-          kidMode && kingInCheckSquare(fen) ? [kingInCheckSquare(fen) as string] : []
-        }
-        getLegalMoves={
-          tap && phase === "playing"
-            ? (square) => new ChessGame(fen).legalDestinations(square)
-            : undefined
-        }
-        onMove={tap ? (from, to) => void handleMove(from, to) : undefined}
-        onSelect={kidMode ? () => playSound("select") : undefined}
-        lastMove={lastMove ?? undefined}
-      />
+    <StudyLayout
+      stack={kidMode}
+      board={
+        <Board
+          fen={fen}
+          orientation={activity.orientation}
+          onDrop={onDrop}
+          interactive={phase === "playing"}
+          dangerSquares={
+            kidMode && kingInCheckSquare(fen) ? [kingInCheckSquare(fen) as string] : []
+          }
+          getLegalMoves={
+            tap && phase === "playing"
+              ? (square) => new ChessGame(fen).legalDestinations(square)
+              : undefined
+          }
+          onMove={tap ? (from, to) => void handleMove(from, to) : undefined}
+          onSelect={kidMode ? () => playSound("select") : undefined}
+          lastMove={lastMove ?? undefined}
+        />
+      }
+      ledger={
+        <>
+          <div
+            className={`flex items-start gap-3 rounded-2xl p-4 leading-relaxed ${kidMode ? "text-lg" : "text-sm"} ${bannerCls}`}
+          >
+            <p className="flex-1">{message}</p>
+            {kidMode && <SpeakButton text={message} size="sm" />}
+          </div>
 
-      <div
-        className={`flex items-start gap-3 rounded-2xl p-4 leading-relaxed ${kidMode ? "text-lg" : "text-sm"} ${bannerCls}`}
-      >
-        <p className="flex-1">{message}</p>
-        {kidMode && <SpeakButton text={message} size="sm" />}
-      </div>
-
-      <button
-        type="button"
-        onClick={reset}
-        className={buttonClasses("secondary", kidMode ? "kid" : "md")}
-      >
-        Reset position
-      </button>
-    </div>
+          <button
+            type="button"
+            onClick={reset}
+            className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+          >
+            Reset position
+          </button>
+        </>
+      }
+    />
   );
 }

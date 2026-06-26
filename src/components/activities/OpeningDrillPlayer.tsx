@@ -12,6 +12,7 @@ import { useMemo, useState } from "react";
 import type { OpeningDrillActivity } from "@/content/types";
 import { ChessGame, buildReplayFens, replayMoveSquares } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
+import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
@@ -176,53 +177,59 @@ export function OpeningDrillPlayer({
         : "bg-surface text-ink-soft shadow-soft";
 
   return (
-    <div className="space-y-4">
-      <Board
-        fen={currentFen}
-        orientation={activity.orientation}
-        interactive={learnerToMove}
-        onDrop={learnerToMove ? handleMove : undefined}
-        getLegalMoves={
-          learnerToMove
-            ? (square) => new ChessGame(currentFen).legalDestinations(square)
-            : undefined
-        }
-        onMove={learnerToMove ? (from, to) => void handleMove(from, to) : undefined}
-        onSelect={kidMode ? () => playSound("select") : undefined}
-        arrows={[...lastMoveArrow, ...arrowHint]}
-        highlightSquares={arrowHint.flatMap((a) => [a.from, a.to])}
-      />
-
-      <div
-        className={`flex items-start gap-3 rounded-2xl p-4 leading-relaxed ${kidMode ? "text-lg" : "text-sm"} ${feedbackCls}`}
-      >
-        <p className="flex-1 whitespace-pre-line">{feedback.text}</p>
-        {kidMode && <SpeakButton text={feedback.text} size="sm" />}
-      </div>
-
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={reset}
-            className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+    <StudyLayout
+      stack={kidMode}
+      board={
+        <Board
+          fen={currentFen}
+          orientation={activity.orientation}
+          interactive={learnerToMove}
+          onDrop={learnerToMove ? handleMove : undefined}
+          getLegalMoves={
+            learnerToMove
+              ? (square) => new ChessGame(currentFen).legalDestinations(square)
+              : undefined
+          }
+          onMove={learnerToMove ? (from, to) => void handleMove(from, to) : undefined}
+          onSelect={kidMode ? () => playSound("select") : undefined}
+          arrows={[...lastMoveArrow, ...arrowHint]}
+          highlightSquares={arrowHint.flatMap((a) => [a.from, a.to])}
+        />
+      }
+      ledger={
+        <>
+          <div
+            className={`flex items-start gap-3 rounded-2xl p-4 leading-relaxed ${kidMode ? "text-lg" : "text-sm"} ${feedbackCls}`}
           >
-            Reset
-          </button>
-          {!done && (
-            <button
-              type="button"
-              onClick={showMe}
-              className={buttonClasses("accent", kidMode ? "kid" : "md")}
-            >
-              Show me
-            </button>
-          )}
-        </div>
-        <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
-          {Math.min(ply, activity.line.length)} / {activity.line.length}
-        </span>
-      </div>
-    </div>
+            <p className="flex-1 whitespace-pre-line">{feedback.text}</p>
+            {kidMode && <SpeakButton text={feedback.text} size="sm" />}
+          </div>
+
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={reset}
+                className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+              >
+                Reset
+              </button>
+              {!done && (
+                <button
+                  type="button"
+                  onClick={showMe}
+                  className={buttonClasses("accent", kidMode ? "kid" : "md")}
+                >
+                  Show me
+                </button>
+              )}
+            </div>
+            <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
+              {Math.min(ply, activity.line.length)} / {activity.line.length}
+            </span>
+          </div>
+        </>
+      }
+    />
   );
 }

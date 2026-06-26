@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { PuzzleActivity } from "@/content/types";
 import { ChessGame, uciToMove, kingInCheckSquare } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
+import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
@@ -134,71 +135,77 @@ export function PuzzlePlayer({
         : "bg-surface text-ink-soft shadow-soft";
 
   return (
-    <div className="space-y-4">
-      <Board
-        fen={fen}
-        orientation={activity.orientation}
-        onDrop={handleMove}
-        interactive={!solved}
-        highlightSquares={highlight}
-        arrows={arrowHint}
-        dangerSquares={danger ? [danger] : []}
-        // Tap-to-move (kid mode): light up a piece's legal squares, tap to move.
-        getLegalMoves={
-          kidMode && !solved
-            ? (square) => new ChessGame(fen).legalDestinations(square)
-            : undefined
-        }
-        onMove={kidMode ? (from, to) => void handleMove(from, to) : undefined}
-        onSelect={kidMode ? () => playSound("select") : undefined}
-      />
+    <StudyLayout
+      stack={kidMode}
+      board={
+        <Board
+          fen={fen}
+          orientation={activity.orientation}
+          onDrop={handleMove}
+          interactive={!solved}
+          highlightSquares={highlight}
+          arrows={arrowHint}
+          dangerSquares={danger ? [danger] : []}
+          // Tap-to-move (kid mode): light up a piece's legal squares, tap to move.
+          getLegalMoves={
+            kidMode && !solved
+              ? (square) => new ChessGame(fen).legalDestinations(square)
+              : undefined
+          }
+          onMove={kidMode ? (from, to) => void handleMove(from, to) : undefined}
+          onSelect={kidMode ? () => playSound("select") : undefined}
+        />
+      }
+      ledger={
+        <>
+          <div
+            className={`flex items-start gap-3 rounded-2xl p-4 leading-relaxed ${kidMode ? "text-lg" : "text-sm"} ${feedbackCls}`}
+          >
+            <p className="flex-1">{feedback.text}</p>
+            {kidMode && <SpeakButton text={feedback.text} size="sm" />}
+          </div>
 
-      <div
-        className={`flex items-start gap-3 rounded-2xl p-4 leading-relaxed ${kidMode ? "text-lg" : "text-sm"} ${feedbackCls}`}
-      >
-        <p className="flex-1">{feedback.text}</p>
-        {kidMode && <SpeakButton text={feedback.text} size="sm" />}
-      </div>
+          {!kidMode && activity.hints && hintsShown > 0 && (
+            <ul className="list-disc space-y-1 rounded-xl bg-accent/8 p-4 pl-8 text-sm text-primary-strong">
+              {activity.hints.slice(0, hintsShown).map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
+          )}
 
-      {!kidMode && activity.hints && hintsShown > 0 && (
-        <ul className="list-disc space-y-1 rounded-xl bg-accent/8 p-4 pl-8 text-sm text-primary-strong">
-          {activity.hints.slice(0, hintsShown).map((h, i) => (
-            <li key={i}>{h}</li>
-          ))}
-        </ul>
-      )}
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={reset}
+              className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+            >
+              Reset
+            </button>
 
-      <div className="flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={reset}
-          className={buttonClasses("secondary", kidMode ? "kid" : "md")}
-        >
-          Reset
-        </button>
-
-        {kidMode
-          ? !solved && (
-              <button
-                type="button"
-                onClick={showMe}
-                className={buttonClasses("accent", "kid")}
-              >
-                Show me!
-              </button>
-            )
-          : activity.hints &&
-            hintsShown < activity.hints.length &&
-            !solved && (
-              <button
-                type="button"
-                onClick={() => setHintsShown((n) => n + 1)}
-                className={buttonClasses("secondary", "md")}
-              >
-                Show a hint
-              </button>
-            )}
-      </div>
-    </div>
+            {kidMode
+              ? !solved && (
+                  <button
+                    type="button"
+                    onClick={showMe}
+                    className={buttonClasses("accent", "kid")}
+                  >
+                    Show me!
+                  </button>
+                )
+              : activity.hints &&
+                hintsShown < activity.hints.length &&
+                !solved && (
+                  <button
+                    type="button"
+                    onClick={() => setHintsShown((n) => n + 1)}
+                    className={buttonClasses("secondary", "md")}
+                  >
+                    Show a hint
+                  </button>
+                )}
+          </div>
+        </>
+      }
+    />
   );
 }

@@ -69,7 +69,7 @@ export default function RootLayout({
           <div className="flex min-h-dvh">
             <Rail />
             <main className="relative min-w-0 flex-1 overflow-x-hidden pt-[env(safe-area-inset-top)] pb-[calc(env(safe-area-inset-bottom)+4.75rem)] pr-[env(safe-area-inset-right)] sm:pb-10">
-              <div className="mx-auto w-full max-w-3xl px-4 py-5 sm:px-7 sm:py-8">
+              <div className="mx-auto w-full max-w-4xl px-4 py-5 sm:px-7 sm:py-8">
                 {children}
               </div>
             </main>
