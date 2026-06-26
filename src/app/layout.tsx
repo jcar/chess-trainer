@@ -3,8 +3,7 @@ import { Inter, Fraunces, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ProgressProvider } from "@/lib/progress/useProgress";
 import { withBasePath } from "@/lib/basePath";
-import { Wordmark } from "@/components/brand/Wordmark";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Rail } from "@/components/nav/Rail";
 
 // UI / body
 const inter = Inter({
@@ -67,12 +66,13 @@ export default function RootLayout({
       <body className="min-h-full bg-bg text-ink">
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH }} />
         <ProgressProvider>
-          <div className="mx-auto flex min-h-dvh max-w-2xl flex-col pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[env(safe-area-inset-top)] pb-[max(env(safe-area-inset-bottom),1.25rem)]">
-            <header className="flex items-center justify-between py-2.5 sm:py-3">
-              <Wordmark />
-              <ThemeToggle />
-            </header>
-            <div className="flex-1 pb-6 sm:pb-8">{children}</div>
+          <div className="flex min-h-dvh">
+            <Rail />
+            <main className="relative min-w-0 flex-1 overflow-x-hidden pt-[env(safe-area-inset-top)] pb-[calc(env(safe-area-inset-bottom)+4.75rem)] pr-[env(safe-area-inset-right)] sm:pb-10">
+              <div className="mx-auto w-full max-w-3xl px-4 py-5 sm:px-7 sm:py-8">
+                {children}
+              </div>
+            </main>
           </div>
         </ProgressProvider>
       </body>

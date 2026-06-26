@@ -7,7 +7,7 @@ import { useProgress } from "@/lib/progress/useProgress";
 import { useTrainer } from "@/lib/trainer/useTrainer";
 import { useDailyStreak } from "@/lib/rewards/daily";
 import { Card } from "@/components/ui/Card";
-import { LevelChip, Chip } from "@/components/ui/Chip";
+import { LevelChip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import {
   ChevronRightIcon,
@@ -33,78 +33,86 @@ function firstIncomplete(
   return null;
 }
 
-// Medallion glyph + color tone per module.
+// Crest glyph + color tone per module.
 function moduleEmblem(mod: Module): {
   Glyph: (p: { className?: string }) => React.ReactNode;
   tone: string;
 } {
   if (mod.kidMode) return { Glyph: (p) => <StarIcon {...p} />, tone: "kid-teal" };
   if (mod.id === "strategy") return { Glyph: PuzzleIcon, tone: "accent" };
-  if (mod.level === "Intermediate")
-    return { Glyph: CrownGlyph, tone: "amber" };
+  if (mod.level === "Intermediate") return { Glyph: CrownGlyph, tone: "amber" };
   if (mod.level === "Advanced") return { Glyph: CrownGlyph, tone: "clay" };
   return { Glyph: PawnGlyph, tone: "sage" };
 }
+
+/** A thin progress ring (the rank-up indicator on each plate). */
+function ProgressRing({ pct, tone }: { pct: number; tone: string }) {
+  const r = 16;
+  const c = 2 * Math.PI * r;
+  const off = c * (1 - Math.max(0, Math.min(100, pct)) / 100);
+  return (
+    <span className="relative grid h-11 w-11 shrink-0 place-items-center">
+      <svg width="44" height="44" className="-rotate-90">
+        <circle cx="22" cy="22" r={r} fill="none" stroke="var(--line)" strokeWidth="4" />
+        <circle
+          cx="22"
+          cy="22"
+          r={r}
+          fill="none"
+          stroke={`var(--color-${tone})`}
+          strokeWidth="4"
+          strokeDasharray={c}
+          strokeDashoffset={off}
+          strokeLinecap="round"
+          style={{ transition: "stroke-dashoffset .6s cubic-bezier(.2,.7,.3,1)" }}
+        />
+      </svg>
+      <span className="absolute font-mono text-[10px] font-semibold text-ink-soft">{pct}%</span>
+    </span>
+  );
+}
+
+const TOOLS = [
+  { href: "/tactics", label: "Tactics", sub: "Sharpen your eye", Icon: PuzzleIcon, tone: "amber" },
+  { href: "/trainer", label: "Openings", sub: "Drill a repertoire", Icon: OpeningDrillIcon, tone: "primary" },
+  { href: "/play", label: "Play & Review", sub: "Game + analysis", Icon: PlayIcon, tone: "clay" },
+  { href: "/endgames", label: "Endgames", sub: "Master technique", Icon: CrownGlyph, tone: "sage" },
+] as const;
 
 export default function HomePage() {
   const { moduleProgress, getActivityState } = useProgress();
   const { counts: trainerCounts } = useTrainer();
   const daily = useDailyStreak();
   const cont = firstIncomplete((id) => getActivityState(id).completed);
-  // Brand-new learner (no progress anywhere) → show a "start here" chooser.
   const started = MODULES.some(
     (mod) => moduleProgress(getModuleActivities(mod).map((a) => a.id)) > 0,
   );
 
   return (
-    <main className="space-y-7">
-      <section className="space-y-1.5 pt-1 text-center">
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-primary-strong">
-          Learn chess, beautifully.
-        </h1>
-        <p className="mx-auto max-w-md text-ink-soft">
-          Hands-on lessons, guided puzzles, and friendly games — from a child&apos;s
-          very first move to confident, clever play.
+    <div className="space-y-8">
+      {/* ── Masthead ── */}
+      <header className="rise pt-1">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          {started ? "Welcome back" : "Welcome"}
         </p>
-      </section>
+        <h1 className="mt-2 font-display text-[2.5rem] font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+          The Chess <span className="italic text-primary-strong">Hall</span>
+        </h1>
+        <p className="mt-2 max-w-xl text-ink-soft">
+          Pick a room and pull up a chair. Hands-on lessons, guided puzzles, and
+          friendly games — from a child&apos;s first move to confident, clever play.
+        </p>
+      </header>
 
-      {/* Onboarding: where to start (brand-new learners only) */}
-      {!started && (
-        <section className="space-y-2">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
-            New here? Start in the right place
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              { href: "/modules/chess-for-kids", title: "Brand new", sub: "Never played — or learning with a child" },
-              { href: "/modules/fundamentals", title: "I know the rules", sub: "Lock in the fundamentals" },
-              { href: "/tactics", title: "Get stronger", sub: "Train tactics & endgames" },
-            ].map((c) => (
-              <Link key={c.href} href={c.href} className="block">
-                <Card interactive className="flex h-full flex-col gap-1 p-4">
-                  <p className="font-display text-base font-semibold text-primary-strong">{c.title}</p>
-                  <p className="text-sm text-ink-soft">{c.sub}</p>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Today: daily puzzle + continue */}
-      <section className="grid gap-3 sm:grid-cols-2">
+      {/* ── Feature strip: daily + continue ── */}
+      <section className="rise grid gap-3 sm:grid-cols-2" style={{ animationDelay: "60ms" }}>
         <Link href="/daily" className="block">
-          <Card interactive className="flex h-full items-center gap-3 p-4">
-            <span
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
-              style={{ backgroundColor: "var(--color-accent)" }}
-            >
-              <span className="text-on-accent"><FlameIcon className="h-6 w-6" /></span>
+          <Card interactive className="flex h-full items-center gap-3.5 p-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-on-accent" style={{ backgroundColor: "var(--color-accent)" }}>
+              <FlameIcon className="h-6 w-6" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="font-display text-base font-semibold text-primary-strong">
-                Puzzle of the Day
-              </p>
+              <p className="font-display text-lg font-semibold text-ink">Puzzle of the day</p>
               <p className="text-sm text-ink-soft">
                 {daily.playedToday ? (
                   <span className="inline-flex items-center gap-1 text-sage">
@@ -113,7 +121,7 @@ export default function HomePage() {
                 ) : daily.current > 0 ? (
                   `Keep your ${daily.current}-day streak alive`
                 ) : (
-                  "Start a daily streak"
+                  "A fresh tactic, every morning"
                 )}
               </p>
             </div>
@@ -122,16 +130,13 @@ export default function HomePage() {
         </Link>
 
         <Link href={cont ? `/modules/${cont.modId}/${cont.actId}` : "/daily"} className="block">
-          <Card interactive className="flex h-full items-center gap-3 p-4">
-            <span
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
-              style={{ backgroundColor: "var(--color-sage)" }}
-            >
-              <span className="text-on-accent"><PlayIcon className="h-6 w-6" /></span>
+          <Card interactive className="flex h-full items-center gap-3.5 p-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-on-accent" style={{ backgroundColor: "var(--color-sage)" }}>
+              <PlayIcon className="h-6 w-6" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="font-display text-base font-semibold text-primary-strong">
-                {cont ? "Continue learning" : "All caught up!"}
+              <p className="font-display text-lg font-semibold text-ink">
+                {cont ? "Continue learning" : "All caught up"}
               </p>
               <p className="text-sm text-ink-soft">
                 {cont ? "Pick up where you left off" : "Review or train your skills"}
@@ -142,202 +147,98 @@ export default function HomePage() {
         </Link>
       </section>
 
-      {/* Improver's Path — the fastest daily routine */}
-      <Card className="space-y-3 p-5">
-        <div className="flex items-center gap-2">
-          <h2 className="font-display text-lg font-semibold text-primary-strong">
-            Improve fastest
-          </h2>
-          <Chip tone="sage">Daily routine</Chip>
-        </div>
-        <p className="text-sm text-ink-soft">
-          Reading teaches; <span className="font-semibold text-ink">doing</span> is
-          what makes you stronger. A good daily loop:
-        </p>
-        <ol className="space-y-1.5 text-sm">
-          {[
-            { n: 1, label: "Solve today's puzzle", href: "/daily" },
-            { n: 2, label: "Train tactics for 10 minutes", href: "/tactics" },
-            { n: 3, label: "Drill one endgame", href: "/endgames" },
-            { n: 4, label: "Play a game and review it", href: "/play" },
-          ].map((s) => (
-            <li key={s.n}>
-              <Link href={s.href} className="flex items-center gap-2.5 rounded-lg px-1 py-0.5 hover:bg-line/60">
-                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary text-xs font-bold text-on-accent">
-                  {s.n}
-                </span>
-                <span className="font-medium text-ink">{s.label}</span>
-                <ChevronRightIcon className="ml-auto h-4 w-4 text-ink-soft" />
-              </Link>
-            </li>
-          ))}
-        </ol>
-        <p className="text-xs text-ink-soft">
-          Work through the lessons below for depth whenever you want to learn something new.
-        </p>
-      </Card>
-
-      <ul className="space-y-4">
-        {MODULES.map((mod) => {
-          const activityIds = getModuleActivities(mod).map((a) => a.id);
-          const pct = Math.round(moduleProgress(activityIds) * 100);
-          const { Glyph, tone } = moduleEmblem(mod);
-          return (
-            <li key={mod.id}>
-              <Link href={`/modules/${mod.id}`} className="block">
-                <Card interactive className="flex items-center gap-4 p-5">
-                  <span
-                    className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
-                    style={{ backgroundColor: `var(--color-${tone})`, opacity: 1 }}
-                  >
-                    <span className="text-on-accent">
+      {/* ── The gallery: modules as framed plates ── */}
+      <section className="space-y-3">
+        <h2 className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-ink-soft">
+          Rooms of the hall
+          <span className="h-px flex-1 bg-line" />
+        </h2>
+        <div className="grid gap-3.5 sm:grid-cols-2">
+          {MODULES.map((mod, i) => {
+            const activityIds = getModuleActivities(mod).map((a) => a.id);
+            const pct = Math.round(moduleProgress(activityIds) * 100);
+            const { Glyph, tone } = moduleEmblem(mod);
+            return (
+              <Link key={mod.id} href={`/modules/${mod.id}`} className="group block rise" style={{ animationDelay: `${120 + i * 55}ms` }}>
+                <Card interactive className="relative flex h-full flex-col gap-3 overflow-hidden p-5">
+                  <span className="plate-motif" aria-hidden />
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-on-accent shadow-soft" style={{ backgroundColor: `var(--color-${tone})` }}>
                       <Glyph className="h-7 w-7" />
                     </span>
-                  </span>
-
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                      <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
-                        {mod.title}
-                      </h2>
-                      <LevelChip module={mod} />
-                    </div>
-                    <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
-                      {mod.description}
-                    </p>
-                    <ProgressBar
-                      pct={pct}
-                      tone={mod.kidMode ? "kid" : "sage"}
-                      showLabel
-                      className="mt-3"
-                    />
+                    <ProgressRing pct={pct} tone={tone} />
                   </div>
-
-                  <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+                  <div className="relative">
+                    <h3 className="font-display text-xl font-semibold tracking-tight text-ink">
+                      {mod.title}
+                    </h3>
+                    <p className="mt-1 line-clamp-2 text-sm text-ink-soft">{mod.description}</p>
+                  </div>
+                  <div className="mt-auto flex items-center justify-between pt-1">
+                    <LevelChip module={mod} />
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-primary-strong opacity-0 transition group-hover:opacity-100">
+                      Enter <ChevronRightIcon className="h-4 w-4" />
+                    </span>
+                  </div>
                 </Card>
               </Link>
-            </li>
-          );
-        })}
-      </ul>
-
-      <section className="space-y-3">
-        <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
-          Tools
-        </h2>
-        <Link href="/tactics" className="block">
-          <Card interactive className="flex items-center gap-4 p-5">
-            <span
-              className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
-              style={{ backgroundColor: "var(--color-amber)" }}
-            >
-              <span className="text-on-accent">
-                <PuzzleIcon className="h-7 w-7" />
-              </span>
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
-                  Tactics Trainer
-                </h2>
-                <Chip tone="neutral">Practice</Chip>
-              </div>
-              <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
-                A spaced-repetition stream of puzzles by theme — the fastest way to
-                sharpen your eye. Missed ones come back.
-              </p>
-            </div>
-            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
-          </Card>
-        </Link>
-
-        <Link href="/trainer" className="block">
-          <Card interactive className="flex items-center gap-4 p-5">
-            <span
-              className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
-              style={{ backgroundColor: "var(--color-primary)" }}
-            >
-              <span className="text-on-accent">
-                <OpeningDrillIcon className="h-7 w-7" />
-              </span>
-            </span>
-
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
-                  Openings Trainer
-                </h2>
-                <Chip tone="neutral">Practice</Chip>
-              </div>
-              <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
-                Build a personal opening repertoire and drill it move by move
-                until it&apos;s automatic.
-              </p>
-              {trainerCounts.total > 0 && (
-                <ProgressBar
-                  pct={(trainerCounts.mastered / trainerCounts.total) * 100}
-                  showLabel
-                  className="mt-3"
-                />
-              )}
-            </div>
-
-            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
-          </Card>
-        </Link>
-
-        <Link href="/play" className="block">
-          <Card interactive className="flex items-center gap-4 p-5">
-            <span
-              className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
-              style={{ backgroundColor: "var(--color-clay)" }}
-            >
-              <span className="text-on-accent">
-                <PlayIcon className="h-7 w-7" />
-              </span>
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
-                  Play &amp; Review
-                </h2>
-                <Chip tone="neutral">Practice</Chip>
-              </div>
-              <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
-                Play a full game against the engine, then get a review that flags
-                your mistakes and shows the better move.
-              </p>
-            </div>
-            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
-          </Card>
-        </Link>
-
-        <Link href="/endgames" className="block">
-          <Card interactive className="flex items-center gap-4 p-5">
-            <span
-              className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
-              style={{ backgroundColor: "var(--color-sage)" }}
-            >
-              <span className="text-on-accent">
-                <CrownGlyph className="h-7 w-7" />
-              </span>
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h2 className="font-display text-xl font-semibold tracking-tight text-primary-strong">
-                  Endgame Trainer
-                </h2>
-                <Chip tone="neutral">Practice</Chip>
-              </div>
-              <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">
-                Drill the must-know endgames against the engine until the technique
-                is automatic.
-              </p>
-            </div>
-            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
-          </Card>
-        </Link>
+            );
+          })}
+        </div>
       </section>
-    </main>
+
+      {/* ── Tools / practice ── */}
+      <section className="space-y-3">
+        <h2 className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-ink-soft">
+          The training rooms
+          <span className="h-px flex-1 bg-line" />
+        </h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {TOOLS.map((t) => (
+            <Link key={t.href} href={t.href} className="block">
+              <Card interactive className="flex h-full flex-col gap-2 p-4">
+                <span className="grid h-10 w-10 place-items-center rounded-xl text-on-accent" style={{ backgroundColor: `var(--color-${t.tone})` }}>
+                  <t.Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="font-display text-base font-semibold leading-tight text-ink">{t.label}</p>
+                  <p className="text-xs text-ink-soft">{t.sub}</p>
+                </div>
+                {t.href === "/trainer" && trainerCounts.total > 0 && (
+                  <ProgressBar
+                    pct={(trainerCounts.mastered / trainerCounts.total) * 100}
+                    className="mt-1"
+                  />
+                )}
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Brand-new learner: where to start ── */}
+      {!started && (
+        <section className="space-y-3">
+          <h2 className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-ink-soft">
+            New here? Start in the right place
+            <span className="h-px flex-1 bg-line" />
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { href: "/modules/chess-for-kids", title: "Brand new", sub: "Never played — or learning with a child" },
+              { href: "/modules/fundamentals", title: "I know the rules", sub: "Lock in the fundamentals" },
+              { href: "/tactics", title: "Get stronger", sub: "Train tactics & endgames" },
+            ].map((c) => (
+              <Link key={c.href} href={c.href} className="block">
+                <Card interactive className="flex h-full flex-col gap-1 p-4">
+                  <p className="font-display text-base font-semibold text-ink">{c.title}</p>
+                  <p className="text-sm text-ink-soft">{c.sub}</p>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
   );
 }

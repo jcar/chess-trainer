@@ -21,6 +21,7 @@
   --bg: #0b1424;        /* the room */
   --surface: #111d31;   /* raised panel */
   --card: #16243b;      /* cards / placards */
+  --rail: #0a1120;      /* the crest rail (a shade deeper than the room) */
 
   /* Foreground — the light square, as text */
   --fg: #e8eef7;
@@ -65,6 +66,7 @@
   --bg: #e9eef6;
   --surface: #f5f8fd;
   --card: #ffffff;
+  --rail: #dde5f1;
 
   --fg: #16243e;
   --fg-soft: #5b6d8a;
@@ -163,6 +165,27 @@
   overflow: hidden;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.3);
 }
+
+/* A faint board-checker motif, tucked into a plate's corner (theme-aware). */
+.plate-motif {
+  position: absolute;
+  right: -26px;
+  bottom: -26px;
+  width: 116px;
+  height: 116px;
+  opacity: .06;
+  transform: rotate(8deg);
+  pointer-events: none;
+  background-image: linear-gradient(45deg, var(--fg) 25%, transparent 25%, transparent 50%, var(--fg) 50%, var(--fg) 75%, transparent 75%);
+  background-size: 26px 26px;
+}
+
+/* Orchestrated entrance: plates rise + settle on load (staggered inline). */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: riseIn .5s cubic-bezier(.2,.7,.3,1) both; }
 
 /* A faint top sheen for placard-style cards (used via .placard-sheen). */
 .placard-sheen { position: relative; }
