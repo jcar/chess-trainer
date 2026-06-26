@@ -41,6 +41,13 @@ export const frenchDefence: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
+  structureDiagram: {
+    fen: "r1b1kbnr/pp3ppp/1qn1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R w KQkq - 3 6",
+    orientation: "black",
+    arrows: [{ from: "c5", to: "d4" }],
+    caption:
+      "French Advance: White gains space with the c3\u2013d4\u2013e5 pawn chain; Black strikes at its base with ...c5 and piles up on d4 (...Qb6, ...Nc6) while developing the queenside.",
+  },
   lines: [
     {
       label: "Advance Variation",

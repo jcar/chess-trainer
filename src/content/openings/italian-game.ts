@@ -45,6 +45,13 @@ export const italianGame: Opening = {
   },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+  structureDiagram: {
+    fen: "r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 w - - 2 7",
+    orientation: "white",
+    arrows: [{ from: "b1", to: "d2" }],
+    caption:
+      "The quiet Giuoco Pianissimo middlegame: both sides castled and solid. White's signature plan is the knight reroute Nb1–d2–f1–g3, then a break with d4 or a kingside push.",
+  },
   lines: [
     {
       label: "Giuoco Pianissimo (quiet main line)",

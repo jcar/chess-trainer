@@ -39,6 +39,7 @@ import { larsenLesson } from "./larsen";
 import { viennaGameLesson } from "./vienna-game";
 import { alapinSicilianLesson } from "./alapin-sicilian";
 import { queensGambitLesson } from "./queens-gambit";
+import { openingReview1, openingReview2, openingReview3 } from "./reviews";
 
 // Short, catalog-specific framing (the openings taxonomy) — distinct from the
 // Intermediate module's coverage of general opening principles.
@@ -107,6 +108,7 @@ export const openings: Module = {
     scandinavianLesson,
     alekhineLesson,
     pircLesson,
+    openingReview1,
     // 1.d4 openings
     queensGambitDeclinedLesson,
     slavDefenceLesson,
@@ -122,9 +124,11 @@ export const openings: Module = {
     benoniLesson,
     benkoGambitLesson,
     dutchDefenceLesson,
+    openingReview2,
     // Flank
     englishOpeningLesson,
     retiLesson,
     larsenLesson,
+    openingReview3,
   ],
 };

@@ -91,6 +91,22 @@ export function getOpening(id: string): Opening | undefined {
  * tabiya diagram) before stepping through moves.
  */
 export function buildConcept(o: Opening): ConceptActivity {
+  const diagrams: NonNullable<ConceptActivity["diagrams"]> = [
+    {
+      fen: o.tabiyaFen,
+      orientation: o.trainerColor,
+      caption: `After ${o.firstMoves}`,
+    },
+  ];
+  // FCO-style "ideas first": show the typical middlegame structure + the plan.
+  if (o.structureDiagram) {
+    diagrams.push({
+      fen: o.structureDiagram.fen,
+      orientation: o.structureDiagram.orientation ?? o.trainerColor,
+      arrows: o.structureDiagram.arrows,
+      caption: o.structureDiagram.caption,
+    });
+  }
   return {
     type: "concept",
     id: `${o.id}-concept`,
@@ -101,13 +117,10 @@ export function buildConcept(o: Opening): ConceptActivity {
       `White's plan: ${o.whitePlan}`,
       `Black's plan: ${o.blackPlan}`,
     ],
-    diagrams: [
-      {
-        fen: o.tabiyaFen,
-        orientation: o.trainerColor,
-        caption: `After ${o.firstMoves}`,
-      },
-    ],
+    diagrams,
+    // Surface the opening's "what's the idea?" question as a gating comprehension
+    // check (active recall) on every opening that has one — i.e. all of them.
+    ...(o.ideaQuiz ? { check: o.ideaQuiz } : {}),
   };
 }
 

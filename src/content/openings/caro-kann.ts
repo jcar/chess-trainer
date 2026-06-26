@@ -42,6 +42,13 @@ export const caroKann: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
+  structureDiagram: {
+    fen: "r2qkbnr/pp1nppp1/2p3bp/8/3P3P/5NN1/PPP2PP1/R1BQKB1R w KQkq - 2 8",
+    orientation: "black",
+    arrows: [{ from: "c6", to: "c5" }],
+    caption:
+      "Caro-Kann Classical: Black develops the light-squared bishop OUTSIDE the pawn chain (...Bf5\u2013g6), builds a rock-solid structure, and frees the position with the ...c5 break.",
+  },
   lines: [
     {
       label: "Classical Variation",

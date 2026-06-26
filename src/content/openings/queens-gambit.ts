@@ -48,6 +48,13 @@ export const queensGambit: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
+  structureDiagram: {
+    fen: "rnbq1rk1/ppp1bpp1/4pn1p/3p4/2PP3B/2N1PN2/PP3PPP/R2QKB1R b KQ - 1 7",
+    orientation: "white",
+    arrows: [{ from: "b2", to: "b4" }],
+    caption:
+      "Queen's Gambit (Declined): White converts the central pressure into a long-term plan \u2014 the queenside minority attack (b4\u2013b5 to create a weak black pawn) or the e4 break.",
+  },
   lines: [
     {
       label: "Declined (2...e6)",

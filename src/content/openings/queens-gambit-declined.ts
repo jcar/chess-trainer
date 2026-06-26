@@ -44,6 +44,13 @@ export const queensGambitDeclined: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+  structureDiagram: {
+    fen: "rnbq1rk1/p1p1bpp1/1p2pn1p/3p4/2PP3B/2N1PN2/PP3PPP/R2QKB1R w KQ - 0 8",
+    orientation: "black",
+    arrows: [{ from: "c7", to: "c5" }],
+    caption:
+      "Queen's Gambit Declined: a solid but slightly cramped structure. Black frees it with the ...c5 break (or ...dxc4 and ...e5); White plays for the e4 break or a queenside minority attack.",
+  },
   lines: [
     {
       label: "Classical main line",

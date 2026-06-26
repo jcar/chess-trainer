@@ -44,6 +44,13 @@ export const kingsIndian: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/pppppp1p/5np1/8/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+  structureDiagram: {
+    fen: "r1bq1rk1/ppp2pbp/2np1np1/4p3/2PPP3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 2 8",
+    orientation: "black",
+    arrows: [{ from: "f7", to: "f5" }],
+    caption:
+      "King's Indian: Black cedes the centre, then strikes back \u2014 the thematic ...e5 and ...f5, launching a kingside pawn storm while White expands on the queenside with c5 and b4.",
+  },
   lines: [
     {
       label: "Classical Variation",

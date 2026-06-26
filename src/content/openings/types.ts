@@ -71,6 +71,18 @@ export interface Opening {
   /** Key tabiya FEN (the position after the defining moves). */
   tabiyaFen: string;
   /**
+   * Optional second teaching diagram: the characteristic MIDDLEGAME structure the
+   * opening leads to (e.g. the position after the main line), with arrows showing
+   * the typical plan or pawn break. Display-only; legality-checked by the validator.
+   * Surfaced by `buildConcept` beneath the tabiya so the learner SEES the plan.
+   */
+  structureDiagram?: {
+    fen: string;
+    orientation?: Orientation;
+    arrows?: { from: string; to: string }[];
+    caption?: string;
+  };
+  /**
    * The concrete plan once the opening/theory ends — the pawn break to aim for,
    * where the pieces belong, the typical maneuver. Richer than whitePlan/blackPlan
    * (which describe the opening's idea); this is "now what do I actually do?".

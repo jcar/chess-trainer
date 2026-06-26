@@ -43,6 +43,13 @@ export const sicilianDefence: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+  structureDiagram: {
+    fen: "rnbq1rk1/1p2bppp/p2p1n2/4p3/4P3/1NN5/PPP1BPPP/R1BQ1RK1 w - - 4 9",
+    orientation: "black",
+    arrows: [{ from: "b7", to: "b5" }],
+    caption:
+      "A typical Najdorf middlegame: Black has the half-open c-file and a flexible centre, aiming for ...b5 and queenside play (or the ...d5 break) while White attacks on the kingside.",
+  },
   lines: [
     {
       label: "Open Sicilian — Najdorf",

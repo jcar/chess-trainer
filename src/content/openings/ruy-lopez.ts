@@ -43,6 +43,16 @@ export const ruyLopez: Opening = {
   },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+  structureDiagram: {
+    fen: "r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 w - - 1 9",
+    orientation: "white",
+    arrows: [
+      { from: "d2", to: "d4" },
+      { from: "b1", to: "d2" },
+    ],
+    caption:
+      "The Closed Ruy Lopez: White prepares the central break d4 and the Nbd2\u2013f1\u2013g3 maneuver; Black expands on the queenside with ...b5 and plays for ...d5 or ...c5.",
+  },
   lines: [
     {
       label: "Closed Ruy Lopez (Morphy Defence)",

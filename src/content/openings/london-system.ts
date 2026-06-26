@@ -44,6 +44,13 @@ export const londonSystem: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R b KQkq - 1 3",
+  structureDiagram: {
+    fen: "r1bqk2r/pp3ppp/2nbpn2/2pp4/3P4/2P1PNB1/PP1N1PPP/R2QKB1R b KQkq - 4 7",
+    orientation: "white",
+    arrows: [{ from: "f3", to: "e5" }],
+    caption:
+      "The London System: an easy, repeatable setup (Bf4, e3, c3, Nbd2). White plants a knight on e5, eyes the b1\u2013h7 diagonal, and can build a kingside attack.",
+  },
   lines: [
     {
       label: "Main setup vs ...d5",
