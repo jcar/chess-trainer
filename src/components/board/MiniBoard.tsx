@@ -15,7 +15,8 @@ interface Props {
 
 export function MiniBoard({ fen, orientation = "white", arrows = [] }: Props) {
   return (
-    <div className="pointer-events-none w-full">
+    <div className="board-frame board-frame--mini pointer-events-none w-full">
+     <div className="board-inner">
       <Chessboard
         options={{
           position: fen,
@@ -23,15 +24,16 @@ export function MiniBoard({ fen, orientation = "white", arrows = [] }: Props) {
           allowDragging: false,
           showAnimations: false,
           showNotation: false,
-          darkSquareStyle: { backgroundColor: "#7c93b5" },
-          lightSquareStyle: { backgroundColor: "#e6ecf5" },
+          darkSquareStyle: { backgroundColor: "var(--board-dark, #7c93b5)" },
+          lightSquareStyle: { backgroundColor: "var(--board-light, #e6ecf5)" },
           arrows: arrows.map((a) => ({
             startSquare: a.from,
             endSquare: a.to,
-            color: a.color ?? "#3b82f6",
+            color: a.color ?? "#d8b56b",
           })),
         }}
       />
+     </div>
     </div>
   );
 }

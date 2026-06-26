@@ -7,14 +7,16 @@ export type ButtonVariant = "primary" | "accent" | "secondary" | "ghost";
 export type ButtonSize = "md" | "lg" | "kid";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50";
+  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold tracking-tight transition-[filter,transform,background,border-color] duration-150 active:translate-y-px disabled:opacity-40 disabled:active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const VARIANT: Record<ButtonVariant, string> = {
-  // Solid blue main CTA.
-  primary: "bg-primary text-on-accent shadow-soft hover:bg-primary-strong",
-  // Soft-blue secondary CTA (same hue family, readable in both themes).
-  accent: "bg-primary/12 text-primary-strong border border-primary/30 hover:bg-primary/20",
-  secondary: "bg-card text-ink border border-line hover:border-primary/40",
+  // The move: a beveled champagne-gold CTA with a lit top edge and a cast shadow.
+  primary:
+    "text-on-accent bg-[linear-gradient(180deg,var(--primary-strong),var(--primary))] shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_10px_22px_-8px_rgba(216,181,107,0.5),0_2px_0_var(--gold-deep)] hover:brightness-[1.06]",
+  // Gold-outlined secondary — quiet but unmistakably the same family.
+  accent: "bg-primary/10 text-primary-strong border border-primary/40 hover:bg-primary/18 hover:border-primary/60",
+  // Carved panel button.
+  secondary: "bg-card text-ink border border-line shadow-soft hover:border-primary/45",
   ghost: "text-ink-soft hover:text-ink",
 };
 

@@ -9,11 +9,11 @@ export function Wordmark({ className = "" }: { className?: string }) {
       aria-label="Chess Trainer — home"
       className={`group inline-flex items-center gap-2.5 ${className}`}
     >
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary shadow-soft ring-1 ring-accent/40 transition group-active:scale-95">
+      <span className="grid h-9 w-9 place-items-center rounded-xl bg-[linear-gradient(160deg,var(--primary-strong),var(--primary))] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_4px_12px_-4px_rgba(216,181,107,0.5)] ring-1 ring-primary/50 transition group-active:scale-95">
         <KnightMark className="h-5 w-5 text-on-accent" />
       </span>
-      <span className="font-display text-xl font-semibold tracking-tight text-primary-strong">
-        Chess <span className="text-accent">Trainer</span>
+      <span className="font-display text-[1.35rem] font-semibold tracking-tight text-ink">
+        Chess <span className="italic text-primary-strong">Trainer</span>
       </span>
     </Link>
   );

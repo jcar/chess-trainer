@@ -1,78 +1,101 @@
 @import "tailwindcss";
 
 /*
- * Chess Trainer — "cool-tech" design system.
- * Deep slate/navy dark theme (default) + a clean light theme, electric-blue accent,
- * Space Grotesk display. Colors are raw CSS vars defined per theme below, mapped to
- * Tailwind tokens via `@theme inline` so every `bg-bg` / `text-ink` / `bg-primary`
- * utility flips live when `data-theme` changes on <html>. The kid track keeps a
- * brighter teal/coral identity layered on top.
+ * Chess Trainer — "Midnight Club" design system.
+ *
+ * The whole palette is drawn FROM the board: the deep navy ground is the dark
+ * square's shadow, the pale blue-grey is the light square (and our text). One
+ * warm accent — champagne gold — carries every CTA, selection, and flourish.
+ * Dark is the default (a candlelit hall); light is the daylight counterpart.
+ *
+ * Raw CSS vars are defined per theme, then mapped to Tailwind tokens via
+ * `@theme inline` so every `bg-bg` / `text-ink` / `bg-primary` utility flips
+ * live when `data-theme` changes on <html>.
  */
 
-/* ---- Theme variables: DARK is the default (:root) ---- */
+/* ---- DARK (default): the candlelit hall ---- */
 :root {
   color-scheme: dark;
 
-  /* Surfaces */
-  --bg: #0b1220; /* deep slate/navy page */
-  --surface: #111a2e; /* slightly raised panel */
-  --card: #16213a; /* cards */
+  /* Surfaces — navy, pulled from the dark square */
+  --bg: #0b1424;        /* the room */
+  --surface: #111d31;   /* raised panel */
+  --card: #16243b;      /* cards / placards */
 
-  /* Foreground */
-  --fg: #e8eef7; /* primary text (near-white, cool) */
-  --fg-soft: #94a3b8; /* secondary text (slate-400) */
-  --line: #243049; /* hairline borders */
+  /* Foreground — the light square, as text */
+  --fg: #e8eef7;
+  --fg-soft: #9fb0c7;
+  --line: #243450;      /* cool hairline */
 
-  /* Brand — electric blue */
-  --primary: #3b82f6; /* primary accent / CTAs */
-  --primary-strong: #60a5fa; /* brighter on dark for emphasis/headings accents */
-  --accent: #38bdf8; /* secondary accent (sky) for highlights/eyebrows */
-  --on-accent: #f8fafc; /* text/icons on primary surfaces */
+  /* Brand — champagne gold */
+  --primary: #d8b56b;        /* CTAs, accents */
+  --primary-strong: #ecca84; /* brighter gold for emphasis / accent text */
+  --accent: #d8b56b;         /* eyebrows / highlights */
+  --on-accent: #14223c;      /* deep navy text on gold */
+  --gold-deep: #a9863f;      /* bottom edge of beveled gold */
 
-  /* Semantic (also the three difficulty levels) */
-  --sage: #34d399; /* success / progress / Beginner */
-  --amber: #fbbf24; /* Intermediate / highlight */
-  --clay: #fb7185; /* Advanced / danger */
+  /* The board (unchanged) + its carved frame */
+  --board-dark: #7c93b5;
+  --board-light: #e6ecf5;
+  --frame-a: #2c3651;   /* frame top-light */
+  --frame-b: #131d31;   /* frame shadow */
 
-  /* Kid-track flex accents (layered only in kidMode) — kept bright & playful */
+  /* Semantic / difficulty */
+  --sage: #46d6a0;  /* success / Beginner */
+  --amber: #f0b341; /* Intermediate */
+  --clay: #f0728a;  /* Advanced / danger */
+
+  /* Kid-track flex accents (layered only in kidMode) */
   --kid-teal: #2dd4bf;
   --kid-coral: #fb8a6b;
 
-  /* Cool elevation (no warm brown) */
-  --elev-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px -8px rgba(0, 0, 0, 0.6);
-  --elev-lift: 0 2px 4px rgba(0, 0, 0, 0.5), 0 18px 38px -12px rgba(0, 0, 0, 0.7);
+  /* Elevation — deep, with a faint top sheen */
+  --elev-soft: 0 1px 2px rgba(0,0,0,.45), 0 8px 24px -10px rgba(0,0,0,.7);
+  --elev-lift: 0 2px 6px rgba(0,0,0,.5), 0 26px 50px -16px rgba(0,0,0,.8);
+  --glow-gold: 0 0 0 1px rgba(216,181,107,.55), 0 0 22px -4px rgba(216,181,107,.45);
+
+  /* The room: a candlelit vignette behind everything */
+  --room-bg: radial-gradient(130% 90% at 50% -8%, #17273f 0%, #0b1424 56%, #060c17 100%);
 }
 
-/* ---- Light theme ---- */
+/* ---- LIGHT: the same hall by daylight (cool marble + gold) ---- */
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg: #f6f8fc;
-  --surface: #ffffff;
+  --bg: #e9eef6;
+  --surface: #f5f8fd;
   --card: #ffffff;
 
-  --fg: #0f172a; /* slate-900 */
-  --fg-soft: #64748b; /* slate-500 */
-  --line: #e2e8f0; /* slate-200 */
+  --fg: #16243e;
+  --fg-soft: #5b6d8a;
+  --line: #d2dded;
 
-  --primary: #2563eb;
-  --primary-strong: #1d4ed8;
-  --accent: #0284c7;
-  --on-accent: #ffffff;
+  --primary: #bf9a4e;
+  --primary-strong: #8a6c2c;  /* readable gold/bronze text on light */
+  --accent: #bf9a4e;
+  --on-accent: #1a1206;
+  --gold-deep: #8f7233;
 
-  --sage: #059669;
-  --amber: #d97706;
-  --clay: #e11d48;
+  --board-dark: #7c93b5;
+  --board-light: #e6ecf5;
+  --frame-a: #ccd6e4;
+  --frame-b: #9aa8bf;
+
+  --sage: #0f9d6b;
+  --amber: #b07d1e;
+  --clay: #d83a59;
 
   --kid-teal: #0d9488;
   --kid-coral: #f4734f;
 
-  --elev-soft: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 20px -8px rgba(15, 23, 42, 0.12);
-  --elev-lift: 0 2px 4px rgba(15, 23, 42, 0.08), 0 18px 38px -12px rgba(15, 23, 42, 0.18);
+  --elev-soft: 0 1px 2px rgba(22,36,62,.07), 0 8px 22px -10px rgba(22,36,62,.16);
+  --elev-lift: 0 2px 6px rgba(22,36,62,.1), 0 26px 50px -16px rgba(22,36,62,.22);
+  --glow-gold: 0 0 0 1px rgba(160,128,60,.5), 0 0 18px -4px rgba(160,128,60,.35);
+
+  --room-bg: radial-gradient(130% 90% at 50% -8%, #f6f9fd 0%, #e9eef6 58%, #dae2ef 100%);
 }
 
-/* ---- Map raw vars → Tailwind tokens (inline so utilities reference the vars
-        directly and flip with data-theme). ---- */
+/* ---- Map raw vars → Tailwind tokens ---- */
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -93,9 +116,9 @@
   --color-kid-teal: var(--kid-teal);
   --color-kid-coral: var(--kid-coral);
 
-  /* Typography (families provided by next/font in layout.tsx) */
+  /* Type: an elegant serif display (Fraunces) over a clean humanist body (Inter). */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-display: var(--font-fraunces), "Iowan Old Style", Palatino, Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   --shadow-soft: var(--elev-soft);
@@ -107,47 +130,66 @@
     background: var(--color-bg); /* avoids a flash before <body> paints */
   }
   body {
-    background: var(--color-bg);
+    background: var(--room-bg) fixed;
     color: var(--color-ink);
     font-family: var(--font-sans);
   }
-  /* Titles default to the bold display grotesk. */
-  h1,
-  h2,
-  h3 {
+  /* Titles in the elegant serif, tightened. */
+  h1, h2, h3 {
     font-family: var(--font-display);
+    letter-spacing: -0.005em;
   }
+  /* Gold text-selection. */
+  ::selection { background: rgba(216,181,107,.3); }
+}
+
+/* ---- The carved board set (wraps the chessboard) ---- */
+.board-frame {
+  padding: clamp(9px, 2.4%, 17px);
+  border-radius: 16px;
+  background: linear-gradient(155deg, var(--frame-a), var(--frame-b));
+  box-shadow:
+    var(--elev-lift),
+    inset 0 2px 0 rgba(255,255,255,.16),
+    inset 0 -3px 7px rgba(0,0,0,.5),
+    0 0 0 1px rgba(0,0,0,.45);
+}
+.board-frame--mini {
+  padding: clamp(6px, 3%, 10px);
+  border-radius: 12px;
+}
+.board-inner {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.3);
+}
+
+/* A faint top sheen for placard-style cards (used via .placard-sheen). */
+.placard-sheen { position: relative; }
+.placard-sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), transparent);
+  pointer-events: none;
 }
 
 /* ---- Animations (kid celebrations & board cues) ---- */
 
-/* Confetti pieces fall and fade. */
 @keyframes kidConfettiFall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(105vh) rotate(720deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
 }
 
-/* A happy bounce for the Pip mascot when cheering. */
 @keyframes kidBounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12%);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12%); }
 }
 
-/* "Danger" flash for a king in check (applied to a board square inline). */
 @keyframes kidDanger {
-  0%,
-  100% {
+  0%, 100% {
     background-color: rgba(239, 68, 68, 0.35);
     box-shadow: inset 0 0 0 4px rgba(220, 38, 38, 0.9);
   }
@@ -157,19 +199,19 @@
   }
 }
 
-/* "New badge!" toast: slide down, hold, then fade up and out. */
 @keyframes kidToast {
-  0% {
-    opacity: 0;
-    transform: translateY(-1rem);
-  }
-  12%,
-  82% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-1rem);
-  }
+  0% { opacity: 0; transform: translateY(-1rem); }
+  12%, 82% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-1rem); }
+}
+
+/* A soft gold pulse for a freshly-revealed correct answer / win flourish. */
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 0 0 rgba(216,181,107,.5); }
+  70% { box-shadow: 0 0 0 12px rgba(216,181,107,0); }
+  100% { box-shadow: 0 0 0 0 rgba(216,181,107,0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
 }

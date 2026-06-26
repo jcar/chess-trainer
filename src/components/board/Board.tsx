@@ -93,30 +93,34 @@ function holdDocumentHeight(ms = 1200): void {
   }, ms);
 }
 
+// Legal-move dots stay green — the universal "you can go here" cue, and it reads
+// instantly against the slate board.
 const DOT_STYLE: React.CSSProperties = {
   background:
-    "radial-gradient(circle, rgba(16,185,129,0.65) 24%, transparent 26%)",
+    "radial-gradient(circle, rgba(70,214,160,0.7) 24%, transparent 26%)",
 };
 const CAPTURE_STYLE: React.CSSProperties = {
   background:
-    "radial-gradient(circle, transparent 62%, rgba(16,185,129,0.7) 64%)",
+    "radial-gradient(circle, transparent 62%, rgba(70,214,160,0.72) 64%)",
   borderRadius: "50%",
 };
+// Selection + hints are champagne gold — the house accent, carried onto the board.
 const SELECTED_STYLE: React.CSSProperties = {
-  background: "rgba(250, 204, 21, 0.55)",
+  background: "rgba(216,181,107,0.5)",
+  boxShadow: "inset 0 0 0 3px rgba(236,202,132,0.85)",
 };
 const HINT_STYLE: React.CSSProperties = {
-  background: "rgba(251, 146, 60, 0.7)",
-  boxShadow: "inset 0 0 0 4px rgba(234,88,12,0.9)",
+  background: "rgba(216,181,107,0.6)",
+  boxShadow: "inset 0 0 0 4px rgba(236,202,132,0.95)",
 };
 
 const DANGER_STYLE: React.CSSProperties = {
   animation: "kidDanger 0.8s ease-in-out infinite",
 };
 
-// Last-move tint: electric blue for your move, violet for the opponent's
-// (both clearly distinct from the slate board, the green move-dots, and each other).
-const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(59,130,246,0.45)" };
+// Last-move tint: cool teal for your move, violet for the opponent's — both
+// clearly distinct from the slate board, the green dots, and the gold accents.
+const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(45,212,191,0.4)" };
 const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(168,85,247,0.42)" };
 
 export function Board({
@@ -174,7 +178,7 @@ export function Board({
       (arrows ?? []).map((a) => ({
         startSquare: a.from,
         endSquare: a.to,
-        color: a.color ?? "#3b82f6", // accent blue
+        color: a.color ?? "#d8b56b", // champagne gold
       })),
     [arrows],
   );
@@ -200,8 +204,9 @@ export function Board({
   return (
     <div
       data-chessboard
-      className="mx-auto w-full max-w-[min(92vw,560px,72svh)] touch-none select-none"
+      className="board-frame mx-auto w-full max-w-[min(92vw,560px,72svh)] touch-none select-none"
     >
+     <div className="board-inner">
       <Chessboard
         options={{
           position: fen,
@@ -228,6 +233,7 @@ export function Board({
           },
         }}
       />
+     </div>
     </div>
   );
 }

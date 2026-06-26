@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Inter, Fraunces, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ProgressProvider } from "@/lib/progress/useProgress";
 import { withBasePath } from "@/lib/basePath";
@@ -13,11 +13,12 @@ const inter = Inter({
   display: "swap",
 });
 
-// Display / titles — bold geometric grotesk (modern, cool-tech).
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// Display / titles — an elegant, characterful serif (the "club" voice).
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -43,8 +44,8 @@ export const viewport: Viewport = {
   // `cover` makes env(safe-area-inset-*) report real values on notched phones.
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0b1220" },
-    { media: "(prefers-color-scheme: light)", color: "#f6f8fc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1424" },
+    { media: "(prefers-color-scheme: light)", color: "#e9eef6" },
   ],
 };
 
@@ -61,7 +62,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-ink">
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH }} />
