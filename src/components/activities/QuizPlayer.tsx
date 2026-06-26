@@ -67,51 +67,49 @@ export function QuizPlayer({ activity, onComplete, onAttempt, kidMode = false }:
         {kidMode && <SpeakButton text={readAloud} />}
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {order.map((origIdx, pos) => {
           const option = activity.options[origIdx];
           const isCorrect = origIdx === activity.correctIndex;
           const isWrongPick = kidMode
             ? wrong.includes(origIdx)
             : answered && origIdx === selected && !isCorrect;
-          let cls = kidMode
-            ? "flex w-full items-center gap-4 rounded-2xl border-4 px-5 py-5 text-left text-xl font-semibold transition active:scale-[0.98]"
-            : "w-full rounded-xl border px-4 py-4 text-left text-base transition active:scale-[0.99]";
-          if (answered && isCorrect) {
-            cls += " border-sage bg-sage/10 text-sage";
-          } else if (isWrongPick) {
-            cls += " border-clay bg-clay/10 text-clay";
-          } else if (answered) {
-            cls += " border-line bg-surface text-ink-soft/60";
-          } else {
-            cls += kidMode
-              ? " border-kid-teal/30 bg-card text-ink hover:border-kid-teal"
-              : " border-line bg-card text-ink hover:border-primary/40";
-          }
+          const showCorrect = answered && isCorrect;
+
+          const tile = kidMode
+            ? "gap-4 rounded-2xl border-4 px-5 py-5 text-xl font-semibold"
+            : "gap-3.5 rounded-xl border px-4 py-3.5 text-base";
+          let state: string;
+          if (showCorrect) state = "border-sage bg-sage/12 text-ink pop";
+          else if (isWrongPick) state = "border-clay bg-clay/12 text-ink";
+          else if (answered) state = "border-line bg-surface text-ink-soft/55";
+          else
+            state = kidMode
+              ? "border-kid-teal/35 bg-card text-ink hover:border-kid-teal hover:bg-kid-teal/[0.06]"
+              : "border-line bg-card text-ink hover:border-primary/55 hover:bg-primary/[0.05]";
+
+          const badge = kidMode ? "h-10 w-10 rounded-full text-lg" : "h-8 w-8 rounded-lg text-sm";
+          let badgeState: string;
+          if (showCorrect) badgeState = "bg-sage text-on-accent";
+          else if (isWrongPick) badgeState = "bg-clay text-on-accent";
+          else if (answered) badgeState = "bg-ink/8 text-ink-soft/50";
+          else
+            badgeState = kidMode
+              ? "bg-kid-teal/15 text-kid-teal"
+              : "bg-primary/12 text-primary-strong group-hover:bg-primary/20";
+
           return (
             <button
               key={origIdx}
               type="button"
-              className={cls}
+              className={`group flex w-full items-center text-left transition active:scale-[0.99] ${tile} ${state}`}
               onClick={() => choose(origIdx)}
               disabled={answered}
             >
-              {kidMode && (
-                <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-extrabold ${
-                    answered && isCorrect
-                      ? "bg-sage text-on-accent"
-                      : isWrongPick
-                        ? "bg-clay text-on-accent"
-                        : answered
-                          ? "bg-ink/8 text-ink-soft/60"
-                          : "bg-kid-teal/15 text-kid-teal"
-                  }`}
-                >
-                  {answered && isCorrect ? "✓" : BADGES[pos]}
-                </span>
-              )}
-              <span>{option}</span>
+              <span className={`flex shrink-0 items-center justify-center font-extrabold transition ${badge} ${badgeState}`}>
+                {showCorrect ? "✓" : isWrongPick ? "✕" : BADGES[pos]}
+              </span>
+              <span className="min-w-0 flex-1">{option}</span>
             </button>
           );
         })}
@@ -119,23 +117,32 @@ export function QuizPlayer({ activity, onComplete, onAttempt, kidMode = false }:
 
       {showTeach && (
         <div
-          className={`rounded-2xl p-4 ${kidMode ? "text-lg" : "text-sm"} ${
+          className={`pop flex items-start gap-3 rounded-2xl p-4 ${kidMode ? "text-lg" : "text-sm"} ${
             correct ? "bg-sage/10 text-sage" : "bg-accent/10 text-primary-strong"
           }`}
         >
-          <div className="mb-1 flex items-center gap-2">
-            <p className="font-bold">
-              {correct
-                ? kidMode
-                  ? "Yay, correct!"
-                  : "Correct!"
-                : kidMode
-                  ? "Good try — try again!"
-                  : "Not quite."}
-            </p>
-            {kidMode && <SpeakButton text={activity.explanation} size="sm" />}
+          <span
+            className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-bold ${
+              correct ? "bg-sage text-on-accent" : "bg-primary/20 text-primary-strong"
+            }`}
+          >
+            {correct ? "✓" : "!"}
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="mb-1 flex items-center gap-2">
+              <p className="font-bold">
+                {correct
+                  ? kidMode
+                    ? "Yay, correct!"
+                    : "Correct"
+                  : kidMode
+                    ? "Good try — try again!"
+                    : "Not quite"}
+              </p>
+              {kidMode && <SpeakButton text={activity.explanation} size="sm" />}
+            </div>
+            <p>{activity.explanation}</p>
           </div>
-          <p>{activity.explanation}</p>
         </div>
       )}
     </div>

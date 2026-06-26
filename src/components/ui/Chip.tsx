@@ -3,13 +3,15 @@ import type { Module } from "@/content/types";
 type Tone = "sage" | "amber" | "clay" | "kid" | "neutral";
 
 const TONE: Record<Tone, string> = {
-  sage: "bg-sage/15 text-sage",
-  amber: "bg-amber/15 text-amber",
-  clay: "bg-clay/15 text-clay",
-  kid: "bg-kid-teal/15 text-kid-teal",
-  neutral: "bg-ink/8 text-ink-soft",
+  sage: "border-sage/35 bg-sage/12 text-sage",
+  amber: "border-amber/35 bg-amber/12 text-amber",
+  clay: "border-clay/35 bg-clay/12 text-clay",
+  kid: "border-kid-teal/35 bg-kid-teal/12 text-kid-teal",
+  neutral: "border-line bg-ink/5 text-ink-soft",
 };
 
+// An engraved tournament tag: bordered, tinted, uppercase, letter-spaced, with a
+// faint top sheen so it reads as inlaid rather than a flat pill.
 export function Chip({
   children,
   tone = "neutral",
@@ -21,7 +23,7 @@ export function Chip({
 }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${TONE[tone]} ${className}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.12em] shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] ${TONE[tone]} ${className}`}
     >
       {children}
     </span>

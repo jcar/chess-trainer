@@ -108,6 +108,7 @@ export function ConceptPlayer({
             explanation={activity.check.explanation}
             seed={`${activity.id}:check`}
             onSolved={() => setCheckSolved(true)}
+            kidMode={kidMode}
           />
         </div>
       )}

@@ -187,6 +187,13 @@
 }
 .rise { animation: riseIn .5s cubic-bezier(.2,.7,.3,1) both; }
 
+/* A win/correct moment landing with weight: a quick scale-in pop. */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.94); }
+  to { opacity: 1; transform: none; }
+}
+.pop { animation: popIn .34s cubic-bezier(.2,.8,.3,1) both; }
+
 /* A faint top sheen for placard-style cards (used via .placard-sheen). */
 .placard-sheen { position: relative; }
 .placard-sheen::before {

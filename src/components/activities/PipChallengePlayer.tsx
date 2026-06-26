@@ -132,6 +132,7 @@ export function PipChallengePlayer({ activity, onComplete }: Props) {
           explanation={item.explanation}
           seed={`${activity.id}:${pos}:${item.conceptId}`}
           onSolved={handleSolved}
+          kidMode
         />
       )}
     </div>
