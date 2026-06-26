@@ -144,6 +144,39 @@ export const ch14: Lesson = {
         "You move a front piece and 'discover' the attack of the piece behind it. Because the moving piece can ALSO create a threat (even a check), the opponent often can't deal with both. A discovered CHECK is especially deadly — the moving piece can grab material with impunity.",
     },
     {
+      id: "discovered-tactic",
+      type: "puzzle",
+      title: "Try it: the discovered attack",
+      blurb: "Unleash the bishop with check.",
+      fen: "7k/q4p1p/8/4N3/8/8/1B3PPP/6K1 w - - 0 1",
+      orientation: "white",
+      goal: { type: "win-material", minGain: 5 },
+      prompt:
+        "White to play. The knight on e5 masks the bishop on b2, which is trained on the cornered king. Spring the discovery and win the queen.",
+      hints: [
+        "Move the knight WITH check — leaving e5 uncovers the bishop's check on h8.",
+        "Land the knight on a square that also attacks the queen on a7.",
+      ],
+      successText:
+        "Won the queen! Nc6+ is a discovered check: the knight leaps off the diagonal so the bishop checks the king, and from c6 it also attacks the queen. Black must answer the check — then Nxa7 collects the queen. One move, two threats.",
+      solution: ["e5c6", "h8g8", "c6a7"],
+    },
+    {
+      id: "ch14-remove-defender-demo",
+      type: "replay",
+      title: "See it: removing the defender",
+      blurb: "Knock out the guard, take the prize.",
+      startFen: "4k3/pp3ppp/2n5/1B2b3/8/5N2/5PPP/6K1 w - - 0 1",
+      orientation: "white",
+      intro:
+        "Black's bishop on e5 is attacked by the knight, but it's defended by the knight on c6. So deal with the defender first.",
+      steps: [
+        { san: "Bxc6+", note: "Remove the guard: the bishop captures the only defender of e5 — with check, so Black has no time for anything else." },
+        { san: "bxc6", note: "Black recaptures. The bishop on e5 has lost its protector." },
+        { san: "Nxe5", note: "Now the knight takes the bishop for free. Removing the defender: eliminate the guard, then collect what it was guarding." },
+      ],
+    },
+    {
       id: "removing-the-defender",
       type: "quiz",
       title: "Removing the defender",
