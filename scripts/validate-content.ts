@@ -367,8 +367,12 @@ async function checkActivity(moduleId: string, a: Activity) {
       break;
     }
     case "concept": {
-      // Read-only teaching card; diagrams are display-only. Just require text.
+      // Read-only teaching card. Require text, and keep teaching diagrams legal
+      // so we never ship a broken/illegal position in a lesson's theory.
       if (!a.body || !a.body.trim()) note(where, "concept card has no body text");
+      if (a.diagrams) {
+        a.diagrams.forEach((d, i) => assertLegalPosition(`${where} diagram#${i + 1}`, d.fen));
+      }
       if (a.check) {
         if (a.check.options.length < 2) note(where, "concept check needs ≥2 options");
         if (a.check.correctIndex < 0 || a.check.correctIndex >= a.check.options.length) {

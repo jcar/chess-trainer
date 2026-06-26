@@ -47,8 +47,9 @@ export function ConceptPlayer({
   const paragraphs = activity.body.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
   const speakText = conceptSpeech(activity);
 
-  // Kid check-for-understanding gates the advance button until answered right.
-  const hasCheck = kidMode && !!activity.check;
+  // Check-for-understanding (active recall) gates the advance button until
+  // answered right — for every learner, not just kid mode.
+  const hasCheck = !!activity.check;
   const [checkSolved, setCheckSolved] = useState(false);
   const gateOpen = !hasCheck || checkSolved;
 
