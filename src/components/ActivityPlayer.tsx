@@ -27,6 +27,7 @@ import { ScenePlayer } from "@/components/activities/ScenePlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { SpeakingCharacter } from "@/components/kids/SpeakingCharacter";
 import { speakAs } from "@/lib/audio/speech";
+import { headerSpeech } from "@/lib/audio/narration";
 import { Confetti } from "@/components/kids/Confetti";
 import { PipMascot } from "@/components/kids/PipMascot";
 import { BadgeToast } from "@/components/kids/BadgeToast";
@@ -246,7 +247,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
                 {activity.title}
               </h1>
               {kidMode && (
-                <SpeakButton text={`${activity.title}. ${activity.blurb ?? ""}`} size="sm" />
+                <SpeakButton text={headerSpeech(activity)} size="sm" />
               )}
             </div>
           </div>

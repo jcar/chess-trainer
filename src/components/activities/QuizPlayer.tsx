@@ -5,6 +5,7 @@ import type { QuizActivity } from "@/content/types";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { seededOrder } from "@/lib/shuffle";
+import { quizReadAloud } from "@/lib/audio/narration";
 
 interface Props {
   activity: QuizActivity;
@@ -55,9 +56,7 @@ export function QuizPlayer({ activity, onComplete, onAttempt, kidMode = false }:
     onComplete(index === activity.correctIndex ? 100 : 50);
   }
 
-  const readAloud = `${activity.question}. ${order
-    .map((origIdx, pos) => `${BADGES[pos]}. ${activity.options[origIdx]}`)
-    .join(". ")}`;
+  const readAloud = quizReadAloud(activity);
 
   return (
     <div className="space-y-5">

@@ -91,6 +91,10 @@ const MAX_WAIT_S = 90; // a longer required wait means the DAILY quota is gone �
 function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
+function bar(pct: number): string {
+  const filled = Math.max(0, Math.min(20, Math.round(pct / 5)));
+  return "[" + "#".repeat(filled) + "-".repeat(20 - filled) + "]";
+}
 
 async function main() {
   // One or more keys (comma-separated GEMINI_API_KEYS, or a single GEMINI_API_KEY).
@@ -114,6 +118,19 @@ async function main() {
   let ki = 0;
   let ai = new GoogleGenAI({ apiKey: keys[ki] });
   const haveFfmpeg = spawnSync("ffmpeg", ["-version"]).status === 0;
+
+  const startedAt = Date.now();
+  const todo = manifest.filter(
+    (e) =>
+      !existsSync(join(audioDir, `${e.key}.mp3`)) &&
+      !existsSync(join(audioDir, `${e.key}.wav`)),
+  ).length;
+  const etaMin = Math.ceil((todo * (THROTTLE_MS + 1500)) / 60000);
+  console.log(
+    `Rendering ${todo} clip(s) on ${MODEL} ` +
+      `(${manifest.length - todo} already done · ${manifest.length} total · ${keys.length} key(s)). ` +
+      `~${etaMin} min if quota holds.\n`,
+  );
 
   const clipFiles: Record<string, string> = {};
   let generated = 0;
@@ -170,7 +187,7 @@ async function main() {
           break;
         }
         if (attempt <= MAX_RETRIES) {
-          console.log(`  …rate-limited on ${e.key}, waiting ${waitS}s (attempt ${attempt})`);
+          console.log(`  ⏳ ${e.key}: rate-limited, waiting ${waitS}s (try ${attempt})`);
           await sleep(waitS * 1000);
           continue;
         }
@@ -197,7 +214,12 @@ async function main() {
   }
   clipFiles[e.key] = file;
   generated++;
-  console.log(`✓ ${e.key} (${e.voice})`);
+  const done = generated + reused;
+  const pct = Math.round((done / manifest.length) * 100);
+  console.log(
+    `[${String(done).padStart(3)}/${manifest.length}] ${String(pct).padStart(3)}% ` +
+      `${bar(pct)} key#${ki + 1}/${keys.length} ✓ ${e.key} (${e.voice})`,
+  );
   await sleep(THROTTLE_MS);
 }
 
@@ -224,8 +246,12 @@ writeFileSync(
     `export const CLIP_FILES: Record<string, string> = {\n${body}\n};\n`,
 );
 
+  const elapsed = Math.round((Date.now() - startedAt) / 1000);
+  const mm = Math.floor(elapsed / 60);
+  const ss = elapsed % 60;
   console.log(
-    `\nDone: ${generated} generated, ${reused} reused, ${Object.keys(clipFiles).length} total clips.`,
+    `\nDone in ${mm}m${ss}s: ${generated} generated, ${reused} reused, ` +
+      `${Object.keys(clipFiles).length}/${manifest.length} total clips.`,
   );
 }
 

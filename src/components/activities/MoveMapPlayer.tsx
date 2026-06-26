@@ -10,6 +10,7 @@ import type { MoveMapActivity } from "@/content/types";
 import { pieceTargets, pieceArrows, singlePieceFen } from "@/lib/chess/moves";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { moveMapSpeech } from "@/lib/audio/narration";
 import { playSound } from "@/lib/audio/sounds";
 
 interface Props {
@@ -30,7 +31,7 @@ export function MoveMapPlayer({ activity, onComplete }: Props) {
         <p className="flex-1">
           {explored ? activity.funFact : activity.intro}
         </p>
-        <SpeakButton text={`${activity.intro} ${activity.funFact}`} size="sm" />
+        <SpeakButton text={moveMapSpeech(activity)} size="sm" />
       </div>
 
       <Board

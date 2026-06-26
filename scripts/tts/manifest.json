@@ -294,6 +294,3086 @@
     "text": "Clever, clever. But my gate on the heights is trickier than the last…"
   },
   {
+    "key": "narrator-105ruks",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Stalemate — a tie! The king can't move but is NOT in check. That's a draw, not a win."
+  },
+  {
+    "key": "narrator-109e519",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The rook slides in straight lines — like a train on a track!"
+  },
+  {
+    "key": "narrator-10c9sp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Now you get to win for real! Let's practice some easy checkmates you'll use over and over again."
+  },
+  {
+    "key": "narrator-10hh3mf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Spot the Smother. What traps the king?"
+  },
+  {
+    "key": "narrator-10x9aij",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How big is the board?. Count the squares."
+  },
+  {
+    "key": "narrator-10yxs16",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Three More Friends. King, knight, and pawn."
+  },
+  {
+    "key": "narrator-11f6j1f",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate ends the game — the king is in check with no way out!"
+  },
+  {
+    "key": "narrator-11fw8k1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which piece is this?"
+  },
+  {
+    "key": "narrator-11jelwg",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "There are clever tricks that win you extra pieces! Let's learn the fork and the skewer and start winning."
+  },
+  {
+    "key": "narrator-11obh5r",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The other army answers with a pawn."
+  },
+  {
+    "key": "narrator-11phdny",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Before you grab a piece, you should check whether it is…"
+  },
+  {
+    "key": "narrator-11rw3ek",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You did it! The best way to improve is to play and have fun. Pip is so proud of you! 🌟"
+  },
+  {
+    "key": "narrator-121ijl7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black answers."
+  },
+  {
+    "key": "narrator-1251cia",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You've learned so much! Now it's time to play me, Pip. Every level can be won, so climb the ladder and try to beat them all!"
+  },
+  {
+    "key": "narrator-126126h",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Only the knight hops in an L and can leap over pieces."
+  },
+  {
+    "key": "narrator-1279q9k",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A fork is when one piece…"
+  },
+  {
+    "key": "narrator-12fdczh",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The bishop leaves f1. Now the squares between king and rook are empty."
+  },
+  {
+    "key": "narrator-12fkysu",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check! The mighty queen attacks the king."
+  },
+  {
+    "key": "narrator-12sftq4",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "This little soldier is the pawn. Tap it! Pawns march straight forward, but capture diagonally. On its first move, a pawn can hop two squares!"
+  },
+  {
+    "key": "narrator-12yjmp7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "When a pawn reaches the far side, what can it become?"
+  },
+  {
+    "key": "narrator-12zfskk",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Sleeping Bishop. "
+  },
+  {
+    "key": "narrator-132h9n",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Munch munch — all gobbled up! 🍎"
+  },
+  {
+    "key": "narrator-13706gf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Who's worth the most?. Pick the biggest prize."
+  },
+  {
+    "key": "narrator-138s1b5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Capture with the rook!. Slide over and grab it."
+  },
+  {
+    "key": "narrator-13a8x9n",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "When the king is attacked, that's a check, and he must get to safety. If he can't escape at all, that's checkmate and the game is won!"
+  },
+  {
+    "key": "narrator-13d54za",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black king has only one square to go to — it's almost trapped."
+  },
+  {
+    "key": "narrator-13kjtcm",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You did it — a brand new Queen! 👑 Leading with your king is how every pawn gets home. Pip is so proud!"
+  },
+  {
+    "key": "narrator-13qogmb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! Nf7# — the smothered mate. The king is trapped by its own rook and pawns, and a knight check can't be blocked."
+  },
+  {
+    "key": "narrator-13w3hjo",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Four-Move Trap. Guard the f7 square!"
+  },
+  {
+    "key": "narrator-140qslg",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Give a check!. Attack the king in one move."
+  },
+  {
+    "key": "narrator-14bmc1p",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Build the Box. "
+  },
+  {
+    "key": "narrator-14cn1vc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Tap the rook, then tap a gold star to drive there. Remember — rooks go in straight lines! Collect both stars."
+  },
+  {
+    "key": "narrator-14d5qje",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Paths Light Up. "
+  },
+  {
+    "key": "narrator-14huohv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "An 8×8 grid — 8 rows of 8 squares makes 64!"
+  },
+  {
+    "key": "narrator-14ilnwa",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Use the queen for checkmate!"
+  },
+  {
+    "key": "narrator-14k7jkp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How does a pawn capture?. Pawns are sneaky!"
+  },
+  {
+    "key": "narrator-14osrtl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The other side does the same."
+  },
+  {
+    "key": "narrator-14yo1rw",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate in two! Your king did the cornering and the rook finished the job."
+  },
+  {
+    "key": "narrator-14zu10u",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Watch the Army Wake Up. The first few moves."
+  },
+  {
+    "key": "narrator-15bkvbp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Cliff Gate. "
+  },
+  {
+    "key": "narrator-15cnh98",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Just a queen and your king now. Use the queen to box Pip's king to the edge, bring your king up to help, and checkmate — don't stalemate!"
+  },
+  {
+    "key": "narrator-15febi1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Careful stepping! You dodged every red square. 👑"
+  },
+  {
+    "key": "narrator-15isbme",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Bishop's Diagonal Dash. Stay on your color!"
+  },
+  {
+    "key": "narrator-15jqooq",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Choo choo! You drove the rook to all four corners. 🚂"
+  },
+  {
+    "key": "narrator-15ky9nb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You have a queen against a lonely king. What must you be careful NOT to do?. A. Stalemate the king by accident, turning a win into a tie.. B. Walk your own king away into a brand-new corner square.. C. Check the lonely king over and over, on and on forever."
+  },
+  {
+    "key": "narrator-15mgzwp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Gobble the Apples. Munch them all!"
+  },
+  {
+    "key": "narrator-15n0orz",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Punish the Careless Move!. Checkmate in one."
+  },
+  {
+    "key": "narrator-15r2mq7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Quick — how does the rook move?"
+  },
+  {
+    "key": "narrator-16bwb8l",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The knight jumps in an L-shape to those eight special squares — and can leap over other pieces!"
+  },
+  {
+    "key": "narrator-16h2ff9",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The queen is worth about 9 — the most of all the pieces!"
+  },
+  {
+    "key": "narrator-16izo6l",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Throne Room. "
+  },
+  {
+    "key": "narrator-16kwhg0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Here's the trap in action. Watch the bishop and queen both aim at f7 — and the careless knight move that lets it happen."
+  },
+  {
+    "key": "narrator-16lfcda",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Meet the Rook. The castle tower."
+  },
+  {
+    "key": "narrator-16o7be0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which is a good first move?. Center or edge?"
+  },
+  {
+    "key": "narrator-16omhz4",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Two pieces at once — they can't both run away!"
+  },
+  {
+    "key": "narrator-16p6hwz",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Meadow Blooms. "
+  },
+  {
+    "key": "narrator-16skco9",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Run to safety!. Move your knight out of danger."
+  },
+  {
+    "key": "narrator-16wes5j",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Meet the Queen. The most powerful piece."
+  },
+  {
+    "key": "narrator-1768ulg",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Capture the free rook!"
+  },
+  {
+    "key": "narrator-17eujew",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Meet the Pawn. The brave little soldier."
+  },
+  {
+    "key": "narrator-17q3ezw",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Is the king in check?. Is the king under attack?"
+  },
+  {
+    "key": "narrator-17tzdvt",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Make a fork!. Win the queen with a jump."
+  },
+  {
+    "key": "narrator-186rti7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate the trapped king with your rook!"
+  },
+  {
+    "key": "narrator-18fl93k",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Tap the knight and watch its L-jumps light up. Hop, hop, hop to collect both stars!"
+  },
+  {
+    "key": "narrator-18fr99k",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You found a move you like. What's the LAST thing to do before you play it?. A. Close your eyes and move absolutely any piece on the whole board.. B. Just play it instantly and quickly without another single thought.. C. Double-check: does my move leave a piece to be taken for free?"
+  },
+  {
+    "key": "narrator-18iz1bu",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! King and rook work as a team. You're getting strong!"
+  },
+  {
+    "key": "narrator-18snwed",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Here's Pip's favorite secret: if a pawn reaches the very last row on the other side, it turns into a QUEEN! 👑\n\nBut the enemy king will try to stand in the way. The trick? Your OWN king goes first, like a bodyguard, walking in FRONT of the pawn to clear a path. Then the little pawn follows safely behind, step by step, all the way home. King leads, pawn follows!. Reach the last row and your pawn becomes a queen! 👑. Your KING leads — walk it in front of the pawn.. The pawn follows behind, one square at a time."
+  },
+  {
+    "key": "narrator-18u1u85",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A game that ends with no winner is called a…"
+  },
+  {
+    "key": "narrator-18ut3fl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "This is the rook. It looks like a little castle tower! Tap it to see where it can go. The rook moves in straight lines — up, down, and across — like a train on a track!"
+  },
+  {
+    "key": "narrator-18vtklb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Here's the secret to checkmate: push the enemy king to the edge of the board, where it has fewer places to run. Then you can trap it!"
+  },
+  {
+    "key": "narrator-18vzsyb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate or Stalemate?. Tricky one!"
+  },
+  {
+    "key": "narrator-18w2jfl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "That's the knight — the horse! It's the trickiest mover, and we'll meet it soon."
+  },
+  {
+    "key": "narrator-18w5pz7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Is the knight safe?. Look for attackers."
+  },
+  {
+    "key": "narrator-1910vob",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The skewer — win the queen!. Check the king, grab what's behind."
+  },
+  {
+    "key": "narrator-1943hcc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Can White's queen safely capture the pawn on d5?"
+  },
+  {
+    "key": "narrator-197k64",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Dodge to the Star. Avoid the red squares!"
+  },
+  {
+    "key": "narrator-1999lwl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The other rook checks on the next row — the ladder climbs!"
+  },
+  {
+    "key": "narrator-19d2ezx",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate Practice. Find checkmate in one!"
+  },
+  {
+    "key": "narrator-19ebwfs",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Slide the rook to the back row for mate!"
+  },
+  {
+    "key": "narrator-19gnm5l",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 1 complete! That's a checkmate. On to the next level! 🎉"
+  },
+  {
+    "key": "narrator-19miv35",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The knight leaves g1."
+  },
+  {
+    "key": "narrator-19ohojp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "To checkmate the king, where do you want to push it?. A. Into the middle, where it has lots of room.. B. Right next to your own king to keep it close.. C. To the EDGE or a CORNER, with fewer places to run."
+  },
+  {
+    "key": "narrator-19oqu8w",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Every square has a name made of a…"
+  },
+  {
+    "key": "narrator-1acdug0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check… and Mate!. "
+  },
+  {
+    "key": "narrator-1agkbsg",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pawns march straight but capture one square diagonally forward."
+  },
+  {
+    "key": "narrator-1aku2ud",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "That is promotion! Most players choose a queen, the strongest piece."
+  },
+  {
+    "key": "narrator-1az3r92",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Here's a champion's start: grab the center, get the pieces out, and castle the king to safety. Step through it!"
+  },
+  {
+    "key": "narrator-1brqho1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "When your king is under attack, that is called…"
+  },
+  {
+    "key": "narrator-1c42udi",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Be a Detective. Look before you move."
+  },
+  {
+    "key": "narrator-1c6x733",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your bishop is being attacked and can be taken for free next move. What should you do?"
+  },
+  {
+    "key": "narrator-1c7267q",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "No legal move, but the king is NOT in check. That is…"
+  },
+  {
+    "key": "narrator-1cb8onm",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Murk's Forest of Tricks. "
+  },
+  {
+    "key": "narrator-1cdmmc2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pip's king is trapped! Find checkmate in ONE move to win Level 1."
+  },
+  {
+    "key": "narrator-1cguwhb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "They develop their bishop."
+  },
+  {
+    "key": "narrator-1ch2u8p",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You won the queen! That's a skewer — check the important piece in front, grab the one behind."
+  },
+  {
+    "key": "narrator-1cj2nux",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The pawn reaches the end and becomes a QUEEN! A mighty new piece appears."
+  },
+  {
+    "key": "narrator-1cuii1u",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Promotion: a pawn's big dream. Reach the end, become a queen!"
+  },
+  {
+    "key": "narrator-1d2zg9q",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The bishop points straight at f7. Sneaky!"
+  },
+  {
+    "key": "narrator-1diumh5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Stalemate means no legal move but the king is NOT in check. That is a…"
+  },
+  {
+    "key": "narrator-1dn5002",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "White's queen and bishop both attack f7 — checkmate is threatened! What is Black's best defense?"
+  },
+  {
+    "key": "narrator-1dsbupj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Sharp as a Sword. "
+  },
+  {
+    "key": "narrator-1e0fxe7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which square does the four-move trap attack?"
+  },
+  {
+    "key": "narrator-1e4eusu",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black develops too."
+  },
+  {
+    "key": "narrator-1e9gu94",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Is it safe to take?. Check the defenders!"
+  },
+  {
+    "key": "narrator-1ehj369",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Choo choo! You drove the rook like a train and collected every star!"
+  },
+  {
+    "key": "narrator-1eizj6",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Some Pieces Are Bigger Prizes. What's worth the most?"
+  },
+  {
+    "key": "narrator-1eka2tc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The enemy rook is sitting there with nothing guarding it. Tap your rook, then capture it!"
+  },
+  {
+    "key": "narrator-1eo7140",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Checkmate Secret. Push the king to the edge."
+  },
+  {
+    "key": "narrator-1epdg3b",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Here's the start of a game. Watch a few pieces step out from the back row, ready for fun!"
+  },
+  {
+    "key": "narrator-1eqnzkw",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Every game has a start! Grab the middle of the board, bring your pieces out, and tuck your king somewhere safe."
+  },
+  {
+    "key": "narrator-1ex9t8s",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Now the queen aims at f7 too. Two attackers, one defender!"
+  },
+  {
+    "key": "narrator-1ezw469",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The enemy king wanders."
+  },
+  {
+    "key": "narrator-1f4eqbc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Box in the King. King + rook teamwork."
+  },
+  {
+    "key": "narrator-1f6yw3s",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Free rook! Always look for pieces you can win safely."
+  },
+  {
+    "key": "narrator-1f72b1v",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You want to walk your pawn home. Where should your king go?"
+  },
+  {
+    "key": "narrator-1f74yit",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 4 complete! King and queen is the win you'll use the most. ⭐"
+  },
+  {
+    "key": "narrator-1feiane",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Sneaky Checkmates. "
+  },
+  {
+    "key": "narrator-1ffvgm8",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The rook can't do it alone — march your king up to help push the enemy king to the edge, then checkmate with the rook."
+  },
+  {
+    "key": "narrator-1fjwor5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! One rook covers the row below, the other gives check. No escape."
+  },
+  {
+    "key": "narrator-1fkep8d",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Let's see what you remember! Answer Pip's questions — get most of them right to win your White Belt!"
+  },
+  {
+    "key": "narrator-1fknd17",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Should you trade your queen for a single pawn?"
+  },
+  {
+    "key": "narrator-1fqunp5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Always do a quick blunder-check! Before you let go of the piece, make sure your move doesn't hang anything. This habit alone will win you lots of games."
+  },
+  {
+    "key": "narrator-1g4ok5x",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your First Real Checkmate. Queen + rook vs. the lonely king."
+  },
+  {
+    "key": "narrator-1g9kxx0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A Sneaky Trap. "
+  },
+  {
+    "key": "narrator-1giotgk",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Some checkmates happen because the king is trapped by its OWN pieces! Two famous ones:\n\nThe BACK-RANK mate: a king hides behind its three pawns, but if a rook or queen slides to the back row, there's no escape — the pawns block the king's own exit. The SMOTHERED mate: a knight checks a king that's so boxed in by its own pieces it can't move at all. Let's spring both!. A back-rank mate works when the king's own pawns trap it on the edge.. Make 'luft' (a little air) by nudging a pawn so your king can breathe.. A knight's check can't be blocked — deadly against a boxed-in king."
+  },
+  {
+    "key": "narrator-1gzklwn",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Hi, I'm Pip! Chess is played on a board of squares, light and dark. Let's get to know it together!"
+  },
+  {
+    "key": "narrator-1h0uink",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Promotion! Most players choose a queen, the strongest piece."
+  },
+  {
+    "key": "narrator-1h4cdid",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Start Like a Champ. How to begin a game."
+  },
+  {
+    "key": "narrator-1h4m27j",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Control the center and develop your knights and bishops — then castle to safety!"
+  },
+  {
+    "key": "narrator-1h6bcek",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Careful — stalemate is only a tie, even if you have way more pieces!"
+  },
+  {
+    "key": "narrator-1hmof41",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Almost There. "
+  },
+  {
+    "key": "narrator-1hvhzja",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A center pawn marches out and grabs the middle."
+  },
+  {
+    "key": "narrator-1i345nj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What's the best way to make sure you never lose to the four-move trap?. A. Move only your rook pawns for the first several moves of every single game.. B. Bring your own queen out super early to race the other player to f7 first.. C. Watch the f7 square and meet any threat to it before developing carelessly."
+  },
+  {
+    "key": "narrator-1i6xej5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What is a great way to start a game?"
+  },
+  {
+    "key": "narrator-1ihslt5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pip's Playground. "
+  },
+  {
+    "key": "narrator-1ivgla",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The final level! Just a king and a rook. Walk your king up to help the rook trap Pip's king against the edge. You can do it!"
+  },
+  {
+    "key": "narrator-1iwiekr",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The queen is worth about 9 — the most of all!"
+  },
+  {
+    "key": "narrator-1j4lbjl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Stalemate is only a tie — careful not to do it by accident!"
+  },
+  {
+    "key": "narrator-1jeri1t",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! The rook slides over and the king is boxed in with nowhere to run. Your king did the trapping; the rook did the mating."
+  },
+  {
+    "key": "narrator-1jipb8n",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! The king is IN check (from the rook) and can't escape. That's a win!"
+  },
+  {
+    "key": "narrator-1jjmcmv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Grab the Middle!. Put a pawn in the center."
+  },
+  {
+    "key": "narrator-1jnn1g",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Deep Forest Gate. "
+  },
+  {
+    "key": "narrator-1jpegnv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Watch how your king and rook work together to trap the lonely king in the corner."
+  },
+  {
+    "key": "narrator-1jpzewb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "f7 is the weak spot — at the start, only the king guards it!"
+  },
+  {
+    "key": "narrator-1jr2noj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The brand-new queen swings across and gives check — that's the power of promotion!"
+  },
+  {
+    "key": "narrator-1kei4qz",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Drive the lonely king to the edge, then your king helps the queen finish!"
+  },
+  {
+    "key": "narrator-1kg5smo",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate is when the king is in check and…"
+  },
+  {
+    "key": "narrator-1knz4b5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Keep an eye on f7, develop your knights and bishop to guard it (a knight to f6 and the queen or a piece covering f7), and meet the threat before it lands. See it coming, and the trap can never get you."
+  },
+  {
+    "key": "narrator-1ksdz28",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! Re8# — the rook checks along the back rank and the king's own pawns block every escape."
+  },
+  {
+    "key": "narrator-1kt2ft2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Got it! Your rook slid straight up and captured the enemy rook for free."
+  },
+  {
+    "key": "narrator-1kt5270",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checks and captures are where forks and skewers hide!"
+  },
+  {
+    "key": "narrator-1lhgl41",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Kingdom of Grey. "
+  },
+  {
+    "key": "narrator-1lhpjkz",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check! The king must go back a row."
+  },
+  {
+    "key": "narrator-1liuhxo",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Meet the bishop. Tap it to light up its path! The bishop moves in slanted lines, and it always stays on its own color. Sneaky!"
+  },
+  {
+    "key": "narrator-1llqdis",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Sometimes Nobody Wins. A tie is called a draw."
+  },
+  {
+    "key": "narrator-1m37o65",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate in Two!. A two-step finish."
+  },
+  {
+    "key": "narrator-1m4g6nm",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "It's called 'smothered' because the king is hemmed in by its OWN rook and pawns — it has nowhere to run, and a knight's check can't be blocked or captured. Total trap!"
+  },
+  {
+    "key": "narrator-1m6xjy0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "It's a draw! A lone knight (or a lone bishop) can't force checkmate. You need a rook, a queen, two bishops, or a pawn to promote."
+  },
+  {
+    "key": "narrator-1mhw9ui",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Early in the game you should…"
+  },
+  {
+    "key": "narrator-1miu36f",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Sliders!. Pieces that glide."
+  },
+  {
+    "key": "narrator-1mvb80o",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Jump the knight in with check AND attack the queen — a fork!"
+  },
+  {
+    "key": "narrator-1n5vksl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Let's Play!. Climb Pip's ladder."
+  },
+  {
+    "key": "narrator-1n6woo7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black queen is undefended — grab it!"
+  },
+  {
+    "key": "narrator-1nbeqf8",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Walk the king up to the star — but don't step on a red square! Take little steps around them."
+  },
+  {
+    "key": "narrator-1nblvwm",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A 'fork' is when:. A. Two of your pawns join up side by side.. B. One piece attacks TWO enemy pieces at once.. C. You move two of your pieces in one turn."
+  },
+  {
+    "key": "narrator-1nchv5p",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Back-Rank Mate!. Checkmate in one."
+  },
+  {
+    "key": "narrator-1nj6ynf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Keep the King Safe. Check and checkmate."
+  },
+  {
+    "key": "narrator-1nm7nur",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Time for a bigger challenge! Answer Pip's questions to earn your Orange Belt."
+  },
+  {
+    "key": "narrator-1nrzmit",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The last check. One more look!"
+  },
+  {
+    "key": "narrator-1nu07dd",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A fork attacks…"
+  },
+  {
+    "key": "narrator-1o3ugfg",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Like e4 — the letter is the column, the number is the row."
+  },
+  {
+    "key": "narrator-1o6nj0b",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Meet the Bishop. The slanty slider."
+  },
+  {
+    "key": "narrator-1o9rtrl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "One rook guards the 7th row — the other delivers mate!"
+  },
+  {
+    "key": "narrator-1opbgdj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Nim Joins the Quest. "
+  },
+  {
+    "key": "narrator-1or6b3h",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How many squares are on a chessboard?. A. 64. B. 100. C. 36"
+  },
+  {
+    "key": "narrator-1oy990i",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You have a queen AND a rook — loads of power! Push Pip's king to the edge and checkmate. Take your time."
+  },
+  {
+    "key": "narrator-1p5x20q",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Rookwell's Rule. "
+  },
+  {
+    "key": "narrator-1p7hfjl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A Bouncy Knight. "
+  },
+  {
+    "key": "narrator-1pcvhiz",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Not safe! The black pawn on c5 attacks the knight on d4 (pawns capture diagonally). You'd want to move the knight or defend it."
+  },
+  {
+    "key": "narrator-1pkmcqe",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Other ways to tie. Two more draws."
+  },
+  {
+    "key": "narrator-1pw5qpj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your king is in check from the rook! Move it to a safe square."
+  },
+  {
+    "key": "narrator-1q4ori2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Is it safe to take?. Look before you grab!"
+  },
+  {
+    "key": "narrator-1q9jfsd",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Light or Dark?. What color is the square?"
+  },
+  {
+    "key": "narrator-1qejoea",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What is a pin?. Stuck in place."
+  },
+  {
+    "key": "narrator-1qgpa2e",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Say hello to the knight — the horse! Tap it to see its tricky jumps. The knight hops in an L-shape and is the only piece that can jump over others!"
+  },
+  {
+    "key": "narrator-1qgv4h0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "White to play and checkmate in TWO moves. First, take away the king's last square with YOUR king."
+  },
+  {
+    "key": "narrator-1qj4oub",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Not every game has a winner! Sometimes a game ends in a tie, which we call a draw. Let's learn how that can happen."
+  },
+  {
+    "key": "narrator-1qlkjjc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Phew! You moved your knight to safety. When a piece is attacked, move it or defend it!"
+  },
+  {
+    "key": "narrator-1qs6f92",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check! You must get out of it right away."
+  },
+  {
+    "key": "narrator-1qslf7x",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Time to Win!. Your first checkmates."
+  },
+  {
+    "key": "narrator-1qworkl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Walk your KING up close to take away escape squares. Now the black king is stuck on the edge!"
+  },
+  {
+    "key": "narrator-1rbvgm1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Can anyone win?. Is there enough to checkmate?"
+  },
+  {
+    "key": "narrator-1rkvum0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Walk your pawn to the top row to make a Queen! 👑 Lead with your KING — march it ahead to push the other king out of the way, then bring the pawn home behind it."
+  },
+  {
+    "key": "narrator-1rkyftl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "White's pawn advances."
+  },
+  {
+    "key": "narrator-1rlkrx5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which piece moves in an L and can jump over others?"
+  },
+  {
+    "key": "narrator-1rri0od",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A pawn that reaches the far end can become a…"
+  },
+  {
+    "key": "narrator-1s3fhpd",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Smothered Mate!. The knight finishes."
+  },
+  {
+    "key": "narrator-1s7xnvv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pip's Final Challenge. Good first moves, forks, pins, and trapping the king."
+  },
+  {
+    "key": "narrator-1scve10",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Why is castling such a good idea in the opening?. A. It wins a free enemy pawn right away in the opening.. B. It lets your brave king march out into the open and attack.. C. It hides the king safe AND sends a rook to the middle."
+  },
+  {
+    "key": "narrator-1scydrp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Light and dark, in a checkerboard pattern."
+  },
+  {
+    "key": "narrator-1shxxld",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Trap it on the edge, then your pieces deliver mate."
+  },
+  {
+    "key": "narrator-1sq2p5h",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black's pawn leaps two squares, trying to sneak past."
+  },
+  {
+    "key": "narrator-1ss1yp4",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Right in the middle! Controlling the center is the #1 opening idea."
+  },
+  {
+    "key": "narrator-1t642f0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Speedy! You found a quick path to the star. ⭐"
+  },
+  {
+    "key": "narrator-1tzi6f2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black does the same."
+  },
+  {
+    "key": "narrator-1u0i6p0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your pawn is one step from the end! Tap it and march it to the gold star to make a queen."
+  },
+  {
+    "key": "narrator-1u7bd7c",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Meet the King. Small steps, big importance."
+  },
+  {
+    "key": "narrator-1ujx1w3",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "This is the king — the most important piece of all. Tap him! The king takes just one little step at a time, in any direction. Keep him safe!"
+  },
+  {
+    "key": "narrator-1uk1cwj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Push a center pawn (like e4 or d4)! Center pawns open lines for your pieces and grab the most important squares. Corner pawns don't help much early on."
+  },
+  {
+    "key": "narrator-1upl2n0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What is a fork?. Attack two things at once."
+  },
+  {
+    "key": "narrator-1upt1g8",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Square Hunt. Find the squares!"
+  },
+  {
+    "key": "narrator-1uqs7ao",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Keep the queen home at first! If she comes out too early, your opponent attacks her and develops their pieces for free while she runs away. Bring out knights and bishops first."
+  },
+  {
+    "key": "narrator-1v09m56",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 4: Queen Mate. King + queen vs Pip."
+  },
+  {
+    "key": "narrator-1v0j981",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Don't tie a winning game!. A warning for winners."
+  },
+  {
+    "key": "narrator-1v3hqfl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What should you check BEFORE you make your move?. A. Just move as fast as you possibly can and quietly hope it works out.. B. Only ever look at your very own king and nothing else at all.. C. Is anything attacked? Is my move safe? Am I giving a piece away?"
+  },
+  {
+    "key": "narrator-1v7qqb2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Is the white knight safe where it is?"
+  },
+  {
+    "key": "narrator-1vcteqx",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Don't Get Back-Ranked. Give your king air."
+  },
+  {
+    "key": "narrator-1vdbccf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Besides stalemate, which of these is also a draw?. A. Capturing the enemy queen with your strong rook for free.. B. Castling to both sides to tuck your king away safely.. C. Both players agree to a draw, or one spot repeats three times."
+  },
+  {
+    "key": "narrator-1vf2mnq",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A pin means a piece…"
+  },
+  {
+    "key": "narrator-1vkfyew",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The biggest challenge yet! Ace Pip's questions to earn your Blue Belt and get ready to play."
+  },
+  {
+    "key": "narrator-1vl18je",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Cornered!. "
+  },
+  {
+    "key": "narrator-1vtitep",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "To checkmate a lonely king, push it to the…"
+  },
+  {
+    "key": "narrator-1w1cf3x",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! Two rooks are the easiest big mate — you climbed the ladder all by yourself!"
+  },
+  {
+    "key": "narrator-1w5yb71",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Sleeping Friends. "
+  },
+  {
+    "key": "narrator-1weq9oe",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Rook Star Game. Drive the rook to the stars!"
+  },
+  {
+    "key": "narrator-1wh288c",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The rook is on e4, a light square. The board's colors always alternate, like a checkerboard."
+  },
+  {
+    "key": "narrator-1wh4lmo",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Two Sneaky Mates. Back-rank and smothered."
+  },
+  {
+    "key": "narrator-1wlbqm2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your king leads in FRONT of the pawn, clearing a path and pushing the enemy king aside. The pawn follows safely behind!"
+  },
+  {
+    "key": "narrator-1wlrh1h",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "White opens the center."
+  },
+  {
+    "key": "narrator-1wofc4p",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Tricks Turned. "
+  },
+  {
+    "key": "narrator-1wr2a7v",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Sneaky Mates Mastered. "
+  },
+  {
+    "key": "narrator-1wrt3xd",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Rooks zoom in straight lines. Tap the rook and collect the star in every corner!"
+  },
+  {
+    "key": "narrator-1xen9z3",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Knight Star Game. Hop to collect the stars!"
+  },
+  {
+    "key": "narrator-1xipi83",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You're a Chess Player!. One last question."
+  },
+  {
+    "key": "narrator-1xiux92",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate or Stalemate?. King stuck, but is it check?"
+  },
+  {
+    "key": "narrator-1xooi2g",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Meet the Knight. The jumping horse."
+  },
+  {
+    "key": "narrator-1xu10ty",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Two-Rook Ladder. Two rooks walk the king to the edge."
+  },
+  {
+    "key": "narrator-1xx64wc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Why castle?. King safety!"
+  },
+  {
+    "key": "narrator-1xzto24",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Queen Awakens. "
+  },
+  {
+    "key": "narrator-1y9bvgm",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which piece is worth the most points?"
+  },
+  {
+    "key": "narrator-1yltbx4",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Bring the queen out early?. Careful with the queen!"
+  },
+  {
+    "key": "narrator-1ynjsbl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Win the Piece! (Practice). Win three in a row to master it."
+  },
+  {
+    "key": "narrator-1yo6zuf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Never Fall For It. Pip's safety rule."
+  },
+  {
+    "key": "narrator-1ysxe7p",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Make a Queen!. Walk the pawn all the way home."
+  },
+  {
+    "key": "narrator-21x6pb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Move your queen to give the king a check!"
+  },
+  {
+    "key": "narrator-23jr3m",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "LEVEL 5 COMPLETE! King and rook is a real champion's checkmate. You climbed the whole ladder! 🏆"
+  },
+  {
+    "key": "narrator-28cuci",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Safe! Moving the king is one of the three ways out of check (move, block, or capture)."
+  },
+  {
+    "key": "narrator-2tjbi7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which picture shows how the KNIGHT moves?"
+  },
+  {
+    "key": "narrator-2tl6uf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pip's Second Challenge. Values, check & mate, special moves, and draws."
+  },
+  {
+    "key": "narrator-336mir",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The queen is worth the most (9 points)! A rook is 5, a bishop or knight is 3, and a pawn is just 1."
+  },
+  {
+    "key": "narrator-3cs8d1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Be a detective! Every turn, look for attacks (yours and theirs) and make sure your move doesn't leave a piece to be captured for free. This one habit stops most beginner blunders."
+  },
+  {
+    "key": "narrator-3hci02",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Fork! Nxc7+ checks the king and attacks the queen. After the king moves, take the queen!"
+  },
+  {
+    "key": "narrator-3q0lqc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Before each move, ask: 'Will my opponent still have a move?' Leave the king an escape square until you actually checkmate."
+  },
+  {
+    "key": "narrator-420zb7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A pawn marches forward to grab the middle of the board."
+  },
+  {
+    "key": "narrator-47zfr9",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A bishop slides out along a diagonal. The game has begun!"
+  },
+  {
+    "key": "narrator-4mgbcf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A 'pin' is when:. A. You push a pawn all the way home to make a brand-new queen.. B. A piece can't move — something bigger sits right behind it.. C. You attack only the enemy king with a sudden check."
+  },
+  {
+    "key": "narrator-4qifml",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Trick Practice. Win pieces! Get 3 to master."
+  },
+  {
+    "key": "narrator-4vlvj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Wise Way. "
+  },
+  {
+    "key": "narrator-4xlp7v",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 3 complete! You played it out and won with your big army. 💪"
+  },
+  {
+    "key": "narrator-56422t",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 5: Rook Mate. The toughest level!"
+  },
+  {
+    "key": "narrator-5ai73q",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "To find tricks, always look for…"
+  },
+  {
+    "key": "narrator-5aub7h",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The king is pushed to the edge."
+  },
+  {
+    "key": "narrator-5s6969",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Watch the Trap Spring. See how it works."
+  },
+  {
+    "key": "narrator-6i4epu",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A pawn that reaches the end turns into a Queen (you can even pick a rook, bishop, or knight — but the queen is strongest!). That's why walking a pawn home can win the game."
+  },
+  {
+    "key": "narrator-6s2g70",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 2: Pawn Race!. Promote to win."
+  },
+  {
+    "key": "narrator-6s762e",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Hop hop — you collected every star! The knight's jumps are tricky, and you've got them."
+  },
+  {
+    "key": "narrator-6yukh7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black king has no move. Is this Checkmate or Stalemate?"
+  },
+  {
+    "key": "narrator-7la1wa",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "No! The knight on f6 is guarding the pawn. If the queen takes, the knight takes the queen back — losing a 9 for a 1. Always check what defends a piece first."
+  },
+  {
+    "key": "narrator-7pzoqd",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Yum! Tap the knight and hop onto every apple to gobble it up."
+  },
+  {
+    "key": "narrator-7xmkiy",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Clever Tricks. Win pieces with a trick!"
+  },
+  {
+    "key": "narrator-86mvfc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Move it (or defend it)! When a piece is attacked and would be lost for free, don't just leave it — slide it to a safe square or protect it."
+  },
+  {
+    "key": "narrator-8jw6h5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "To checkmate with a king and queen, you push the enemy king to the…"
+  },
+  {
+    "key": "narrator-8kuyo1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Game Time!. Just for fun."
+  },
+  {
+    "key": "narrator-8mejrb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! The queen takes f7, guarded by the bishop. Game over in four moves."
+  },
+  {
+    "key": "narrator-8rlts9",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Stop the Trap!. How does Black survive?"
+  },
+  {
+    "key": "narrator-8xbtts",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Bring the queen next to the king — your king guards her!"
+  },
+  {
+    "key": "narrator-95813j",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Before you move. Pip's checklist."
+  },
+  {
+    "key": "narrator-97t4gi",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The queen is the most powerful — she slides straight like a rook and diagonally like a bishop!"
+  },
+  {
+    "key": "narrator-9csohu",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You have a queen AND a rook — tons of power! Use them to push the king to the edge (like a ladder) and checkmate. Take your time."
+  },
+  {
+    "key": "narrator-9eiaas",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pip's big dream: become a Queen!. Your king is the pawn's bodyguard."
+  },
+  {
+    "key": "narrator-9jcopp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your piece is attacked!. What now?"
+  },
+  {
+    "key": "narrator-9sbru4",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The white pawn reaches the 5th row."
+  },
+  {
+    "key": "narrator-9wra1x",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Castling is the only move where TWO pieces move at once — the king and a rook. It pops your king somewhere safe. Watch!"
+  },
+  {
+    "key": "narrator-aagdht",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What is checkmate?"
+  },
+  {
+    "key": "narrator-abvk3r",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "If it's defended, taking it could lose your own piece!"
+  },
+  {
+    "key": "narrator-ac9i0r",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Special Tricks. Three fun extra moves."
+  },
+  {
+    "key": "narrator-anr4lj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A pawn moves straight ahead. But how does it CAPTURE?"
+  },
+  {
+    "key": "narrator-aou2vt",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Queen check!. Use the queen this time."
+  },
+  {
+    "key": "narrator-aqmm1l",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which piece is tall with a cross on top?"
+  },
+  {
+    "key": "narrator-auah4x",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A fork attacks two pieces at once — the knight is the champion forker! Your opponent can only save one."
+  },
+  {
+    "key": "narrator-b3tky8",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Bring the queen close — your king guards her!"
+  },
+  {
+    "key": "narrator-bc2xc3",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What does a pawn become?. The happy ending."
+  },
+  {
+    "key": "narrator-bimxyt",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A knight hops out in an L-shape."
+  },
+  {
+    "key": "narrator-blptxj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "White has only a king and ONE knight. Black has only a king. Can anyone checkmate?"
+  },
+  {
+    "key": "narrator-bs0lry",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Green Returns to the Meadow. "
+  },
+  {
+    "key": "narrator-bt108x",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Where should your king go?. Lead the way!"
+  },
+  {
+    "key": "narrator-c2mdxh",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black makes a quiet move."
+  },
+  {
+    "key": "narrator-c84d82",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Win with King and Rook. A little trickier."
+  },
+  {
+    "key": "narrator-ccvqde",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Win the free piece!. This one really is free."
+  },
+  {
+    "key": "narrator-cdctyp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A draw is a tie — nobody wins."
+  },
+  {
+    "key": "narrator-ct7ddy",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "They develop a knight too."
+  },
+  {
+    "key": "narrator-cvogky",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Stalemate — a tie! The king has no move but is NOT in check. Be careful not to do this when you're winning!"
+  },
+  {
+    "key": "narrator-cyzd83",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Win with King and Queen. The most common checkmate."
+  },
+  {
+    "key": "narrator-d0otk3",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate in One!. Find the mate. Win 4 to master!"
+  },
+  {
+    "key": "narrator-d7lzdq",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "In a smothered mate, what stops the checked king from escaping?"
+  },
+  {
+    "key": "narrator-do2iie",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Welcome to my arcade! Tap a piece and zoom around the board to collect the stars. Play as many times as you like!"
+  },
+  {
+    "key": "narrator-dq9869",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A pin freezes a piece: if it moved, it would expose something bigger (like the king or queen) behind it."
+  },
+  {
+    "key": "narrator-dyv17r",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Here comes the queen — the strongest piece of all! Tap her. The queen moves in straight lines AND slanted lines. She can zoom almost anywhere!"
+  },
+  {
+    "key": "narrator-eexk1e",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Grab the free piece!. It's not guarded — take it!"
+  },
+  {
+    "key": "narrator-eixl5j",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Rook Roundup. Zoom to the corners!"
+  },
+  {
+    "key": "narrator-enk18l",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You made a queen! Getting a pawn to the far side is a super power."
+  },
+  {
+    "key": "narrator-eoq3ku",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Make a Queen!. March the pawn home."
+  },
+  {
+    "key": "narrator-f3wk38",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Eight rows of eight — that makes 64 squares!"
+  },
+  {
+    "key": "narrator-fd8hm5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! King and queen is the win you'll get the most. Great job!"
+  },
+  {
+    "key": "narrator-fesx3u",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The rook moves in straight lines. The slanted lines are for the bishop, and the jumps are for the knight!"
+  },
+  {
+    "key": "narrator-fifzoe",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Before every move, be a chess detective! Look at what's being attacked and make sure your move is safe, so you don't give pieces away."
+  },
+  {
+    "key": "narrator-fmtgl1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Qe7 brings a second guard to f7, so the queen can't crash in. Now Black is fine — and White's queen is out too early and can be chased. Always meet the threat on f7!"
+  },
+  {
+    "key": "narrator-fpqi2a",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Is the black king in CHECK right now?"
+  },
+  {
+    "key": "narrator-fsc8vo",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your First Real Mates. "
+  },
+  {
+    "key": "narrator-g1381i",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A great first move grabs the…"
+  },
+  {
+    "key": "narrator-g6ggai",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Move your rook to give the king a check!"
+  },
+  {
+    "key": "narrator-gale6c",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You beat every level! What's the best way to get even better now?. A. Never play another game of chess again.. B. Play lots of games with friends and family!. C. Hide the chess set away in a closet."
+  },
+  {
+    "key": "narrator-gbnbjn",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Get the rook to the star in just 3 hops! Remember — rooks go in straight lines."
+  },
+  {
+    "key": "narrator-gcmro3",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "In check with no escape = checkmate. Game over!"
+  },
+  {
+    "key": "narrator-gesdgx",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Two rooks make a ladder — deliver mate!"
+  },
+  {
+    "key": "narrator-ghfaft",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pip's First Challenge. Squares, colors, and how the pieces move."
+  },
+  {
+    "key": "narrator-gpep2y",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Grey Roads. "
+  },
+  {
+    "key": "narrator-gplyf0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Uh oh — your knight is being attacked! Tap it and hop it to the safe gold star."
+  },
+  {
+    "key": "narrator-h6223t",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "On every turn, what's the best habit for finding tricks?. A. Only watch your own king the whole game.. B. Move quickly and don't look at the board.. C. Look at every check and capture you can make."
+  },
+  {
+    "key": "narrator-h6rxva",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Long Live the Kingdom!. "
+  },
+  {
+    "key": "narrator-hay6i4",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The king takes tiny steps, the knight hops in an L, and the pawn marches ahead. Let's meet them all!"
+  },
+  {
+    "key": "narrator-higbzo",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The Square Kingdom Blooms. "
+  },
+  {
+    "key": "narrator-hmbj5e",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A pawn opens a path for the bishop."
+  },
+  {
+    "key": "narrator-hwip9b",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How do you keep YOUR king safe from a back-rank mate?. A. Push all three pawns in front of your king as far up the board as you can.. B. March your king up into the middle of the board to keep it far from the edge.. C. Nudge a pawn near your king to give it an escape square ('make luft')."
+  },
+  {
+    "key": "narrator-ibwgqo",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Another piece out — the bishop aims across the board."
+  },
+  {
+    "key": "narrator-ipeu3v",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Can the white queen safely capture the pawn on d5?"
+  },
+  {
+    "key": "narrator-itzpmc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "When your pawn reaches the very last row, what can it turn into?. A. It disappears off the board.. B. A Queen (or another big piece) — the most powerful piece! 👑. C. Nothing — it just stops there."
+  },
+  {
+    "key": "narrator-j59j32",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Back-rank mate — the king is stuck behind its pawns!"
+  },
+  {
+    "key": "narrator-j5gf7a",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Smooth slider! The bishop stayed on the dark squares the whole way. ⛪"
+  },
+  {
+    "key": "narrator-j9hiuj",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "It's the very first move. Which plan is better?"
+  },
+  {
+    "key": "narrator-jah1jv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate or Stalemate?. King in check with no escape?"
+  },
+  {
+    "key": "narrator-jrp1tb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "It's White's turn. The enemy rook is on your rook's line with nothing guarding it. Tap your rook, then tap the green dot to capture it!"
+  },
+  {
+    "key": "narrator-k1fd1d",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check the king so it steps aside, then grab the queen behind it — a skewer!"
+  },
+  {
+    "key": "narrator-k59tgu",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black mirrors."
+  },
+  {
+    "key": "narrator-k9y464",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How to spot tricks. Pip's top tip!"
+  },
+  {
+    "key": "narrator-kzlg3l",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check the king so it steps aside, then win the queen behind it (a skewer)."
+  },
+  {
+    "key": "narrator-l4xq0y",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A fork attacks two things at once — they cannot both run away!"
+  },
+  {
+    "key": "narrator-ljn7z0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A careless move — it does NOT defend f7!"
+  },
+  {
+    "key": "narrator-lolsyu",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Is the rook standing on a LIGHT square or a DARK square?"
+  },
+  {
+    "key": "narrator-lw8cwf",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "When Nobody Wins. "
+  },
+  {
+    "key": "narrator-m0rxpe",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Trap Defused. "
+  },
+  {
+    "key": "narrator-m1fidv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Castle Heights Blooms. "
+  },
+  {
+    "key": "narrator-m6w100",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Super hopping! You guided the knight all over the board. 🐴"
+  },
+  {
+    "key": "narrator-m8xox8",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A Great Way to Start. Watch a perfect opening."
+  },
+  {
+    "key": "narrator-map0jn",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check! Your rook attacks the king. Now the king has to escape."
+  },
+  {
+    "key": "narrator-mc4r4p",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A Spark of Color. "
+  },
+  {
+    "key": "narrator-mlnzrk",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "It's stuck — moving it would expose a bigger piece behind it."
+  },
+  {
+    "key": "narrator-myttth",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Castling: tuck your king away. King and rook move together."
+  },
+  {
+    "key": "narrator-n7t0de",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Your king covers the escape — bring the queen in for mate!"
+  },
+  {
+    "key": "narrator-njj2ru",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which piece can jump over other pieces?"
+  },
+  {
+    "key": "narrator-oaewif",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which Piece?. Name that piece."
+  },
+  {
+    "key": "narrator-oeigbt",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Murk's Gate. "
+  },
+  {
+    "key": "narrator-ojoj3r",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "En passant: the sneaky capture. A tricky pawn rule."
+  },
+  {
+    "key": "narrator-okx22m",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "When your pawn reaches the other end, what can it turn into?. A. Only a strong new queen, and nothing else.. B. A queen, rook, bishop, or knight — your choice!. C. A brand new king to help the old one."
+  },
+  {
+    "key": "narrator-om7xek",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Push the king to the edge! In the middle it has 8 escape squares; in the corner it has only 3. Trapping is much easier at the edge."
+  },
+  {
+    "key": "narrator-oo1vai",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The checkmate secret. Where do you trap the king?"
+  },
+  {
+    "key": "narrator-osuw2j",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "En passant! White grabs it 'in passing', landing on d6. This only works right away!"
+  },
+  {
+    "key": "narrator-ovg41m",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "What can a pawn become?. Choose wisely."
+  },
+  {
+    "key": "narrator-p6d6t2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Never give up your strongest piece for a weak one!"
+  },
+  {
+    "key": "narrator-pcmkkx",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black king is smothered — boxed in by its own rook and pawns. Only a knight can reach it. Mate in one!"
+  },
+  {
+    "key": "narrator-phzmeb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black just played a careless knight move and left f7 undefended. Deliver checkmate in one!"
+  },
+  {
+    "key": "narrator-pn2bzp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! Qxf7# — the queen captures, the bishop defends her, and the king can't escape. That's the four-move trap!"
+  },
+  {
+    "key": "narrator-psa3",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Straight lines, up/down and across!"
+  },
+  {
+    "key": "narrator-psot9",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Checkmate! With a queen and rook it's like a ladder — one piece checks, the other guards. You did it!"
+  },
+  {
+    "key": "narrator-q1ngxa",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Get a piece out! The knight develops and eyes the center."
+  },
+  {
+    "key": "narrator-q2v668",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Should you bring your queen out to attack on the very first moves?. A. Yes, send her out on the very first move only.. B. No — they'll chase her around, get pieces out for free.. C. Yes — she's the strongest, so attack with her right away!"
+  },
+  {
+    "key": "narrator-q5i534",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Check the king — when it steps aside, the queen behind it is yours!"
+  },
+  {
+    "key": "narrator-q68q1h",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Use your queen to push the king to the EDGE, then bring your king up to help. Then checkmate — but don't stalemate!"
+  },
+  {
+    "key": "narrator-qd0ioi",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "It retreats."
+  },
+  {
+    "key": "narrator-qdn9id",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How does the knight move?. Spot the L-jumps."
+  },
+  {
+    "key": "narrator-qdp772",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black queen is undefended — take it!"
+  },
+  {
+    "key": "narrator-qofwpv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Knight's Hop Tour. Hop to every star!"
+  },
+  {
+    "key": "narrator-qotlk5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How many squares are on a chess board?"
+  },
+  {
+    "key": "narrator-qvwwvs",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "When you capture an enemy piece, you take it off the board! But some pieces are worth more than others, so grab the big ones safely."
+  },
+  {
+    "key": "narrator-qw77n1",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "You pick: queen, rook, bishop, or knight. Almost always choose the queen — she's the strongest!"
+  },
+  {
+    "key": "narrator-qyd5r6",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How does the rook move?. Pick the right arrows."
+  },
+  {
+    "key": "narrator-r9asf8",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black king is trapped behind its own pawns. Slide your rook to the back rank for checkmate!"
+  },
+  {
+    "key": "narrator-r9opbb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Star in 3 Hops. Can you do it fast?"
+  },
+  {
+    "key": "narrator-rbnk38",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Champions' Road Blooms. "
+  },
+  {
+    "key": "narrator-rff0i7",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Giving your king a little 'luft' (air) — like nudging the h-pawn one square — means a check on the back rank isn't mate, because your king has somewhere to step. A handy habit once your rooks and queen are off guarding home."
+  },
+  {
+    "key": "narrator-rhoc45",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A Pawn's Big Dream. "
+  },
+  {
+    "key": "narrator-rn6rmy",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Develop your pieces and castle your king to safety."
+  },
+  {
+    "key": "narrator-rt05x0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The bishop only moves on slanted lines and stays on its own color. Slide up the big diagonal to grab every star!"
+  },
+  {
+    "key": "narrator-s03jii",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Get out of check!. Your king is under attack!"
+  },
+  {
+    "key": "narrator-s3chhb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The king wears the cross — keep him safe!"
+  },
+  {
+    "key": "narrator-s3cmcr",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 1: Beat Pip in One!. One move to win."
+  },
+  {
+    "key": "narrator-s4jdd0",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How does the rook move?"
+  },
+  {
+    "key": "narrator-s8cax9",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Welcome to the Board. Where chess happens."
+  },
+  {
+    "key": "narrator-sf2a15",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "A knight comes out on the other side too."
+  },
+  {
+    "key": "narrator-sg3aob",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Castling! The king jumps two squares to g1 and the rook hops over to f1. Safe and snug."
+  },
+  {
+    "key": "narrator-snt6bb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black queen is sitting on a square nothing defends. Tap your queen and grab it!"
+  },
+  {
+    "key": "narrator-sspgs8",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which piece can move both straight AND diagonally?"
+  },
+  {
+    "key": "narrator-suzj8z",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Only the knight can hop over pieces, in its L-shape!"
+  },
+  {
+    "key": "narrator-t9hn6i",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "My number-one tip: before you move, look at all the CHECKS and CAPTURES. That's how you find forks and skewers!"
+  },
+  {
+    "key": "narrator-tl1o8x",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "'En passant' means 'in passing'. If an enemy pawn zooms past yours using its two-square jump, your pawn can grab it as if it moved only one square!"
+  },
+  {
+    "key": "narrator-tqmjd5",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Two rooks can checkmate all by themselves! One rook checks, the other fences the king in. Watch the 'ladder'."
+  },
+  {
+    "key": "narrator-tyvvg",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Black copies — but doesn't notice the danger."
+  },
+  {
+    "key": "narrator-u9yzfc",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Castling does two great things at once: your king hides safely behind its pawns, and a rook jumps toward the center where it's useful. Try to castle early in every game!"
+  },
+  {
+    "key": "narrator-ubljld",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "How does a pawn capture an enemy piece?"
+  },
+  {
+    "key": "narrator-ujqcu6",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Into Battle Meadow. "
+  },
+  {
+    "key": "narrator-uxz2we",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "64 squares — 8 across and 8 down. Half light, half dark!"
+  },
+  {
+    "key": "narrator-v618yl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Amazing — you found them all! Knowing square names helps you talk about chess."
+  },
+  {
+    "key": "narrator-vc1130",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Chess squares come in two colors. Which two?"
+  },
+  {
+    "key": "narrator-vcbo7k",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The enemy rook is free — slide up and grab it!"
+  },
+  {
+    "key": "narrator-vd5f81",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Careful and Strong. "
+  },
+  {
+    "key": "narrator-w74npz",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Jump the knight in with check AND attack the queen (a fork)!"
+  },
+  {
+    "key": "narrator-w8vk1g",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 2 complete! Your pawn became a queen. 👑"
+  },
+  {
+    "key": "narrator-w92vvp",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Free queen! You checked that it was undefended first — that's playing smart."
+  },
+  {
+    "key": "narrator-waqqfa",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Players can agree to a draw, and the same position repeating three times is a draw too — often from endless checks (perpetual check)."
+  },
+  {
+    "key": "narrator-wb342f",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "If a pawn reaches the far end of the board, it turns into any piece you choose — almost always a powerful queen!"
+  },
+  {
+    "key": "narrator-wmgr7a",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "There's a famous trap called Scholar's Mate. The attacker points a bishop and the queen at one square — f7 — because at the start of the game only the king guards it.\n\nIf you're not watching, it's checkmate in four moves! But it's easy to stop once you know the secret: guard f7 and don't let the queen come crashing in. Let's learn to see it, stop it, and turn it around."
+  },
+  {
+    "key": "narrator-wo5lt2",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Jump your knight in with check AND attack the queen at the same time!"
+  },
+  {
+    "key": "narrator-wq2l8h",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The black king can't move. Is this Checkmate or Stalemate?"
+  },
+  {
+    "key": "narrator-xil5nl",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "It's a trap! The black pawn on e6 guards d5. If the queen takes, the pawn takes the queen back — giving away your best piece for a pawn. Always check what's defending before you capture."
+  },
+  {
+    "key": "narrator-xnx719",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Pawns capture one square DIAGONALLY forward — not straight ahead. Tricky!"
+  },
+  {
+    "key": "narrator-xx2izm",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The rook, the bishop, and the queen love to slide across the board. Let's see where each one can go!"
+  },
+  {
+    "key": "narrator-xy1wcr",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The knight loves to hop! Tap the knight and jump in L-shapes to collect all the stars."
+  },
+  {
+    "key": "narrator-xy9290",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Race your pawn to the top of the board to make a queen and win! Tap the pawn and march it home."
+  },
+  {
+    "key": "narrator-y2urvh",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Control the center — it gives your pieces the most power!"
+  },
+  {
+    "key": "narrator-y8t1g",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Level 3: Big Power Mate. Queen + rook vs Pip."
+  },
+  {
+    "key": "narrator-y9fxty",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which piece is worth the MOST points?"
+  },
+  {
+    "key": "narrator-ye17eb",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Which picture shows how the ROOK moves?"
+  },
+  {
+    "key": "narrator-yekstg",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Chess has a few special moves! You can tuck your king away, turn a pawn into a queen, and even make a sneaky pawn capture."
+  },
+  {
+    "key": "narrator-yni6js",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Yes! The white rook attacks the king straight up the e-file. When your king is in check, you MUST get it to safety."
+  },
+  {
+    "key": "narrator-z0dsa9",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Win with Two Rooks. Do the ladder yourself!"
+  },
+  {
+    "key": "narrator-z3u63n",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Secrets Unlocked. "
+  },
+  {
+    "key": "narrator-z8sy9z",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Castle! The king zips to the corner, safe and sound. That's a perfect opening: center, pieces out, king safe."
+  },
+  {
+    "key": "narrator-zgf473",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "Use the ladder! One rook checks, the other holds a row, and walk the king to the edge for checkmate."
+  },
+  {
+    "key": "narrator-zhfjsv",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "The middle of the board is the best place to be! Tap your pawn and march it two squares into the center."
+  },
+  {
+    "key": "narrator-zoqy6y",
+    "speaker": "narrator",
+    "voice": "Vindemiatrix",
+    "mood": "idle",
+    "text": "They Stir!. "
+  },
+  {
     "key": "nim-13chqjh",
     "speaker": "nim",
     "voice": "Fenrir",

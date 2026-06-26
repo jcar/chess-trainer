@@ -10,6 +10,11 @@ import { fileURLToPath } from "node:url";
 import { chessForKids } from "../../src/content/modules/chess-for-kids";
 import { CHARACTERS } from "../../src/content/kids/characters";
 import { dialogueKey } from "../../src/lib/audio/dialogueKey";
+import {
+  NARRATOR_ID,
+  NARRATOR_VOICE,
+  narrationStrings,
+} from "../../src/lib/audio/narration";
 import type { DialogueLine } from "../../src/content/types";
 
 interface Entry {
@@ -45,10 +50,26 @@ for (const l of lines) {
     });
   }
 }
+const dialogueCount = byKey.size;
+
+// Generic read-aloud (narrator voice) — static + composed-deterministic strings.
+let narrationCount = 0;
+for (const lesson of chessForKids.lessons) {
+  for (const a of lesson.activities) {
+    for (const text of narrationStrings(a)) {
+      const key = dialogueKey(NARRATOR_ID, text);
+      if (!byKey.has(key)) {
+        byKey.set(key, { key, speaker: NARRATOR_ID, voice: NARRATOR_VOICE, mood: "idle", text });
+        narrationCount++;
+      }
+    }
+  }
+}
 
 const manifest = [...byKey.values()].sort((a, b) => a.key.localeCompare(b.key));
 const outPath = join(dirname(fileURLToPath(import.meta.url)), "manifest.json");
 writeFileSync(outPath, JSON.stringify(manifest, null, 2) + "\n");
 console.log(
-  `Extracted ${manifest.length} unique dialogue lines (from ${lines.length} total) → ${outPath}`,
+  `Extracted ${manifest.length} unique clips → ${outPath}\n` +
+    `  ${dialogueCount} character dialogue + ${narrationCount} narrator lines.`,
 );

@@ -11,6 +11,7 @@ import { useState } from "react";
 import type { ConceptActivity } from "@/content/types";
 import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { conceptSpeech } from "@/lib/audio/narration";
 import { ChoiceCheck } from "@/components/kids/ChoiceCheck";
 import { buttonClasses } from "@/components/ui/Button";
 import { ChevronRightIcon, PuzzleIcon } from "@/components/icons";
@@ -44,7 +45,7 @@ export function ConceptPlayer({
   kidMode = false,
 }: Props) {
   const paragraphs = activity.body.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
-  const speakText = [activity.body, ...(activity.points ?? [])].join(". ");
+  const speakText = conceptSpeech(activity);
 
   // Kid check-for-understanding gates the advance button until answered right.
   const hasCheck = kidMode && !!activity.check;

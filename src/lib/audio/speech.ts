@@ -9,6 +9,7 @@ import { CHARACTERS, type CharacterId } from "@/content/kids/characters";
 import { withBasePath } from "@/lib/basePath";
 import { dialogueKey } from "@/lib/audio/dialogueKey";
 import { CLIP_FILES } from "@/lib/audio/clipManifest";
+import { NARRATOR_ID } from "@/lib/audio/narration";
 
 // A pre-generated clip currently playing (so a new line / stop can interrupt it).
 let currentAudio: HTMLAudioElement | null = null;
@@ -71,41 +72,46 @@ function speakWith(text: string, pitch: number, rate: number): void {
 }
 
 /**
- * Speak the given text aloud. Cancels any in-progress speech first so taps feel
- * responsive. Rate/pitch are tuned to be clear and friendly for kids.
+ * Play the pre-generated Gemini clip for (keyId, text) if one exists (keyed by
+ * speaker/narrator + the exact text); otherwise run `fallback` (the Web Speech
+ * voice). On a load/playback failure the fallback also runs. This is the single
+ * place clips are looked up — shared by speak() and speakAs().
  */
-export function speak(text: string): void {
-  speakWith(text, 1.08, 0.92); // slightly brighter, a touch slower for kids
-}
-
-/**
- * Speak a character's line (Pip & the Grey). If a pre-generated Gemini voice clip
- * exists for this exact line (keyed by speaker + text), play that natural audio;
- * otherwise fall back to the Web Speech voice (re-shaped per character via
- * pitch/rate). The clip path is the only difference — every character-dialogue
- * caller already routes through here.
- */
-export function speakAs(text: string, characterId: CharacterId): void {
-  const v = CHARACTERS[characterId].voice;
-  const file = CLIP_FILES[dialogueKey(characterId, text)];
-
+function playClipOr(text: string, keyId: string, fallback: () => void): void {
+  const file = CLIP_FILES[dialogueKey(keyId, text)];
   if (file && typeof window !== "undefined") {
     try {
       synth()?.cancel(); // stop any Web Speech in flight
       stopAudio();
       const audio = new Audio(withBasePath(`/audio/dialogue/${file}`));
       currentAudio = audio;
-      // If the clip can't load/play (missing file, autoplay denied), fall back.
       audio.play().catch(() => {
         if (currentAudio === audio) currentAudio = null;
-        speakWith(text, v.pitch, v.rate);
+        fallback();
       });
       return;
     } catch {
-      /* fall through to Web Speech */
+      /* fall through to the fallback */
     }
   }
-  speakWith(text, v.pitch, v.rate);
+  fallback();
+}
+
+/**
+ * Speak generic (narrator) text aloud — a pre-generated narrator clip if one
+ * exists, else the Web Speech voice (slightly brighter + a touch slower for kids).
+ */
+export function speak(text: string): void {
+  playClipOr(text, NARRATOR_ID, () => speakWith(text, 1.08, 0.92));
+}
+
+/**
+ * Speak a character's line (Pip & the Grey) — the pre-generated clip in that
+ * character's voice if present, else the per-character-shaped Web Speech voice.
+ */
+export function speakAs(text: string, characterId: CharacterId): void {
+  const v = CHARACTERS[characterId].voice;
+  playClipOr(text, characterId, () => speakWith(text, v.pitch, v.rate));
 }
 
 export function stopSpeaking(): void {
