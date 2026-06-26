@@ -44,6 +44,12 @@ export const scandinavian: Opening = {
   },
   tabiyaFen:
     "rnb1kbnr/ppp1pppp/8/3q4/8/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 3",
+  structureDiagram: {
+    fen: "rn2kb1r/pp2pppp/2p2n2/q4b2/2BP4/2N2N2/PPP2PPP/R1BQK2R w KQkq - 2 7",
+    orientation: "black",
+    caption:
+      "The Scandinavian grabs the centre immediately with 1...d5. After the queen settles on a5, Black develops the bishop to f5 OUTSIDE the pawn chain and reaches a solid, easy-to-play structure.",
+  },
   lines: [
     {
       label: "Main Line (3...Qa5)",

@@ -43,6 +43,13 @@ export const grunfeld: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/ppp1pp1p/5np1/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 4",
+  structureDiagram: {
+    fen: "rnbqk2r/pp2ppbp/6p1/2p5/2BPP3/2P5/P4PPP/R1BQK1NR w KQkq - 0 8",
+    orientation: "black",
+    arrows: [{ from: "c5", to: "d4" }],
+    caption:
+      "The Grünfeld lets White build a big pawn centre, then blasts at it: ...dxc4, the ...Bg7 fianchetto, and ...c5 hitting d4. Black's pieces target the centre from a distance.",
+  },
   lines: [
     {
       label: "Exchange Variation",

@@ -40,6 +40,12 @@ export const scotchGame: Opening = {
   },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+  structureDiagram: {
+    fen: "r1bqk2r/p1p2ppp/2p2n2/3p4/1b2P3/2NB4/PPP2PPP/R1BQK2R w KQkq - 0 8",
+    orientation: "white",
+    caption:
+      "The Scotch opens the centre at once with 3.d4: White trades the d-pawn for fast development and open lines, while Black returns the pawn and frees the pieces with ...d5.",
+  },
   lines: [
     {
       label: "Main line (4...Nf6)",

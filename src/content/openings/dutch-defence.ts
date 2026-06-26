@@ -43,6 +43,13 @@ export const dutchDefence: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+  structureDiagram: {
+    fen: "rnbq1rk1/ppp1b1pp/3ppn2/5p2/2PP4/5NP1/PP2PPBP/RNBQ1RK1 w - - 0 7",
+    orientation: "black",
+    arrows: [{ from: "e6", to: "e5" }],
+    caption:
+      "The Dutch (1...f5) seizes kingside space and fights for e4. In the Classical, Black sets up ...d6 and ...e6, then plays for a kingside attack with the ...e5 break or piece play.",
+  },
   lines: [
     {
       label: "Classical Variation",

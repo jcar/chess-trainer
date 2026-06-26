@@ -43,6 +43,12 @@ export const benkoGambit: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/p2ppppp/5n2/1ppP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+  structureDiagram: {
+    fen: "rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N5/PP3PPP/R1BQ1KNR w kq - 0 9",
+    orientation: "black",
+    caption:
+      "The Benko Gambit sacrifices a wing pawn with ...b5 for lasting pressure: the open a- and b-files, the g7-bishop, and a queenside bind — long-term initiative that's worth the pawn.",
+  },
   lines: [
     {
       label: "Accepted",

@@ -40,6 +40,12 @@ export const slavDefence: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+  structureDiagram: {
+    fen: "rn1qk2r/pp3ppp/2p1pn2/5b2/PbBP4/2N1PN2/1P3PPP/R1BQK2R w KQkq - 1 8",
+    orientation: "black",
+    caption:
+      "The Slav supports d5 with ...c6 instead of ...e6 — so the light-squared bishop stays free. Black grabs c4, develops the bishop to f5, and reaches a solid, well-coordinated game.",
+  },
   lines: [
     {
       label: "Main line (4...dxc4)",

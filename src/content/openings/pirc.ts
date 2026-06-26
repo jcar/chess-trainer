@@ -41,6 +41,13 @@ export const pirc: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/ppp1pp1p/3p1np1/8/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4",
+  structureDiagram: {
+    fen: "rnbq1rk1/ppp1ppbp/3p1np1/8/3PP3/2N2N2/PPP1BPPP/R1BQ1RK1 b - - 5 6",
+    orientation: "black",
+    arrows: [{ from: "e7", to: "e5" }],
+    caption:
+      "The Pirc cedes the centre and counter-attacks it: Black fianchettoes with ...g6 and ...Bg7, castles, and strikes back with ...e5 or ...c5.",
+  },
   lines: [
     {
       label: "Classical Variation",

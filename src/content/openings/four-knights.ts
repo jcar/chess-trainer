@@ -41,6 +41,13 @@ export const fourKnights: Opening = {
   },
   tabiyaFen:
     "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
+  structureDiagram: {
+    fen: "r1bq1rk1/ppp2ppp/2np1n2/1B2p3/1b2P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 7",
+    orientation: "white",
+    arrows: [{ from: "d3", to: "d4" }],
+    caption:
+      "A symmetrical, solid Open Game: everyone develops naturally and castles. White keeps a tiny pull and prepares the central break d4.",
+  },
   lines: [
     {
       label: "Spanish Four Knights",

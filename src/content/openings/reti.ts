@@ -42,6 +42,13 @@ export const reti: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/ppp1pppp/8/3p4/2P5/5N2/PP1PPPPP/RNBQKB1R b KQkq - 0 2",
+  structureDiagram: {
+    fen: "rnbq1rk1/ppp1bppp/4pn2/3p4/2P5/5NP1/PP1PPPBP/RNBQ1RK1 w - - 5 6",
+    orientation: "white",
+    arrows: [{ from: "c4", to: "d5" }],
+    caption:
+      "The Reti attacks the centre from a distance: Nf3, c4, and the g2-bishop all pressure Black's d5-pawn without occupying the centre — flexible, hypermodern play.",
+  },
   lines: [
     {
       label: "Main Line",

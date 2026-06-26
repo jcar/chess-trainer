@@ -43,6 +43,13 @@ export const benoni: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/pp1p1ppp/4pn2/2pP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+  structureDiagram: {
+    fen: "rnbqk2r/pp3pbp/3p1np1/2pP4/4P3/2N2N2/PP3PPP/R1BQKB1R w KQkq - 2 8",
+    orientation: "black",
+    arrows: [{ from: "b7", to: "b5" }],
+    caption:
+      "The Modern Benoni trades a space disadvantage for dynamism: a queenside pawn majority and the ...b5 break, the fianchettoed bishop on g7, and pressure down the half-open e-file.",
+  },
   lines: [
     {
       label: "Modern Benoni",

@@ -42,6 +42,12 @@ export const petroff: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+  structureDiagram: {
+    fen: "rnbq1rk1/ppp1bppp/8/3p4/3Pn3/3B1N2/PPP2PPP/RNBQ1RK1 w - - 4 8",
+    orientation: "black",
+    caption:
+      "The Petroff is Black's rock-solid equalizer: instead of defending e5, Black counter-attacks e4 with ...Nf6, mirrors White's setup, and trades into a comfortable, symmetrical game.",
+  },
   lines: [
     {
       label: "Classical Variation",

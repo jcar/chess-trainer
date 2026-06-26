@@ -42,6 +42,13 @@ export const kingsGambit: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
+  structureDiagram: {
+    fen: "rnbqkb1r/pppp1p1p/5n2/4N3/4PppP/8/PPPP2P1/RNBQKB1R w KQkq - 2 6",
+    orientation: "white",
+    arrows: [{ from: "e5", to: "f7" }],
+    caption:
+      "King's Gambit (Kieseritzky): a pawn down, but White has a big centre, the open f-file, and the powerful knight on e5 eyeing f7 — raw initiative as payment for the pawn.",
+  },
   lines: [
     {
       label: "Kieseritzky Gambit",

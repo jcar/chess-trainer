@@ -41,6 +41,13 @@ export const queensIndian: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 0 4",
+  structureDiagram: {
+    fen: "rn1q1rk1/pbppbppp/1p2pn2/8/2PP4/5NP1/PP2PPBP/RNBQ1RK1 w - - 5 7",
+    orientation: "black",
+    arrows: [{ from: "b7", to: "e4" }],
+    caption:
+      "The Queen's Indian fights for the e4-square from afar with the ...b6 and ...Bb7 fianchetto — a flexible, harmonious setup against White's own fianchetto.",
+  },
   lines: [
     {
       label: "Main Line (4.g3 Bb7)",

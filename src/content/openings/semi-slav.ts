@@ -43,6 +43,13 @@ export const semiSlav: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/pp3ppp/2p1pn2/3p4/2PP4/2N2N2/PP2PPPP/R1BQKB1R w KQkq - 0 5",
+  structureDiagram: {
+    fen: "r1bqkb1r/p2n1ppp/2p1pn2/1p6/2BP4/2N1PN2/PP3PPP/R1BQK2R w KQkq - 0 8",
+    orientation: "black",
+    arrows: [{ from: "c6", to: "c5" }],
+    caption:
+      "The Semi-Slav plays both ...c6 and ...e6 — rock-solid yet sharp. In the Meran, Black expands on the queenside with ...b5 and frees the game with the ...c5 break.",
+  },
   lines: [
     {
       label: "Meran Variation",

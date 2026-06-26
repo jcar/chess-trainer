@@ -44,6 +44,13 @@ export const englishOpening: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq - 0 1",
+  structureDiagram: {
+    fen: "r1bq1rk1/pp1pppbp/2n2np1/2p5/2P5/2N2NP1/PP1PPPBP/R1BQ1RK1 w - - 6 7",
+    orientation: "white",
+    arrows: [{ from: "c3", to: "d5" }],
+    caption:
+      "The English (1.c4) fights for the centre from the flank — often a 'reversed Sicilian'. White fianchettoes, fights for the d5-square, and expands on the wings.",
+  },
   lines: [
     {
       label: "Symmetrical Variation",

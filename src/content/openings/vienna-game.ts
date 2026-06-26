@@ -41,6 +41,13 @@ export const viennaGame: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+  structureDiagram: {
+    fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R b KQkq - 2 5",
+    orientation: "white",
+    arrows: [{ from: "f2", to: "f4" }],
+    caption:
+      "The Vienna develops the queen's knight first (2.Nc3), keeping the thematic f4 push in reserve — flexible King's-Pawn play that can turn quiet or sharp.",
+  },
   lines: [
     {
       label: "Quiet main line",

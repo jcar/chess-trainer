@@ -42,6 +42,13 @@ export const queensGambitAccepted: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+  structureDiagram: {
+    fen: "rnbqkb1r/1p3ppp/p3pn2/2p5/2BP4/4PN2/PP3PPP/RNBQ1RK1 w kq - 0 7",
+    orientation: "black",
+    arrows: [{ from: "c5", to: "d4" }],
+    caption:
+      "The QGA gives the c4-pawn straight back in return for free, easy development and a quick ...c5 strike at White's centre — active, classical piece play.",
+  },
   lines: [
     {
       label: "Main Line",

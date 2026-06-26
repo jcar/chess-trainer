@@ -44,6 +44,13 @@ export const nimzoIndian: Opening = {
   },
   tabiyaFen:
     "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 2 4",
+  structureDiagram: {
+    fen: "rnbq1rk1/pp3ppp/4pn2/2pp4/1bPP4/2NBPN2/PP3PPP/R1BQK2R w KQ - 0 7",
+    orientation: "black",
+    arrows: [{ from: "b4", to: "c3" }],
+    caption:
+      "The Nimzo-Indian pins the c3-knight with ...Bb4 to fight for the e4-square and, by trading bishop for knight, saddle White with doubled pawns — control and structure over the bishop pair.",
+  },
   lines: [
     {
       label: "Rubinstein Variation",

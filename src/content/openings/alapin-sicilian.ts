@@ -42,6 +42,12 @@ export const alapinSicilian: Opening = {
   },
   tabiyaFen:
     "rnbqkbnr/pp1ppppp/8/2p5/4P3/2P5/PP1P1PPP/RNBQKBNR b KQkq - 0 2",
+  structureDiagram: {
+    fen: "r1b1kbnr/pp2pppp/2n5/2pq4/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+    orientation: "white",
+    caption:
+      "The Alapin (2.c3) answers the Sicilian by building a classical centre with d4 — sound, low-theory play that sidesteps the sharpest main-line Sicilians.",
+  },
   lines: [
     {
       label: "vs 2...d5",

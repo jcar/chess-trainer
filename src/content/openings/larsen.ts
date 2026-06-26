@@ -44,6 +44,12 @@ export const larsen: Opening = {
   },
   tabiyaFen:
     "r1bqkbnr/pppp1ppp/2n5/4p3/8/1P2P3/PBPP1PPP/RN1QKBNR b KQkq - 0 3",
+  structureDiagram: {
+    fen: "r1bq1rk1/pppp1ppp/2nb1n2/1B6/3Np3/1P2P3/PBPP1PPP/RN1QK2R w KQ - 2 7",
+    orientation: "white",
+    caption:
+      "Larsen's Opening (1.b3) fianchettoes the queen's bishop to b2, where it rakes the long diagonal toward Black's kingside — offbeat but principled flank development.",
+  },
   lines: [
     {
       label: "Classical (1...e5)",

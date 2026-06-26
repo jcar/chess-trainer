@@ -43,6 +43,12 @@ export const alekhine: Opening = {
   },
   tabiyaFen:
     "rnbqkb1r/pppppppp/8/3nP3/8/8/PPPP1PPP/RNBQKBNR w KQkq - 1 3",
+  structureDiagram: {
+    fen: "rnbqk2r/ppp1ppbp/6p1/3nN3/3P4/8/PPP1BPPP/RNBQK2R w KQkq - 2 7",
+    orientation: "black",
+    caption:
+      "The Alekhine tempts White's pawns forward (1...Nf6 attacks e4), then attacks the over-extended centre from afar with ...g6, ...Bg7, and piece pressure — pure hypermodern provocation.",
+  },
   lines: [
     {
       label: "Modern Variation",

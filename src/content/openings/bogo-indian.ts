@@ -42,6 +42,12 @@ export const bogoIndian: Opening = {
   },
   tabiyaFen:
     "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 2 4",
+  structureDiagram: {
+    fen: "r1b1k2r/ppppqppp/2n1pn2/8/2PP4/5NP1/PP1bPPBP/RN1QK2R w KQkq - 0 7",
+    orientation: "black",
+    caption:
+      "The Bogo-Indian checks with 3...Bb4+ to provoke a small concession, then plays a calm, low-theory game with ...d5 or ...b6 — the Nimzo's quieter cousin when White avoids 3.Nc3.",
+  },
   lines: [
     {
       label: "Main Line (4.Bd2)",
