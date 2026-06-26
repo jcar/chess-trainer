@@ -334,8 +334,14 @@ export interface ConceptActivity extends ActivityBase {
   body: string;
   /** Optional key takeaways shown as bullets. */
   points?: string[];
-  /** Optional illustrative diagrams (display-only). */
-  diagrams?: { fen: string; orientation?: Orientation; caption?: string }[];
+  /** Optional illustrative diagrams (display-only). `arrows` highlight the idea
+   *  (e.g. a fork's two targets). */
+  diagrams?: {
+    fen: string;
+    orientation?: Orientation;
+    arrows?: { from: string; to: string }[];
+    caption?: string;
+  }[];
   /**
    * Optional check-for-understanding (kid mode): a quick multiple-choice question
    * shown after the teaching, gating "Got it" until answered correctly

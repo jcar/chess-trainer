@@ -87,7 +87,7 @@ export function ConceptPlayer({
           {activity.diagrams.map((d, i) => (
             <figure key={i} className="space-y-1.5">
               <div className="mx-auto max-w-[18rem]">
-                <MiniBoard fen={d.fen} orientation={d.orientation} />
+                <MiniBoard fen={d.fen} orientation={d.orientation} arrows={d.arrows} />
               </div>
               {d.caption && (
                 <figcaption className="text-center text-sm text-ink-soft">
