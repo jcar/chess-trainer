@@ -8,9 +8,9 @@ import type { Lesson } from "../../types";
 
 export const ch7: Lesson = {
   id: "ch7-tactics",
-  title: "8. Tactics: Winning Material",
+  title: "9. Tactics: Winning Material",
   summary:
-    "Tactics win games. Learn to SEE what attacks what, then the three you'll use every game: take what's hanging, the fork, and the skewer.",
+    "Tactics win games. Put your piece vision to work with the four you'll use every game: take what's hanging, the fork, the skewer, and the pin.",
   activities: [
     // ---- Objective ----
     {
@@ -19,10 +19,10 @@ export const ch7: Lesson = {
       title: "What you'll learn",
       blurb: "Three tactics that win material.",
       body:
-        "Most games between beginners are decided by who wins more material — and material is won with tactics: short, forcing sequences that win a piece or pawn.\n\nIn this lesson you'll build 'piece vision' (seeing what attacks what), then learn the three workhorse tactics: taking a hanging piece, the fork, and the skewer. We'll show each one on the board, then you'll try it yourself.",
+        "Most games between beginners are decided by who wins more material — and material is won with tactics: short, forcing sequences that win a piece or pawn.\n\nYou built piece vision last lesson; now you'll weaponize it. We'll cover the four workhorse tactics every player uses: taking a hanging piece, the fork, the skewer, and the pin. We'll show each on the board, then you'll try it yourself.",
       points: [
         "Tactics = short, forcing moves that win material.",
-        "We'll learn: hanging pieces, forks, and skewers.",
+        "We'll learn: hanging pieces, forks, skewers, and pins.",
         "See the idea, then practice it.",
       ],
     },
@@ -31,10 +31,10 @@ export const ch7: Lesson = {
     {
       id: "ch7-vision",
       type: "concept",
-      title: "Piece vision: see what's attacked",
-      blurb: "Every move: what hits what?",
+      title: "From vision to material",
+      blurb: "Loose pieces get punished.",
       body:
-        "Before every move, scan the board: which pieces attack which, and is each one defended? A piece that is attacked and undefended is 'hanging' — and taking it for free is the simplest tactic of all.\n\nTo judge a trade, use the rough point values. Winning a piece for nothing, or trading a smaller piece for a bigger one, puts material in the bank.",
+        "Your piece vision already spots what attacks what. The simplest tactic of all is just acting on it: an enemy piece that's attacked and undefended is 'hanging' — so take it for free.\n\nTo judge a trade, use the rough point values. Winning a piece for nothing, or trading a smaller piece for a bigger one, puts material in the bank.",
       points: [
         "Values: pawn 1, knight 3, bishop 3, rook 5, queen 9.",
         "Hanging = attacked AND undefended → take it for free.",
@@ -216,6 +216,66 @@ export const ch7: Lesson = {
       solution: ["e1a1", "a5b6", "a1a8"],
     },
 
+    // ---- Learn → Try: the pin ----
+    {
+      id: "ch7-pin-concept",
+      type: "concept",
+      title: "The pin",
+      blurb: "Freeze a piece in place.",
+      body:
+        "A pin is the opposite of a skewer: you attack a piece along a line, but behind it sits something MORE valuable (often the king). Moving the pinned piece would expose the bigger one, so it's stuck — frozen in place.\n\nWhen the piece behind is the king, moving the pinned piece is actually illegal — that's an 'absolute pin'. A pinned piece is a sitting duck: you pile a second attacker on it (a pawn is perfect) and win it, because it can't run. Bishops, rooks, and queens pin along their lines.",
+      diagrams: [
+        {
+          fen: "4k3/8/2n5/1B6/8/8/8/4K3 w - - 0 1",
+          orientation: "white",
+          arrows: [{ from: "b5", to: "e8" }],
+          caption: "The bishop pins the knight to the king — the knight can't legally move, so it's frozen.",
+        },
+      ],
+      check: {
+        question: "Why can't the pinned knight move out of the way?",
+        options: [
+          "Moving it would expose its own king to check, which is illegal",
+          "Knights are never allowed to move while attacked",
+          "A pinned piece may only move backward",
+        ],
+        correctIndex: 0,
+        explanation:
+          "It's an absolute pin: the king sits right behind the knight, so moving the knight would leave the king in check — illegal. The knight is frozen, and you can attack it again to win it.",
+      },
+    },
+    {
+      id: "ch7-pin-apply",
+      type: "quiz",
+      title: "Exploit the pin",
+      blurb: "It can't run — so pile on.",
+      question:
+        "An enemy knight is pinned to its king and can't move. How do you usually win it?",
+      options: [
+        "Attack it a second time (a pawn is ideal) — it can't flee, so it falls.",
+        "Offer a draw, since a pinned piece makes the game even.",
+        "Trade your bishop for the frozen knight right away for free.",
+        "Ignore it and attack on the other side of the board instead.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "A pinned piece can't run, so add another attacker — often a pawn, the cheapest attacker. The pinned piece can't be defended enough to survive being hit again, and you win it.",
+    },
+    {
+      id: "ch7-pin-practice",
+      type: "concept",
+      title: "Drill the pin",
+      blurb: "Train your eye for pinned pieces.",
+      body:
+        "Pins are everywhere once you look for them: an enemy piece on the same line as its king or queen is a target. Spotting them quickly — and not getting your own pieces pinned — is pure pattern recognition.\n\nGet some reps on pin puzzles before moving on; the ones you miss will come back until they click.",
+      points: [
+        "Look for enemy pieces lined up in front of their king or queen.",
+        "Pile a second attacker on a pinned piece to win it.",
+        "Watch that your OWN pieces don't get pinned.",
+      ],
+      practice: { tool: "tactics", theme: "pin", maxDifficulty: 1, label: "Train pins now" },
+    },
+
     // ---- Apply + recap ----
     {
       id: "hanging-vs-defended",
@@ -240,9 +300,9 @@ export const ch7: Lesson = {
       title: "Recap, then train your eyes",
       blurb: "Spot tactics fast — with practice.",
       body:
-        "You've got the three big ones: take what's HANGING, FORK two targets with one piece, and SKEWER a piece to win what's behind it. The thread through all of them is piece vision — before every move, look at every check and capture.\n\nTactics only win games if you SEE them in time, and that's pattern recognition built by reps. Train a stream of beginner-friendly tactics; the ones you miss come back until they click.",
+        "You've got the four big ones: take what's HANGING, FORK two targets with one piece, SKEWER a piece to win what's behind it, and PIN a piece so it can't move. The thread through all of them is piece vision — before every move, look at every check and capture.\n\nTactics only win games if you SEE them in time, and that's pattern recognition built by reps. Train a stream of beginner-friendly tactics; the ones you miss come back until they click.",
       points: [
-        "Hanging piece, fork, skewer — your everyday material-winners.",
+        "Hanging piece, fork, skewer, pin — your everyday material-winners.",
         "Every move: scan checks and captures first.",
         "Sharpen it with reps in the Tactics Trainer.",
       ],

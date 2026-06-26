@@ -6,7 +6,7 @@ import type { Lesson } from "../../types";
 
 export const defense: Lesson = {
   id: "fund-defense",
-  title: "10. Defending",
+  title: "11. Defending",
   summary:
     "Attacks get the glory, but knowing how to defend wins just as many games. Learn the three replies to a check, how to spot the one move that holds, and how to trade and tidy your way out of trouble.",
   activities: [

@@ -5,7 +5,7 @@ import type { Lesson } from "../../types";
 
 export const ch8: Lesson = {
   id: "ch8-strategy",
-  title: "9. Beginner Strategy",
+  title: "10. Beginner Strategy",
   summary:
     "When nothing is forcing, strategy decides your move: target weaknesses, claim space, and know which pieces thrive in which positions.",
   activities: [

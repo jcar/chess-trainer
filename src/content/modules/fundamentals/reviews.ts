@@ -228,6 +228,23 @@ export const review3: Lesson = {
       ],
     },
     {
+      id: "rv3-safe-move",
+      type: "quiz",
+      title: "Before you move",
+      blurb: "The blunder-stopping habit.",
+      question:
+        "What should you check before committing to almost any move?",
+      options: [
+        "What your opponent threatens, and whether your move leaves anything hanging.",
+        "Whether you have castled on the same side as your opponent did.",
+        "Whether it is currently an even-numbered or odd-numbered move.",
+        "How many total pawns remain on the board for both players.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Run the safe-move habit: what does my opponent want, what's hanging (theirs or mine), and is my move safe? That three-question scan prevents most beginner blunders.",
+    },
+    {
       id: "rv3-fork",
       type: "quiz",
       title: "Name that tactic (1)",

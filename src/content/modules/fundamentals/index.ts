@@ -12,6 +12,7 @@ import { ch6 } from "./ch6";
 import { ch7 } from "./ch7";
 import { ch8 } from "./ch8";
 import { defense } from "./defense";
+import { pieceVision } from "./piece-vision";
 import { review1, review2, review3 } from "./reviews";
 
 export const fundamentals: Module = {
@@ -25,12 +26,14 @@ export const fundamentals: Module = {
   // only the visible chapter numbers in titles shift (Draws→7, Tactics→8, Strategy→9).
   // review1/2/3 are spaced-retrieval checkpoints interleaved between lessons (they
   // re-test earlier ideas from fresh angles; they carry no chapter number).
+  // pieceVision (the book's "Piece Vision" foundation, framed defensively as
+  // move-safety) is the lead-in to Tactics (ch7), mirroring the book's sequence.
   lessons: [
     ch1, ch2, ch3,
     review1,
     ch4, ch5, pawnEndgames, ch6,
     review2,
-    ch7, ch8,
+    pieceVision, ch7, ch8,
     review3,
     defense,
   ],
