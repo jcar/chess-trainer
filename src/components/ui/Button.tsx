@@ -10,9 +10,9 @@ const BASE =
   "inline-flex items-center justify-center gap-2 rounded-xl font-semibold tracking-tight transition-[filter,transform,background,border-color] duration-150 active:translate-y-px disabled:opacity-40 disabled:active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const VARIANT: Record<ButtonVariant, string> = {
-  // The move: a beveled champagne-gold CTA with a lit top edge and a cast shadow.
+  // The move: a beveled sapphire CTA with a lit top edge and a cast shadow.
   primary:
-    "text-on-accent bg-[linear-gradient(180deg,var(--primary-strong),var(--primary))] shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_10px_22px_-8px_rgba(216,181,107,0.5),0_2px_0_var(--gold-deep)] hover:brightness-[1.06]",
+    "text-on-accent bg-[linear-gradient(180deg,var(--primary-strong),var(--primary))] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_10px_22px_-8px_rgba(79,143,247,0.55),0_2px_0_var(--accent-deep)] hover:brightness-[1.07]",
   // Gold-outlined secondary — quiet but unmistakably the same family.
   accent: "bg-primary/10 text-primary-strong border border-primary/40 hover:bg-primary/18 hover:border-primary/60",
   // Carved panel button.

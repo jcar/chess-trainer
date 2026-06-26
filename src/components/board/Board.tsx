@@ -104,23 +104,23 @@ const CAPTURE_STYLE: React.CSSProperties = {
     "radial-gradient(circle, transparent 62%, rgba(70,214,160,0.72) 64%)",
   borderRadius: "50%",
 };
-// Selection + hints are champagne gold — the house accent, carried onto the board.
+// Selection + hints are sapphire — the house accent, carried onto the board.
 const SELECTED_STYLE: React.CSSProperties = {
-  background: "rgba(216,181,107,0.5)",
-  boxShadow: "inset 0 0 0 3px rgba(236,202,132,0.85)",
+  background: "rgba(79,143,247,0.5)",
+  boxShadow: "inset 0 0 0 3px rgba(134,184,255,0.9)",
 };
 const HINT_STYLE: React.CSSProperties = {
-  background: "rgba(216,181,107,0.6)",
-  boxShadow: "inset 0 0 0 4px rgba(236,202,132,0.95)",
+  background: "rgba(79,143,247,0.6)",
+  boxShadow: "inset 0 0 0 4px rgba(134,184,255,0.95)",
 };
 
 const DANGER_STYLE: React.CSSProperties = {
   animation: "kidDanger 0.8s ease-in-out infinite",
 };
 
-// Last-move tint: cool teal for your move, violet for the opponent's — both
-// clearly distinct from the slate board, the green dots, and the gold accents.
-const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(45,212,191,0.4)" };
+// Last-move tint: warm amber for your move, violet for the opponent's — both
+// clearly distinct from the slate board, the green dots, and the sapphire accent.
+const LAST_MOVE_SELF: React.CSSProperties = { background: "rgba(240,179,65,0.4)" };
 const LAST_MOVE_OPP: React.CSSProperties = { background: "rgba(168,85,247,0.42)" };
 
 export function Board({
@@ -178,7 +178,7 @@ export function Board({
       (arrows ?? []).map((a) => ({
         startSquare: a.from,
         endSquare: a.to,
-        color: a.color ?? "#d8b56b", // champagne gold
+        color: a.color ?? "#4f8ff7", // sapphire
       })),
     [arrows],
   );

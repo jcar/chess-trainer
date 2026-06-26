@@ -29,7 +29,7 @@ export function MiniBoard({ fen, orientation = "white", arrows = [] }: Props) {
           arrows: arrows.map((a) => ({
             startSquare: a.from,
             endSquare: a.to,
-            color: a.color ?? "#d8b56b",
+            color: a.color ?? "#4f8ff7",
           })),
         }}
       />
