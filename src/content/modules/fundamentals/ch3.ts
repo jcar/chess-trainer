@@ -10,17 +10,48 @@ export const ch3: Lesson = {
     "The same principles apply when you're a move behind: meet 1.e4 and 1.d4 with sound, easy-to-learn systems — and punish White if they overreach.",
   activities: [
     {
+      id: "ch3-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "Starting strong a move behind.",
+      body:
+        "You'll play Black in half your games, so you need answers to 1.e4 and 1.d4 that don't require memorizing reams of theory. Good news: the same three goals apply, and a setup-based opening lets you aim for the same healthy formation no matter what White does.\n\nWe'll meet 1.e4 with classical development, learn a flexible setup against 1.d4, and punish White when an early queen overreaches.",
+      points: [
+        "Black uses the same principles — center, develop, castle.",
+        "A repeatable setup means far less to memorize.",
+        "Punish White's loose pieces with a fork.",
+      ],
+    },
+    {
       id: "ch3-black-openings-concept",
       type: "concept",
       title: "Playing the opening as Black",
       blurb: "Same principles, one move behind.",
       body:
-        "Playing Black changes very little. You follow the same three goals — contest the center, develop, and castle — while accepting that White's extra move gives a small head start. That nudge of initiative is not a winning advantage; play soundly and you'll be perfectly fine.\n\nA great shortcut for beginners is a setup-based opening: you aim for the same healthy piece formation no matter what White does. That means far less to memorize and far fewer ways to go wrong early. Just stay alert for direct threats — answer those first, then steer toward your setup.",
+        "Playing Black changes very little. You follow the same three goals — contest the center, develop, and castle — while accepting that White's extra move gives a small head start. That nudge of initiative is not a winning advantage; play soundly and you'll be perfectly fine.\n\nA great shortcut for beginners is a setup-based opening: you aim for the same healthy piece formation no matter what White does. The diagram shows one such formation, the King's Indian — knight on f6, bishop fianchettoed on g7, king castled. Far less to memorize, and far fewer ways to go wrong early. Just stay alert for direct threats — answer those first, then steer toward your setup.",
       points: [
         "White's extra tempo is a small edge, not a winning one.",
         "Setup openings give you one repeatable formation to learn.",
         "Always meet a direct threat before following your plan.",
       ],
+      diagrams: [
+        {
+          fen: "rnbq1rk1/ppp1ppbp/3p1np1/8/2PPP3/2N2N2/PP3PPP/R1BQKB1R w KQ - 1 6",
+          orientation: "black",
+          caption: "Black's King's Indian setup: knight on f6, bishop fianchettoed on g7, king safely castled — one formation to learn.",
+        },
+      ],
+      check: {
+        question: "You're Black, so you move second. How much of a disadvantage is that?",
+        options: [
+          "A small head start for White — not a winning edge",
+          "A losing disadvantage you must immediately attack to undo",
+          "None at all — Black is actually favored",
+        ],
+        correctIndex: 0,
+        explanation:
+          "White's extra tempo is a nudge of initiative, nothing more. Play soundly — contest the center, develop, castle — and you'll reach a fine game.",
+      },
     },
     {
       id: "meeting-first-moves",
@@ -113,6 +144,20 @@ export const ch3: Lesson = {
       correctIndex: 1,
       explanation:
         "Setup openings reduce memorization: you learn one healthy formation (pawns and piece squares) and steer toward it. You still must watch for direct threats, but you're rarely lost in the opening.",
+    },
+    {
+      id: "ch3-recap",
+      type: "concept",
+      title: "Recap: comfortable as Black",
+      blurb: "One plan, fewer worries.",
+      body:
+        "As Black you play by the same three goals, just a move behind. Pick a reliable answer to 1.e4 (classical ...e5 is great) and a setup you can steer for against 1.d4, and you'll rarely be lost out of the opening — while loose White pieces give you targets to punish.\n\nThe best way to trust an opening is to play it from the Black side a few times. Jump into a game and steer for your setup.",
+      points: [
+        "Same goals as White, accepting a small head start.",
+        "Learn one setup; meet direct threats first.",
+        "Watch for forks when White's queen wanders.",
+      ],
+      practice: { tool: "play", label: "Play a game now" },
     },
   ],
 };

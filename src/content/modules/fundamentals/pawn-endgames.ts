@@ -12,17 +12,48 @@ export const pawnEndgames: Lesson = {
     "The most important endgame to own: how to escort a pawn home. The opposition, key squares, and the 'square of the pawn' — learn them, then convert against the engine.",
   activities: [
     {
+      id: "fund-pawn-endgames-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "The endgame that decides everything.",
+      body:
+        "Trade enough pieces and almost every game funnels down to kings and pawns. Knowing whether your extra pawn wins — and exactly how to convert it — turns drawn games into wins for the rest of your chess life.\n\nWe'll learn the three tools: lead with the king, take the opposition, and reach the key squares. You'll watch a pawn escorted home, then convert the endings yourself against the engine.",
+      points: [
+        "Lead with the king; the opposition forces the way through.",
+        "Reach the key squares and the win is automatic.",
+        "Watch it once, then drill it against real defense.",
+      ],
+    },
+    {
       id: "fund-pawn-endgames-concept",
       type: "concept",
       title: "The endgame everything boils down to",
       blurb: "King and pawn vs king — the foundation.",
       body:
-        "Trade enough pieces and almost every game funnels into a king-and-pawn ending. Knowing whether one extra pawn wins — and HOW to convert it — is the difference between drawing won games and winning them.\n\nThe golden rule: lead with your KING, not the pawn. The king must go in front of the pawn to clear a path. The tool that forces the path through is the OPPOSITION: when the two kings stand on the same line with one square between them, whoever does NOT have to move 'has the opposition' and forces the other king to give way. Master leading with the king and taking the opposition, and these endings become automatic.",
+        "Trade enough pieces and almost every game funnels into a king-and-pawn ending. Knowing whether one extra pawn wins — and HOW to convert it — is the difference between drawing won games and winning them.\n\nThe golden rule: lead with your KING, not the pawn. The king must go in front of the pawn to clear a path. The tool that forces the path through is the OPPOSITION: when the two kings stand on the same line with one square between them, whoever does NOT have to move 'has the opposition' and forces the other king to give way. In the diagram, White's king already leads in front of its pawn — the winning setup.",
       points: [
         "Lead with the king — the pawn follows behind.",
         "The opposition: kings facing with one square between; the side NOT to move wins the standoff.",
         "Get your king to the 'key squares' in front of the pawn and the win is automatic.",
       ],
+      diagrams: [
+        {
+          fen: "4k3/8/4K3/4P3/8/8/8/8 w - - 0 1",
+          orientation: "white",
+          caption: "White's king leads, in front of its pawn, facing the black king with one square between — lead with the king.",
+        },
+      ],
+      check: {
+        question: "Kings on e6 and e8 with e7 between them, and it's White (on e6) to move. Who has the opposition?",
+        options: [
+          "Black — the side that does NOT have to move",
+          "White — the side to move chooses first",
+          "Whoever has more pawns",
+        ],
+        correctIndex: 0,
+        explanation:
+          "The side NOT on move holds the opposition. Here White must move, so Black has it — but White still wins because the king already stands in FRONT of the pawn. Leading with the king is what matters most.",
+      },
     },
     {
       id: "fund-opposition-quiz",

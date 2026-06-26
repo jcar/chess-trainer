@@ -10,17 +10,44 @@ export const ch6: Lesson = {
     "Half a point is sometimes the best result available. Know every way a game can end in a draw — both to claim them and to avoid them when you're winning.",
   activities: [
     {
+      id: "ch6-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "Half a point, and how to get (or avoid) it.",
+      body:
+        "Not every game is won or lost — many are drawn, splitting the point. A draw can be your best friend when you're losing or a heartbreak when you're winning, so you need to know every way a game ends in a tie.\n\nWe'll cover all five draw rules, then practice the two that decide real games: not stalemating a won position, and reaching for the draw when you're in trouble.",
+      points: [
+        "Five ways to draw — know them to claim and to avoid them.",
+        "Don't stalemate a won game.",
+        "Down material? Look for a draw before you resign.",
+      ],
+    },
+    {
       id: "ch6-draws-concept",
       type: "concept",
       title: "The ways a game is drawn",
       blurb: "Half a point — sometimes the best result.",
       body:
-        "A draw splits the point, and it can be the goal or the disaster depending on which side you're on. There are several ways a game ends in a draw: stalemate (no legal move while not in check), insufficient material (neither side has enough to mate), threefold repetition (the same position occurs three times), the fifty-move rule (fifty moves with no pawn move and no capture), and agreement.\n\nThe practical lesson cuts both ways. When you're losing, these rules are lifelines — perpetual check, where you check the enemy king forever, forces a repetition and saves the game. When you're winning, you must avoid handing your opponent a draw: keep the king out of stalemate and don't let it escape into endless checks.",
+        "A draw splits the point, and it can be the goal or the disaster depending on which side you're on. There are several ways a game ends in a draw: stalemate (no legal move while not in check), insufficient material (neither side has enough to mate), threefold repetition (the same position occurs three times), the fifty-move rule (fifty moves with no pawn move and no capture), and agreement.\n\nThe diagram shows insufficient material: a lone king and knight can never force mate, so the game is an automatic draw the moment you reach it. The practical lesson cuts both ways — when you're losing, draw rules are lifelines (perpetual check forces a repetition and saves the game); when you're winning, don't hand your opponent a stalemate or let the king escape into endless checks.",
       points: [
         "Draws: stalemate, insufficient material, repetition, fifty-move, agreement.",
         "Perpetual check is a draw by repetition — a losing side's escape.",
         "When winning, take care not to stalemate or get checked forever.",
       ],
+      diagrams: [
+        {
+          fen: "4k3/8/8/8/8/4N3/8/4K3 w - - 0 1",
+          orientation: "white",
+          caption: "King + knight vs a lone king: mate is impossible. Insufficient material — an automatic draw.",
+        },
+      ],
+      check: {
+        question: "Only a king and a single knight are left against a lone king. The game is:",
+        options: ["An immediate draw by insufficient material", "A win for the knight's side", "Decided by the fifty-move rule only"],
+        correctIndex: 0,
+        explanation:
+          "Neither side can force mate, so it's a draw the moment that material is all that remains. King + bishop vs king is the same. (King + pawn can promote, so it's not automatic.)",
+      },
     },
     {
       id: "stalemate-rule",
@@ -126,22 +153,18 @@ export const ch6: Lesson = {
         "Qb6 leaves the king on a8 with no legal move and NOT in check — stalemate, a heartbreaking draw. When you're winning, always leave the enemy king a square until the move that actually mates. Here Qc7 (keeping b8 free) or bringing the king up first is correct.",
     },
     {
-      id: "ch6-apply-perpetual-lifeline",
-      type: "sort",
-      title: "Losing — can you save it?",
-      blurb: "Look for the draw.",
-      prompt:
-        "You're Black, down a whole rook — but White's king is stuck on g1/h1 and your queen can check it again and again with no escape. What's the best result you can get?",
-      fen: "6k1/5ppp/8/8/8/8/5PPP/3q2K1 b - - 0 1",
-      orientation: "black",
-      options: [
-        { label: "A draw by perpetual check" },
-        { label: "Nothing — you're just lost" },
-        { label: "A win on material" },
+      id: "ch6-recap",
+      type: "concept",
+      title: "Recap: claim it or dodge it",
+      blurb: "Draws cut both ways.",
+      body:
+        "Five ways to draw: stalemate, insufficient material, threefold repetition, the fifty-move rule, and agreement. The two that decide real games are stalemate (never trap a lone king with no check when you're winning) and perpetual check (when you're losing, repeat checks the enemy king can't escape, and claim the draw).\n\nThe instinct for both — spotting a stalemate before you blunder it, and finding a saving perpetual — comes from playing real games. Put it to work against a live opponent.",
+      points: [
+        "Winning: leave the king a square; don't get checked forever.",
+        "Losing: hunt for stalemate tricks or a perpetual check.",
+        "A draw is half a point — sometimes the best result available.",
       ],
-      correctIndex: 0,
-      explanation:
-        "When you're losing, a perpetual check is gold: keep checking, the position repeats three times, and you claim the draw. Always check for it before resigning a material-down position.",
+      practice: { tool: "play", label: "Play a game now" },
     },
   ],
 };

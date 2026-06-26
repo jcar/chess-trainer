@@ -10,17 +10,48 @@ export const ch2: Lesson = {
     "The three opening principles, two reliable ways to start as White, and the trap every beginner should know.",
   activities: [
     {
+      id: "ch2-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "How to start a game the right way.",
+      body:
+        "A good opening doesn't try to win on move three — it gets you ready to play: pieces out, king safe, center claimed. Do that and you'll reach a healthy middlegame again and again, whoever you face.\n\nWe'll learn the three opening goals, walk through two reliable ways to start as White, and learn the famous early-mate trap so you can deliver it AND defend against it.",
+      points: [
+        "Three goals: control the center, develop, castle.",
+        "Two complete White openings, move by move.",
+        "Spot and stop the four-move mate.",
+      ],
+    },
+    {
       id: "ch2-white-openings-concept",
       type: "concept",
       title: "How to start a game",
       blurb: "The three things every good opening does.",
       body:
-        "The first few moves aren't about attacking — they're about getting ready. Three simple goals guide nearly every sound opening: fight for the center, develop your pieces, and get your king safe by castling. Pawns in the center give your pieces room to work, knights and bishops belong off the back rank, and a castled king is far safer than one stuck in the middle.\n\nA common beginner mistake is to rush the queen out to make early threats. It usually backfires: the opponent develops a piece while chasing your queen around, gaining time for free. Bring out your knights and bishops first; the queen comes later, once it's safe.",
+        "The first few moves aren't about attacking — they're about getting ready. Three simple goals guide nearly every sound opening: fight for the center, develop your pieces, and get your king safe by castling. Pawns in the center give your pieces room to work, knights and bishops belong off the back rank, and a castled king is far safer than one stuck in the middle.\n\nThe diagram shows the principles in action after 1.e4 e5 2.Nf3 Nc6 3.Bc4: a pawn in the center, a knight and bishop developed, and the king a single move from castling. A common beginner mistake is to rush the queen out for early threats — it backfires, because the opponent develops while chasing your queen around for free.",
       points: [
         "Control the center, develop pieces, then castle.",
         "Develop knights and bishops before the queen.",
         "A move that develops AND makes a threat is ideal.",
       ],
+      diagrams: [
+        {
+          fen: "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+          orientation: "white",
+          caption: "Center pawn on e4, knight and bishop developed, king ready to castle — the opening principles at work.",
+        },
+      ],
+      check: {
+        question: "What are the three goals of a good opening?",
+        options: [
+          "Control the center, develop your pieces, castle your king to safety",
+          "Bring the queen out early, grab pawns, and trade queens",
+          "Push the wing pawns, double the rooks, then attack",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Center, develop, castle — in roughly that order. Knights and bishops come out before the queen, and the king gets tucked away by castling.",
+      },
     },
     {
       id: "opening-principles",
@@ -114,6 +145,20 @@ export const ch2: Lesson = {
       correctIndex: 1,
       explanation:
         "An early queen becomes a target. Each time the opponent attacks it, they develop a piece 'for free' while you waste moves running away. Develop knights and bishops first; bring the queen out once it's safe.",
+    },
+    {
+      id: "ch2-recap",
+      type: "concept",
+      title: "Recap: a healthy opening",
+      blurb: "Get ready, then play.",
+      body:
+        "Whatever your first move, the plan is the same: grab a share of the center, develop your knights and bishops toward it, castle, and connect your rooks — and don't go queen-hunting too early. Pick one 1.e4 and one 1.d4 setup you like and play them until they're automatic.\n\nThe fastest way to learn an opening is to play it. Start a game and put the three goals into practice.",
+      points: [
+        "Center, develop, castle — every game.",
+        "Knights and bishops before the queen.",
+        "Know Scholar's Mate so it never catches you.",
+      ],
+      practice: { tool: "play", label: "Play a game now" },
     },
   ],
 };
