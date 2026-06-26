@@ -194,6 +194,24 @@ export const ch14: Lesson = {
         "'Removing the defender' (or 'removing the guard') means taking out the piece holding everything together. Capture it, deflect it, or attack it so it must move — then collect what it was defending.",
     },
     {
+      id: "removing-defender-tactic",
+      type: "puzzle",
+      title: "Try it: removing the defender",
+      blurb: "Knock out the guard, take the prize.",
+      fen: "6k1/1R1bBpb1/2nP1n2/8/8/2p5/2B3PP/6K1 w - - 4 31",
+      orientation: "white",
+      goal: { type: "win-material", minGain: 2 },
+      prompt:
+        "White to play. The black bishop on d7 is defended by just one piece — the knight on f6. Take out the guard, then collect the bishop.",
+      hints: [
+        "Which single piece is defending the d7-bishop?",
+        "Capture that defender first — the recapture won't save d7.",
+      ],
+      successText:
+        "Won the bishop! Bxf6 removes the only guard of d7; after the recapture, Rxd7 takes the piece it was protecting. Removing the defender: eliminate the guard, then collect what it held together.",
+      solution: ["e7f6", "g7f6", "b7d7"],
+    },
+    {
       id: "deflection",
       type: "quiz",
       title: "Deflection & overloading",
@@ -209,6 +227,24 @@ export const ch14: Lesson = {
       correctIndex: 1,
       explanation:
         "An overloaded piece can't be in two places at once. Deflection forces it away from one of its duties (often with a check or a capture it must answer), and you cash in on the square or piece it was forced to abandon — a classic back-rank theme.",
+    },
+    {
+      id: "deflection-tactic",
+      type: "puzzle",
+      title: "Try it: deflection",
+      blurb: "Pull the guard off its job.",
+      fen: "4r2k/7p/6p1/1q6/8/2bQ1B2/P4R2/3R1K2 b - - 7 33",
+      orientation: "black",
+      goal: { type: "win-material", minGain: 2 },
+      prompt:
+        "Black to play. White's queen on d3 is defended only by the rook on d1. Force that rook off its job, then win the queen.",
+      hints: [
+        "A check on the back rank forces the d1-rook to deal with it.",
+        "Once the rook leaves d1, the queen on d3 has no defender.",
+      ],
+      successText:
+        "Won the queen! ...Re1+ deflects the d1-rook from guarding d3 — after Rxe1, ...Qxd3 collects the undefended queen. Deflection: force the defender to abandon its post, then strike where it was guarding.",
+      solution: ["e8e1", "d1e1", "b5d3"],
     },
     {
       id: "ch14-practice",
