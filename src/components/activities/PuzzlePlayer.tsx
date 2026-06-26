@@ -134,9 +134,12 @@ export function PuzzlePlayer({
         ? "bg-clay/10 text-clay"
         : "bg-surface text-ink-soft shadow-soft";
 
+  const turn = new ChessGame(fen).turn === "w" ? "White to move" : "Black to move";
+
   return (
     <StudyLayout
       stack={kidMode}
+      caption={solved ? undefined : turn}
       board={
         <Board
           fen={fen}

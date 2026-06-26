@@ -176,9 +176,16 @@ export function OpeningDrillPlayer({
         ? "bg-clay/10 text-clay"
         : "bg-surface text-ink-soft shadow-soft";
 
+  const turn = learnerToMove
+    ? new ChessGame(currentFen).turn === "w"
+      ? "White to move"
+      : "Black to move"
+    : undefined;
+
   return (
     <StudyLayout
       stack={kidMode}
+      caption={turn}
       board={
         <Board
           fen={currentFen}

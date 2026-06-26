@@ -147,9 +147,17 @@ export function DrillPlayer({
         ? "bg-accent/10 text-primary-strong"
         : "bg-surface text-ink-soft shadow-soft";
 
+  const turn =
+    phase === "playing"
+      ? new ChessGame(fen).turn === "w"
+        ? "White to move"
+        : "Black to move"
+      : undefined;
+
   return (
     <StudyLayout
       stack={kidMode}
+      caption={turn}
       board={
         <Board
           fen={fen}

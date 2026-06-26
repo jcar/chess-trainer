@@ -11,23 +11,36 @@ import type { ReactNode } from "react";
 export function StudyLayout({
   board,
   ledger,
+  caption,
   stack = false,
 }: {
   board: ReactNode;
   ledger: ReactNode;
+  /** A small engraved line under the board, e.g. "White to move". */
+  caption?: string;
   stack?: boolean;
 }) {
+  const stage = (
+    <>
+      {board}
+      {caption && (
+        <p className="mt-2.5 text-center font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+          {caption}
+        </p>
+      )}
+    </>
+  );
   if (stack) {
     return (
       <div className="flex flex-col gap-4">
-        {board}
+        {stage}
         {ledger}
       </div>
     );
   }
   return (
     <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-7">
-      <div className="lg:sticky lg:top-4">{board}</div>
+      <div className="lg:sticky lg:top-4">{stage}</div>
       <div className="flex min-w-0 flex-col gap-4">{ledger}</div>
     </div>
   );

@@ -8,8 +8,10 @@
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import type { Activity, DialogueLine, Module } from "@/content/types";
-import { getNextActivity } from "@/content";
+import { getNextActivity, getModuleActivities } from "@/content";
 import { useProgress } from "@/lib/progress/useProgress";
+import { LevelChip } from "@/components/ui/Chip";
+import { ProgressBar } from "@/components/ui/ProgressBar";
 import { QuizPlayer } from "@/components/activities/QuizPlayer";
 import { ReplayPlayer } from "@/components/activities/ReplayPlayer";
 import { PuzzlePlayer } from "@/components/activities/PuzzlePlayer";
@@ -74,8 +76,9 @@ interface Props {
 }
 
 export function ActivityPlayer({ module: mod, activity }: Props) {
-  const { markComplete, recordAttempt, getActivityState, snapshot } = useProgress();
+  const { markComplete, recordAttempt, getActivityState, snapshot, moduleProgress } = useProgress();
   const kidMode = !!mod.kidMode;
+  const modPct = Math.round(moduleProgress(getModuleActivities(mod).map((a) => a.id)) * 100);
 
   const [confettiKey, setConfettiKey] = useState(0);
   const [pipMood, setPipMood] = useState<"idle" | "cheer" | "think">("idle");
@@ -213,6 +216,20 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
 
   return (
     <div className="space-y-4 sm:space-y-6" style={themeVars}>
+      {/* Breadcrumb + module progress strip — "you are here" (non-kid; kids have Pip). */}
+      {!kidMode && (
+        <div className="flex items-center gap-3 border-b border-line/70 pb-3 text-xs">
+          <Link
+            href={`/modules/${mod.id}`}
+            className="max-w-[45%] truncate font-medium text-ink-soft transition hover:text-ink"
+          >
+            {mod.title}
+          </Link>
+          <ProgressBar pct={modPct} tone="primary" className="min-w-0 flex-1" />
+          <LevelChip module={mod} />
+        </div>
+      )}
+
       {kidMode && <Confetti fireKey={confettiKey} />}
       {kidMode && <BadgeToast fireKey={badgeKey} emoji={badge.emoji} title={badge.title} />}
 
@@ -306,7 +323,7 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         <TargetPlayer activity={activity} onComplete={handleComplete} />
       )}
       {activity.type === "sort" && (
-        <SortPlayer activity={activity} onComplete={handleComplete} onAttempt={handleAttempt} />
+        <SortPlayer activity={activity} onComplete={handleComplete} onAttempt={handleAttempt} kidMode={kidMode} />
       )}
       {activity.type === "coordinate" && (
         <CoordinatePlayer activity={activity} onComplete={handleComplete} />
