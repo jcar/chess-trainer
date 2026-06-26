@@ -10,17 +10,48 @@ export const ch13: Lesson = {
     "King-and-pawn technique and rook-endgame principles win and save more games than any opening. Master the opposition, the square, and where the rook belongs.",
   activities: [
     {
+      id: "ch13-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "The endings that decide games.",
+      body:
+        "Endgames quietly decide more games than any opening, and a handful of precise ideas cover most of what you'll face. Learn them and you'll convert won positions and save lost ones with confidence.\n\nWe'll lock in king-and-pawn technique (the opposition and the square of the pawn), then the rook-endgame rules every improver needs: rooks behind passers, and the Lucena and Philidor positions. You'll convert a king-and-pawn ending yourself, then drill the rest.",
+      points: [
+        "King-and-pawn: lead with the king, use the opposition.",
+        "Rooks belong BEHIND passed pawns.",
+        "Know Lucena (the win) and Philidor (the draw).",
+      ],
+    },
+    {
       id: "ch13-endgames-concept",
       type: "concept",
       title: "Endgame technique wins games",
       blurb: "The few ideas that decide close games.",
       body:
-        "Endgames quietly decide more games than any opening. The good news is that a handful of precise ideas cover most of what you'll face, and once you know them you can convert won positions and save lost ones with confidence.\n\nThe foundations are king-and-pawn play — the opposition (a mutual-zugzwang battle to push the enemy king aside) and the square of the pawn (a glance tells you whether a king catches a runner) — plus rook-endgame rules: rooks belong behind passed pawns, and the Lucena and Philidor positions are the must-know winning and drawing methods with rook and pawn.",
+        "Endgames quietly decide more games than any opening. The good news is that a handful of precise ideas cover most of what you'll face, and once you know them you can convert won positions and save lost ones with confidence.\n\nThe foundation is king-and-pawn play. In the diagram, White's king leads in FRONT of its pawn, facing the black king with one square between — that's the opposition, the tool that pushes the enemy king aside and clears the pawn's path. Add the square of the pawn (a glance tells you whether a king catches a runner) and the rook-endgame rules, and most endings become routine.",
       points: [
         "King first: in K+P endings, lead with the king and use the opposition.",
         "Rooks go BEHIND passed pawns — yours to push them, the enemy's to restrain.",
         "Know Lucena (the win) and Philidor (the draw) cold.",
       ],
+      diagrams: [
+        {
+          fen: "3k4/8/3K4/3P4/8/8/8/8 w - - 0 1",
+          orientation: "white",
+          caption: "King in front of its pawn, kings in opposition — the winning king-and-pawn setup.",
+        },
+      ],
+      check: {
+        question: "In a king-and-pawn endgame, your most important first principle is:",
+        options: [
+          "Lead with the KING (get it in front of the pawn), not the pawn",
+          "Push the pawn as fast as possible and keep the king back",
+          "Trade the pawn off to reach a drawn king-versus-king ending",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Lead with the king. A pawn that races ahead of its king gets blockaded; the king must go first to clear the path and seize the opposition.",
+      },
     },
     {
       id: "opposition-concept",
@@ -76,6 +107,32 @@ export const ch13: Lesson = {
       correctIndex: 1,
       explanation:
         "Imagine a square with the pawn's path as one side. If the defending king is inside that square (or can step into it on its move), it catches the pawn. A quick visual shortcut that saves you counting tempi.",
+    },
+    {
+      id: "ch13-rook-passer-concept",
+      type: "concept",
+      title: "Rooks behind passed pawns",
+      blurb: "Tarrasch's rule, on the board.",
+      body:
+        "The most useful rule in rook endings: put your rook BEHIND a passed pawn. Behind your own passer, the rook supports its march and gains scope with every step the pawn takes. Behind the enemy's passer, it ties the defender down. A rook stuck in FRONT of a pawn is passive — it has to move out of the way the moment the pawn advances.\n\nIn the diagram, White's rook sits behind its own a-pawn, ready to escort it home, while Black's rook is reduced to a passive blockade in front on a8.",
+      diagrams: [
+        {
+          fen: "r5k1/8/8/P7/8/8/6K1/R7 w - - 0 1",
+          orientation: "white",
+          caption: "White's rook is behind its passed a-pawn (active); Black's rook is stuck in front on a8 (passive).",
+        },
+      ],
+      check: {
+        question: "Where does a rook belong relative to a passed pawn?",
+        options: [
+          "Behind it — your own to push it, the enemy's to restrain it",
+          "In front of it, blocking the square it wants to reach",
+          "Far away on the other wing, out of the action",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Tarrasch's rule: rooks belong behind passed pawns. Behind gives the rook growing scope and activity; in front is passive.",
+      },
     },
     {
       id: "rook-behind-passer",

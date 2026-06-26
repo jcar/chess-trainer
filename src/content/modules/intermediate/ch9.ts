@@ -10,17 +10,48 @@ export const ch9: Lesson = {
     "At this level, openings are about understanding plans and structures — not memorizing twenty moves. How to choose, learn, and handle surprises.",
   activities: [
     {
+      id: "ch9-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "Openings the smart way.",
+      body:
+        "You don't need to memorize twenty moves of theory to play the opening well. At this level the goal is to reach a middlegame you UNDERSTAND — knowing the structure, where your pieces belong, and the plan you're heading for.\n\nWe'll cover how to actually study openings, what a practical repertoire looks like, how to handle transpositions and surprises, then point you to the course and trainer where you'll build and drill your own.",
+      points: [
+        "Understand plans and structures, not move lists.",
+        "Keep a compact repertoire you know deeply.",
+        "When surprised, fall back on principles.",
+      ],
+    },
+    {
       id: "ch9-opening-study-concept",
       type: "concept",
       title: "Openings: understand, don't memorize",
       blurb: "Why plans beat move lists.",
       body:
-        "At the intermediate level, an opening is not a list of moves to recite — it's a way of reaching a middlegame you understand. The goal is to learn the typical pawn structures, where each piece belongs, and the plan you're steering toward.\n\nThat's why a small, consistent repertoire works best: one main opening for White and reliable answers to 1.e4 and 1.d4 as Black. Familiar positions free your thinking time for plans instead of panic, and when an opponent leaves theory or shuffles their move order, you'll still recognize where you are.",
+        "At the intermediate level, an opening is not a list of moves to recite — it's a way of reaching a middlegame you understand. The goal is to learn the typical pawn structures, where each piece belongs, and the plan you're steering toward.\n\nThe diagram is the main line of the Closed Ruy Lopez: both sides simply followed the principles — center, develop, castle — into a rich middlegame that revolves around White's coming d4 break. You don't memorize this; you understand the plan, so you'd find these moves on your own. A small, consistent repertoire works best: one main opening for White and reliable answers to 1.e4 and 1.d4 as Black.",
       points: [
         "Learn the plan and structure, not twenty memorized moves.",
         "A compact repertoire you know well beats a thick one you don't.",
         "Off-beat or out-of-order moves? Fall back on principles: develop, take the center, get the king safe.",
       ],
+      diagrams: [
+        {
+          fen: "r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 w - - 0 9",
+          orientation: "white",
+          caption: "The Closed Ruy Lopez: developed by principle, both kings castled, poised around White's d4 break. Understand it — don't memorize it.",
+        },
+      ],
+      check: {
+        question: "What's the best thing to take away from studying a position like this?",
+        options: [
+          "The plan and pawn structure, so you'd find the moves yourself",
+          "The exact move order, memorized twenty moves deep",
+          "Nothing — openings can't be studied usefully",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Understanding beats memorizing. Know which squares matter, where your pieces belong, and what plan you're aiming for, and you'll play well even when your opponent leaves theory.",
+      },
     },
     {
       id: "study-openings-right",

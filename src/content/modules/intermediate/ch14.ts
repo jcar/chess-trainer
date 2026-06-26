@@ -10,6 +10,19 @@ export const ch14: Lesson = {
     "Calculate forcing moves first, then learn the recurring weapons: the discovered attack, removing the defender, deflection — and the prettiest mate of all.",
   activities: [
     {
+      id: "ch14-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "Find tactics on purpose.",
+      body:
+        "Strong players don't stumble onto tactics — they hunt them in a fixed order, then recognize the recurring patterns. Both halves are trainable, and they'll win you games outright.\n\nWe'll start with the search method (scan the forcing moves first), then add the sharper weapons: the discovered attack, removing the defender, and deflection — plus the prettiest mate of all.",
+      points: [
+        "Search forcing moves first: checks, captures, threats.",
+        "Then the weapons: discovered attack, remove the defender, deflection.",
+        "Spot the patterns, solve on the board.",
+      ],
+    },
+    {
       id: "ch14-tactics-concept",
       type: "concept",
       title: "How to find tactics",
@@ -21,6 +34,17 @@ export const ch14: Lesson = {
         "Discovered attacks fire two threats from a single move.",
         "Remove or deflect the defender, then collect what it was guarding.",
       ],
+      check: {
+        question: "When hunting for a tactic, which moves do you calculate FIRST?",
+        options: [
+          "Forcing moves — checks, captures, and threats",
+          "Quiet pawn moves that slowly improve your structure",
+          "Whichever move happens to look prettiest",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Checks, captures, and threats limit the opponent's replies, so they're easiest to calculate and most likely to hide a combination. Scanning them first is the habit that finds most tactics.",
+      },
     },
     {
       id: "forcing-moves",
@@ -74,6 +98,33 @@ export const ch14: Lesson = {
       successText:
         "Won the queen! Nxc7+ forks the king and the queen on d5. After the king moves, Nxd5 collects the queen. The knight is the ultimate forking piece — always check what it hits.",
       solution: ["e6c7", "e8f8", "c7d5"],
+    },
+    {
+      id: "ch14-discovered-concept",
+      type: "concept",
+      title: "The discovered attack",
+      blurb: "Move one piece, unleash another.",
+      body:
+        "A discovered attack is two threats from a single move. One of your pieces is blocking the line of another; when the front piece moves away, the piece behind it suddenly attacks down the open line. The killer detail: the piece that MOVES can make its own threat at the same time, so the opponent can't deal with both.\n\nIn the diagram, the bishop on b2 aims down the long diagonal at Black's queen on g7, but the knight on e5 blocks it. Move that knight with a threat of its own, and the bishop's attack on the queen is 'discovered' — Black can't save the queen and answer the knight too. A discovered CHECK is the deadliest version of all.",
+      diagrams: [
+        {
+          fen: "6k1/5pqp/8/4N3/8/8/1B4P1/6K1 w - - 0 1",
+          orientation: "white",
+          arrows: [{ from: "b2", to: "g7" }],
+          caption: "The bishop already aims at the queen — the knight is in the way. Move the knight with a threat and the attack is discovered.",
+        },
+      ],
+      check: {
+        question: "What makes a discovered attack so hard to meet?",
+        options: [
+          "The moving piece can make its OWN threat, so two things are attacked at once",
+          "It is always a checkmate that ends the game immediately",
+          "It can only ever be played with the queen",
+        ],
+        correctIndex: 0,
+        explanation:
+          "Moving the front piece unleashes the one behind AND can create a second threat (even a check). The opponent can rarely answer both — that's the power of the discovery.",
+      },
     },
     {
       id: "discovered-attack",

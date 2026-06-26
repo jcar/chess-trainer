@@ -10,17 +10,48 @@ export const ch12: Lesson = {
     "A gambit gives up a pawn (or more) to gain rapid development, open lines, and the initiative. Three classics — two for White, one for Black — and when the trade is worth it.",
   activities: [
     {
+      id: "ch12-objective",
+      type: "concept",
+      title: "What you'll learn",
+      blurb: "Pawns for initiative.",
+      body:
+        "A gambit hands over a pawn on purpose — to grab time, open lines, and seize the initiative while your opponent is busy collecting and defending it. Played well, that head start is worth more than the pawn.\n\nWe'll see what a gambit actually buys, walk through three classics (two for White, one for Black), and learn how to defend against one when it's pointed at you.",
+      points: [
+        "A gambit buys development, open lines, and the initiative.",
+        "Three model gambits, move by move.",
+        "How to meet a gambit without getting greedy.",
+      ],
+    },
+    {
       id: "ch12-gambits-concept",
       type: "concept",
       title: "What a gambit buys",
       blurb: "Trade a pawn for time.",
       body:
-        "A gambit gives up a pawn (sometimes more) to gain something in return: a lead in development, open lines for your pieces, and the initiative. While your opponent spends moves grabbing and defending the extra pawn, you race ahead and start dictating play.\n\nThe catch is that the activity has to be real. If you can't point to concrete pressure for the pawn, it's just a lost pawn. And when you're on the receiving end, the antidote is your own development — accept if you like, but be ready to give the pawn back to extinguish the initiative rather than clinging to it.",
+        "A gambit gives up a pawn (sometimes more) to gain something in return: a lead in development, open lines for your pieces, and the initiative. While your opponent spends moves grabbing and defending the extra pawn, you race ahead and start dictating play.\n\nThe diagram shows the Evans Gambit after White has given the b-pawn and struck with c3 and d4: a big pawn center and a clear development lead — full value for the pawn. The catch is that the activity must be real. If you can't point to concrete pressure, it's just a lost pawn. And when you're on the receiving end, the antidote is your own development — accept if you like, but be ready to give the pawn back rather than cling to it.",
       points: [
         "You're buying time, open lines, and the initiative — not a forced mate.",
         "No activity to show for it? Then it's simply a lost pawn.",
         "Facing a gambit: develop fast and return the pawn when it kills the attack.",
       ],
+      diagrams: [
+        {
+          fen: "r1bqk1nr/pppp1ppp/2n5/b3p3/2BPP3/2P2N2/P4PPP/RNBQK2R b KQkq - 0 6",
+          orientation: "white",
+          caption: "Evans Gambit: a pawn down, but White has a big center (c3/d4/e4) and faster development — that's the trade.",
+        },
+      ],
+      check: {
+        question: "What is White getting in return for the sacrificed pawn here?",
+        options: [
+          "A big center and a lead in development — the initiative",
+          "A forced checkmate within a few moves",
+          "Nothing; a gambit is just a lost pawn",
+        ],
+        correctIndex: 0,
+        explanation:
+          "A sound gambit buys time, open lines, and the initiative. The pawn is only worth giving up if you can show real activity for it — as White can here.",
+      },
     },
     {
       id: "what-is-gambit",
@@ -118,6 +149,20 @@ export const ch12: Lesson = {
       correctIndex: 1,
       explanation:
         "Against a gambit, don't get greedy. Accepting is usually fine, but the antidote to the opponent's initiative is your OWN development — and often giving the pawn back at the right moment to complete development and reach a safe, equal (or better) position.",
+    },
+    {
+      id: "ch12-recap",
+      type: "concept",
+      title: "Recap: initiative over material",
+      blurb: "Time can be worth a pawn.",
+      body:
+        "A gambit is a bet that fast development and the initiative outweigh a pawn. As the gambiteer, only make the bet when you can show concrete activity — otherwise you're just a pawn down. As the defender, don't cling to the extra pawn: develop, and hand it back when that snuffs out the attack.\n\nThe only way to feel the initiative is to play sharp positions. Try a gambit (from either side) in a real game.",
+      points: [
+        "Gambit = a pawn for development, open lines, and the initiative.",
+        "Gambiteer: show real activity, or it's just a lost pawn.",
+        "Defender: develop and give the pawn back to kill the attack.",
+      ],
+      practice: { tool: "play", label: "Play a game now" },
     },
   ],
 };

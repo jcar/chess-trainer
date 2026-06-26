@@ -8,6 +8,7 @@ import { ch13 } from "./ch13";
 import { ch14 } from "./ch14";
 import { ch15 } from "./ch15";
 import { pawnStructures } from "./pawn-structures";
+import { intReview1, intReview2 } from "./reviews";
 
 // Note: specific opening repertoires (formerly ch10–11: London/Vienna/Alapin
 // and Scandinavian/Caro-Kann/QGD) now live in the Chess Openings module +
@@ -21,5 +22,7 @@ export const intermediate: Module = {
   description:
     "The improver's path: how to build an opening repertoire, gambits, the endgames that decide games, sharper tactics, and the strategic ideas behind strong play.",
   level: "Intermediate",
-  lessons: [ch9, ch12, ch13, ch14, ch15, pawnStructures],
+  // intReview1/2 are spaced-retrieval checkpoints interleaved between lessons
+  // (they re-test earlier ideas from fresh angles; they carry no chapter number).
+  lessons: [ch9, ch12, ch13, intReview1, ch14, ch15, pawnStructures, intReview2],
 };
