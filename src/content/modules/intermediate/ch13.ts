@@ -180,7 +180,21 @@ export const ch13: Lesson = {
       instructions:
         "Your turn to convert the ending you just watched. Lead with the KING, seize the opposition to push the black king aside, then escort the pawn to promotion.",
       successText:
-        "Promoted! That's the opposition under your own hands — the technique behind every king-and-pawn ending. (Drill the Lucena rook ending itself in the Endgame Trainer.)",
+        "Promoted! That's the opposition under your own hands — the technique behind every king-and-pawn ending. Now the rook ending it leads to…",
+    },
+    {
+      id: "ch13-lucena-drill",
+      type: "drill",
+      title: "Drill: win the Lucena (rook and pawn)",
+      blurb: "Escort the pawn past the checks.",
+      fen: "2K5/2P2k2/8/8/8/8/5r2/2R5 w - - 0 1",
+      orientation: "white",
+      objective: "promote",
+      engineSkill: 10,
+      instructions:
+        "Rook and pawn versus rook — the Lucena win. Your pawn is one step from queening, but your own king blocks the square and Black checks from the side. March your king out toward your rook; when the checks come, block one with your rook (the 'bridge'), and shepherd the pawn home. Promote to win.",
+      successText:
+        "Promoted! That's the Lucena: the king steps out, the rook shields it from the checks, and the pawn queens. Rook-and-pawn endings are the most common of all — this is the one to know cold.",
     },
     {
       id: "ch13-practice",
