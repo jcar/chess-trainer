@@ -51,7 +51,10 @@ function scenePrompt(e: SceneEntry): string {
       : "") +
     `Story beat to convey through the characters' poses, expressions, and the setting ` +
     `(do NOT write any of these words in the image): "${beat}"\n\n` +
-    `Full color, warm and inviting, one clear focal point, gentle depth. No text or letters anywhere.`
+    `IMPORTANT: paint the ENTIRE scene in full, rich, saturated storybook color — even if the ` +
+    `story text mentions grey, lost color, or a "Grey" spell. Do NOT desaturate, grey out, or ` +
+    `drain color from the image; color drain is handled separately by the app. ` +
+    `Warm and inviting, one clear focal point, gentle depth. No text, letters, or words anywhere.`
   );
 }
 
@@ -111,8 +114,13 @@ async function main() {
   }
   const gen = new ImageGen();
 
+  // Optional scene-id filter: `npm run art:generate -- <sceneId> <sceneId> …`
+  // renders only those scenes (samples, re-rolls). No args = all missing scenes.
+  const only = new Set(process.argv.slice(2).filter((a) => !a.startsWith("-")));
+  const wanted = (e: SceneEntry) => only.size === 0 || only.has(e.sceneId);
+
   const onDisk = new Set(readdirSync(scenesDir).map((f) => f.replace(/\.(png|jpg|jpeg|webp)$/i, "")));
-  const todo = manifest.filter((e) => !onDisk.has(e.key)).length;
+  const todo = manifest.filter((e) => !onDisk.has(e.key) && wanted(e)).length;
   console.log(
     `Rendering ${todo} scene(s) on the image model ` +
       `(${manifest.length - todo} already done · ${manifest.length} total · ${gen.keyCount} key(s)).\n`,
@@ -125,6 +133,7 @@ async function main() {
       reused++;
       continue;
     }
+    if (!wanted(e)) continue;
     const sceneRefs = e.cast.map((id) => refs[id]).filter(Boolean) as RefImage[];
     const res = await gen.generate(scenePrompt(e), sceneRefs);
     if (gen.capped) break;
