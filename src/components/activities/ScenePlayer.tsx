@@ -11,15 +11,14 @@
 // state changes happen in event handlers (keeps react-hooks/set-state-in-effect
 // happy).
 
-import Link from "next/link";
 import { useState } from "react";
 import type { SceneActivity } from "@/content/types";
 import { SceneArt } from "@/components/kids/SceneArt";
 import { SpeakingCharacter } from "@/components/kids/SpeakingCharacter";
 import { speakAs } from "@/lib/audio/speech";
 import { playSound, unlockAudio } from "@/lib/audio/sounds";
-import { buttonClasses } from "@/components/ui/Button";
-import { ChevronRightIcon, ArrowLeftIcon } from "@/components/icons";
+import { AdvanceButton } from "@/components/ui/AdvanceButton";
+import { ArrowLeftIcon } from "@/components/icons";
 
 interface Props {
   activity: SceneActivity;
@@ -75,26 +74,25 @@ export function ScenePlayer({ activity, onComplete, advanceHref, advanceLabel }:
         </button>
 
         {isLast ? (
-          <Link
+          <AdvanceButton
             href={advanceHref}
+            kind="next"
+            size="kid"
+            label={advanceLabel ?? activity.cta}
+            testId="advance"
             onClick={() => {
               unlockAudio();
               playSound("step");
               onComplete(100);
             }}
-            data-testid="advance"
-            className={buttonClasses("primary", "kid")}
-          >
-            {advanceLabel ?? activity.cta} <ChevronRightIcon className="h-5 w-5" />
-          </Link>
+          />
         ) : (
-          <button
-            type="button"
+          <AdvanceButton
+            kind="next"
+            size="kid"
+            label="Next"
             onClick={() => go(idx + 1)}
-            className={buttonClasses("primary", "kid")}
-          >
-            Next <ChevronRightIcon className="h-5 w-5" />
-          </button>
+          />
         )}
       </div>
     </div>
