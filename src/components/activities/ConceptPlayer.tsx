@@ -14,7 +14,8 @@ import { SpeakButton } from "@/components/kids/SpeakButton";
 import { conceptSpeech } from "@/lib/audio/narration";
 import { ChoiceCheck } from "@/components/kids/ChoiceCheck";
 import { buttonClasses } from "@/components/ui/Button";
-import { ChevronRightIcon, PuzzleIcon } from "@/components/icons";
+import { AdvanceButton } from "@/components/ui/AdvanceButton";
+import { PuzzleIcon } from "@/components/icons";
 
 /** Build the "Practice now" href for a concept's optional handoff. */
 function practiceHref(p: NonNullable<ConceptActivity["practice"]>): string {
@@ -123,14 +124,14 @@ export function ConceptPlayer({
           </Link>
         )}
         {gateOpen ? (
-          <Link
+          <AdvanceButton
             href={advanceHref}
             onClick={() => onComplete(100)}
-            data-testid="advance"
-            className={buttonClasses("primary", kidMode ? "kid" : "lg")}
-          >
-            {advanceLabel} <ChevronRightIcon className="h-5 w-5" />
-          </Link>
+            kind={advanceLabel === "Got it" ? "next" : "finish"}
+            size={kidMode ? "kid" : "lg"}
+            label={advanceLabel}
+            testId="advance"
+          />
         ) : (
           <span className="text-sm font-medium text-ink-soft/70">
             Answer the question to keep going!

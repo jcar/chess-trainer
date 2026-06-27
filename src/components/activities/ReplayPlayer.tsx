@@ -8,7 +8,8 @@ import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
-import { ArrowLeftIcon, ChevronRightIcon } from "@/components/icons";
+import { AdvanceButton } from "@/components/ui/AdvanceButton";
+import { ArrowLeftIcon } from "@/components/icons";
 
 interface Props {
   activity: ReplayActivity;
@@ -87,14 +88,12 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
             <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
               {step} / {lastStep}
             </span>
-            <button
-              type="button"
+            <AdvanceButton
               onClick={() => go(step + 1)}
               disabled={step === lastStep}
-              className={buttonClasses("primary", kidMode ? "kid" : "lg", "disabled:opacity-40")}
-            >
-              Next <ChevronRightIcon className="h-5 w-5" />
-            </button>
+              size={kidMode ? "kid" : "lg"}
+              label="Next"
+            />
           </div>
         </>
       }

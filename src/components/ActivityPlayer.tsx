@@ -44,12 +44,10 @@ import { badgeSeenStore } from "@/lib/kids/badgeSeen";
 import { selectTotalStarsKid } from "@/lib/progress/store";
 import { useKidsPrefs } from "@/lib/kids/prefs";
 import { getBoardTheme } from "@/lib/kids/cosmetics";
-import { buttonClasses } from "@/components/ui/Button";
+import { AdvanceButton } from "@/components/ui/AdvanceButton";
 import {
   ACTIVITY_ICON,
   FlameIcon,
-  ChevronRightIcon,
-  CheckIcon,
   ArrowLeftIcon,
 } from "@/components/icons";
 
@@ -371,23 +369,13 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         {/* The concept card and story scene own their forward action (their own
             button completes AND advances in one tap) — don't render a second. */}
         {activity.type === "concept" || activity.type === "scene" ? null : state.completed ? (
-          next ? (
-            <Link
-              href={advanceHref}
-              data-testid="advance"
-              className={buttonClasses("primary", kidMode ? "kid" : "lg")}
-            >
-              Next <ChevronRightIcon className="h-5 w-5" />
-            </Link>
-          ) : (
-            <Link
-              href={advanceHref}
-              data-testid="advance"
-              className={buttonClasses("primary", kidMode ? "kid" : "lg")}
-            >
-              {kidMode ? "All done!" : "Finish"} <CheckIcon className="h-5 w-5" />
-            </Link>
-          )
+          <AdvanceButton
+            href={advanceHref}
+            kind={next ? "next" : "finish"}
+            size={kidMode ? "kid" : "lg"}
+            label={next ? "Next" : kidMode ? "All done!" : "Finish"}
+            testId="advance"
+          />
         ) : (
           <span className="text-sm text-ink-soft/70">
             {kidMode ? "Finish to keep going!" : "Complete to continue"}
