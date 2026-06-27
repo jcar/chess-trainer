@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces, Geist_Mono } from "next/font/google";
+import { Inter, Bricolage_Grotesque, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ProgressProvider } from "@/lib/progress/useProgress";
 import { withBasePath } from "@/lib/basePath";
@@ -12,12 +12,11 @@ const inter = Inter({
   display: "swap",
 });
 
-// Display / titles — an elegant, characterful serif (the "club" voice).
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Display / titles — a fresh, characterful grotesque (the Chess Hall voice).
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
@@ -29,12 +28,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chess Trainer",
-  description: "Learn chess through hands-on, guided practice.",
+  title: { default: "Chess Hall", template: "%s · Chess Hall" },
+  applicationName: "Chess Hall",
+  description: "Learn chess through hands-on, guided practice — from a first move to confident play.",
   // Absolute paths in metadata aren't auto-prefixed with basePath, so build them.
   manifest: withBasePath("/manifest.webmanifest"),
   icons: { icon: withBasePath("/icon.svg") },
-  appleWebApp: { capable: true, title: "Chess Trainer", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: "Chess Hall", statusBarStyle: "black-translucent" },
 };
 
 export const viewport: Viewport = {
@@ -61,7 +61,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${bricolage.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-ink">
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH }} />

@@ -97,8 +97,8 @@ export default function HomePage() {
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
           {started ? "Welcome back" : "Welcome"}
         </p>
-        <h1 className="mt-2 font-display text-[2.5rem] font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl">
-          The Chess <span className="italic text-primary-strong">Hall</span>
+        <h1 className="mt-2 font-display text-[2.5rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-[3.25rem]">
+          The Chess <span className="text-primary-strong">Hall</span>
         </h1>
         <p className="mt-2 max-w-xl text-ink-soft">
           Pick a room and pull up a chair. Hands-on lessons, guided puzzles, and
