@@ -48,6 +48,13 @@ export const QuizIcon = ({ className }: IconProps) => (
   </Line>
 );
 
+export const SettingsIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    <circle cx="12" cy="12" r="3" />
+    <path d="M12 2.5l1.3 2.2 2.5-.5.4 2.5 2.3 1.1-1 2.3 1 2.3-2.3 1.1-.4 2.5-2.5-.5L12 21.5l-1.3-2.2-2.5.5-.4-2.5-2.3-1.1 1-2.3-1-2.3 2.3-1.1.4-2.5 2.5.5z" />
+  </Line>
+);
+
 export const ReplayIcon = ({ className }: IconProps) => (
   <Line className={className}>
     <path d="M2.6 12S6 5.8 12 5.8 21.4 12 21.4 12 18 18.2 12 18.2 2.6 12 2.6 12Z" />

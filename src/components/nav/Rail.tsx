@@ -7,7 +7,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/brand/Wordmark";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { SettingsMenu } from "@/components/nav/SettingsMenu";
 import { PuzzleIcon, OpeningDrillIcon, PlayIcon, CrownGlyph } from "@/components/icons";
 
 type Item = {
@@ -72,7 +72,7 @@ export function Rail() {
           ))}
         </nav>
         <div className="mt-auto">
-          <ThemeToggle />
+          <SettingsMenu />
         </div>
       </aside>
 
@@ -92,6 +92,7 @@ export function Rail() {
             <span className="text-[10px] font-semibold tracking-tight">{it.label}</span>
           </Link>
         ))}
+        <SettingsMenu variant="dock" />
       </nav>
     </>
   );
