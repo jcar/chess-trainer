@@ -9,6 +9,8 @@ import { useDailyStreak } from "@/lib/rewards/daily";
 import { Card } from "@/components/ui/Card";
 import { LevelChip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { CHARACTER_IMAGES } from "@/lib/art/portraitManifest";
+import { withBasePath } from "@/lib/basePath";
 import {
   ChevronRightIcon,
   StarIcon,
@@ -163,9 +165,19 @@ export default function HomePage() {
                 <Card interactive className="relative flex h-full flex-col gap-3 overflow-hidden p-5">
                   <span className="plate-motif" aria-hidden />
                   <div className="flex items-start justify-between gap-3">
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-on-accent shadow-soft" style={{ backgroundColor: `var(--color-${tone})` }}>
-                      <Glyph className="h-7 w-7" />
-                    </span>
+                    {mod.kidMode && CHARACTER_IMAGES.pip ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={withBasePath(`/images/characters/${CHARACTER_IMAGES.pip}`)}
+                        alt=""
+                        aria-hidden
+                        className="h-12 w-12 shrink-0 rounded-2xl object-cover shadow-soft ring-2 ring-white/70"
+                      />
+                    ) : (
+                      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-on-accent shadow-soft" style={{ backgroundColor: `var(--color-${tone})` }}>
+                        <Glyph className="h-7 w-7" />
+                      </span>
+                    )}
                     <ProgressRing pct={pct} tone={tone} />
                   </div>
                   <div className="relative">
