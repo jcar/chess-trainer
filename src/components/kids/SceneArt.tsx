@@ -6,6 +6,8 @@
 // and a "resolve" scene blooms back into color.
 
 import type { SceneBackdropId } from "@/content/types";
+import { SCENE_IMAGES } from "@/lib/art/sceneManifest";
+import { withBasePath } from "@/lib/basePath";
 
 export const SCENE_BACKDROPS: SceneBackdropId[] = [
   "kingdom",
@@ -24,6 +26,11 @@ interface Props {
   backdrop: SceneBackdropId;
   /** 0 = fully grey, 1 = full color. Defaults to 1. */
   colorAmount?: number;
+  /** Story scene id. If a bespoke illustration has been generated for it
+   *  (sceneManifest), it's shown instead of the inline-SVG backdrop. */
+  sceneId?: string;
+  /** Short text for the image alt / SVG aria-label (e.g. the scene title). */
+  alt?: string;
   className?: string;
 }
 
@@ -149,7 +156,11 @@ function Scene({ backdrop }: { backdrop: SceneBackdropId }) {
   }
 }
 
-export function SceneArt({ backdrop, colorAmount = 1, className = "" }: Props) {
+export function SceneArt({ backdrop, colorAmount = 1, sceneId, alt, className = "" }: Props) {
+  // Prefer a bespoke generated illustration for this scene; fall back to the
+  // inline-SVG backdrop when none exists yet (incremental rollout — see
+  // sceneManifest.ts). The grayscale color-drain filter applies to either.
+  const imageFile = sceneId ? SCENE_IMAGES[sceneId] : undefined;
   return (
     <div
       className={`overflow-hidden rounded-2xl shadow-soft ${className}`}
@@ -158,15 +169,26 @@ export function SceneArt({ backdrop, colorAmount = 1, className = "" }: Props) {
         transition: "filter 700ms ease",
       }}
     >
-      <svg
-        viewBox="0 0 320 180"
-        width="100%"
-        role="img"
-        aria-label={`A storybook scene: ${backdrop}`}
-        className="block"
-      >
-        <Scene backdrop={backdrop} />
-      </svg>
+      {imageFile ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={withBasePath(`/images/scenes/${imageFile}`)}
+          alt={alt ?? `A storybook scene: ${backdrop}`}
+          width={1280}
+          height={720}
+          className="block aspect-video w-full object-cover"
+        />
+      ) : (
+        <svg
+          viewBox="0 0 320 180"
+          width="100%"
+          role="img"
+          aria-label={alt ?? `A storybook scene: ${backdrop}`}
+          className="block"
+        >
+          <Scene backdrop={backdrop} />
+        </svg>
+      )}
     </div>
   );
 }

@@ -12,7 +12,10 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "tts:extract": "tsx scripts/tts/extract-dialogue.ts",
-    "tts:generate": "tsx scripts/tts/generate-audio.ts"
+    "tts:generate": "tsx scripts/tts/generate-audio.ts",
+    "art:extract": "tsx scripts/scene-art/extract-scenes.ts",
+    "art:cast": "tsx scripts/scene-art/generate-cast.ts",
+    "art:generate": "tsx scripts/scene-art/generate-scenes.ts"
   },
   "dependencies": {
     "chess.js": "^1.4.0",

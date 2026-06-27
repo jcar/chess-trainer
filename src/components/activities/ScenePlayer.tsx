@@ -45,7 +45,12 @@ export function ScenePlayer({ activity, onComplete, advanceHref, advanceLabel }:
 
   return (
     <div className="space-y-5">
-      <SceneArt backdrop={activity.backdrop} colorAmount={activity.colorAmount ?? 1} />
+      <SceneArt
+        backdrop={activity.backdrop}
+        colorAmount={activity.colorAmount ?? 1}
+        sceneId={activity.id}
+        alt={activity.title}
+      />
 
       <SpeakingCharacter line={line} size={76} />
 

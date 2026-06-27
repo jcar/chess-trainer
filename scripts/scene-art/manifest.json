@@ -1,0 +1,1025 @@
+[
+  {
+    "sceneId": "kids-arcade-hook",
+    "key": "kids-arcade-hook-1cp2472",
+    "backdrop": "kingdom",
+    "colorAmount": 0.6,
+    "title": "Pip's Playground",
+    "cast": [
+      "pip",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Time to play! These games make our moves quick and strong.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Bet you can't beat them all. I'll be watching… and giggling.",
+        "mood": "sly"
+      },
+      {
+        "speaker": "pip",
+        "text": "We'll show Murk what we can do. Ready, Caller?",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-arcade-resolve",
+    "key": "kids-arcade-resolve-1m54t1u",
+    "backdrop": "kingdom",
+    "colorAmount": 0.75,
+    "title": "Sharp as a Sword",
+    "cast": [
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "We cleared the playground! Our moves are quick now.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "But up ahead I see a big grey gate, and Murk is sitting on it…",
+        "mood": "worried"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-checkpoint-1-hook",
+    "key": "kids-checkpoint-1-hook-560d4u",
+    "backdrop": "kingdom",
+    "colorAmount": 0.75,
+    "title": "Murk's Gate",
+    "cast": [
+      "murk",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "murk",
+        "text": "Stop right there! No one crosses my gate without passing my riddles.",
+        "mood": "sly"
+      },
+      {
+        "speaker": "pip",
+        "text": "We've learned so much, Caller. Answer Murk's questions and the gate will open!",
+        "mood": "idle"
+      },
+      {
+        "speaker": "murk",
+        "text": "Riddles about squares, roads, and pieces. Get them right… if you can!",
+        "mood": "sly"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-checkpoint-1-resolve",
+    "key": "kids-checkpoint-1-resolve-1drs1dx",
+    "backdrop": "kingdom",
+    "colorAmount": 1,
+    "title": "The Square Kingdom Blooms",
+    "cast": [
+      "murk",
+      "pip",
+      "rookwell"
+    ],
+    "lines": [
+      {
+        "speaker": "murk",
+        "text": "Gah! You actually passed? Fine, fine — the gate is open.",
+        "mood": "worried"
+      },
+      {
+        "speaker": "pip",
+        "text": "Look, Caller! The whole Square Kingdom has its colors back!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "rookwell",
+        "text": "…Who woke me? I am Sir Rookwell. Beyond this gate, in Battle Meadow, I will teach you to be brave.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "pip",
+        "text": "Our first friend! Come on — Battle Meadow is waiting!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-checkpoint-2-hook",
+    "key": "kids-checkpoint-2-hook-1xkvft",
+    "backdrop": "heights",
+    "colorAmount": 0.7,
+    "title": "The Cliff Gate",
+    "cast": [
+      "murk",
+      "belle"
+    ],
+    "lines": [
+      {
+        "speaker": "murk",
+        "text": "None shall pass the cliff gate without proving they can win AND stay safe!",
+        "mood": "sly"
+      },
+      {
+        "speaker": "belle",
+        "text": "You are ready, Caller. Answer Murk, and the heights are ours.",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-checkpoint-2-resolve",
+    "key": "kids-checkpoint-2-resolve-e8cyxx",
+    "backdrop": "heights",
+    "colorAmount": 1,
+    "title": "Castle Heights Blooms",
+    "cast": [
+      "belle",
+      "murk",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "belle",
+        "text": "The mountains shine again! Thank you, Caller — I am wide awake.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Two friends woken… this is getting out of hand!",
+        "mood": "worried"
+      },
+      {
+        "speaker": "pip",
+        "text": "Down to Champions' Road, Caller. I hear something fast and bouncy down there…",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-checkpoint-3-hook",
+    "key": "kids-checkpoint-3-hook-3xfa4s",
+    "backdrop": "forest",
+    "colorAmount": 0.7,
+    "title": "The Deep Forest Gate",
+    "cast": [
+      "murk",
+      "nim"
+    ],
+    "lines": [
+      {
+        "speaker": "murk",
+        "text": "My trickiest riddles yet! Forks, pins, pawns — get them ALL right, or turn back!",
+        "mood": "sly"
+      },
+      {
+        "speaker": "nim",
+        "text": "We've got this, Caller. Show Murk how sharp you are!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-checkpoint-3-resolve",
+    "key": "kids-checkpoint-3-resolve-1pn76tw",
+    "backdrop": "forest",
+    "colorAmount": 1,
+    "title": "The Queen Awakens",
+    "cast": [
+      "aurora",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "aurora",
+        "text": "Light… at last. I am Queen Aurora. You have woken almost the whole kingdom, brave Caller.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "aurora",
+        "text": "Only the King still sleeps. To wake him, Pip must cross to the far side and become a queen.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "pip",
+        "text": "The far side… my dream! Come on, team — to Pip's Arena!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-good-first-moves-hook",
+    "key": "kids-good-first-moves-hook-1cj3w4f",
+    "backdrop": "road",
+    "colorAmount": 0.2,
+    "title": "A Bouncy Knight",
+    "cast": [
+      "nim",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Boing! Boing! Hi-hi-hi! I'm Nim the knight — fastest hopper on Champions' Road!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "nim",
+        "text": "Wanna win? START strong! Grab the middle, wake your pieces up, keep your king cozy.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Good first moves! Show us, Caller — let's open like champions.",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-good-first-moves-resolve",
+    "key": "kids-good-first-moves-resolve-j1ovqe",
+    "backdrop": "road",
+    "colorAmount": 0.45,
+    "title": "Nim Joins the Quest",
+    "cast": [
+      "nim",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Ooh, you're GOOD. Can I come with you? I wanna help wake everyone too!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Of course, Nim! Now we're a team of three — me, Nim, and you, Caller!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l1-board-hook",
+    "key": "kids-l1-board-hook-hbm1cb",
+    "backdrop": "kingdom",
+    "colorAmount": 0.08,
+    "title": "The Kingdom of Grey",
+    "cast": [
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Oh… where are all the colors? The whole kingdom turned grey!",
+        "mood": "worried"
+      },
+      {
+        "speaker": "pip",
+        "text": "Everyone is fast asleep. The Grey put them to sleep — even the King!",
+        "mood": "worried"
+      },
+      {
+        "speaker": "pip",
+        "text": "I'm Pip, the smallest pawn. And YOU are my Caller. Together we can bring the colors back!",
+        "mood": "idle"
+      },
+      {
+        "speaker": "pip",
+        "text": "First I must learn this place. Help me explore the board of 64 squares!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l1-board-resolve",
+    "key": "kids-l1-board-resolve-1ekuiv0",
+    "backdrop": "kingdom",
+    "colorAmount": 0.25,
+    "title": "A Spark of Color",
+    "cast": [
+      "pip",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Look! When we learned the squares, a tiny bit of color came back!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Hee-hee! A pawn playing hero? You'll never wake them all, little Pip.",
+        "mood": "sly"
+      },
+      {
+        "speaker": "pip",
+        "text": "That's Murk, the trickster magpie. Don't worry — we'll prove him wrong, Caller!",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l10-play-hook",
+    "key": "kids-l10-play-hook-1ylutvf",
+    "backdrop": "throne",
+    "colorAmount": 0.3,
+    "title": "The Throne Room",
+    "cast": [
+      "aurora",
+      "murk",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "aurora",
+        "text": "Here sleeps King Cedric, where the Grey is strongest. Only real games will break it.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "murk",
+        "text": "This is your LAST step, Pip. Play me, level by level… I won't make it easy!",
+        "mood": "sly"
+      },
+      {
+        "speaker": "pip",
+        "text": "Everything we learned comes down to this. Play with me, Caller — all the way to the crown!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l10-play-resolve",
+    "key": "kids-l10-play-resolve-wze0cj",
+    "backdrop": "throne",
+    "colorAmount": 1,
+    "title": "Long Live the Kingdom!",
+    "cast": [
+      "pip",
+      "cedric",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "I reached the far side… I'm a QUEEN! The crown is mine!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "cedric",
+        "text": "Ho! The Grey is lifted and I am awake. Thank you, Caller — you saved the Kingdom of Sixty-Four!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "I… I only made trouble because nobody ever played with me. Could… could I stay?",
+        "mood": "worried"
+      },
+      {
+        "speaker": "pip",
+        "text": "Of course, Murk. Every kingdom needs a trickster friend. We did it, Caller — together!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l2-straight-diagonal-hook",
+    "key": "kids-l2-straight-diagonal-hook-118gj24",
+    "backdrop": "kingdom",
+    "colorAmount": 0.25,
+    "title": "The Grey Roads",
+    "cast": [
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "To wake the sleeping pieces, we must travel the kingdom's roads.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "pip",
+        "text": "Some roads go straight — up, down, and across. Some go slanted, like a diagonal.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "pip",
+        "text": "Learn the roads with me, and we can reach anyone who needs us!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l2-straight-diagonal-resolve",
+    "key": "kids-l2-straight-diagonal-resolve-ykp5lx",
+    "backdrop": "kingdom",
+    "colorAmount": 0.4,
+    "title": "Paths Light Up",
+    "cast": [
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Now I can see the roads glowing! Straight ones and slanted ones.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "More color is coming back. The kingdom is waking up, bit by bit!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l3-king-knight-pawn-hook",
+    "key": "kids-l3-king-knight-pawn-hook-kztgs3",
+    "backdrop": "kingdom",
+    "colorAmount": 0.4,
+    "title": "Sleeping Friends",
+    "cast": [
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Here are three sleepy friends: the King, the Knight, and another little pawn like me.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "pip",
+        "text": "Each one moves in its own special way. If we learn how they move, we can wake them!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l3-king-knight-pawn-resolve",
+    "key": "kids-l3-king-knight-pawn-resolve-daj8i5",
+    "backdrop": "kingdom",
+    "colorAmount": 0.6,
+    "title": "They Stir!",
+    "cast": [
+      "pip",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Did you see? They wiggled! Learning their moves is waking them up.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Pfft. Knowing the moves and USING them are very different, hero.",
+        "mood": "sly"
+      },
+      {
+        "speaker": "pip",
+        "text": "Then let's practice, Caller — to the playground!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l4-capturing-values-hook",
+    "key": "kids-l4-capturing-values-hook-165pjbm",
+    "backdrop": "meadow",
+    "colorAmount": 0.2,
+    "title": "Into Battle Meadow",
+    "cast": [
+      "rookwell",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "rookwell",
+        "text": "Welcome to Battle Meadow! Here, pieces can bump enemies off the board. That's a capture!",
+        "mood": "idle"
+      },
+      {
+        "speaker": "rookwell",
+        "text": "But some pieces are worth more than others. A wise fighter knows what to trade.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "pip",
+        "text": "Teach us, Sir Rookwell! Help us learn what each piece is worth, Caller.",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l4-capturing-values-resolve",
+    "key": "kids-l4-capturing-values-resolve-1e2cs01",
+    "backdrop": "meadow",
+    "colorAmount": 0.4,
+    "title": "Green Returns to the Meadow",
+    "cast": [
+      "pip",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "The grass is turning green! We know what the pieces are worth now.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Worth, schmorth. You'll give away your queen the moment you stop looking!",
+        "mood": "sly"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l5-check-mate-hook",
+    "key": "kids-l5-check-mate-hook-wwwu7o",
+    "backdrop": "meadow",
+    "colorAmount": 0.6,
+    "title": "Check… and Mate!",
+    "cast": [
+      "rookwell",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "rookwell",
+        "text": "When the king is attacked, that's CHECK — he must escape at once.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "rookwell",
+        "text": "When he's attacked and CAN'T escape — that's checkmate. That's how chess is won!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Show the Grey what we've learned, Caller. Find the checkmate!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l5-check-mate-resolve",
+    "key": "kids-l5-check-mate-resolve-9x8olt",
+    "backdrop": "meadow",
+    "colorAmount": 1,
+    "title": "The Meadow Blooms",
+    "cast": [
+      "rookwell",
+      "murk",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "rookwell",
+        "text": "Checkmate! You did it. Battle Meadow is green and golden once more.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Hmph. Beginner's luck. The high cliffs of Castle Heights will stop you!",
+        "mood": "worried"
+      },
+      {
+        "speaker": "pip",
+        "text": "Up we climb, Caller — someone is sleeping on the heights, and we'll wake her too!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l6-special-moves-hook",
+    "key": "kids-l6-special-moves-hook-8h4i45",
+    "backdrop": "heights",
+    "colorAmount": 0.2,
+    "title": "The Sleeping Bishop",
+    "cast": [
+      "belle",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "belle",
+        "text": "Mmm… who climbs so high? I am Bishop Belle. Up here we keep the kingdom's SECRET moves.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "belle",
+        "text": "Castling, en passant, and a pawn becoming a queen — special moves that surprise your foe.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Secret moves?! Teach us every one, Belle!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l6-special-moves-resolve",
+    "key": "kids-l6-special-moves-resolve-1w9s8fk",
+    "backdrop": "heights",
+    "colorAmount": 0.45,
+    "title": "Secrets Unlocked",
+    "cast": [
+      "pip",
+      "belle"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Castling AND turning a pawn into a queen? These are wonderful!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "belle",
+        "text": "You learn quickly, Caller. But there is one more thing every player must know…",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l7-draws-hook",
+    "key": "kids-l7-draws-hook-17a1d6f",
+    "backdrop": "heights",
+    "colorAmount": 0.45,
+    "title": "When Nobody Wins",
+    "cast": [
+      "belle"
+    ],
+    "lines": [
+      {
+        "speaker": "belle",
+        "text": "Not every game is won, little one. Sometimes a game ends in a tie — a draw.",
+        "mood": "idle"
+      },
+      {
+        "speaker": "belle",
+        "text": "Beware STALEMATE: if a king can't move but isn't in check, the game is a draw — not a win!",
+        "mood": "worried"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l7-draws-resolve",
+    "key": "kids-l7-draws-resolve-16r2q4l",
+    "backdrop": "heights",
+    "colorAmount": 0.7,
+    "title": "The Wise Way",
+    "cast": [
+      "pip",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "So I must be careful NOT to stalemate when I'm winning. Got it!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Clever, clever. But my gate on the heights is trickier than the last…",
+        "mood": "sly"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l8-first-mates-hook",
+    "key": "kids-l8-first-mates-hook-1m5wl1f",
+    "backdrop": "road",
+    "colorAmount": 0.7,
+    "title": "Your First Real Mates",
+    "cast": [
+      "nim",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Two rooks, a queen, a single rook — each one can checkmate a lonely king. Let's learn the patterns!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Walk the king to the edge, then snap the trap shut. You can do it, Caller!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l8-first-mates-resolve",
+    "key": "kids-l8-first-mates-resolve-13eiphx",
+    "backdrop": "road",
+    "colorAmount": 1,
+    "title": "Champions' Road Blooms",
+    "cast": [
+      "nim",
+      "murk",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Boom! Mate! The whole road is sparkling again. Three friends awake!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "No, no, NO! Stay out of my Trickster Forest — it's full of nasty surprises!",
+        "mood": "worried"
+      },
+      {
+        "speaker": "pip",
+        "text": "Surprises don't scare us anymore. Into the forest, team!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l9-tricks-hook",
+    "key": "kids-l9-tricks-hook-1qns7c6",
+    "backdrop": "forest",
+    "colorAmount": 0.2,
+    "title": "Murk's Forest of Tricks",
+    "cast": [
+      "murk",
+      "nim",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "murk",
+        "text": "My forest! Here I hide my favorite tricks — forks, pins, and skewers. You'll never learn them!",
+        "mood": "sly"
+      },
+      {
+        "speaker": "nim",
+        "text": "Oh-ho, a FORK hits two things at once! We can use Murk's own tricks against him!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Let's master every trick, Caller — and find who's sleeping deep in these trees.",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-l9-tricks-resolve",
+    "key": "kids-l9-tricks-resolve-1wha1e1",
+    "backdrop": "forest",
+    "colorAmount": 0.45,
+    "title": "Tricks Turned",
+    "cast": [
+      "pip",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Forks, pins, skewers — they're OURS now!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Hey! Those are MY tricks! …this isn't going how I planned.",
+        "mood": "worried"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-more-mates-hook",
+    "key": "kids-more-mates-hook-8hfupe",
+    "backdrop": "road",
+    "colorAmount": 0.7,
+    "title": "Sneaky Checkmates",
+    "cast": [
+      "nim"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Ready for my favorites, Caller? Mates where the king is trapped by its OWN pieces!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "nim",
+        "text": "The back-rank mate and the smothered mate — sneaky and beautiful. Let's spring them!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-more-mates-resolve",
+    "key": "kids-more-mates-resolve-13u9yp7",
+    "backdrop": "road",
+    "colorAmount": 0.85,
+    "title": "Sneaky Mates Mastered",
+    "cast": [
+      "nim",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Back-rank AND smothered — you've got a whole bag of checkmates now!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Next, Caller — the great king-and-queen and king-and-rook mates. Let's finish the road!",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-pawn-power-hook",
+    "key": "kids-pawn-power-hook-1oee5i2",
+    "backdrop": "forest",
+    "colorAmount": 0.45,
+    "title": "A Pawn's Big Dream",
+    "cast": [
+      "pip",
+      "nim"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "This part is close to my heart, Caller. A pawn who marches all the way home becomes a QUEEN.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "nim",
+        "text": "That's YOUR dream, Pip! Let's practice walking pawns home, step by step.",
+        "mood": "happy"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-pawn-power-resolve",
+    "key": "kids-pawn-power-resolve-o3ap11",
+    "backdrop": "forest",
+    "colorAmount": 0.7,
+    "title": "Almost There",
+    "cast": [
+      "pip",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "Every pawn made it home! My own dream feels closer than ever.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "One last gate, deep in the trees. Pass it… if you dare.",
+        "mood": "sly"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-playing-smart-hook",
+    "key": "kids-playing-smart-hook-1kp7zz3",
+    "backdrop": "meadow",
+    "colorAmount": 0.4,
+    "title": "Rookwell's Rule",
+    "cast": [
+      "rookwell"
+    ],
+    "lines": [
+      {
+        "speaker": "rookwell",
+        "text": "A brave piece is also a CAREFUL one. Before every move, look: is anything in danger?",
+        "mood": "idle"
+      },
+      {
+        "speaker": "rookwell",
+        "text": "Murk loves it when you forget to check. Let's not give him the chance.",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-playing-smart-resolve",
+    "key": "kids-playing-smart-resolve-qkh9p5",
+    "backdrop": "meadow",
+    "colorAmount": 0.6,
+    "title": "Careful and Strong",
+    "cast": [
+      "pip",
+      "rookwell"
+    ],
+    "lines": [
+      {
+        "speaker": "pip",
+        "text": "I looked before I leaped — and nothing got taken for free!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "rookwell",
+        "text": "Well done, Caller. Now for the most important move of all… the checkmate.",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-scholars-mate-hook",
+    "key": "kids-scholars-mate-hook-131b7jf",
+    "backdrop": "road",
+    "colorAmount": 0.5,
+    "title": "A Sneaky Trap",
+    "cast": [
+      "nim"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Psst, Caller — some tricksters try to win in just FOUR moves! It's called Scholar's Mate.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "nim",
+        "text": "They gang up on one square — f7. Learn to see it, and nobody can ever catch you with it!",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-scholars-mate-resolve",
+    "key": "kids-scholars-mate-resolve-1so7k18",
+    "backdrop": "road",
+    "colorAmount": 0.6,
+    "title": "Trap Defused",
+    "cast": [
+      "nim",
+      "murk"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Boing! You spotted it AND turned it around. Four-move traps don't scare us!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "murk",
+        "text": "Bah — I was SAVING that trick. No fair learning it!",
+        "mood": "sly"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-trapping-king-hook",
+    "key": "kids-trapping-king-hook-lw3mi2",
+    "backdrop": "road",
+    "colorAmount": 0.45,
+    "title": "Build the Box",
+    "cast": [
+      "nim",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "To catch a king, build a BOX! Take away his squares one by one until he's stuck.",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Like herding a sheep into a pen. Let's practice the trap, Caller!",
+        "mood": "idle"
+      }
+    ]
+  },
+  {
+    "sceneId": "kids-trapping-king-resolve",
+    "key": "kids-trapping-king-resolve-i4bh79",
+    "backdrop": "road",
+    "colorAmount": 0.7,
+    "title": "Cornered!",
+    "cast": [
+      "nim",
+      "pip"
+    ],
+    "lines": [
+      {
+        "speaker": "nim",
+        "text": "Boxed him in! You're a natural king-catcher, Caller!",
+        "mood": "happy"
+      },
+      {
+        "speaker": "pip",
+        "text": "Now let's turn those traps into real checkmates.",
+        "mood": "happy"
+      }
+    ]
+  }
+]
