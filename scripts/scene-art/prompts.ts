@@ -62,6 +62,9 @@ export const APPEARANCES: Record<string, string> = {
   murk:
     "Murk, a sly trickster MAGPIE bird, slate blue-grey plumage (#475569) with a white belly, a glossy black " +
     "head, one gleaming yellow eye, a sharp orange beak, a mischievous crooked grin",
+  caller:
+    "the Caller, a small friendly chess PAWN like Pip but in deep teal-green (#0f766e), with a tiny bright " +
+    "sparkle-star floating just above the head — the child's own brave little avatar",
 };
 
 /** Per-line mood → a face/posture hint for the focal character. */

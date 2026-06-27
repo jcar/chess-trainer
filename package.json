@@ -15,7 +15,8 @@
     "tts:generate": "tsx scripts/tts/generate-audio.ts",
     "art:extract": "tsx scripts/scene-art/extract-scenes.ts",
     "art:cast": "tsx scripts/scene-art/generate-cast.ts",
-    "art:generate": "tsx scripts/scene-art/generate-scenes.ts"
+    "art:generate": "tsx scripts/scene-art/generate-scenes.ts",
+    "art:portraits": "tsx scripts/scene-art/generate-portraits.ts"
   },
   "dependencies": {
     "chess.js": "^1.4.0",

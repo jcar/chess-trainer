@@ -16,6 +16,9 @@ export interface Land {
   wakes: CharacterId;
   /** The story backdrop for this land (matches the lands' scenes). */
   backdrop: SceneBackdropId;
+  /** A representative scene id whose bespoke illustration is the land's "hero"
+   *  image on the quest map + chapter cover (falls back to the SVG backdrop). */
+  heroScene: string;
 }
 
 export const LANDS: Land[] = [
@@ -25,6 +28,7 @@ export const LANDS: Land[] = [
     tagline: "Where Pip wakes and learns the board.",
     wakes: "pip",
     backdrop: "kingdom",
+    heroScene: "kids-l1-board-hook",
     lessonIds: [
       "kids-l1-board",
       "kids-l2-straight-diagonal",
@@ -39,6 +43,7 @@ export const LANDS: Land[] = [
     tagline: "Sir Rookwell teaches capturing, safety, and checkmate.",
     wakes: "rookwell",
     backdrop: "meadow",
+    heroScene: "kids-l4-capturing-values-hook",
     lessonIds: [
       "kids-l4-capturing-values",
       "kids-playing-smart",
@@ -51,6 +56,7 @@ export const LANDS: Land[] = [
     tagline: "Bishop Belle shows special moves and sneaky draws.",
     wakes: "belle",
     backdrop: "heights",
+    heroScene: "kids-l6-special-moves-hook",
     lessonIds: ["kids-l6-special-moves", "kids-l7-draws", "kids-checkpoint-2"],
   },
   {
@@ -59,6 +65,7 @@ export const LANDS: Land[] = [
     tagline: "Nim leaps in: openings, trapping the king, first mates.",
     wakes: "nim",
     backdrop: "road",
+    heroScene: "kids-good-first-moves-hook",
     lessonIds: [
       "kids-good-first-moves",
       "kids-scholars-mate",
@@ -73,6 +80,7 @@ export const LANDS: Land[] = [
     tagline: "Queen Aurora's tricks: forks, pins, skewers, and pawn power.",
     wakes: "aurora",
     backdrop: "forest",
+    heroScene: "kids-checkpoint-3-resolve",
     lessonIds: ["kids-l9-tricks", "kids-pawn-power", "kids-checkpoint-3"],
   },
   {
@@ -81,6 +89,7 @@ export const LANDS: Land[] = [
     tagline: "Wake King Cedric — play, win, and earn your crown!",
     wakes: "cedric",
     backdrop: "throne",
+    heroScene: "kids-l10-play-resolve",
     lessonIds: ["kids-l10-play"],
   },
 ];

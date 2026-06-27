@@ -20,7 +20,7 @@ export function ChapterCover({ land, chapter, colorAmount }: Props) {
   const friend = CHARACTERS[land.wakes];
   return (
     <div className="relative overflow-hidden rounded-3xl shadow-soft">
-      <SceneArt backdrop={land.backdrop} colorAmount={colorAmount} className="!rounded-3xl" />
+      <SceneArt backdrop={land.backdrop} sceneId={land.heroScene} colorAmount={colorAmount} className="!rounded-3xl" />
       <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-t from-ink/65 via-ink/10 to-transparent p-4">
         <span className="self-start rounded-full bg-white/85 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-ink">
           Chapter {chapter}

@@ -7,6 +7,8 @@
 
 import { useKidsPrefs } from "@/lib/kids/prefs";
 import { getPipOutfit } from "@/lib/kids/cosmetics";
+import { PIP_MASCOT_IMAGES } from "@/lib/art/portraitManifest";
+import { withBasePath } from "@/lib/basePath";
 
 type Mood = "idle" | "cheer" | "think";
 
@@ -20,6 +22,7 @@ interface Props {
 
 export function PipMascot({ mood = "idle", size = 72, says }: Props) {
   const outfit = getPipOutfit(useKidsPrefs().pipOutfitId);
+  const imageFile = PIP_MASCOT_IMAGES[mood] ?? PIP_MASCOT_IMAGES.idle;
   return (
     <div className="flex items-center gap-3">
       <span className="relative inline-flex shrink-0">
@@ -32,6 +35,21 @@ export function PipMascot({ mood = "idle", size = 72, says }: Props) {
             {outfit.accessory}
           </span>
         )}
+      {imageFile ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={withBasePath(`/images/mascot/${imageFile}`)}
+          alt="Pip the pawn"
+          width={size}
+          height={size}
+          style={{
+            width: size,
+            height: size,
+            objectFit: "contain",
+            animation: mood === "cheer" ? "kidBounce 0.5s ease-in-out 3" : undefined,
+          }}
+        />
+      ) : (
       <svg
         width={size}
         height={size}
@@ -74,6 +92,7 @@ export function PipMascot({ mood = "idle", size = 72, says }: Props) {
           </>
         )}
       </svg>
+      )}
       </span>
       {says && (
         <div className="relative rounded-2xl bg-card px-4 py-2 text-lg font-bold text-primary-strong shadow-soft">

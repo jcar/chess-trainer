@@ -75,7 +75,7 @@ export function QuestMap({ module: mod }: { module: Module }) {
         <section key={land.id} className="space-y-2">
           {/* Land banner — blooms from grey to color as the land is completed. */}
           <div className="relative overflow-hidden rounded-2xl">
-            <SceneArt backdrop={land.backdrop} colorAmount={frac} className="!rounded-2xl" />
+            <SceneArt backdrop={land.backdrop} sceneId={land.heroScene} colorAmount={frac} className="!rounded-2xl" />
             <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/55 to-transparent p-3">
               <div className="flex items-center gap-2">
                 <CharacterPortrait id={land.wakes} size={40} colorAmount={frac} />

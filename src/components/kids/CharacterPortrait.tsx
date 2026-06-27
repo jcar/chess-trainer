@@ -8,6 +8,8 @@
 
 import type { CharacterId } from "@/content/kids/characters";
 import { CHARACTERS } from "@/content/kids/characters";
+import { CHARACTER_IMAGES } from "@/lib/art/portraitManifest";
+import { withBasePath } from "@/lib/basePath";
 
 type Mood = "idle" | "happy" | "worried" | "sly";
 
@@ -230,6 +232,7 @@ export function CharacterPortrait({
   const amount = desaturated ? 0 : colorAmount ?? 1;
   // A lighter tint of the accent color for head/body fills.
   const tint = lighten(c.color, 0.55);
+  const imageFile = CHARACTER_IMAGES[id];
 
   return (
     <span
@@ -239,16 +242,28 @@ export function CharacterPortrait({
         transition: "filter 700ms ease",
       }}
     >
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 100 100"
-        role="img"
-        aria-label={`${c.name}, ${c.role}`}
-      >
-        <ellipse cx="50" cy="90" rx="30" ry="7" fill={c.color} opacity="0.18" />
-        <Body id={id} c={c.color} tint={tint} mood={mood} />
-      </svg>
+      {imageFile ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={withBasePath(`/images/characters/${imageFile}`)}
+          alt={`${c.name}, ${c.role}`}
+          width={size}
+          height={size}
+          className="rounded-full object-cover ring-2 ring-white/70"
+          style={{ width: size, height: size }}
+        />
+      ) : (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 100 100"
+          role="img"
+          aria-label={`${c.name}, ${c.role}`}
+        >
+          <ellipse cx="50" cy="90" rx="30" ry="7" fill={c.color} opacity="0.18" />
+          <Body id={id} c={c.color} tint={tint} mood={mood} />
+        </svg>
+      )}
     </span>
   );
 }

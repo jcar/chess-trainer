@@ -49,8 +49,14 @@ export class ImageGen {
     return `key#${this.ki + 1}/${this.keys.length}`;
   }
 
-  /** Generate one image. `refs` are reference images for character/style consistency. */
-  async generate(promptText: string, refs: RefImage[] = []): Promise<GenResult | null> {
+  /** Generate one image. `refs` are reference images for character/style
+   *  consistency; `aspectRatio` defaults to wide 16:9 (scenes), pass "1:1" etc.
+   *  for portraits. */
+  async generate(
+    promptText: string,
+    refs: RefImage[] = [],
+    aspectRatio = "16:9",
+  ): Promise<GenResult | null> {
     const parts: Array<Record<string, unknown>> = refs.map((r) => ({
       inlineData: { mimeType: r.mime, data: r.base64 },
     }));
@@ -63,7 +69,7 @@ export class ImageGen {
           contents: [{ role: "user", parts }],
           config: {
             responseModalities: [Modality.IMAGE],
-            imageConfig: { aspectRatio: "16:9" },
+            imageConfig: { aspectRatio },
           },
         });
         const out = resp.candidates?.[0]?.content?.parts ?? [];
