@@ -77,10 +77,13 @@ export class ImageGen {
       } catch (err) {
         const msg = (err as Error).message ?? "";
         const rateLimited = /\b429\b|RESOURCE_EXHAUSTED|quota/i.test(msg);
+        // A billing/plan 429 means this key has NO image quota at all (not a
+        // transient per-minute limit) — don't burn 10 retries; rotate or stop now.
+        const noQuota = /check your plan and billing|billing details|free tier|FreeTier/i.test(msg);
         if (rateLimited) {
           const m = msg.match(/retry in ([\d.]+)s/i) ?? msg.match(/"retryDelay":\s*"(\d+)s"/);
           const waitS = m ? Math.ceil(parseFloat(m[1])) + 2 : 20;
-          if (waitS > MAX_WAIT_S) {
+          if (noQuota || waitS > MAX_WAIT_S) {
             if (this.ki + 1 < this.keys.length) {
               this.ki++;
               this.ai = new GoogleGenAI({ apiKey: this.keys[this.ki] });
