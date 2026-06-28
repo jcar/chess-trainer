@@ -76,8 +76,10 @@ export const ch12: Lesson = {
       title: "The Evans Gambit (White)",
       blurb: "Sacrifice a pawn to build a big center.",
       orientation: "white",
+      eval: true,
+      source: "Italian Game, Evans Gambit",
       intro:
-        "The Evans offers the b-pawn to deflect Black's bishop, then slams in c3 and d4 for a powerful center and fast development.",
+        "The Evans offers the b-pawn to deflect Black's bishop, then slams in c3 and d4 for a powerful center and fast development. Watch the eval bar: it dips toward Black (a pawn IS a pawn) — the gambit is the bet that White's lead in development is worth more than that small deficit.",
       steps: [
         { san: "e4", note: "Center." },
         { san: "e5", note: "Symmetry." },
@@ -85,7 +87,7 @@ export const ch12: Lesson = {
         { san: "Nc6", note: "Defend e5." },
         { san: "Bc4", note: "The Italian bishop, eyeing f7." },
         { san: "Bc5", note: "Black mirrors." },
-        { san: "b4", note: "The Evans Gambit! Offer the pawn to lure the bishop off its diagonal." },
+        { san: "b4", keyIdea: "Pay a pawn for time", note: "The Evans Gambit! Offer the pawn to lure the bishop off its diagonal." },
         { san: "Bxb4", note: "Black accepts — declining is also playable, but now White gains time." },
         { san: "c3", note: "Hit the bishop AND prepare d4. Tempo gained." },
         { san: "Ba5", note: "The bishop retreats, keeping an eye on the c3-pawn." },
@@ -98,12 +100,14 @@ export const ch12: Lesson = {
       title: "The King's Gambit (White)",
       blurb: "Romantic, sharp, and instructive.",
       orientation: "white",
+      eval: true,
+      source: "King's Gambit",
       intro:
-        "The oldest gambit of all: offer the f-pawn to rip open the f-file and dominate the center. Risky and double-edged, but a fantastic teacher of initiative.",
+        "The oldest gambit of all: offer the f-pawn to rip open the f-file and dominate the center. Risky and double-edged, but a fantastic teacher of initiative — the eval leans Black's way, which is exactly why it's 'high-risk, high-reward'.",
       steps: [
         { san: "e4", note: "Center." },
         { san: "e5", note: "Symmetry." },
-        { san: "f4", note: "The King's Gambit — offer the f-pawn to deflect e5 and open lines." },
+        { san: "f4", keyIdea: "Rip the position open", note: "The King's Gambit — offer the f-pawn to deflect e5 and open lines." },
         { san: "exf4", note: "Accepted. Black grabs the pawn but gives up the center." },
         { san: "Nf3", note: "Develop and prevent ...Qh4+, which would be annoying." },
         { san: "g5", note: "Black tries to hold the extra pawn with a kingside pawn chain." },
@@ -118,13 +122,15 @@ export const ch12: Lesson = {
       title: "The Budapest Gambit (Black)",
       blurb: "A surprise weapon against 1.d4.",
       orientation: "black",
+      eval: true,
+      source: "Budapest Gambit",
       intro:
-        "Black can gambit too. The Budapest offers the e-pawn after 1.d4 Nf6 2.c4 e5, aiming for quick piece activity and tricky play against an unprepared opponent.",
+        "Black can gambit too. The Budapest offers the e-pawn after 1.d4 Nf6 2.c4 e5, aiming for quick piece activity and tricky play against an unprepared opponent. The eval favours White slightly (Black's the one down a pawn now), but Black's pieces spring to life fast.",
       steps: [
         { san: "d4", note: "White's move." },
         { san: "Nf6", note: "Develop and control e4." },
         { san: "c4", note: "White grabs space." },
-        { san: "e5", note: "The Budapest Gambit! Offer the e-pawn to open lines for your pieces." },
+        { san: "e5", keyIdea: "Black gambits too", note: "The Budapest Gambit! Offer the e-pawn to open lines for your pieces." },
         { san: "dxe5", note: "White accepts." },
         { san: "Ng4", note: "The point: the knight heads to recover the pawn on e5 with active play." },
         { san: "Bf4", note: "White tries to hold the pawn." },
@@ -149,6 +155,30 @@ export const ch12: Lesson = {
       correctIndex: 1,
       explanation:
         "Against a gambit, don't get greedy. Accepting is usually fine, but the antidote to the opponent's initiative is your OWN development — and often giving the pawn back at the right moment to complete development and reach a safe, equal (or better) position.",
+    },
+    {
+      id: "ch12-guess-evans",
+      type: "guessMove",
+      title: "Your turn: play the gambit",
+      blurb: "Predict the Evans Gambit's pawn sac and the burst that follows.",
+      orientation: "white",
+      source: "Italian Game, Evans Gambit",
+      intro:
+        "You're White, about to invest a pawn for a roaring initiative. Before each highlighted move, ask: how do I turn a small material deficit into time, a big center, and active pieces?",
+      moves: [
+        "e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "b4", "Bxb4", "c3", "Ba5", "d4",
+      ],
+      guessAt: [6, 8, 10],
+      notes: [
+        undefined, undefined, undefined, undefined, undefined, undefined,
+        "The gambit! Offer the b-pawn to drag the bishop off its diagonal — you're buying time, not winning material.",
+        undefined,
+        "Hit the bishop AND prepare d4 — gaining a tempo while you build. Every move must do work when you're a pawn down.",
+        undefined,
+        "There's the payoff: a big pawn center and a clear lead in development. That's full value for the pawn.",
+      ],
+      successText:
+        "That's gambit play: spend the pawn, then cash the lead in development before your opponent catches up. Initiative over material — when you can show concrete activity for it.",
     },
     {
       id: "ch12-recap",

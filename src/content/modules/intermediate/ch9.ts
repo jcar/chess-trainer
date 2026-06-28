@@ -93,8 +93,10 @@ export const ch9: Lesson = {
       title: "A model opening: the Closed Ruy Lopez",
       blurb: "Principled development into a real middlegame.",
       orientation: "white",
+      eval: true,
+      source: "Ruy López, Closed",
       intro:
-        "Watch how both sides follow the principles into a rich middlegame. This is the Closed Ruy Lopez — one of the most instructive openings in chess.",
+        "Watch how both sides follow the principles into a rich middlegame. This is the Closed Ruy Lopez — one of the most instructive openings in chess. The eval barely moves: when you understand the plan rather than memorizing, you reach a balanced, playable middlegame every time.",
       steps: [
         { san: "e4", note: "Claim the center." },
         { san: "e5", note: "Black answers symmetrically." },
@@ -110,7 +112,7 @@ export const ch9: Lesson = {
         { san: "b5", note: "Black gains queenside space and hits the bishop." },
         { san: "Bb3", note: "The bishop retreats to a great diagonal aiming at f7." },
         { san: "d6", note: "Black opens the bishop and supports e5." },
-        { san: "c3", note: "Prepare d4 — White's central break and the heart of the plan." },
+        { san: "c3", keyIdea: "Understand the plan: the d4 break", note: "Prepare d4 — White's central break and the heart of the plan." },
         { san: "O-O", note: "Both kings are safe; a long, strategic middlegame begins around the d4 break." },
       ],
     },
@@ -147,6 +149,30 @@ export const ch9: Lesson = {
       correctIndex: 1,
       explanation:
         "Offbeat moves are usually slightly inferior. Don't try to refute them with a wild attack — just play principled chess. Good development almost always punishes a bad opening move on its own.",
+    },
+    {
+      id: "ch9-guess-london",
+      type: "guessMove",
+      title: "Your turn: play a system",
+      blurb: "Predict the London setup — the same plan every game.",
+      orientation: "white",
+      source: "London System",
+      intro:
+        "A 'system' opening is the compact-repertoire idea in action: you aim for the SAME healthy setup whatever Black does, so you understand it cold. Predict White's London moves — you're learning a structure, not a move list.",
+      moves: [
+        "d4", "d5", "Bf4", "Nf6", "e3", "e6", "Nf3", "Bd6", "Bg3",
+      ],
+      guessAt: [2, 4, 6],
+      notes: [
+        undefined, undefined,
+        "The London's signature: the bishop comes OUT before the e-pawn boxes it in. Same move against almost anything Black plays.",
+        undefined,
+        "Now open the path for the other bishop and solidify the center. The setup is always this shape.",
+        undefined,
+        "Develop the kingside knight and you're a move from castling. One structure, deeply understood — that's a repertoire.",
+      ],
+      successText:
+        "That's the system idea: a repeatable setup you reach by understanding, not memorization. Reach a position you know, and you spend your thinking on plans — not panic.",
     },
     {
       id: "ch9-build-it",
