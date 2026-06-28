@@ -76,12 +76,14 @@ export const ch2: Lesson = {
       title: "A reliable 1.e4 opening",
       blurb: "The Italian Game, move by move.",
       orientation: "white",
+      eval: true,
+      source: "Italian Game",
       intro:
-        "1.e4 stakes a claim in the center and opens lines for the bishop and queen. We'll follow the Italian Game — natural, principled development that any beginner can play.",
+        "1.e4 stakes a claim in the center and opens lines for the bishop and queen. We'll follow the Italian Game — natural, principled development that any beginner can play. Watch the eval bar stay near even: when BOTH sides follow the principles, neither gets an edge — and that's exactly the point of a sound opening.",
       steps: [
-        { san: "e4", note: "Occupy the center and free the light-squared bishop and queen." },
+        { san: "e4", keyIdea: "Center", note: "Occupy the center and free the light-squared bishop and queen." },
         { san: "e5", note: "Black mirrors, staking an equal claim in the center." },
-        { san: "Nf3", note: "Develop a knight AND attack the e5-pawn — development with a threat is ideal." },
+        { san: "Nf3", keyIdea: "Develop (with a threat)", note: "Develop a knight AND attack the e5-pawn — development with a threat is ideal." },
         { san: "Nc6", note: "Black defends e5 and develops a knight too." },
         { san: "Bc4", note: "The bishop eyes f7 — the weakest square in Black's camp early on." },
         { san: "Bc5", note: "Black develops symmetrically, aiming at your own f2." },
@@ -97,8 +99,10 @@ export const ch2: Lesson = {
       title: "A reliable 1.d4 opening",
       blurb: "The Queen's Gambit, move by move.",
       orientation: "white",
+      eval: true,
+      source: "Queen's Gambit Declined",
       intro:
-        "1.d4 is the other great first move — a slower, more strategic game. The Queen's Gambit offers a pawn to pull Black's center pawn off the board.",
+        "1.d4 is the other great first move — a slower, more strategic game. The Queen's Gambit offers a pawn to pull Black's center pawn off the board. Same three principles, different road: claim the center, develop, and get ready to castle.",
       steps: [
         { san: "d4", note: "Claim the center with the queen's pawn, supported by the queen." },
         { san: "d5", note: "Black stakes a symmetrical claim." },
@@ -145,6 +149,30 @@ export const ch2: Lesson = {
       correctIndex: 1,
       explanation:
         "An early queen becomes a target. Each time the opponent attacks it, they develop a piece 'for free' while you waste moves running away. Develop knights and bishops first; bring the queen out once it's safe.",
+    },
+    {
+      id: "ch2-guess-principles",
+      type: "guessMove",
+      title: "Your turn: play the principles",
+      blurb: "Predict White's moves using center, develop, castle.",
+      orientation: "white",
+      source: "Italian Game",
+      intro:
+        "You're White. Before each highlighted move, play what you think the principles call for — the app will check it. Ask yourself every time: am I fighting for the center, developing a piece, or getting my king safe?",
+      moves: [
+        "e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "c3", "Nf6", "d3", "d6", "O-O", "O-O",
+      ],
+      guessAt: [2, 4, 10],
+      notes: [
+        undefined, undefined,
+        "Develop a knight — and it attacks the e5-pawn at the same time. Development with a threat is the dream.",
+        undefined,
+        "Develop the bishop to an active square, eyeing the f7 weak spot. Knights and bishops out before the queen.",
+        undefined, undefined, undefined, undefined, undefined,
+        "Castle! King tucked safely in the corner, rook ready for the center. All three principles done.",
+      ],
+      successText:
+        "That's a healthy opening: center claimed, pieces developed, king castled. Play these three goals every game and you'll always reach a sound middlegame.",
     },
     {
       id: "ch2-recap",

@@ -76,8 +76,10 @@ export const ch3: Lesson = {
       title: "Meeting 1.e4 with ...e5",
       blurb: "Classical development against the Ruy Lopez.",
       orientation: "black",
+      eval: true,
+      source: "Ruy López",
       intro:
-        "The most classical answer to 1.e4 is 1...e5. Here's how Black develops naturally against the Ruy Lopez, one of White's most respected tries. (The board is shown from Black's side.)",
+        "The most classical answer to 1.e4 is 1...e5. Here's how Black develops naturally against the Ruy Lopez, one of White's most respected tries. (The board is shown from Black's side.) Watch the eval: it barely favours White — the second move is only a tiny head start when you develop soundly.",
       steps: [
         { san: "e4", note: "White takes the center." },
         { san: "e5", note: "You answer in the center — symmetric and sound." },
@@ -95,8 +97,10 @@ export const ch3: Lesson = {
       title: "A setup you can play against anything",
       blurb: "The King's Indian fianchetto structure.",
       orientation: "black",
+      eval: true,
+      source: "King's Indian Defence",
       intro:
-        "Setup-based openings are great for beginners: you aim for the same piece formation regardless of White's moves. Here's the King's Indian structure against 1.d4.",
+        "Setup-based openings are great for beginners: you aim for the same piece formation regardless of White's moves. Here's the King's Indian structure against 1.d4. White gets more space (the eval nudges White's way), but Black's setup is solid and ready to strike back later.",
       steps: [
         { san: "d4", note: "White claims the center." },
         { san: "Nf6", note: "Develop and control e4 instead of occupying the center immediately." },
@@ -144,6 +148,30 @@ export const ch3: Lesson = {
       correctIndex: 1,
       explanation:
         "Setup openings reduce memorization: you learn one healthy formation (pawns and piece squares) and steer toward it. You still must watch for direct threats, but you're rarely lost in the opening.",
+    },
+    {
+      id: "ch3-guess-principles",
+      type: "guessMove",
+      title: "Your turn: develop as Black",
+      blurb: "Predict Black's moves using the same three principles.",
+      orientation: "black",
+      source: "Italian Game",
+      intro:
+        "You're Black now. White is developing soundly — match them. Before each highlighted move, play what the principles call for: contest the center, develop a piece, get your king safe.",
+      moves: [
+        "e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6", "d3", "Be7", "O-O", "O-O",
+      ],
+      guessAt: [3, 5, 9],
+      notes: [
+        undefined, undefined, undefined,
+        "Defend the e5-pawn AND develop a knight in one move — answer the threat while improving your position.",
+        undefined,
+        "Develop the other knight and hit White's e4-pawn right back. Black keeps pace move for move.",
+        undefined, undefined, undefined,
+        "Castle. Same three principles as White, just one tempo behind — and you're perfectly healthy.",
+      ],
+      successText:
+        "You played the opening like White does, a move behind: center contested, pieces out, king safe. That's all it takes to survive — and thrive — as Black.",
     },
     {
       id: "ch3-recap",

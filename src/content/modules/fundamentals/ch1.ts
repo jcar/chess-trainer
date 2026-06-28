@@ -157,6 +157,23 @@ export const ch1: Lesson = {
         "Checkmate! Kc7 boxes the king so its only move is to a7, and then Ra1# pins it to the edge with your king covering every escape. King + rook always wins — the king does the cornering, the rook does the checking.",
     },
     {
+      id: "ways-to-win",
+      type: "quiz",
+      title: "The ways a game ends",
+      blurb: "Checkmate isn't the only one.",
+      question:
+        "Besides checkmate, which of these ALSO ends the game in a win for one side?",
+      options: [
+        "Resignation, running out of time, or an opponent who abandons the game.",
+        "Capturing the enemy queen.",
+        "Getting a pawn to the other side of the board.",
+        "Putting the king in check three times.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "A game is won by checkmate, by the opponent resigning, by the opponent running out of time (flag-fall), or by abandonment. Winning a queen or promoting a pawn is huge — but the game only ends when the king is mated or one of those other things happens.",
+    },
+    {
       id: "ch1-recap",
       type: "concept",
       title: "Recap: the ways a game ends",
