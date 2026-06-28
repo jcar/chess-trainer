@@ -114,9 +114,12 @@ export const centerLesson: Lesson = {
       title: "Hitting the centre",
       blurb: "Build it, then break it.",
       orientation: "white",
+      eval: true,
+      source: "French Defence",
       intro:
         "White builds a broad pawn centre; Black waits, then strikes at it with a " +
-        "well-timed break to free the position.",
+        "well-timed break to free the position. Watch the eval breathe as the centre " +
+        "is built, advanced, and then challenged.",
       steps: [
         { san: "e4", note: "White claims the first central square." },
         { san: "e6", note: "Black prepares to challenge with ...d5 later." },
@@ -127,7 +130,7 @@ export const centerLesson: Lesson = {
         { san: "e5", note: "White pushes past — gaining space but committing the centre." },
         { san: "Nfd7", note: "The knight reroutes to hit the head of the pawn chain." },
         { san: "f4", note: "White over-protects e5, building a big advanced centre." },
-        { san: "c5", note: "The break! Black strikes at the base of the chain." },
+        { san: "c5", keyIdea: "Strike the base of the chain", highlights: ["d4", "c5"], note: "The break! Black strikes at the base of the chain." },
         { san: "Nf3", note: "Developing and bracing the d4-pawn." },
         { san: "Nc6", note: "Piling on d4 — the centre is now the main battleground." },
       ],

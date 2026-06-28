@@ -133,10 +133,13 @@ export const bishopsLesson: Lesson = {
       title: "The better bishop",
       blurb: "Watch one side end up with the superior bishop.",
       orientation: "white",
+      eval: true,
+      source: "Queen's Gambit Declined",
       intro:
         "Here's how a small choice in the opening can leave you with a far better " +
         "bishop than your opponent. Watch how White keeps his pawns off the light " +
-        "squares while Black's bishop gets walled in.",
+        "squares while Black's bishop gets walled in. The eval stays calm — a good-vs-bad " +
+        "bishop is a slow, structural edge, not an instant attack.",
       steps: [
         { san: "d4", note: "White claims the centre." },
         { san: "d5", note: "Black answers symmetrically." },
@@ -173,6 +176,8 @@ export const bishopsLesson: Lesson = {
         },
         {
           san: "Nbd7",
+          keyIdea: "A bishop buried behind its own pawns",
+          highlights: ["c8", "c6", "d5", "e6"],
           note:
             "Black's c8 bishop is now a classic bad bishop: its own pawns on e6, " +
             "d5, and c6 block its only diagonals. White's bishops both roam freely " +

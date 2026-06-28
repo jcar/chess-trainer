@@ -118,10 +118,13 @@ export const synthesisLesson: Lesson = {
       title: "A sacrifice for the long game",
       blurb: "A small give-up for a lasting edge.",
       orientation: "white",
+      eval: true,
+      source: "Ruy Lopez, Exchange Variation",
       intro:
         "Material is only one imbalance. Watch White invest a pawn to wreck " +
         "Black's structure and seize lasting activity — the kind of edge that " +
-        "lingers long after the sacrifice.",
+        "lingers long after the sacrifice. Notice the eval returns to level — yet " +
+        "the position is not equal, because the damaged pawns endure.",
       steps: [
         { san: "e4", note: "White takes the centre." },
         { san: "e5", note: "Black answers symmetrically." },
@@ -154,6 +157,8 @@ export const synthesisLesson: Lesson = {
         },
         {
           san: "Qxe4+",
+          keyIdea: "Structure outlasts a pawn",
+          highlights: ["c6", "c7"],
           note:
             "Black restores material — but Black's doubled, isolated c-pawns are " +
             "a long-term weakness. White's plan: trade into an endgame and target " +

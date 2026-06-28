@@ -127,10 +127,13 @@ export const bishopVsKnightLesson: Lesson = {
       title: "Letting the bishops breathe",
       blurb: "Winning the pair and opening the board.",
       orientation: "white",
+      eval: true,
+      source: "Ruy Lopez, Exchange Variation",
       intro:
         "Here White wins the bishop pair and then opens the centre to set the " +
         "two bishops free. Watch how grabbing the pair and clearing lines go " +
-        "hand in hand.",
+        "hand in hand. The eval barely moves — the bishop pair is a slow asset " +
+        "that pays off once the board opens.",
       steps: [
         { san: "e4", note: "White takes the centre." },
         { san: "e5", note: "Black stakes a symmetrical claim." },
@@ -163,6 +166,7 @@ export const bishopVsKnightLesson: Lesson = {
         },
         {
           san: "Bxf3",
+          keyIdea: "Hold the pair, then open the board",
           note:
             "Black gives up his bishop for White's knight — and now White holds " +
             "the bishop pair. With the centre about to open, those two bishops " +

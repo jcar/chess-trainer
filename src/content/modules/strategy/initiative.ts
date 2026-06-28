@@ -117,9 +117,12 @@ export const initiativeLesson: Lesson = {
       title: "Punishing slow play",
       blurb: "One side dawdles and pays.",
       orientation: "white",
+      eval: true,
+      source: "Légal's Mate",
       intro:
         "When one side wanders off to grab material instead of developing, the " +
-        "better-developed side strikes. Watch fast play overwhelm a lazy setup.",
+        "better-developed side strikes. Watch fast play overwhelm a lazy setup — " +
+        "and the eval bar swing from level to mate.",
       steps: [
         { san: "e4", note: "White opens the centre." },
         { san: "e5", note: "Black replies in kind." },
@@ -142,6 +145,7 @@ export const initiativeLesson: Lesson = {
         },
         {
           san: "Nxe5",
+          keyIdea: "Cash the lead before they catch up",
           note:
             "White strikes! The pin is broken because the bishop on g4 hangs.",
         },

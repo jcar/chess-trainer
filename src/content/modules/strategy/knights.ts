@@ -130,10 +130,13 @@ export const knightsLesson: Lesson = {
       title: "Planting a knight",
       blurb: "Watch a knight settle onto a protected outpost.",
       orientation: "white",
+      eval: true,
+      source: "Open Sicilian — Sveshnikov",
       intro:
         "A great square is worth working for. Here White manoeuvres a knight to " +
         "a permanent outpost on d5, supported by a pawn and beyond the reach of " +
-        "any Black pawn.",
+        "any Black pawn. The eval stays level — proof that the outpost is a slow, " +
+        "structural trump, not a quick tactic.",
       steps: [
         { san: "e4", note: "White grabs the centre." },
         { san: "c5", note: "The Sicilian — Black fights for d4." },
@@ -165,6 +168,9 @@ export const knightsLesson: Lesson = {
         },
         {
           san: "Nd5",
+          keyIdea: "An unkickable knight",
+          highlights: ["d5"],
+          arrows: [{ from: "d5", to: "f6" }, { from: "d5", to: "e7" }],
           note:
             "The knight lands on d5 — supported, central, and unkickable. From " +
             "here it dominates, and Black can only remove it by trading a piece.",

@@ -118,9 +118,12 @@ export const openFilesLesson: Lesson = {
       title: "Seizing the file",
       blurb: "A file opens; a rook pours through.",
       orientation: "white",
+      eval: true,
+      source: "Ruy Lopez",
       intro:
         "Watch how a single pawn trade pries open a file — and how the side " +
-        "that grabs it first turns the open line into an invasion.",
+        "that grabs it first turns the open line into an invasion. An open file " +
+        "is a road, not a knockout — the eval stays modest while control is built.",
       steps: [
         { san: "e4", note: "White claims the centre." },
         { san: "e5", note: "Black mirrors." },
@@ -152,6 +155,8 @@ export const openFilesLesson: Lesson = {
         },
         {
           san: "Be7",
+          keyIdea: "Whoever grabs the file first invades",
+          arrows: [{ from: "e1", to: "e8" }],
           note:
             "Black hurries to develop, but White already owns the open file. " +
             "Re1 next pressures the pinned knight and stamps control of the line.",

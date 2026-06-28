@@ -117,9 +117,12 @@ export const weakPawnsLesson: Lesson = {
       title: "Creating a target",
       blurb: "Manufacturing a weakness.",
       orientation: "white",
+      eval: true,
+      source: "Queen's Gambit Declined, Exchange Variation",
       intro:
         "Watch how a series of trades and exchanges saddles Black with an " +
-        "isolated pawn that White can then blockade and attack.",
+        "isolated pawn that White can then blockade and attack. A weakness is a " +
+        "long game — the eval barely flickers while the target is fixed for keeps.",
       steps: [
         { san: "d4", note: "A solid central start." },
         { san: "d5", note: "Black answers symmetrically." },
@@ -132,7 +135,7 @@ export const weakPawnsLesson: Lesson = {
         { san: "Nf3", note: "Developing toward the blockade square on d4." },
         { san: "Be7", note: "Black develops, but the d5-pawn is a permanent worry." },
         { san: "Bf4", note: "Eyeing the queenside and controlling key dark squares." },
-        { san: "O-O", note: "Black castles. The isolated d5-pawn is the target for the rest of the game." },
+        { san: "O-O", keyIdea: "Fix the weakness, then pile on", highlights: ["d5"], note: "Black castles. The isolated d5-pawn is the target for the rest of the game." },
       ],
     },
   ],

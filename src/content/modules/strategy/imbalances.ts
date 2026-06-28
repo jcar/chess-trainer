@@ -121,8 +121,10 @@ export const imbalancesLesson: Lesson = {
       title: "Spotting the plan",
       blurb: "Turn a small edge into a clear plan.",
       orientation: "white",
+      eval: true,
+      source: "Italian Game",
       intro:
-        "Watch a quiet opening reach a position with one clear imbalance. Notice how the edge — better development and a target — suggests the plan all by itself.",
+        "Watch a quiet opening reach a position with one clear imbalance. Notice how the edge — better development and a target — suggests the plan all by itself. Keep an eye on the eval bar: a lead in development is real, even when the score is still near level.",
       steps: [
         { san: "e4", note: "Stake a claim in the centre and open lines for the bishop and queen." },
         { san: "e5", note: "Black answers symmetrically, contesting the centre." },
@@ -137,7 +139,10 @@ export const imbalancesLesson: Lesson = {
         { san: "Bg5", note: "Pin the knight to add pressure on Black's centre." },
         {
           san: "h6",
+          keyIdea: "Let the imbalance choose the plan",
+          highlights: ["f7"],
           note: "Now read the imbalances: White is fully developed and castled, while Black still has loose pieces and a slightly weak f7. The plan writes itself — keep developing, pile up on the centre and f7, and use the lead in development before Black catches up.",
+          arrows: [{ from: "c4", to: "f7" }],
         },
       ],
     },

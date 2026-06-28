@@ -128,8 +128,10 @@ export const calculationLesson: Lesson = {
       title: "A combination in action",
       blurb: "Spot the forcing shot.",
       orientation: "white",
+      eval: true,
+      source: "Blackburne Shilling Gambit, refuted",
       intro:
-        "Watch a normal opening reach a moment where a forcing capture wins material. The key is checking the captures before settling for a quiet move.",
+        "Watch a normal opening reach a moment where a forcing capture wins material. The key is checking the captures before settling for a quiet move. This time the eval bar tells the whole story — watch it lurch once the fork lands.",
       steps: [
         { san: "e4", note: "Open the centre." },
         { san: "e5", note: "Black contests it." },
@@ -139,7 +141,7 @@ export const calculationLesson: Lesson = {
         { san: "Nd4", note: "A tempting but loosening try, attacking the f3-knight." },
         { san: "Nxe5", note: "White grabs the pawn — and sets a trap on f7." },
         { san: "Qg5", note: "Black double-attacks the knight on e5 and the g2-pawn, hoping to regain material." },
-        { san: "Nxf7", note: "Calculate the forcing move: the knight forks the queen on g5 and the rook on h8." },
+        { san: "Nxf7", keyIdea: "Follow the forcing move to the end", highlights: ["g5", "h8"], arrows: [{ from: "f7", to: "g5" }, { from: "f7", to: "h8" }], note: "Calculate the forcing move: the knight forks the queen on g5 and the rook on h8." },
         {
           san: "Qxg2",
           note: "Black takes on g2, but it is too slow.",

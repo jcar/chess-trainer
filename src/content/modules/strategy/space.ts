@@ -130,9 +130,12 @@ export const spaceLesson: Lesson = {
       title: "The big squeeze",
       blurb: "Clamping the position.",
       orientation: "white",
+      eval: true,
+      source: "English Opening",
       intro:
         "Watch White grab space with a queenside pawn clamp, leaving Black's " +
-        "pieces with almost nowhere to go.",
+        "pieces with almost nowhere to go. Space rarely spikes the eval — its value " +
+        "is the cramped, planless position it forces on the other side.",
       steps: [
         { san: "c4", note: "White stakes a claim on the queenside straight away." },
         { san: "e5", note: "Black grabs a share of the centre." },
@@ -145,7 +148,7 @@ export const spaceLesson: Lesson = {
         { san: "b4", note: "The clamp begins: White gains queenside space." },
         { san: "Be7", note: "Black just develops; there's no easy break in sight." },
         { san: "b5", note: "The squeeze tightens — the knight on c6 is shoved back." },
-        { san: "Nb8", note: "The knight retreats home. White's space advantage is real and lasting." },
+        { san: "Nb8", keyIdea: "Space cramps the enemy pieces", highlights: ["b5", "c4"], note: "The knight retreats home. White's space advantage is real and lasting." },
       ],
     },
   ],
