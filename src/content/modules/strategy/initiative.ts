@@ -17,8 +17,17 @@ export const initiativeLesson: Lesson = {
         "A lead in development is a dynamic edge — temporary, and it fades the moment you let the opponent catch up. Every quiet move you make is a free move for them. So use it fast: open lines with pawn breaks and create threats while your pieces are out and theirs are still home.\n\nThe classic mistake is to dawdle, especially by stopping to grab a pawn. When you're ahead in development, time is worth more than material.",
       points: [
         "A development lead is temporary — act before it vanishes.",
+        "The initiative is dictating the tempo: force the opponent to react to you.",
         "Open the position so your active pieces can strike.",
         "Don't waste time grabbing pawns; keep developing.",
+      ],
+      diagrams: [
+        {
+          fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 0 1",
+          orientation: "white",
+          caption:
+            "Both sides have developed quickly. Whoever castles and opens a line first gets the initiative — the right to make threats while the other side scrambles to respond.",
+        },
       ],
     },
     {
@@ -165,6 +174,74 @@ export const initiativeLesson: Lesson = {
             "a mating attack while Black's pieces sat at home.",
         },
       ],
+    },
+    {
+      type: "guessMove",
+      id: "initiative-guess",
+      title: "Guess the Move: invest for the lead",
+      blurb: "Predict the moves that buy time with development.",
+      orientation: "white",
+      source: "Scotch Gambit",
+      intro:
+        "You're White. Predict the moves. The thread: when you're developing faster, time beats material — a pawn is a fair price for getting all your pieces out and active first.",
+      moves: [
+        "e4", "e5", "Nf3", "Nc6", "d4", "exd4", "Bc4", "Bc5", "c3", "dxc3", "Nxc3",
+      ],
+      guessAt: [6, 10],
+      notes: [
+        undefined, undefined, undefined, undefined, undefined, undefined,
+        "Develop instead of recapturing! Offering the d4-pawn to get pieces out fast — a lead in development is worth more than a pawn here.",
+        undefined, undefined, undefined,
+        "Recapture by developing a piece, not a pawn — every move brings a new attacker toward Black's king while Black is still catching up.",
+      ],
+      successText:
+        "You traded a pawn for a roaring lead in development. Now use it fast — open lines and make threats before Black untangles.",
+    },
+    {
+      type: "plan",
+      id: "initiative-plan-apply",
+      title: "Find the plan, then convert",
+      blurb: "Press the activity, then win.",
+      fen: "5rk1/ppp2ppp/2n5/8/2B1P3/8/PPP2PPP/2R1R1K1 w - - 0 1",
+      orientation: "white",
+      planQuestion:
+        "Your pieces are active, you own the open file, and you're up material. What's the plan?",
+      options: [
+        "Keep the initiative — invade with the rooks and active bishop, giving Black no time to consolidate — and convert.",
+        "Trade everything to defuse the position.",
+        "Sit tight and shuffle, conceding the initiative.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Don't let an initiative cool off. Pile your active pieces into Black's position, keep making threats, and the extra material converts itself.",
+      convert: {
+        kind: "drill",
+        drill: {
+          fen: "5rk1/ppp2ppp/2n5/8/2B1P3/8/PPP2PPP/2R1R1K1 w - - 0 1",
+          orientation: "white",
+          objective: "checkmate",
+          engineSkill: 2,
+          instructions:
+            "White to play. Keep the initiative: invade with your rooks and bishop, give Black no respite, and convert into checkmate.",
+          successText: "Converted — relentless activity never let Black off the hook.",
+        },
+      },
+    },
+    {
+      type: "quiz",
+      id: "initiative-review",
+      title: "Review: the nature of a lead",
+      blurb: "Borrowed time.",
+      question:
+        "A lead in development is best understood as...",
+      options: [
+        "A temporary, dynamic edge that you must cash in before the opponent catches up.",
+        "A permanent advantage that lasts the whole game.",
+        "An automatic extra pawn once you castle.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Development leads are dynamic — they decay with every quiet move. Open lines and create threats while your pieces are out and the opponent's are still at home, or the edge simply evaporates.",
     },
   ],
 };
