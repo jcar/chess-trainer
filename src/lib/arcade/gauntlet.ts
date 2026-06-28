@@ -231,14 +231,36 @@ export function generateLevel(seed: number, n: number): Level {
   let best: Level | null = null;
   let bestD = -1;
   for (let count = target; count >= 1; count--) {
-    for (let attempt = 0; attempt < 50; attempt++) {
+    for (let attempt = 0; attempt < 70; attempt++) {
       const lvl: Level = { level: n, size: SIZE, piece, start, crown, enemies: placeEnemies(count), par: 0 };
       const d = solveTimed(lvl);
       if (d > bestD) { bestD = d; best = { ...lvl, par: d }; }
       if (d >= want) return { ...lvl, par: d };
     }
   }
-  if (best && bestD >= 0) return best;
+
+  if (best && bestD >= 0) {
+    // Tighten: hill-climb par toward `want` by adding blocker enemies. This forces
+    // sliding pieces (rook/bishop/queen) — which otherwise reach the crown in 1–2
+    // moves — to detour, without ever creating an unsolvable board.
+    let cur = best;
+    const cap = target + 5;
+    for (let i = 0; i < 70 && cur.par < want && cur.enemies.length < cap; i++) {
+      const taken = new Set<string>([key(start), key(crown)]);
+      for (const e of cur.enemies) { taken.add(key(e.pos)); if (e.away) taken.add(key(e.away)); }
+      let pos: Pos | null = null;
+      for (let t = 0; t < 20; t++) {
+        const c = { x: Math.floor(rng() * SIZE), y: Math.floor(rng() * SIZE) };
+        if (!taken.has(key(c))) { pos = c; break; }
+      }
+      if (!pos) break;
+      const trial: Level = { ...cur, enemies: [...cur.enemies, { piece: pick(rng, enemyPool), pos }] };
+      const d = solveTimed(trial);
+      if (d >= cur.par) cur = { ...trial, par: d }; // keep only if still solvable & no shorter
+    }
+    return cur;
+  }
+
   const empty: Level = { level: n, size: SIZE, piece, start, crown, enemies: [], par: 0 };
   return { ...empty, par: Math.max(0, solveTimed(empty)) };
 }

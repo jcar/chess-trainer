@@ -297,6 +297,9 @@
   100% { transform: scale(1); opacity: 1; }
 }
 .arcade-win { animation: arcadeWin 0.5s cubic-bezier(0.2, 0.8, 0.3, 1.2); }
+/* Sliding pieces (player + oscillating enemies) glide between squares. */
+.arcade-token { transition: left 0.16s ease, top 0.16s ease; }
+@media (prefers-reduced-motion: reduce) { .arcade-token { transition: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
