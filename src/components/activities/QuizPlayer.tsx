@@ -6,6 +6,7 @@ import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { seededOrder } from "@/lib/shuffle";
 import { quizReadAloud } from "@/lib/audio/narration";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 
 interface Props {
   activity: QuizActivity;
@@ -57,6 +58,7 @@ export function QuizPlayer({ activity, onComplete, onAttempt, kidMode = false }:
   }
 
   const readAloud = quizReadAloud(activity);
+  useAutoRead(readAloud, { enabled: kidMode });
 
   return (
     <div className="space-y-5">

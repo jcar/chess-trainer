@@ -15,6 +15,8 @@ export interface KidsPrefs {
   boardThemeId: string;
   pipOutfitId: string;
   pieceSetId: string;
+  /** Read-aloud auto-plays the story + prompts (default ON — Pip reads to you). */
+  readAloud: boolean;
 }
 
 const DEFAULTS: KidsPrefs = {
@@ -22,6 +24,7 @@ const DEFAULTS: KidsPrefs = {
   boardThemeId: "classic",
   pipOutfitId: "default",
   pieceSetId: "standard",
+  readAloud: true,
 };
 
 const SERVER_SNAPSHOT: KidsPrefs = Object.freeze({ ...DEFAULTS });

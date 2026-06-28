@@ -10,6 +10,7 @@ import { withBasePath } from "@/lib/basePath";
 import { dialogueKey } from "@/lib/audio/dialogueKey";
 import { CLIP_FILES } from "@/lib/audio/clipManifest";
 import { NARRATOR_ID } from "@/lib/audio/narration";
+import { unlockAudio } from "@/lib/audio/sounds";
 
 // A pre-generated clip currently playing (so a new line / stop can interrupt it).
 let currentAudio: HTMLAudioElement | null = null;
@@ -117,4 +118,22 @@ export function speakAs(text: string, characterId: CharacterId): void {
 export function stopSpeaking(): void {
   synth()?.cancel();
   stopAudio();
+}
+
+// Browsers block programmatic audio until the user has interacted. Calling this
+// once from within the first real gesture "blesses" the clip pipeline for the
+// rest of the session, so later auto-read (useAutoRead) plays without a tap.
+let primed = false;
+export function primeAudio(): void {
+  if (primed || typeof window === "undefined") return;
+  primed = true;
+  try {
+    unlockAudio(); // resume the Web Audio context (sound effects)
+    // Play + immediately pause a silent clip to satisfy the autoplay gate.
+    const a = new Audio();
+    a.muted = true;
+    a.play().then(() => a.pause()).catch(() => {});
+  } catch {
+    /* best-effort */
+  }
 }

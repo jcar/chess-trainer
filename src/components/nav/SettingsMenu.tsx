@@ -7,6 +7,8 @@
 
 import { useState } from "react";
 import { useTheme, type Theme } from "@/lib/theme/useTheme";
+import { useKidsPrefs, setKidsPrefs } from "@/lib/kids/prefs";
+import { stopSpeaking, primeAudio } from "@/lib/audio/speech";
 import { withBasePath } from "@/lib/basePath";
 import { SettingsIcon } from "@/components/icons";
 
@@ -30,6 +32,13 @@ export function SettingsMenu({ variant = "rail" }: { variant?: "rail" | "dock" }
   const [open, setOpen] = useState(false);
   const [confirming, setConfirming] = useState(false);
   const { theme, set } = useTheme();
+  const { readAloud } = useKidsPrefs();
+
+  function setReadAloud(on: boolean) {
+    setKidsPrefs({ readAloud: on });
+    if (on) primeAudio();
+    else stopSpeaking();
+  }
 
   function close() {
     setOpen(false);
@@ -93,6 +102,29 @@ export function SettingsMenu({ variant = "rail" }: { variant?: "rail" | "dock" }
                     }`}
                   >
                     {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Read aloud (kids) */}
+            <div className="mt-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft">Read aloud (kids)</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink-soft">
+                Pip reads the story and questions aloud automatically as the child plays.
+              </p>
+              <div className="mt-2 inline-flex rounded-xl border border-line bg-surface p-1">
+                {([["On", true], ["Off", false]] as [string, boolean][]).map(([label, on]) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => setReadAloud(on)}
+                    aria-pressed={readAloud === on}
+                    className={`rounded-lg px-5 py-1.5 text-sm font-semibold transition ${
+                      readAloud === on ? "bg-primary text-on-accent shadow-soft" : "text-ink-soft hover:text-ink"
+                    }`}
+                  >
+                    {label}
                   </button>
                 ))}
               </div>

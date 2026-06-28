@@ -4,6 +4,7 @@ import "./globals.css";
 import { ProgressProvider } from "@/lib/progress/useProgress";
 import { withBasePath } from "@/lib/basePath";
 import { Rail } from "@/components/nav/Rail";
+import { AudioPrimer } from "@/components/kids/AudioPrimer";
 
 // UI / body
 const inter = Inter({
@@ -66,6 +67,7 @@ export default function RootLayout({
       <body className="min-h-full bg-bg text-ink">
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH }} />
         <ProgressProvider>
+          <AudioPrimer />
           <div className="flex min-h-dvh">
             <Rail />
             <main className="relative min-w-0 flex-1 overflow-x-hidden pt-[env(safe-area-inset-top)] pb-[calc(env(safe-area-inset-bottom)+4.75rem)] pr-[env(safe-area-inset-right)] sm:pb-10">

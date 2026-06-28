@@ -14,6 +14,7 @@ import type { TargetActivity } from "@/content/types";
 import { pieceTargets, singlePieceFen } from "@/lib/chess/moves";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { playSound } from "@/lib/audio/sounds";
 
 interface Props {
@@ -90,6 +91,7 @@ export function TargetPlayer({ activity, onComplete }: Props) {
   }
 
   const headerText = done ? activity.successText : note ?? activity.intro;
+  useAutoRead(headerText);
 
   return (
     <div className="space-y-4">

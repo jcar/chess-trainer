@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { seededOrder } from "@/lib/shuffle";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 
 interface Props {
   question: string;
@@ -38,6 +39,7 @@ export function ChoiceCheck({
   const [wrong, setWrong] = useState<number[]>([]);
   const showTeach = solved || wrong.length > 0;
   const order = useMemo(() => seededOrder(options.length, seed), [options.length, seed]);
+  useAutoRead(question, { enabled: kidMode });
 
   function choose(i: number) {
     if (solved) return;

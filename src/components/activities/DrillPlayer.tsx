@@ -12,6 +12,7 @@ import { getEngine } from "@/lib/chess/stockfish";
 import { Board } from "@/components/board/Board";
 import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
 
@@ -153,6 +154,8 @@ export function DrillPlayer({
         ? "White to move"
         : "Black to move"
       : undefined;
+
+  useAutoRead(message, { enabled: kidMode });
 
   return (
     <StudyLayout

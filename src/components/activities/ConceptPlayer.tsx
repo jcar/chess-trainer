@@ -12,6 +12,7 @@ import type { ConceptActivity } from "@/content/types";
 import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { conceptSpeech } from "@/lib/audio/narration";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { ChoiceCheck } from "@/components/kids/ChoiceCheck";
 import { buttonClasses } from "@/components/ui/Button";
 import { AdvanceButton } from "@/components/ui/AdvanceButton";
@@ -47,6 +48,7 @@ export function ConceptPlayer({
 }: Props) {
   const paragraphs = activity.body.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
   const speakText = conceptSpeech(activity);
+  useAutoRead(speakText, { enabled: kidMode });
 
   // Check-for-understanding (active recall) gates the advance button until
   // answered right — for every learner, not just kid mode.

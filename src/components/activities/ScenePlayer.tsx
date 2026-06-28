@@ -15,7 +15,7 @@ import { useState } from "react";
 import type { SceneActivity } from "@/content/types";
 import { SceneArt } from "@/components/kids/SceneArt";
 import { SpeakingCharacter } from "@/components/kids/SpeakingCharacter";
-import { speakAs } from "@/lib/audio/speech";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { playSound, unlockAudio } from "@/lib/audio/sounds";
 import { AdvanceButton } from "@/components/ui/AdvanceButton";
 import { ArrowLeftIcon } from "@/components/icons";
@@ -35,12 +35,15 @@ export function ScenePlayer({ activity, onComplete, advanceHref, advanceLabel }:
   const line = lines[idx];
   const isLast = idx >= lines.length - 1;
 
+  // Read each line aloud as it appears (the first on entry, the rest as the child
+  // taps Next). Stays the story's native voice; SpeakButton remains for replay.
+  useAutoRead(line.text, { characterId: line.speaker });
+
   function go(to: number) {
     const n = Math.max(0, Math.min(to, lines.length - 1));
     unlockAudio();
     playSound("blip");
     setIdx(n);
-    speakAs(lines[n].text, lines[n].speaker);
   }
 
   return (

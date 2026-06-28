@@ -27,6 +27,7 @@ import { ConceptPlayer } from "@/components/activities/ConceptPlayer";
 import { PipChallengePlayer } from "@/components/activities/PipChallengePlayer";
 import { ScenePlayer } from "@/components/activities/ScenePlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { ReadAloudToggle } from "@/components/kids/ReadAloudToggle";
 import { SpeakingCharacter } from "@/components/kids/SpeakingCharacter";
 import { speakAs } from "@/lib/audio/speech";
 import { headerSpeech } from "@/lib/audio/narration";
@@ -262,7 +263,10 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
                 {activity.title}
               </h1>
               {kidMode && (
-                <SpeakButton text={headerSpeech(activity)} size="sm" />
+                <>
+                  <ReadAloudToggle size="sm" />
+                  <SpeakButton text={headerSpeech(activity)} size="sm" />
+                </>
               )}
             </div>
           </div>
@@ -274,7 +278,8 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
         )}
       </header>
 
-      {/* In-character framing of the task (no autoplay — tap the speaker). */}
+      {/* In-character framing of the task (tap the speaker to replay; the task's
+          primary prompt auto-reads via useAutoRead when read-aloud is on). */}
       {kidMode && dialogue?.intro && activity.type !== "scene" && (
         <SpeakingCharacter line={dialogue.intro} />
       )}

@@ -12,6 +12,7 @@ import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { moveMapSpeech } from "@/lib/audio/narration";
 import { playSound } from "@/lib/audio/sounds";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 
 interface Props {
   activity: MoveMapActivity;
@@ -24,6 +25,7 @@ export function MoveMapPlayer({ activity, onComplete }: Props) {
   const [explored, setExplored] = useState(false);
 
   const fen = singlePieceFen(activity.piece, square);
+  useAutoRead(moveMapSpeech(activity));
 
   return (
     <div className="space-y-4">

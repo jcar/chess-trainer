@@ -6,6 +6,7 @@ import { ChessGame, uciToMove, kingInCheckSquare } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
 import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
 
@@ -135,6 +136,7 @@ export function PuzzlePlayer({
         : "bg-surface text-ink-soft shadow-soft";
 
   const turn = new ChessGame(fen).turn === "w" ? "White to move" : "Black to move";
+  useAutoRead(feedback.text, { enabled: kidMode });
 
   return (
     <StudyLayout

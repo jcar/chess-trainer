@@ -8,6 +8,7 @@ import type { CoordinateActivity } from "@/content/types";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 
 const EMPTY_FEN = "8/8/8/8/8/8/8/8 w - - 0 1";
 
@@ -42,6 +43,7 @@ export function CoordinatePlayer({ activity, onComplete }: Props) {
   const prompt = done
     ? activity.successText
     : `Find the square: ${target}`;
+  useAutoRead(prompt);
 
   return (
     <div className="space-y-4">

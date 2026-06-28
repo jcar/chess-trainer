@@ -9,6 +9,7 @@ import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { seededOrder } from "@/lib/shuffle";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 
 interface Props {
   activity: SortActivity;
@@ -25,6 +26,7 @@ export function SortPlayer({ activity, onComplete, onAttempt, kidMode = false }:
   const [missed, setMissed] = useState(false);
   const [wrongPicks, setWrongPicks] = useState<number[]>([]);
   const showTeach = solved || wrongPicks.length > 0;
+  useAutoRead(activity.prompt, { enabled: kidMode });
 
   // Shuffle label order so the correct one isn't always in the same slot.
   const order = useMemo(

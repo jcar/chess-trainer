@@ -9,6 +9,7 @@ import { MiniBoard } from "@/components/board/MiniBoard";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { playSound } from "@/lib/audio/sounds";
 import { seededOrder } from "@/lib/shuffle";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 
 interface Props {
   activity: PictureQuizActivity;
@@ -24,6 +25,7 @@ export function PictureQuizPlayer({ activity, onComplete, onAttempt }: Props) {
   const [missed, setMissed] = useState(false);
   const [wrongPicks, setWrongPicks] = useState<number[]>([]);
   const showTeach = solved || wrongPicks.length > 0;
+  useAutoRead(activity.question);
 
   // Shuffle picture order so the correct one isn't always in the same slot.
   const order = useMemo(

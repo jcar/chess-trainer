@@ -9,6 +9,7 @@ import type { PracticeSetActivity } from "@/content/types";
 import { ChessGame, uciToMove, kingInCheckSquare } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
 import { StarIcon } from "@/components/icons";
@@ -98,6 +99,7 @@ export function PracticeSetPlayer({ activity, onComplete }: Props) {
   }
 
   const danger = kingInCheckSquare(fen);
+  useAutoRead(feedback);
 
   return (
     <div className="space-y-4">

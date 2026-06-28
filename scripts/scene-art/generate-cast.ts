@@ -5,7 +5,7 @@
 //   GEMINI_API_KEYS="<key>" npm run art:cast
 // Incremental: skips a character whose ref already exists (delete it to redo one).
 
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ImageGen, extFor } from "./gen";

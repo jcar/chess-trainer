@@ -14,6 +14,7 @@ import { ChessGame, buildReplayFens, replayMoveSquares } from "@/lib/chess/game"
 import { Board } from "@/components/board/Board";
 import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
 
@@ -181,6 +182,8 @@ export function OpeningDrillPlayer({
       ? "White to move"
       : "Black to move"
     : undefined;
+
+  useAutoRead(feedback.text, { enabled: kidMode });
 
   return (
     <StudyLayout

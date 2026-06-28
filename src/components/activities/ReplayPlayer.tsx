@@ -6,6 +6,7 @@ import { buildReplayFens, replayMoveSquares } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
 import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
+import { useAutoRead } from "@/lib/audio/useAutoRead";
 import { playSound } from "@/lib/audio/sounds";
 import { buttonClasses } from "@/components/ui/Button";
 import { AdvanceButton } from "@/components/ui/AdvanceButton";
@@ -33,6 +34,7 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
   const lastStep = activity.steps.length;
 
   const note = step === 0 ? activity.intro : activity.steps[step - 1].note;
+  useAutoRead(note, { enabled: kidMode });
 
   function go(next: number) {
     const clamped = Math.max(0, Math.min(lastStep, next));
