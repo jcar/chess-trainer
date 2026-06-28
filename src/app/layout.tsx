@@ -4,6 +4,7 @@ import "./globals.css";
 import { ProgressProvider } from "@/lib/progress/useProgress";
 import { withBasePath } from "@/lib/basePath";
 import { Rail } from "@/components/nav/Rail";
+import { SiteFooter } from "@/components/nav/SiteFooter";
 import { AudioPrimer } from "@/components/kids/AudioPrimer";
 
 // UI / body
@@ -73,6 +74,7 @@ export default function RootLayout({
             <main className="relative min-w-0 flex-1 overflow-x-hidden pt-[env(safe-area-inset-top)] pb-[calc(env(safe-area-inset-bottom)+4.75rem)] pr-[env(safe-area-inset-right)] sm:pb-10">
               <div className="mx-auto w-full max-w-4xl px-4 py-5 sm:px-7 sm:py-8">
                 {children}
+                <SiteFooter />
               </div>
             </main>
           </div>

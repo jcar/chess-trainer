@@ -11,6 +11,7 @@ import { LevelChip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { CHARACTER_IMAGES } from "@/lib/art/portraitManifest";
 import { withBasePath } from "@/lib/basePath";
+import { useShowSupport } from "@/lib/prefs/support";
 import {
   ChevronRightIcon,
   StarIcon,
@@ -22,6 +23,16 @@ import {
   CheckIcon,
   PlayIcon,
 } from "@/components/icons";
+
+/** A shopping-bag glyph for the gear guide (no matching icon in the icon set). */
+function GearBagGlyph({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <path d="M6 8h12l-1 12H7L6 8Z" />
+      <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+    </svg>
+  );
+}
 
 /** The first not-yet-completed activity across all modules (for "Continue"). */
 function firstIncomplete(
@@ -85,6 +96,7 @@ export default function HomePage() {
   const { moduleProgress, getActivityState } = useProgress();
   const { counts: trainerCounts } = useTrainer();
   const daily = useDailyStreak();
+  const showSupport = useShowSupport();
   const cont = firstIncomplete((id) => getActivityState(id).completed);
   const started = MODULES.some(
     (mod) => moduleProgress(getModuleActivities(mod).map((a) => a.id)) > 0,
@@ -227,6 +239,24 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ── A quiet side offer: the gear guide (gated by the Support toggle) ── */}
+      {showSupport && (
+      <section className="rise" style={{ animationDelay: "320ms" }}>
+        <Link href="/gear" className="block">
+          <Card interactive className="flex items-center gap-3.5 p-4">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-on-accent" style={{ backgroundColor: "var(--color-clay)" }}>
+              <GearBagGlyph className="h-6 w-6" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="font-display text-base font-semibold text-ink">Chess Gear Guide</p>
+              <p className="text-sm text-ink-soft">Our favorite sets, boards &amp; books for off-screen play</p>
+            </div>
+            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+          </Card>
+        </Link>
+      </section>
+      )}
 
       {/* ── Brand-new learner: where to start ── */}
       {!started && (

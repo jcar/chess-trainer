@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { useTheme, type Theme } from "@/lib/theme/useTheme";
 import { useKidsPrefs, setKidsPrefs } from "@/lib/kids/prefs";
+import { useShowSupport, setShowSupport } from "@/lib/prefs/support";
 import { stopSpeaking, primeAudio } from "@/lib/audio/speech";
 import { withBasePath } from "@/lib/basePath";
 import { SettingsIcon } from "@/components/icons";
@@ -33,6 +34,7 @@ export function SettingsMenu({ variant = "rail" }: { variant?: "rail" | "dock" }
   const [confirming, setConfirming] = useState(false);
   const { theme, set } = useTheme();
   const { readAloud } = useKidsPrefs();
+  const showSupport = useShowSupport();
 
   function setReadAloud(on: boolean) {
     setKidsPrefs({ readAloud: on });
@@ -122,6 +124,29 @@ export function SettingsMenu({ variant = "rail" }: { variant?: "rail" | "dock" }
                     aria-pressed={readAloud === on}
                     className={`rounded-lg px-5 py-1.5 text-sm font-semibold transition ${
                       readAloud === on ? "bg-primary text-on-accent shadow-soft" : "text-ink-soft hover:text-ink"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Support links (Gear Guide + donation) */}
+            <div className="mt-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft">Support links</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink-soft">
+                Show the Chess Gear Guide and the &ldquo;Support the Hall&rdquo; donation link. Off by default.
+              </p>
+              <div className="mt-2 inline-flex rounded-xl border border-line bg-surface p-1">
+                {([["On", true], ["Off", false]] as [string, boolean][]).map(([label, on]) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => setShowSupport(on)}
+                    aria-pressed={showSupport === on}
+                    className={`rounded-lg px-5 py-1.5 text-sm font-semibold transition ${
+                      showSupport === on ? "bg-primary text-on-accent shadow-soft" : "text-ink-soft hover:text-ink"
                     }`}
                   >
                     {label}
