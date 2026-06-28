@@ -124,7 +124,10 @@ export function buildConcept(o: Opening): ConceptActivity {
   };
 }
 
-/** Build a guided replay from one of an opening's lines (moves come from data). */
+/** Build a guided replay from one of an opening's lines (moves come from data).
+ *  Every opening replay is a live-eval Strategy Lab: a Stockfish eval bar sits
+ *  beside the board so the learner SEES that a soundly-played opening keeps the
+ *  game balanced — and, for gambits, exactly what the sacrificed pawn buys. */
 export function buildReplay(
   o: Opening,
   opts: {
@@ -144,6 +147,8 @@ export function buildReplay(
     blurb: opts.blurb,
     startFen: line.startFen,
     orientation: opts.orientation ?? "white",
+    eval: true,
+    source: line.label && line.label !== "Main line" ? `${o.name} — ${line.label}` : o.name,
     intro: opts.intro,
     steps: line.sans.map((san, i) => ({ san, note: line.notes?.[i] ?? "" })),
   };
