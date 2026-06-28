@@ -18,7 +18,16 @@ export const knightsLesson: Lesson = {
       points: [
         "An outpost is a square your pawn guards and no enemy pawn can hit.",
         "A knight on an outpost is nearly impossible to dislodge.",
-        "Closed, locked positions favour knights over bishops.",
+        "A knight on the 6th rank is often a winning advantage.",
+        "Closed positions favour knights; they're also the best blockaders of passed pawns.",
+      ],
+      diagrams: [
+        {
+          fen: "4k3/pp3ppp/2p1p3/3pP3/2PP1P2/8/PP4PP/4K3 w - - 0 1",
+          orientation: "white",
+          caption:
+            "Locked pawn chains — a knight's home turf. It can hop over the blockade to reach squares a bishop, stuck banging into pawns, never could.",
+        },
       ],
     },
     {
@@ -176,6 +185,75 @@ export const knightsLesson: Lesson = {
             "here it dominates, and Black can only remove it by trading a piece.",
         },
       ],
+    },
+    {
+      type: "guessMove",
+      id: "knights-guess",
+      title: "Guess the Move: keep the knight active",
+      blurb: "Predict the moves that give a knight purpose.",
+      orientation: "white",
+      source: "Petroff Defence",
+      intro:
+        "You're White. Predict the knight moves. A knight is short-stepping, so every hop should take it toward a useful square — never just away from danger.",
+      moves: [
+        "e4", "e5", "Nf3", "Nf6", "Nxe5", "d6", "Nf3", "Nxe4", "d4", "d5", "Bd3", "Nc6",
+      ],
+      guessAt: [4, 6],
+      notes: [
+        undefined, undefined, undefined, undefined,
+        "Grab the pawn — the knight stays active in the centre rather than shuffling backward.",
+        undefined,
+        "Retreat with care: Nf3 keeps the knight on a good square. (The greedy Nxf7?! hands Black a dangerous initiative for the pawn.)",
+        undefined, undefined, undefined, undefined, undefined,
+      ],
+      successText:
+        "Each knight move had a point — grab the centre, then retreat to a square that stays useful. That's how short-range pieces earn their keep.",
+    },
+    {
+      type: "plan",
+      id: "knights-plan-apply",
+      title: "Find the plan, then convert",
+      blurb: "Put the knight to work, then win.",
+      fen: "3q3k/ppp5/8/6N1/8/8/PPP5/6K1 w - - 0 1",
+      orientation: "white",
+      planQuestion:
+        "Your knight has reached an advanced square near the enemy king. What's the plan?",
+      options: [
+        "Look for the knight's signature blow — a fork that wins material outright.",
+        "Retreat the knight to safety and play a long game.",
+        "Trade the knight for a pawn to open lines.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "An advanced, active knight is built for forks. Nf7+ hits the king and the queen at once; after the king moves, Nxd8 collects the queen. The knight's reward for reaching enemy lines.",
+      convert: {
+        kind: "puzzle",
+        puzzle: {
+          fen: "3q3k/ppp5/8/6N1/8/8/PPP5/6K1 w - - 0 1",
+          orientation: "white",
+          goal: { type: "win-material", minGain: 4 },
+          prompt: "White to play and win material with a knight fork.",
+          hints: ["A knight check that also hits the queen.", "The fork square is f7."],
+          successText: "Nf7+ forks king and queen; after the king steps aside, Nxd8 wins the queen.",
+          solution: ["g5f7", "h8g7", "f7d8"],
+        },
+      },
+    },
+    {
+      type: "quiz",
+      id: "knights-review",
+      title: "Review: what makes an outpost",
+      blurb: "The condition that matters.",
+      question:
+        "An advanced square becomes a true outpost for your knight only when...",
+      options: [
+        "No enemy pawn can ever attack it (and ideally your own pawn defends it).",
+        "It sits anywhere on the opponent's half of the board.",
+        "Your knight can reach it in one move.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "A support point is only a support point if a pawn can't chase the knight away. Pawn-proof and ideally pawn-defended — that's what turns an advanced square into a permanent home.",
     },
   ],
 };

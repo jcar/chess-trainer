@@ -16,9 +16,18 @@ export const bishopVsKnightLesson: Lesson = {
       body:
         "Neither minor piece is simply better — it depends on the pawns. Open positions with targets on both wings favour the long-range bishop, which can switch sides in a single move. Closed positions with locked pawns favour the knight, which hops over the blockade to reach squares a bishop can't.\n\nHaving both bishops — the 'bishop pair' — is a lasting plus, since together they cover squares of both colours. To use the pair, open the position so the bishops can stretch out.",
       points: [
+        "On paper they're equal — the pawn structure decides which is stronger.",
         "Open board: the bishop's range usually wins out.",
         "Closed board: the knight's hops shine.",
-        "Hold the bishop pair? Open lines to set both bishops free.",
+        "Facing the two bishops? Trade one off to ease the pressure.",
+      ],
+      diagrams: [
+        {
+          fen: "r3k2r/pp3ppp/2b1p3/3p4/3P4/2P1B3/PP3PPP/R3K2R w KQkq - 0 1",
+          orientation: "white",
+          caption:
+            "An open position with pawns on both wings: the bishops rake long diagonals and switch flanks in a move. Here the long-range pieces are in their element — a knight would struggle to keep up.",
+        },
       ],
     },
     {
@@ -173,6 +182,75 @@ export const bishopVsKnightLesson: Lesson = {
             "will have long, clear diagonals to dominate the board.",
         },
       ],
+    },
+    {
+      type: "guessMove",
+      id: "bvn-guess",
+      title: "Guess the Move: open it for the bishops",
+      blurb: "Predict the moves that suit long-range pieces.",
+      orientation: "white",
+      source: "Scotch Game",
+      intro:
+        "You're White. Predict the moves. The thread: with bishops to develop, you want the centre open and your pieces on active diagonals — not a locked, knight-friendly structure.",
+      moves: [
+        "e4", "e5", "Nf3", "Nc6", "d4", "exd4", "Nxd4", "Bc5", "Be3", "Qf6", "c3", "Nge7",
+      ],
+      guessAt: [4, 8],
+      notes: [
+        undefined, undefined, undefined, undefined,
+        "Strike in the centre. Opening lines is exactly what a bishop-based game wants — locked pawns would only help the knights.",
+        undefined, undefined, undefined,
+        "Develop the bishop to an active diagonal while guarding the knight. Both bishops will get open lines.",
+        undefined, undefined, undefined,
+      ],
+      successText:
+        "Open centre, bishops on active diagonals — you've set the stage where long-range pieces outshine short-stepping knights.",
+    },
+    {
+      type: "plan",
+      id: "bvn-plan-apply",
+      title: "Find the plan, then convert",
+      blurb: "Back the bishops, then bring it home.",
+      fen: "5rk1/1p3ppp/2p5/3p4/3P1B2/8/PP3PPP/2R1R1K1 w - - 0 1",
+      orientation: "white",
+      planQuestion:
+        "The board is open, your bishop sweeps long diagonals, and you're up material. How do you proceed?",
+      options: [
+        "Keep the position open, use the bishop's range and the rooks together, and convert the extra material.",
+        "Close the centre with pawn moves to limit the play.",
+        "Trade your active bishop for a pawn to simplify.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "An open board is the bishop's habitat. Keep the lines clear, combine the bishop with your rooks, and the extra material wins comfortably.",
+      convert: {
+        kind: "drill",
+        drill: {
+          fen: "5rk1/1p3ppp/2p5/3p4/3P1B2/8/PP3PPP/2R1R1K1 w - - 0 1",
+          orientation: "white",
+          objective: "checkmate",
+          engineSkill: 2,
+          instructions:
+            "White to play. Keep the board open for your bishop, invade with the rooks, and convert into checkmate.",
+          successText: "Converted — an open board lets the bishop and rooks overwhelm.",
+        },
+      },
+    },
+    {
+      type: "quiz",
+      id: "bvn-review",
+      title: "Review: which piece, which position",
+      blurb: "The pawns are the tiebreaker.",
+      question:
+        "Bishop and knight are roughly equal in value. What decides which is actually stronger in a given game?",
+      options: [
+        "The pawn structure — open positions favour the bishop, locked ones favour the knight.",
+        "Which piece has moved more often.",
+        "The bishop is always stronger because it is worth more points.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Neither piece is better in the abstract. Open lines and targets on both wings suit the bishop; locked pawn chains suit the knight. Read the pawns, then judge.",
     },
   ],
 };

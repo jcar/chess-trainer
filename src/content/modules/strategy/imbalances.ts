@@ -15,11 +15,12 @@ export const imbalancesLesson: Lesson = {
       title: "Think in imbalances",
       blurb: "How strong players size up a position.",
       body:
-        "An imbalance is any way the two sides differ — material, pawn structure, space, open files, the bishops and knights, and the safety of each king. Strong players don't memorize moves; they read these differences and let them point to a plan.\n\nSo before you choose a move, take stock. The biggest imbalance tells you which part of the board is yours and what you should be aiming at.",
+        "An imbalance is any way the two sides differ. Strong players don't memorize moves; they read these differences and let them point to a plan. Run the same checklist every time — the Imbalance Scan:\n\n• the minor pieces (your bishops vs their knights), • the pawn structure, • space, • material, • control of a key file or square, • a lead in development, • the initiative, • king safety. Whichever imbalance is biggest tells you which part of the board is yours and what to aim at. If you remember nothing else, just find the imbalances and try to use them.",
       points: [
         "An imbalance is any difference between the sides, not just material.",
-        "Good plans grow out of the imbalances you find.",
-        "A useful question: what is my worst-placed piece?",
+        "The scan: minor pieces, pawns, space, material, files/squares, development, initiative, king safety.",
+        "Good plans grow out of the biggest imbalance you find.",
+        "A useful question when stuck: what is my worst-placed piece?",
       ],
       diagrams: [
         {

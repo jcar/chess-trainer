@@ -15,10 +15,11 @@ export const calculationLesson: Lesson = {
       title: "How to calculate",
       blurb: "Forcing moves first, all the way to the end.",
       body:
-        "Calculation begins with forcing moves — checks, captures, and threats — because they limit the opponent's replies and are where tactics hide. Gather two or three candidate moves, then work through each one in turn instead of grabbing the first idea you see.\n\nWhenever a capture is involved, count every attacker and defender on the square and play the line out to a quiet position. A combination only works if you've calculated it to the end.",
+        "Calculation begins with forcing moves — checks, captures, and threats — because they limit the opponent's replies and are where tactics hide. Gather two or three candidate moves, then work through each one in turn instead of grabbing the first idea you see.\n\nBut first, a combination needs a reason to exist. Before you go looking, ask whether the position has one of the three preconditions: an exposed or boxed-in enemy king, an undefended enemy piece, or a piece that is defended but not enough. If none is present, there's probably no tactic — so calculate to a quiet end and count every attacker and defender before you grab anything.",
       points: [
+        "Tactics need a target: an exposed king, an undefended piece, or an under-defended one.",
         "Check forcing moves first: checks, captures, threats.",
-        "List your candidate moves, then calculate each.",
+        "List your candidate moves, then calculate each to a quiet end.",
         "Count the captures before you grab anything.",
       ],
       diagrams: [
