@@ -12,6 +12,8 @@ interface Props {
   modeLabel: string;
   best: number;
   moves: number;
+  par: number;
+  combo: number;
 }
 
 function Stat({ label, children, glow }: { label: string; children: React.ReactNode; glow?: string }) {
@@ -27,7 +29,7 @@ function Stat({ label, children, glow }: { label: string; children: React.ReactN
   );
 }
 
-export function ArcadeHud({ score, level, lives, maxLives, pieceGlyph, pieceName, modeLabel, best, moves }: Props) {
+export function ArcadeHud({ score, level, lives, maxLives, pieceGlyph, pieceName, modeLabel, best, moves, par, combo }: Props) {
   return (
     <div
       className="flex items-center justify-between gap-3 rounded-xl px-4 py-3"
@@ -35,7 +37,13 @@ export function ArcadeHud({ score, level, lives, maxLives, pieceGlyph, pieceName
     >
       <Stat label="Score" glow="var(--arc-cyan)">{score.toLocaleString()}</Stat>
       <Stat label="Level">{level}</Stat>
-      <Stat label="Moves">{moves}</Stat>
+      <Stat label={`Moves`}>
+        <span className="tabular-nums">{moves}</span>
+        <span className="text-sm" style={{ color: "var(--arc-dim)" }}> /{par}</span>
+      </Stat>
+      {combo >= 1 && (
+        <Stat label="Combo" glow="var(--arc-lime)">×{(1 + Math.min(combo, 8) * 0.25).toFixed(2).replace(/\.?0+$/, "")}</Stat>
+      )}
       <Stat label="You">
         <span className="inline-flex items-center gap-1.5">
           <span style={{ color: "#bdf3ff", textShadow: "0 0 8px var(--arc-cyan)" }}>{pieceGlyph}</span>

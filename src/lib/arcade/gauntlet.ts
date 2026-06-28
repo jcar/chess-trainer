@@ -12,6 +12,15 @@ export interface Pos {
 }
 export interface Enemy {
   piece: Piece;
+  pos: Pos; // "home" square (where it sits on even parity)
+  /** If set, the enemy oscillates between `pos` and `away` (period 2). */
+  away?: Pos;
+  /** Phase 0 = at `pos` on even turns; phase 1 = at `away` on even turns. */
+  phase?: number;
+}
+/** An enemy resolved to a concrete square for a given turn parity. */
+export interface Placed {
+  piece: Piece;
   pos: Pos;
 }
 export interface Level {
@@ -21,6 +30,8 @@ export interface Level {
   start: Pos;
   crown: Pos;
   enemies: Enemy[];
+  /** Optimal solve length (moves) — the "par" for scoring. */
+  par: number;
 }
 
 export const SIZE = 8;
@@ -70,22 +81,30 @@ export function reachable(piece: Piece, from: Pos, occupied: Set<string>): Pos[]
   return out;
 }
 
-/** Squares an enemy attacks (blocker-aware among enemies). Sliders stop at the
- *  first occupant (which is itself "attacked"). Pawns attack diagonally downward. */
-function attacks(e: Enemy, occupied: Set<string>): Pos[] {
+/** Where an enemy sits on a given turn parity (0/1). Static enemies ignore it. */
+export function enemyAt(e: Enemy, parity: number): Pos {
+  if (!e.away) return e.pos;
+  return (parity + (e.phase ?? 0)) % 2 === 1 ? e.away : e.pos;
+}
+/** Resolve every enemy to a concrete square for a turn parity. */
+export function enemiesAt(level: Level, parity: number): Placed[] {
+  return level.enemies.map((e) => ({ piece: e.piece, pos: enemyAt(e, parity) }));
+}
+
+/** Squares an enemy attacks (blocker-aware). Sliders stop at the first occupant
+ *  (itself attacked). Pawns attack diagonally downward. */
+function attacks(e: Placed, occupied: Set<string>): Pos[] {
   const out: Pos[] = [];
   if (e.piece === "pawn") {
     for (const dx of [-1, 1]) {
-      const x = e.pos.x + dx;
-      const y = e.pos.y - 1;
+      const x = e.pos.x + dx, y = e.pos.y - 1;
       if (onBoard(x, y)) out.push({ x, y });
     }
     return out;
   }
   const spec = dirsFor(e.piece)!;
   for (const [dx, dy] of spec.dirs) {
-    let x = e.pos.x + dx;
-    let y = e.pos.y + dy;
+    let x = e.pos.x + dx, y = e.pos.y + dy;
     while (onBoard(x, y)) {
       out.push({ x, y });
       if (!spec.slide || occupied.has(`${x},${y}`)) break;
@@ -95,63 +114,83 @@ function attacks(e: Enemy, occupied: Set<string>): Pos[] {
   return out;
 }
 
-/** The set of all squares under enemy fire (the glowing threat). */
-export function threatSquares(level: Level): Set<string> {
-  const occupied = new Set(level.enemies.map((e) => key(e.pos)));
+/** Squares under fire for a resolved set of enemy positions. */
+export function threatOf(placed: Placed[]): Set<string> {
+  const occupied = new Set(placed.map((e) => key(e.pos)));
   const t = new Set<string>();
-  for (const e of level.enemies) for (const p of attacks(e, occupied)) t.add(key(p));
+  for (const e of placed) for (const p of attacks(e, occupied)) t.add(key(p));
   return t;
 }
 
-/** Length of the shortest start → crown path stepping only on SAFE squares, or
- *  -1 if there is none. (BFS, so the first time we pop the crown it's shortest.) */
-export function shortestPath(level: Level): number {
-  const occupied = new Set(level.enemies.map((e) => key(e.pos)));
-  const threat = threatSquares(level);
-  if (threat.has(key(level.start)) || threat.has(key(level.crown))) return -1;
-  const dist = new Map<string, number>([[key(level.start), 0]]);
-  const queue: Pos[] = [level.start];
-  while (queue.length) {
-    const cur = queue.shift()!;
-    if (samePos(cur, level.crown)) return dist.get(key(cur))!;
-    for (const nxt of reachable(level.piece, cur, occupied)) {
-      const k = key(nxt);
-      if (dist.has(k) || threat.has(k)) continue; // only stand on safe squares
-      dist.set(k, dist.get(key(cur))! + 1);
-      queue.push(nxt);
+/**
+ * Time-expanded shortest path (in moves) over (square, turn-parity). Enemies
+ * oscillate with period 2, so there are two board configs. A move from P at parity
+ * p picks a square Q reachable through the CURRENT config; it's valid only if Q is
+ * safe in the NEXT config (not threatened, not occupied) — i.e. you survive the
+ * guards' shift. Returns the optimal length, or -1 if unwinnable. (For static
+ * levels both configs are equal, so this reduces to ordinary BFS.)
+ */
+export function solveTimed(level: Level): number {
+  const placed = [enemiesAt(level, 0), enemiesAt(level, 1)];
+  const occ = [new Set(placed[0].map((e) => key(e.pos))), new Set(placed[1].map((e) => key(e.pos)))];
+  const threat = [threatOf(placed[0]), threatOf(placed[1])];
+  if (threat[0].has(key(level.start)) || occ[0].has(key(level.start))) return -1;
+  const dist = new Map<string, number>([[`${key(level.start)}@0`, 0]]);
+  const q: { p: Pos; par: number }[] = [{ p: level.start, par: 0 }];
+  while (q.length) {
+    const { p, par } = q.shift()!;
+    if (samePos(p, level.crown)) return dist.get(`${key(p)}@${par}`)!;
+    const np = par ^ 1;
+    const d = dist.get(`${key(p)}@${par}`)!;
+    for (const m of reachable(level.piece, p, occ[par])) {
+      const k = key(m);
+      if (threat[np].has(k) || occ[np].has(k)) continue; // survive the shift
+      const sk = `${k}@${np}`;
+      if (dist.has(sk)) continue;
+      dist.set(sk, d + 1);
+      q.push({ p: m, par: np });
     }
   }
   return -1;
 }
 
-/** Is the level winnable for its piece at all? */
 export function solvable(level: Level): boolean {
-  return shortestPath(level) >= 0;
+  return solveTimed(level) >= 0;
 }
 
-/** Target minimum optimal-path length per level — so sliders aren't 1–2 moves and
- *  the challenge climbs. Gentle start, capped. */
+/** Target minimum optimal-path length per level. Gentle start, capped. */
 const minPath = (n: number): number => Math.min(2 + Math.floor(n / 2), 9);
 
 function pick<T>(rng: () => number, arr: T[]): T {
   return arr[Math.floor(rng() * arr.length)];
 }
 
-/** Generate level `n` (1-based) for `seed` — deterministic + ALWAYS solvable, and
- *  tuned toward a minimum optimal-path length so it isn't trivial. */
+/** A direction to make an enemy oscillate (one step / hop along its movement). */
+function moverDir(piece: Piece, rng: () => number): number[] | null {
+  switch (piece) {
+    case "rook": return pick(rng, ROOK_DIRS);
+    case "bishop": return pick(rng, BISHOP_DIRS);
+    case "queen": return pick(rng, [...ROOK_DIRS, ...BISHOP_DIRS]);
+    case "king": return pick(rng, [...ROOK_DIRS, ...BISHOP_DIRS]);
+    case "knight": return pick(rng, KNIGHT);
+    case "pawn": return null;
+  }
+}
+
+/** Generate level `n` (1-based) for `seed` — deterministic, ALWAYS solvable,
+ *  with oscillating movers from level 4 on, tuned toward a target path length. */
 export function generateLevel(seed: number, n: number): Level {
   const rng = mulberry32(hashStr(`${seed}:${n}`));
   const piece = n <= TEACH_ORDER.length ? TEACH_ORDER[n - 1] : pick(rng, PLAYER_PIECES);
-  // Enemy mix gets nastier with depth.
   const enemyPool: Piece[] =
     n <= 2 ? ["bishop", "knight", "pawn", "rook"]
       : n <= 5 ? ["rook", "bishop", "knight", "pawn", "queen"]
         : ["queen", "rook", "rook", "bishop", "knight"];
   const target = Math.min(2 + Math.floor(n * 0.8), 14);
   const want = minPath(n);
+  // Movers ramp in from level 4 (levels 1-3 are static tutorials).
+  const moverBudget = n <= 3 ? 0 : Math.min(Math.ceil((n - 3) / 2), 6);
 
-  // Start low, crown high, far apart. The bishop is COLOR-BOUND: if the crown is
-  // on the opposite color it is mathematically unreachable, so force a match.
   const start: Pos = { x: Math.floor(rng() * SIZE), y: Math.floor(rng() * 2) };
   let crown: Pos = { x: Math.floor(rng() * SIZE), y: SIZE - 1 - Math.floor(rng() * 2) };
   if (piece === "bishop" && (start.x + start.y) % 2 !== (crown.x + crown.y) % 2) {
@@ -171,24 +210,37 @@ export function generateLevel(seed: number, n: number): Level {
       used.add(key(pos));
       enemies.push({ piece: pick(rng, enemyPool), pos });
     }
+    // Turn some into oscillating movers (reserve both squares so they don't clash).
+    let movers = moverBudget;
+    for (const e of enemies) {
+      if (movers <= 0) break;
+      const dir = moverDir(e.piece, rng);
+      if (!dir) continue;
+      const away = { x: e.pos.x + dir[0], y: e.pos.y + dir[1] };
+      const ak = key(away);
+      if (onBoard(away.x, away.y) && !used.has(ak)) {
+        e.away = away;
+        e.phase = rng() < 0.5 ? 0 : 1;
+        used.add(ak);
+        movers--;
+      }
+    }
     return enemies;
   };
 
-  // Prefer a board that is solvable AND meets the target path length; keep the
-  // longest-path solvable board seen as a fallback so we never ship a soft-lock.
   let best: Level | null = null;
   let bestD = -1;
   for (let count = target; count >= 1; count--) {
     for (let attempt = 0; attempt < 50; attempt++) {
-      const level: Level = { level: n, size: SIZE, piece, start, crown, enemies: placeEnemies(count) };
-      const d = shortestPath(level);
-      if (d > bestD) { bestD = d; best = level; }
-      if (d >= want) return level;
+      const lvl: Level = { level: n, size: SIZE, piece, start, crown, enemies: placeEnemies(count), par: 0 };
+      const d = solveTimed(lvl);
+      if (d > bestD) { bestD = d; best = { ...lvl, par: d }; }
+      if (d >= want) return { ...lvl, par: d };
     }
   }
-  if (best && bestD >= 0) return best; // solvable, just shorter than ideal
-  // Empty board — always solvable now (bishop crown color is matched above).
-  return { level: n, size: SIZE, piece, start, crown, enemies: [] };
+  if (best && bestD >= 0) return best;
+  const empty: Level = { level: n, size: SIZE, piece, start, crown, enemies: [], par: 0 };
+  return { ...empty, par: Math.max(0, solveTimed(empty)) };
 }
 
 export const GLYPH: Record<Piece, string> = {

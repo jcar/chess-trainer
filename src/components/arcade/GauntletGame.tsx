@@ -4,10 +4,12 @@
 // Escalating seeded levels, 3 lives, local high scores. Daily Run (shared seed)
 // or Free Play (random). All state lives here; no effects set state.
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   generateLevel,
-  threatSquares,
+  enemiesAt,
+  enemyAt,
+  threatOf,
   reachable,
   key,
   samePos,
@@ -49,19 +51,30 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
   const [shakeKey, setShakeKey] = useState(0);
   const [confettiKey, setConfettiKey] = useState(0);
   const [moves, setMoves] = useState(0);
+  const [combo, setCombo] = useState(0);
+  const lostLifeRef = useRef(false); // lost a life on THIS level? (breaks the combo)
 
   const level = useMemo(() => generateLevel(seed, levelNum), [seed, levelNum]);
-  const occupied = useMemo(() => new Set(level.enemies.map((e) => key(e.pos))), [level]);
-  const threat = useMemo(() => threatSquares(level), [level]);
-  const { safe, danger } = useMemo(() => {
+  const parity = moves % 2;
+  // Current guard config + the NEXT config a move is judged against (after the shift).
+  const { curEnemies, ghosts, threat, safe, danger } = useMemo(() => {
+    const cur = enemiesAt(level, parity);
+    const nxt = enemiesAt(level, parity ^ 1);
+    const occNow = new Set(cur.map((e) => key(e.pos)));
+    const occNext = new Set(nxt.map((e) => key(e.pos)));
+    const threatNext = threatOf(nxt);
     const s = new Set<string>();
     const d = new Set<string>();
-    for (const m of reachable(level.piece, player, occupied)) {
+    for (const m of reachable(level.piece, player, occNow)) {
       const k = key(m);
-      (threat.has(k) ? d : s).add(k);
+      if (threatNext.has(k) || occNext.has(k)) d.add(k);
+      else s.add(k);
     }
-    return { safe: s, danger: d };
-  }, [level, player, occupied, threat]);
+    const g = level.enemies
+      .filter((e) => e.away)
+      .map((e) => ({ piece: e.piece, pos: enemyAt(e, parity ^ 1) }));
+    return { curEnemies: cur, ghosts: g, threat: threatNext, safe: s, danger: d };
+  }, [level, player, parity]);
 
   function startRun(isDaily: boolean) {
     unlockAudio();
@@ -74,6 +87,8 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
     setLives(MAX_LIVES);
     setScore(0);
     setMoves(0);
+    setCombo(0);
+    lostLifeRef.current = false;
     setPhase("playing");
     playSound("levelup");
   }
@@ -84,9 +99,11 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
     if (!safe.has(k) && !danger.has(k)) return;
 
     if (danger.has(k)) {
-      // Zapped reaching into fire — lose a life but STAY put (keep your progress).
+      // Zapped reaching into fire — lose a life but STAY put. Breaks the combo.
       playSound("zap");
       setShakeKey((n) => n + 1);
+      lostLifeRef.current = true;
+      setCombo(0);
       const next = lives - 1;
       if (next <= 0) {
         setLives(0);
@@ -100,16 +117,24 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
     }
 
     if (samePos(pos, level.crown)) {
-      // Level cleared!
-      const gained = clearBonus(levelNum);
+      // Level cleared! Score = base + par bonus, times a clean-streak combo.
+      const used = moves + 1; // this crown step counts toward par
+      const base = clearBonus(levelNum);
+      const parBonus = used <= level.par ? 60 : used <= level.par + 2 ? 25 : 0;
+      const clean = !lostLifeRef.current;
+      const newCombo = clean ? combo + 1 : 0;
+      const mult = 1 + Math.min(newCombo, 8) * 0.25;
+      const gained = Math.round((base + parBonus) * mult);
       const nextNum = levelNum + 1;
       const nextLevel = generateLevel(seed, nextNum);
       setScore((s) => s + gained);
+      setCombo(newCombo);
+      lostLifeRef.current = false;
       setLevelNum(nextNum);
       setPlayer(nextLevel.start);
       setMoves(0);
       setConfettiKey((n) => n + 1);
-      playSound("levelup");
+      playSound(newCombo >= 2 ? "coin" : "levelup");
       return;
     }
 
@@ -208,11 +233,17 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
         modeLabel={modeLabel}
         best={best}
         moves={moves}
+        par={level.par}
+        combo={combo}
       />
       <div key={shakeKey} className={shakeKey > 0 ? "arcade-shake" : undefined}>
         <ArcadeBoard
-          level={level}
+          size={level.size}
           player={player}
+          playerGlyph={GLYPH[level.piece]}
+          crown={level.crown}
+          enemies={curEnemies}
+          ghosts={ghosts}
           threat={threat}
           safe={safe}
           danger={danger}
