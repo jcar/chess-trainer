@@ -121,7 +121,7 @@ function OpeningTile({ opening: o, srs }: { opening: Opening; srs: SrsData }) {
   return (
     <Card className="overflow-hidden">
       <Link
-        href={`/trainer?opening=${o.id}`}
+        href={`/trainer/${o.id}`}
         className="flex items-center gap-3 px-4 py-3 transition hover:bg-ink/5"
       >
         <span className="min-w-0 flex-1">

@@ -1,730 +1,146 @@
 "use client";
 
-// Play & Review — play a full game against the engine at an adjustable strength,
-// then get a post-game review that flags your biggest mistakes (eval swings) and
-// shows the better move. Reuses the board + ChessGame + the engine client (now
-// with analyze()). A no-params static route.
+// Play & Review — setup. Pick color, opponent, and coach, then start a game at
+// /play/game (a real route, so Back returns here). Reads ?fen=&color= so the
+// Openings Trainer can "Spar vs engine" from a position (Suspense for static export).
 
-import Link from "next/link";
 import { Suspense, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Orientation } from "@/content/types";
-import { ChessGame, uciToMove, type SimpleMove } from "@/lib/chess/game";
-import { getEngine } from "@/lib/chess/stockfish";
-import { recordDailyActivity } from "@/lib/rewards/daily";
-import { OPPONENTS, personaForElo } from "@/lib/play/opponents";
-import { usePlayRating, playRatingStore, type GameResult } from "@/lib/play/rating";
-import { Board } from "@/components/board/Board";
+import { ChessGame } from "@/lib/chess/game";
+import { OPPONENTS } from "@/lib/play/opponents";
+import { usePlayRating } from "@/lib/play/rating";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
-import { ProgressBar } from "@/components/ui/ProgressBar";
 import { buttonClasses } from "@/components/ui/Button";
 
 const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-const REVIEW_DEPTH = 10;
-const COACH_DEPTH = 10;
-
-interface RatingChange {
-  before: number;
-  after: number;
-  delta: number;
-}
-
-/** A live coaching interruption: the move you just played was a blunder/mistake,
- *  shown immediately with the better move so you can take it back or play on. */
-interface CoachTip {
-  severity: "blunder" | "mistake";
-  san: string;
-  bestSan: string;
-  bestUci: string;
-  playedUci: string;
-  fenBefore: string;
-  fenAfter: string;
-  loss: number;
-}
-
-interface Ply {
-  fenBefore: string;
-  fenAfter: string;
-  uci: string;
-  san: string;
-  byLearner: boolean;
-}
-interface Flag {
-  ply: number;
-  moveLabel: string;
-  san: string;
-  bestSan: string;
-  bestUci: string;
-  playedUci: string;
-  fenBefore: string;
-  loss: number;
-  klass: "blunder" | "mistake" | "inaccuracy";
-}
-
-function toCp(r: { cp: number | null; mate: number | null }): number {
-  if (r.mate != null) return r.mate > 0 ? 100000 - r.mate : -100000 - r.mate;
-  return r.cp ?? 0;
-}
-function applyMove(fen: string, m: SimpleMove) {
-  const d = new ChessGame(fen).tryMove(m);
-  return d.ok ? d : new ChessGame(fen).tryMove({ ...m, promotion: "q" });
-}
-function moveLabel(plyIndex: number): string {
-  const full = Math.floor(plyIndex / 2) + 1;
-  return plyIndex % 2 === 0 ? `${full}.` : `${full}...`;
-}
-
-type Phase = "setup" | "playing" | "gameover" | "reviewing" | "done";
 
 export default function PlayPage() {
-  // useSearchParams needs a Suspense boundary under `output: export`.
   return (
     <Suspense fallback={<main className="space-y-5" />}>
-      <PlayGame />
+      <PlaySetup />
     </Suspense>
   );
 }
 
-function PlayGame() {
+function PlaySetup() {
   const rating = usePlayRating();
+  const router = useRouter();
   const params = useSearchParams();
-  // #4 Spar from a position: optional ?fen= (+ ?color=) seeds the game's start
-  // (e.g. the Openings Trainer's "play it out"). Falls back to the normal start.
+
   const startFen = useMemo(() => {
     const f = params.get("fen");
     if (f) {
-      try {
-        new ChessGame(f);
-        return f;
-      } catch {
-        /* invalid FEN — ignore and use the standard start */
-      }
+      try { new ChessGame(f); return f; } catch { /* ignore invalid */ }
     }
     return START;
   }, [params]);
-  const startColor: Orientation =
-    params.get("color") === "black"
-      ? "black"
-      : params.get("color") === "white"
-        ? "white"
-        : new ChessGame(startFen).turn === "b"
-          ? "black"
-          : "white";
   const custom = startFen !== START;
+  const startColor: Orientation =
+    params.get("color") === "black" ? "black"
+      : params.get("color") === "white" ? "white"
+        : new ChessGame(startFen).turn === "b" ? "black" : "white";
 
-  const [phase, setPhase] = useState<Phase>("setup");
   const [color, setColor] = useState<Orientation>(startColor);
-  // The opponent for the NEXT game (setup selection).
   const [adaptive, setAdaptive] = useState(true);
   const [pickElo, setPickElo] = useState(1100);
-  // The opponent locked in for the game in progress, + adaptive rating result.
-  const [gameElo, setGameElo] = useState(1100);
-  const [gameAdaptive, setGameAdaptive] = useState(true);
-  const [ratingChange, setRatingChange] = useState<RatingChange | null>(null);
-  const [fen, setFen] = useState(startFen);
-  const [history, setHistory] = useState<Ply[]>([]);
-  const [busy, setBusy] = useState(false);
-  const [result, setResult] = useState("");
-  // Live "Move coach" — flag blunders/mistakes the moment they're played.
   const [coach, setCoach] = useState(true);
-  const [coaching, setCoaching] = useState<CoachTip | null>(null);
-  const [checking, setChecking] = useState(false);
-  const [praise, setPraise] = useState("");
-  const [usedTakeback, setUsedTakeback] = useState(false);
-  const [progress, setProgress] = useState({ n: 0, total: 0 });
-  const [flags, setFlags] = useState<Flag[]>([]);
-  const [accuracy, setAccuracy] = useState(0);
-  const [selected, setSelected] = useState<Flag | null>(null);
-  const [plainView, setPlainView] = useState<string | null>(null);
-
-  const learnerTurn = color === "white" ? "w" : "b";
-
-  async function engineReply(curFen: string, hist: Ply[], elo: number) {
-    setBusy(true);
-    const best = await getEngine().getMoveAtElo(curFen, elo, 500);
-    if (!best) {
-      setBusy(false);
-      return;
-    }
-    const res = applyMove(curFen, uciToMove(best));
-    if (!res.ok) {
-      setBusy(false);
-      return;
-    }
-    const nextHist = [
-      ...hist,
-      { fenBefore: curFen, fenAfter: res.fen, uci: best, san: res.san ?? best, byLearner: false },
-    ];
-    setHistory(nextHist);
-    setFen(res.fen);
-    setBusy(false);
-    if (res.status === "checkmate") finish("Checkmate — the engine won. Review your game to see where it slipped.", "loss");
-    else if (res.status === "stalemate" || res.status === "draw") finish("Draw.", "draw");
-  }
-
-  // Check the learner's just-played move with the full-strength engine. If it's a
-  // blunder (or, after the opening, a mistake), pause and surface the better move;
-  // otherwise praise a top move and let the opponent reply.
-  async function coachCheck(
-    fenBefore: string,
-    res: { fen: string; uci?: string; san?: string },
-    hist: Ply[],
-    plyIndex: number,
-  ) {
-    setChecking(true);
-    setBusy(true);
-    const engine = getEngine();
-    const before = await engine.analyze(fenBefore, COACH_DEPTH);
-    const bestCp = toCp(before);
-    const bestUci = before.bestMove ?? "";
-    const playedUci = res.uci ?? "";
-    let loss = 0;
-    if (bestUci && bestUci !== playedUci) {
-      const after = await engine.analyze(res.fen, COACH_DEPTH);
-      loss = bestCp - -toCp(after); // flip: opponent to move at fenAfter
-    }
-    setChecking(false);
-
-    // Opening (first ~4 of each side) only interrupts on a real blunder, not on
-    // "not the engine's pet line" noise.
-    const severity: CoachTip["severity"] | null =
-      loss >= 300 ? "blunder" : plyIndex >= 8 && loss >= 150 ? "mistake" : null;
-
-    if (severity) {
-      const bestSan = bestUci
-        ? new ChessGame(fenBefore).tryMove(uciToMove(bestUci)).san ?? bestUci
-        : "?";
-      setPraise("");
-      setCoaching({
-        severity,
-        san: res.san ?? "",
-        bestSan,
-        bestUci,
-        playedUci,
-        fenBefore,
-        fenAfter: res.fen,
-        loss,
-      });
-      setBusy(false); // unlock the take-back / play-on buttons (board stays locked)
-      return;
-    }
-    // A clean move — a little encouragement, then the opponent replies.
-    setPraise(loss <= 20 ? "Best move ✓" : loss <= 70 ? "Good move ✓" : "");
-    await engineReply(res.fen, hist, gameElo);
-  }
-
-  function takeBack() {
-    if (!coaching) return;
-    setHistory((h) => h.slice(0, -1)); // drop the learner's move
-    setFen(coaching.fenBefore);
-    setUsedTakeback(true); // a coached take-back makes this a practice (unrated) game
-    setCoaching(null);
-    setPraise("");
-  }
-
-  async function playOn() {
-    if (!coaching) return;
-    const fenAfter = coaching.fenAfter;
-    setCoaching(null);
-    await engineReply(fenAfter, history, gameElo);
-  }
-
-  function finish(msg: string, outcome?: GameResult) {
-    setResult(msg);
-    setCoaching(null);
-    setPraise("");
-    // Rated only on a natural finish in Adaptive mode with no coached take-backs.
-    if (gameAdaptive && outcome && !usedTakeback) {
-      setRatingChange(playRatingStore.record(gameElo, outcome));
-    } else {
-      setRatingChange(null);
-    }
-    setPhase("gameover");
-    recordDailyActivity();
-  }
 
   function start() {
-    // Lock in the opponent for this game. Adaptive uses the player's live rating.
     const elo = adaptive ? rating.rating : pickElo;
-    setGameElo(elo);
-    setGameAdaptive(adaptive);
-    setRatingChange(null);
-    setCoaching(null);
-    setPraise("");
-    setUsedTakeback(false);
-    setFen(startFen);
-    setHistory([]);
-    setResult("");
-    setFlags([]);
-    setSelected(null);
-    setPhase("playing");
-    // If it's the opponent's move in the starting position, let the engine open.
-    const learnerSide = color === "white" ? "w" : "b";
-    if (new ChessGame(startFen).turn !== learnerSide) void engineReply(startFen, [], elo);
+    const qs = new URLSearchParams({
+      color,
+      elo: String(elo),
+      adaptive: adaptive ? "1" : "0",
+      coach: coach ? "1" : "0",
+    });
+    if (custom) qs.set("fen", startFen);
+    router.push(`/play/game?${qs.toString()}`);
   }
 
-  function handleMove(from: string, to: string): boolean {
-    if (phase !== "playing" || busy || coaching) return false;
-    if (new ChessGame(fen).turn !== learnerTurn) return false;
-    const res = applyMove(fen, { from, to });
-    if (!res.ok) return false;
-    const plyIndex = history.length; // index of this learner move in history
-    const nextHist = [
-      ...history,
-      { fenBefore: fen, fenAfter: res.fen, uci: res.uci ?? `${from}${to}`, san: res.san ?? "", byLearner: true },
-    ];
-    setHistory(nextHist);
-    setFen(res.fen);
-    setPraise("");
-    if (res.status === "checkmate") {
-      finish("Checkmate — you won! Review to see your best moments and any slips.", "win");
-      return true;
-    }
-    if (res.status === "stalemate" || res.status === "draw") {
-      finish("Draw.", "draw");
-      return true;
-    }
-    if (coach) void coachCheck(fen, res, nextHist, plyIndex);
-    else void engineReply(res.fen, nextHist, gameElo);
-    return true;
-  }
-
-  async function runReview() {
-    setPhase("reviewing");
-    const learnerPlies = history.filter((p) => p.byLearner);
-    setProgress({ n: 0, total: learnerPlies.length });
-    const engine = getEngine();
-    const found: Flag[] = [];
-    let good = 0;
-    let done = 0;
-    for (let i = 0; i < history.length; i++) {
-      const p = history[i];
-      if (!p.byLearner) continue;
-      // Don't flag opening-book moves (first ~4 of each side) — eval noise.
-      if (i < 8) {
-        good++;
-        done++;
-        setProgress({ n: done, total: learnerPlies.length });
-        continue;
-      }
-      const before = await engine.analyze(p.fenBefore, REVIEW_DEPTH);
-      const after = await engine.analyze(p.fenAfter, REVIEW_DEPTH);
-      const bestCp = toCp(before); // learner to move at fenBefore
-      const playedCp = -toCp(after); // opponent to move at fenAfter → flip
-      const loss = bestCp - playedCp;
-      const bestUci = before.bestMove ?? "";
-      const bestSan = bestUci
-        ? new ChessGame(p.fenBefore).tryMove(uciToMove(bestUci)).san ?? bestUci
-        : "?";
-      let klass: Flag["klass"] | null = null;
-      if (loss >= 300) klass = "blunder";
-      else if (loss >= 150) klass = "mistake";
-      else if (loss >= 70) klass = "inaccuracy";
-      if (klass) {
-        found.push({
-          ply: i,
-          moveLabel: moveLabel(i),
-          san: p.san,
-          bestSan,
-          bestUci,
-          playedUci: p.uci,
-          fenBefore: p.fenBefore,
-          loss,
-          klass,
-        });
-      } else {
-        good++;
-      }
-      done++;
-      setProgress({ n: done, total: learnerPlies.length });
-    }
-    found.sort((a, b) => b.loss - a.loss);
-    setFlags(found.slice(0, 8));
-    setAccuracy(
-      learnerPlies.length ? Math.round((good / learnerPlies.length) * 100) : 100,
-    );
-    setSelected(found[0] ?? null);
-    setPhase("done");
-  }
-
-  // ---- Render ----
-  if (phase === "setup") {
-    return (
-      <main className="space-y-6">
-        <PageHeader
-          backHref="/"
-          backLabel="Home"
-          eyebrow="Play"
-          title="Play & Review"
-          subtitle="Play a full game against the engine, then get a review that flags your biggest mistakes and shows the better move."
-        />
-        {custom && (
-          <Card className="flex items-center gap-2 p-4 text-sm text-ink-soft">
-            <Chip tone="sage">From your opening</Chip>
-            Starting from the position you set up — play out the middlegame.
-          </Card>
-        )}
-        <Card className="space-y-4 p-5">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Your color</p>
-            <div className="flex gap-2">
-              {(["white", "black"] as Orientation[]).map((c) => (
-                <Pick key={c} active={color === c} onClick={() => setColor(c)}>
-                  {c === "white" ? "White" : "Black"}
-                </Pick>
-              ))}
-            </div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Opponent</p>
-            <button
-              type="button"
-              onClick={() => setAdaptive(true)}
-              className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${
-                adaptive ? "border-primary bg-primary/5" : "border-line bg-card hover:border-primary/40"
-              }`}
-            >
-              <span className="min-w-0">
-                <span className="block font-display text-base font-semibold text-primary-strong">Adaptive</span>
-                <span className="block text-sm text-ink-soft">Matches your level and adjusts as you play</span>
-              </span>
-              <Chip tone="sage">{rating.rating}</Chip>
-            </button>
-            <p className="pt-1 text-xs text-ink-soft">…or pick a fixed rating:</p>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {OPPONENTS.map((o) => {
-                const on = !adaptive && pickElo === o.elo;
-                return (
-                  <button
-                    key={o.elo}
-                    type="button"
-                    onClick={() => {
-                      setAdaptive(false);
-                      setPickElo(o.elo);
-                    }}
-                    className={`rounded-xl border px-3 py-2 text-left transition ${
-                      on ? "border-primary bg-primary text-on-accent" : "border-line bg-card text-ink hover:border-primary/40"
-                    }`}
-                  >
-                    <span className="block text-base font-bold">
-                      {o.approx ? "~" : ""}
-                      {o.elo}
-                    </span>
-                    <span className={`block text-xs ${on ? "text-on-accent/80" : "text-ink-soft"}`}>{o.name}</span>
-                  </button>
-                );
-              })}
-            </div>
-            <p className="text-xs text-ink-soft/70">~ ratings below 1320 are approximate (the engine plays faster, weaker moves).</p>
-          </div>
-          <button
-            type="button"
-            onClick={() => setCoach((c) => !c)}
-            className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${
-              coach ? "border-primary bg-primary/5" : "border-line bg-card hover:border-primary/40"
-            }`}
-          >
-            <span className="min-w-0">
-              <span className="block font-display text-base font-semibold text-primary-strong">Move coach</span>
-              <span className="block text-sm text-ink-soft">Flags a blunder the moment you play it, with a chance to take it back</span>
-            </span>
-            <span
-              className={`relative h-6 w-11 shrink-0 rounded-full transition ${coach ? "bg-sage" : "bg-ink/20"}`}
-              aria-hidden
-            >
-              <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${coach ? "left-[1.375rem]" : "left-0.5"}`} />
-            </span>
-          </button>
-          <button type="button" onClick={start} className={buttonClasses("primary", "lg")}>
-            Start game
-          </button>
+  return (
+    <main className="space-y-6">
+      <PageHeader
+        backHref="/"
+        backLabel="Home"
+        eyebrow="Play"
+        title="Play & Review"
+        subtitle="Play a full game against the engine, then get a review that flags your biggest mistakes and shows the better move."
+      />
+      {custom && (
+        <Card className="flex items-center gap-2 p-4 text-sm text-ink-soft">
+          <Chip tone="sage">From your opening</Chip>
+          Starting from the position you set up — play out the middlegame.
         </Card>
-      </main>
-    );
-  }
-
-  if (phase === "reviewing") {
-    return (
-      <main className="space-y-5">
-        <PageHeader eyebrow="Review" title="Analyzing your game…" />
-        <Card className="space-y-3 p-6 text-center">
-          <p className="text-ink-soft">Checking each of your moves with the engine.</p>
-          <ProgressBar pct={progress.total ? (progress.n / progress.total) * 100 : 0} />
-          <p className="text-sm text-ink-soft">{progress.n} / {progress.total}</p>
-        </Card>
-      </main>
-    );
-  }
-
-  if (phase === "done") {
-    const flag = selected;
-    const boardFen = flag ? flag.fenBefore : plainView;
-    const flagByPly = (i: number) => flags.find((f) => f.ply === i);
-    return (
-      <main className="space-y-5">
-        <PageHeader
-          eyebrow="Review"
-          title="Game review"
-          right={
-            <button type="button" onClick={() => setPhase("setup")} className="text-sm font-medium text-ink-soft transition hover:text-ink">
-              New game
-            </button>
-          }
-        />
-        <Card className="flex items-center justify-between p-4">
-          <span className="font-display text-lg font-semibold text-primary-strong">Accuracy</span>
-          <Chip tone={accuracy >= 80 ? "sage" : accuracy >= 60 ? "amber" : "clay"}>{accuracy}%</Chip>
-        </Card>
-
-        <Card className="space-y-3 p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Practice your weak spots</p>
-          <p className="text-sm text-ink-soft">
-            {flags.length
-              ? "Most slips at this level are tactical. Sharpen your pattern recognition so you spot these in time — then drill the endgames where games are won and lost."
-              : "Clean game! Keep the edge with a few reps — tactics for sharpness, endgames for technique."}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/tactics" className={buttonClasses("primary", "md")}>Train tactics</Link>
-            <Link href="/endgames" className={buttonClasses("secondary", "md")}>Drill endgames</Link>
-          </div>
-        </Card>
-
-        {boardFen ? (
-          <Board
-            fen={boardFen}
-            orientation={color}
-            interactive={false}
-            arrows={
-              flag
-                ? [
-                    { from: flag.playedUci.slice(0, 2), to: flag.playedUci.slice(2, 4), color: "#ef4444" },
-                    { from: flag.bestUci.slice(0, 2), to: flag.bestUci.slice(2, 4), color: "#22c55e" },
-                  ]
-                : []
-            }
-          />
-        ) : (
-          <Card className="p-6 text-center text-ink-soft">
-            {flags.length ? "Tap a move below to review the position." : "No big mistakes flagged — clean game! 🎉"}
-          </Card>
-        )}
-
-        {flag && (
-          <div className="rounded-2xl bg-surface p-3 text-sm shadow-soft">
-            <span className="font-mono text-ink">{flag.moveLabel} {flag.san}</span>
-            <span className="text-ink-soft"> — better was </span>
-            <span className="font-semibold text-sage">{flag.bestSan}</span>
-            <span className="text-clay"> (red = your move, green = engine&apos;s best)</span>
-          </div>
-        )}
-
-        {flags.length > 0 && (
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Key moments</p>
-            {flags.map((f) => (
-              <button key={f.ply} type="button" onClick={() => { setSelected(f); setPlainView(null); }} className="block w-full text-left">
-                <Card interactive className={`flex items-center gap-3 p-3 ${selected?.ply === f.ply ? "ring-2 ring-primary" : ""}`}>
-                  <span className="font-mono text-sm text-ink-soft">{f.moveLabel}</span>
-                  <span className="min-w-0 flex-1">
-                    <span className="font-semibold text-primary-strong">{f.san}</span>
-                    <span className="text-ink-soft"> → better: {f.bestSan}</span>
-                  </span>
-                  <Chip tone={f.klass === "blunder" ? "clay" : f.klass === "mistake" ? "amber" : "neutral"}>
-                    {f.klass === "blunder" ? "??" : f.klass === "mistake" ? "?" : "?!"}
-                  </Chip>
-                </Card>
-              </button>
+      )}
+      <Card className="space-y-4 p-5">
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Your color</p>
+          <div className="flex gap-2">
+            {(["white", "black"] as Orientation[]).map((c) => (
+              <Pick key={c} active={color === c} onClick={() => setColor(c)}>{c === "white" ? "White" : "Black"}</Pick>
             ))}
           </div>
-        )}
-
-        {/* Full move list — click any move to step through the game */}
-        <div className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Move list</p>
-          <Card className="flex flex-wrap items-center gap-x-2 gap-y-1 p-4 font-mono text-sm">
-            {history.map((p, i) => {
-              const f = flagByPly(i);
-              const active = (flag && flag.ply === i) || (!flag && plainView === p.fenAfter);
-              const mark = f ? (f.klass === "blunder" ? "??" : f.klass === "mistake" ? "?" : "?!") : "";
-              return (
-                <span key={i} className="inline-flex items-center">
-                  {i % 2 === 0 && <span className="mr-1 text-ink-soft/60">{Math.floor(i / 2) + 1}.</span>}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (f) { setSelected(f); setPlainView(null); }
-                      else { setSelected(null); setPlainView(p.fenAfter); }
-                    }}
-                    className={`rounded px-2 py-1 ${active ? "bg-primary text-on-accent" : "text-ink hover:bg-line"} ${f ? "font-semibold" : ""}`}
-                  >
-                    {p.san}{mark}
-                  </button>
-                </span>
-              );
-            })}
-          </Card>
         </div>
-      </main>
-    );
-  }
-
-  // playing / gameover
-  const lastPly = history.length ? history[history.length - 1] : null;
-  return (
-    <main className="space-y-5">
-      <PageHeader
-        eyebrow={phase === "gameover" ? "Game over" : "Playing"}
-        title="Play & Review"
-        right={
-          <button type="button" onClick={() => setPhase("setup")} className="text-sm font-medium text-ink-soft transition hover:text-ink">
-            New game
-          </button>
-        }
-      />
-      <div className="flex items-center gap-2 text-sm text-ink-soft">
-        <Chip tone={gameAdaptive ? "sage" : "neutral"}>
-          {gameAdaptive ? "Adaptive · " : ""}
-          {gameElo < 1320 ? "~" : ""}
-          {gameElo}
-        </Chip>
-        <span>vs {personaForElo(gameElo)}</span>
-        {usedTakeback && <Chip tone="amber">Practice</Chip>}
-        {phase === "playing" && (
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Opponent</p>
           <button
             type="button"
-            onClick={() => setCoach((c) => !c)}
-            className="ml-auto rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink-soft transition hover:border-primary/40"
+            onClick={() => setAdaptive(true)}
+            className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${adaptive ? "border-primary bg-primary/5" : "border-line bg-card hover:border-primary/40"}`}
           >
-            Coach {coach ? "on" : "off"}
+            <span className="min-w-0">
+              <span className="block font-display text-base font-semibold text-primary-strong">Adaptive</span>
+              <span className="block text-sm text-ink-soft">Matches your level and adjusts as you play</span>
+            </span>
+            <Chip tone="sage">{rating.rating}</Chip>
           </button>
-        )}
-      </div>
-      <Board
-        fen={fen}
-        orientation={color}
-        interactive={phase === "playing" && !busy && !coaching}
-        onDrop={phase === "playing" && !busy && !coaching ? handleMove : undefined}
-        getLegalMoves={
-          phase === "playing" && !busy && !coaching && new ChessGame(fen).turn === learnerTurn
-            ? (sq) => new ChessGame(fen).legalDestinations(sq)
-            : undefined
-        }
-        onMove={phase === "playing" && !busy && !coaching ? (f, t) => void handleMove(f, t) : undefined}
-        lastMove={
-          lastPly && !coaching
-            ? { from: lastPly.uci.slice(0, 2), to: lastPly.uci.slice(2, 4), mine: lastPly.byLearner }
-            : undefined
-        }
-        arrows={
-          coaching
-            ? [
-                { from: coaching.playedUci.slice(0, 2), to: coaching.playedUci.slice(2, 4), color: "#ef4444" },
-                { from: coaching.bestUci.slice(0, 2), to: coaching.bestUci.slice(2, 4), color: "#22c55e" },
-              ]
-            : undefined
-        }
-      />
-
-      {coaching ? (
-        <Card className="space-y-3 border-2 border-accent/40 p-4">
-          <div className="flex items-center gap-2">
-            <Chip tone={coaching.severity === "blunder" ? "clay" : "amber"}>
-              {coaching.severity === "blunder" ? "Blunder" : "Mistake"}
-            </Chip>
-            <span className="font-mono text-ink">{coaching.san}</span>
+          <p className="pt-1 text-xs text-ink-soft">…or pick a fixed rating:</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {OPPONENTS.map((o) => {
+              const on = !adaptive && pickElo === o.elo;
+              return (
+                <button
+                  key={o.elo}
+                  type="button"
+                  onClick={() => { setAdaptive(false); setPickElo(o.elo); }}
+                  className={`rounded-xl border px-3 py-2 text-left transition ${on ? "border-primary bg-primary text-on-accent" : "border-line bg-card text-ink hover:border-primary/40"}`}
+                >
+                  <span className="block text-base font-bold">{o.approx ? "~" : ""}{o.elo}</span>
+                  <span className={`block text-xs ${on ? "text-on-accent/80" : "text-ink-soft"}`}>{o.name}</span>
+                </button>
+              );
+            })}
           </div>
-          <p className="text-sm text-ink-soft">
-            {coaching.severity === "blunder"
-              ? "That drops material or misses a big chance. "
-              : "That gives up some of your advantage. "}
-            A stronger move was <span className="font-semibold text-sage">{coaching.bestSan}</span>.
-            <span className="text-clay"> (red = your move, green = better)</span>
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={takeBack} className={buttonClasses("primary", "md")}>
-              Take it back
-            </button>
-            <button type="button" onClick={() => void playOn()} className={buttonClasses("secondary", "md")}>
-              Play on
-            </button>
-          </div>
-        </Card>
-      ) : (
-        // Reserve height so the status text changing length (or wrapping) per move
-        // can't shrink the page and clamp the scroll when you're scrolled down.
-        <div className="flex min-h-[3.75rem] items-center rounded-2xl bg-surface p-4 text-sm text-ink-soft shadow-soft">
-          {phase === "gameover"
-            ? result
-            : checking
-              ? "Coach is checking your move…"
-              : busy
-                ? praise
-                  ? `${praise} — opponent is thinking…`
-                  : "Engine is thinking…"
-                : `Your move (${color}). Drag or tap a piece.`}
+          <p className="text-xs text-ink-soft/70">~ ratings below 1320 are approximate (the engine plays faster, weaker moves).</p>
         </div>
-      )}
-
-      {phase === "gameover" && ratingChange && (
-        <Card className="flex items-center justify-between p-4">
-          <span className="font-display text-base font-semibold text-primary-strong">Your rating</span>
-          <span className="flex items-center gap-2 text-sm">
-            <span className="text-ink-soft">{ratingChange.before}</span>
-            <span aria-hidden>→</span>
-            <span className="font-bold text-primary-strong">{ratingChange.after}</span>
-            <Chip tone={ratingChange.delta >= 0 ? "sage" : "clay"}>
-              {ratingChange.delta >= 0 ? "+" : ""}
-              {ratingChange.delta}
-            </Chip>
+        <button
+          type="button"
+          onClick={() => setCoach((c) => !c)}
+          className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition ${coach ? "border-primary bg-primary/5" : "border-line bg-card hover:border-primary/40"}`}
+        >
+          <span className="min-w-0">
+            <span className="block font-display text-base font-semibold text-primary-strong">Move coach</span>
+            <span className="block text-sm text-ink-soft">Flags a blunder the moment you play it, with a chance to take it back</span>
           </span>
-        </Card>
-      )}
-
-      {phase === "gameover" && gameAdaptive && !ratingChange && usedTakeback && (
-        <Card className="p-4 text-sm text-ink-soft">
-          Practice game — you used a take-back, so your rating is unchanged.
-        </Card>
-      )}
-
-      <div className="flex flex-wrap gap-3">
-        {phase === "playing" && (
-          <button type="button" onClick={() => finish("You ended the game. Let's review it.")} className={buttonClasses("secondary", "md")}>
-            End game &amp; review
-          </button>
-        )}
-        {phase === "gameover" && (
-          <>
-            <button type="button" onClick={runReview} className={buttonClasses("primary", "lg")}>
-              Review my game
-            </button>
-            <button type="button" onClick={() => setPhase("setup")} className={buttonClasses("secondary", "lg")}>
-              New game
-            </button>
-          </>
-        )}
-      </div>
+          <span className={`relative h-6 w-11 shrink-0 rounded-full transition ${coach ? "bg-sage" : "bg-ink/20"}`} aria-hidden>
+            <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${coach ? "left-[1.375rem]" : "left-0.5"}`} />
+          </span>
+        </button>
+        <button type="button" onClick={start} className={buttonClasses("primary", "lg")}>Start game</button>
+      </Card>
     </main>
   );
 }
 
-function Pick({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
+function Pick({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full border px-4 py-1.5 text-sm font-medium transition ${
-        active ? "border-primary bg-primary text-on-accent" : "border-line bg-card text-ink-soft hover:border-primary/40"
-      }`}
+      className={`rounded-full border px-4 py-1.5 text-sm font-medium transition ${active ? "border-primary bg-primary text-on-accent" : "border-line bg-card text-ink-soft hover:border-primary/40"}`}
     >
       {children}
     </button>
