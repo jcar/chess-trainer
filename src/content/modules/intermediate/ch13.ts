@@ -76,11 +76,12 @@ export const ch13: Lesson = {
       title: "Winning with king and pawn",
       blurb: "The king leads, the pawn follows.",
       orientation: "white",
+      eval: true,
       startFen: "3k4/8/3K4/3P4/8/8/8/8 w - - 0 1",
       intro:
-        "The golden rule: get your KING in front of the pawn, and use the opposition to escort it home. Watch White convert.",
+        "The golden rule: get your KING in front of the pawn, and use the opposition to escort it home. Watch White convert — and watch the eval bar leap to a decisive lead the moment the pawn queens.",
       steps: [
-        { san: "Ke6", note: "King first! Sidestep to seize squares — don't push the pawn yet." },
+        { san: "Ke6", keyIdea: "King first, not the pawn", note: "King first! Sidestep to seize squares — don't push the pawn yet." },
         { san: "Ke8", note: "Black takes the opposition, trying to block the king's advance." },
         { san: "d6", note: "Now the pawn advances with the king supporting it." },
         { san: "Kd8", note: "Black is forced back in front of the pawn." },

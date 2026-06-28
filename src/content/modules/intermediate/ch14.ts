@@ -168,10 +168,11 @@ export const ch14: Lesson = {
       blurb: "Knock out the guard, take the prize.",
       startFen: "4k3/pp3ppp/2n5/1B2b3/8/5N2/5PPP/6K1 w - - 0 1",
       orientation: "white",
+      eval: true,
       intro:
-        "Black's bishop on e5 is attacked by the knight, but it's defended by the knight on c6. So deal with the defender first.",
+        "Black's bishop on e5 is attacked by the knight, but it's defended by the knight on c6. So deal with the defender first. Watch the eval bar swing once the guard is gone and the bishop falls.",
       steps: [
-        { san: "Bxc6+", note: "Remove the guard: the bishop captures the only defender of e5 — with check, so Black has no time for anything else." },
+        { san: "Bxc6+", keyIdea: "Remove the guard (with check)", note: "Remove the guard: the bishop captures the only defender of e5 — with check, so Black has no time for anything else." },
         { san: "bxc6", note: "Black recaptures. The bishop on e5 has lost its protector." },
         { san: "Nxe5", note: "Now the knight takes the bishop for free. Removing the defender: eliminate the guard, then collect what it was guarding." },
       ],
