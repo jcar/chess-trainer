@@ -11,6 +11,7 @@ import { LevelChip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { CHARACTER_IMAGES } from "@/lib/art/portraitManifest";
 import { withBasePath } from "@/lib/basePath";
+import { useShowSupport } from "@/lib/prefs/support";
 import {
   ChevronRightIcon,
   StarIcon,
@@ -95,6 +96,7 @@ export default function HomePage() {
   const { moduleProgress, getActivityState } = useProgress();
   const { counts: trainerCounts } = useTrainer();
   const daily = useDailyStreak();
+  const showSupport = useShowSupport();
   const cont = firstIncomplete((id) => getActivityState(id).completed);
   const started = MODULES.some(
     (mod) => moduleProgress(getModuleActivities(mod).map((a) => a.id)) > 0,
@@ -238,7 +240,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── A quiet side offer: the gear guide ── */}
+      {/* ── A quiet side offer: the gear guide (gated by the Support toggle) ── */}
+      {showSupport && (
       <section className="rise" style={{ animationDelay: "320ms" }}>
         <Link href="/gear" className="block">
           <Card interactive className="flex items-center gap-3.5 p-4">
@@ -253,6 +256,7 @@ export default function HomePage() {
           </Card>
         </Link>
       </section>
+      )}
 
       {/* ── Brand-new learner: where to start ── */}
       {!started && (
