@@ -78,9 +78,10 @@ export const pawnEndgames: Lesson = {
       title: "Escorting the pawn home",
       blurb: "Lead with the king, then promote.",
       orientation: "white",
+      eval: true,
       startFen: "4k3/8/4K3/4P3/8/8/8/8 w - - 0 1",
       intro:
-        "White's king is already in front of the pawn on the 6th rank — that's a win even though Black 'has the opposition'. Watch how the king leads and outflanks to clear a path for the pawn.",
+        "White's king is already in front of the pawn on the 6th rank — that's a win even though Black 'has the opposition'. Watch how the king leads and outflanks to clear a path for the pawn — and watch the eval bar jump to a decisive lead the moment the pawn promotes.",
       steps: [
         { san: "Kd6", note: "Lead with the king and sidestep — heading around the black king rather than shoving the pawn." },
         { san: "Kd8", note: "Black tries to hold the opposition." },

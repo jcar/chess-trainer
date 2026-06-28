@@ -134,10 +134,11 @@ export const ch7: Lesson = {
       blurb: "Watch a fork win the queen.",
       startFen: "2q1k3/8/8/8/2N5/8/8/4K3 w - - 0 1",
       orientation: "white",
+      eval: true,
       intro:
-        "White's knight is a jump away from forking the king and queen. Watch how the check forces the win.",
+        "White's knight is a jump away from forking the king and queen. Watch how the check forces the win — and watch the eval bar swing from losing (Black has a whole queen!) to winning the instant the fork lands.",
       steps: [
-        { san: "Nd6+", note: "The knight leaps to d6 — check! It attacks the king AND the queen on c8. A 'royal fork'." },
+        { san: "Nd6+", keyIdea: "Fork with check", note: "The knight leaps to d6 — check! It attacks the king AND the queen on c8. A 'royal fork'." },
         { san: "Kf8", note: "Black MUST answer the check. The king steps aside — but the queen can't be saved too." },
         { san: "Nxc8", note: "The knight grabs the queen. The fork worked because the check had to be dealt with first." },
       ],

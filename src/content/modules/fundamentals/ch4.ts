@@ -78,7 +78,7 @@ export const ch4: Lesson = {
       orientation: "white",
       startFen: "8/8/4k3/8/8/8/R7/1R4K1 w - - 0 1",
       intro:
-        "Two rooks checkmate a lone king with no help from their own king. The 'ladder': one rook checks to push the king back a rank, the other takes over the next rank so it can't return.",
+        "Two rooks checkmate a lone king with no help from their own king. The 'ladder' (also called the 'lawnmower'): one rook checks to push the king back a rank, the other takes over the next rank so it can't return.",
       steps: [
         { san: "Rb6+", note: "Check along the king's rank, forcing it backward toward the edge." },
         { san: "Ke7", note: "The king retreats. Now the other rook will fence off this rank." },
