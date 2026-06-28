@@ -103,31 +103,42 @@ export function threatSquares(level: Level): Set<string> {
   return t;
 }
 
-/** Can the player walk start → crown stepping only on SAFE (un-threatened) squares? */
-function solvable(level: Level): boolean {
+/** Length of the shortest start → crown path stepping only on SAFE squares, or
+ *  -1 if there is none. (BFS, so the first time we pop the crown it's shortest.) */
+export function shortestPath(level: Level): number {
   const occupied = new Set(level.enemies.map((e) => key(e.pos)));
   const threat = threatSquares(level);
-  if (threat.has(key(level.start)) || threat.has(key(level.crown))) return false;
-  const seen = new Set<string>([key(level.start)]);
+  if (threat.has(key(level.start)) || threat.has(key(level.crown))) return -1;
+  const dist = new Map<string, number>([[key(level.start), 0]]);
   const queue: Pos[] = [level.start];
   while (queue.length) {
     const cur = queue.shift()!;
-    if (samePos(cur, level.crown)) return true;
+    if (samePos(cur, level.crown)) return dist.get(key(cur))!;
     for (const nxt of reachable(level.piece, cur, occupied)) {
       const k = key(nxt);
-      if (seen.has(k) || threat.has(k)) continue; // only stand on safe squares
-      seen.add(k);
+      if (dist.has(k) || threat.has(k)) continue; // only stand on safe squares
+      dist.set(k, dist.get(key(cur))! + 1);
       queue.push(nxt);
     }
   }
-  return false;
+  return -1;
 }
+
+/** Is the level winnable for its piece at all? */
+export function solvable(level: Level): boolean {
+  return shortestPath(level) >= 0;
+}
+
+/** Target minimum optimal-path length per level — so sliders aren't 1–2 moves and
+ *  the challenge climbs. Gentle start, capped. */
+const minPath = (n: number): number => Math.min(2 + Math.floor(n / 2), 9);
 
 function pick<T>(rng: () => number, arr: T[]): T {
   return arr[Math.floor(rng() * arr.length)];
 }
 
-/** Generate level `n` (1-based) for `seed` — deterministic + guaranteed solvable. */
+/** Generate level `n` (1-based) for `seed` — deterministic + ALWAYS solvable, and
+ *  tuned toward a minimum optimal-path length so it isn't trivial. */
 export function generateLevel(seed: number, n: number): Level {
   const rng = mulberry32(hashStr(`${seed}:${n}`));
   const piece = n <= TEACH_ORDER.length ? TEACH_ORDER[n - 1] : pick(rng, PLAYER_PIECES);
@@ -137,30 +148,46 @@ export function generateLevel(seed: number, n: number): Level {
       : n <= 5 ? ["rook", "bishop", "knight", "pawn", "queen"]
         : ["queen", "rook", "rook", "bishop", "knight"];
   const target = Math.min(2 + Math.floor(n * 0.8), 14);
+  const want = minPath(n);
 
-  // Start low, crown high, far apart.
+  // Start low, crown high, far apart. The bishop is COLOR-BOUND: if the crown is
+  // on the opposite color it is mathematically unreachable, so force a match.
   const start: Pos = { x: Math.floor(rng() * SIZE), y: Math.floor(rng() * 2) };
-  const crown: Pos = { x: Math.floor(rng() * SIZE), y: SIZE - 1 - Math.floor(rng() * 2) };
+  let crown: Pos = { x: Math.floor(rng() * SIZE), y: SIZE - 1 - Math.floor(rng() * 2) };
+  if (piece === "bishop" && (start.x + start.y) % 2 !== (crown.x + crown.y) % 2) {
+    crown = { ...crown, x: crown.x === SIZE - 1 ? crown.x - 1 : crown.x + 1 };
+  }
 
-  for (let count = target; count >= 1; count--) {
-    for (let attempt = 0; attempt < 60; attempt++) {
-      const enemies: Enemy[] = [];
-      const used = new Set<string>([key(start), key(crown)]);
-      for (let i = 0; i < count; i++) {
-        let pos: Pos | null = null;
-        for (let t = 0; t < 30; t++) {
-          const c = { x: Math.floor(rng() * SIZE), y: Math.floor(rng() * SIZE) };
-          if (!used.has(key(c))) { pos = c; break; }
-        }
-        if (!pos) break;
-        used.add(key(pos));
-        enemies.push({ piece: pick(rng, enemyPool), pos });
+  const placeEnemies = (count: number): Enemy[] => {
+    const enemies: Enemy[] = [];
+    const used = new Set<string>([key(start), key(crown)]);
+    for (let i = 0; i < count; i++) {
+      let pos: Pos | null = null;
+      for (let t = 0; t < 30; t++) {
+        const c = { x: Math.floor(rng() * SIZE), y: Math.floor(rng() * SIZE) };
+        if (!used.has(key(c))) { pos = c; break; }
       }
-      const level: Level = { level: n, size: SIZE, piece, start, crown, enemies };
-      if (solvable(level)) return level;
+      if (!pos) break;
+      used.add(key(pos));
+      enemies.push({ piece: pick(rng, enemyPool), pos });
+    }
+    return enemies;
+  };
+
+  // Prefer a board that is solvable AND meets the target path length; keep the
+  // longest-path solvable board seen as a fallback so we never ship a soft-lock.
+  let best: Level | null = null;
+  let bestD = -1;
+  for (let count = target; count >= 1; count--) {
+    for (let attempt = 0; attempt < 50; attempt++) {
+      const level: Level = { level: n, size: SIZE, piece, start, crown, enemies: placeEnemies(count) };
+      const d = shortestPath(level);
+      if (d > bestD) { bestD = d; best = level; }
+      if (d >= want) return level;
     }
   }
-  // Fallback: no enemies (always solvable) — should never happen in practice.
+  if (best && bestD >= 0) return best; // solvable, just shorter than ideal
+  // Empty board — always solvable now (bishop crown color is matched above).
   return { level: n, size: SIZE, piece, start, crown, enemies: [] };
 }
 

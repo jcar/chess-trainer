@@ -25,6 +25,16 @@ import { ArcadeHud } from "@/components/arcade/ArcadeHud";
 const MAX_LIVES = 3;
 const clearBonus = (level: number) => 100 + (level - 1) * 25;
 
+// How each piece moves — shown as a teaching cue when the level's piece changes.
+const MOVE_DESC: Record<string, string> = {
+  knight: "in L-shaped hops",
+  rook: "in straight lines",
+  bishop: "diagonally",
+  queen: "in any straight line or diagonal",
+  king: "one square at a time",
+  pawn: "forward",
+};
+
 type Phase = "intro" | "playing" | "over";
 
 export function GauntletGame({ onExit }: { onExit: () => void }) {
@@ -38,6 +48,7 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
   const [score, setScore] = useState(0);
   const [shakeKey, setShakeKey] = useState(0);
   const [confettiKey, setConfettiKey] = useState(0);
+  const [moves, setMoves] = useState(0);
 
   const level = useMemo(() => generateLevel(seed, levelNum), [seed, levelNum]);
   const occupied = useMemo(() => new Set(level.enemies.map((e) => key(e.pos))), [level]);
@@ -62,6 +73,7 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
     setPlayer(lvl.start);
     setLives(MAX_LIVES);
     setScore(0);
+    setMoves(0);
     setPhase("playing");
     playSound("levelup");
   }
@@ -72,7 +84,7 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
     if (!safe.has(k) && !danger.has(k)) return;
 
     if (danger.has(k)) {
-      // Zapped — lose a life, reset to the level start (or end the run).
+      // Zapped reaching into fire — lose a life but STAY put (keep your progress).
       playSound("zap");
       setShakeKey((n) => n + 1);
       const next = lives - 1;
@@ -83,7 +95,6 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
         arcadeScoreStore.record(score, levelNum, daily);
       } else {
         setLives(next);
-        setPlayer(level.start);
       }
       return;
     }
@@ -96,6 +107,7 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
       setScore((s) => s + gained);
       setLevelNum(nextNum);
       setPlayer(nextLevel.start);
+      setMoves(0);
       setConfettiKey((n) => n + 1);
       playSound("levelup");
       return;
@@ -103,6 +115,7 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
 
     // Ordinary safe step.
     setPlayer(pos);
+    setMoves((m) => m + 1);
     playSound("move");
   }
 
@@ -194,6 +207,7 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
         pieceName={PIECE_NAME[level.piece]}
         modeLabel={modeLabel}
         best={best}
+        moves={moves}
       />
       <div key={shakeKey} className={shakeKey > 0 ? "arcade-shake" : undefined}>
         <ArcadeBoard
@@ -205,8 +219,11 @@ export function GauntletGame({ onExit }: { onExit: () => void }) {
           onTap={handleTap}
         />
       </div>
-      <div className="flex items-center justify-between font-mono text-xs" style={{ color: "var(--arc-dim)" }}>
-        <span>Reach the 👑 — you are the {PIECE_NAME[level.piece]}</span>
+      <div className="flex items-center justify-between gap-3 font-mono text-xs" style={{ color: "var(--arc-dim)" }}>
+        <span>
+          You are the <span style={{ color: "var(--arc-cyan)" }}>{PIECE_NAME[level.piece]}</span> — moves{" "}
+          {MOVE_DESC[level.piece]}. Reach the 👑
+        </span>
         <button type="button" onClick={onExit} className="underline">Quit</button>
       </div>
     </div>

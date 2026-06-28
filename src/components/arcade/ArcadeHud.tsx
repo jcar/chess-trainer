@@ -11,6 +11,7 @@ interface Props {
   pieceName: string;
   modeLabel: string;
   best: number;
+  moves: number;
 }
 
 function Stat({ label, children, glow }: { label: string; children: React.ReactNode; glow?: string }) {
@@ -26,7 +27,7 @@ function Stat({ label, children, glow }: { label: string; children: React.ReactN
   );
 }
 
-export function ArcadeHud({ score, level, lives, maxLives, pieceGlyph, pieceName, modeLabel, best }: Props) {
+export function ArcadeHud({ score, level, lives, maxLives, pieceGlyph, pieceName, modeLabel, best, moves }: Props) {
   return (
     <div
       className="flex items-center justify-between gap-3 rounded-xl px-4 py-3"
@@ -34,6 +35,7 @@ export function ArcadeHud({ score, level, lives, maxLives, pieceGlyph, pieceName
     >
       <Stat label="Score" glow="var(--arc-cyan)">{score.toLocaleString()}</Stat>
       <Stat label="Level">{level}</Stat>
+      <Stat label="Moves">{moves}</Stat>
       <Stat label="You">
         <span className="inline-flex items-center gap-1.5">
           <span style={{ color: "#bdf3ff", textShadow: "0 0 8px var(--arc-cyan)" }}>{pieceGlyph}</span>
