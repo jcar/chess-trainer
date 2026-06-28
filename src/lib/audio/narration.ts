@@ -97,6 +97,13 @@ export function narrationStrings(a: Activity): string[] {
       break;
     case "scene":
       break; // character dialogue — handled separately
+    case "guessMove":
+      out.push(a.intro, a.successText);
+      for (const n of a.notes ?? []) if (n) out.push(n);
+      break;
+    case "plan":
+      out.push(a.planQuestion, a.explanation);
+      break;
   }
   return out.filter((s) => s != null && s.trim() !== "");
 }

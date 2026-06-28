@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { ReplayActivity } from "@/content/types";
 import { buildReplayFens, replayMoveSquares } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
+import { EvalBar } from "@/components/board/EvalBar";
 import { StudyLayout } from "@/components/activities/StudyLayout";
 import { SpeakButton } from "@/components/kids/SpeakButton";
 import { useAutoRead } from "@/lib/audio/useAutoRead";
@@ -33,8 +34,26 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
   const [step, setStep] = useState(0);
   const lastStep = activity.steps.length;
 
-  const note = step === 0 ? activity.intro : activity.steps[step - 1].note;
+  const curStep = step === 0 ? null : activity.steps[step - 1];
+  const note = curStep ? curStep.note : activity.intro;
   useAutoRead(note, { enabled: kidMode });
+
+  // Strategy Lab (adult): live eval bar, key-idea callouts, and per-step arrows /
+  // highlights pointing out the strategic feature (a hole, an outpost, a file).
+  const isLab = !!activity.eval;
+  const moveArrow =
+    (kidMode || isLab) && step > 0 && moveSquares[step - 1] ? [moveSquares[step - 1]] : [];
+  const arrows = [...moveArrow, ...(curStep?.arrows ?? [])];
+
+  const boardEl = (
+    <Board
+      fen={fens[step]}
+      orientation={activity.orientation}
+      interactive={false}
+      arrows={arrows}
+      highlightSquares={curStep?.highlights ?? []}
+    />
+  );
 
   function go(next: number) {
     const clamped = Math.max(0, Math.min(lastStep, next));
@@ -48,20 +67,29 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
   return (
     <StudyLayout
       stack={kidMode}
+      caption={isLab ? activity.source : undefined}
       board={
-        <Board
-          fen={fens[step]}
-          orientation={activity.orientation}
-          interactive={false}
-          arrows={
-            kidMode && step > 0 && moveSquares[step - 1]
-              ? [moveSquares[step - 1]]
-              : []
-          }
-        />
+        isLab ? (
+          <div className="flex items-stretch gap-2 sm:gap-3">
+            <EvalBar fen={fens[step]} orientation={activity.orientation} />
+            <div className="min-w-0 flex-1">{boardEl}</div>
+          </div>
+        ) : (
+          boardEl
+        )
       }
       ledger={
         <>
+          {curStep?.keyIdea && (
+            <div className="rounded-2xl border border-accent/30 bg-accent/8 px-4 py-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+                Key idea
+              </p>
+              <p className="mt-1 font-display text-base font-semibold text-primary-strong">
+                {curStep.keyIdea}
+              </p>
+            </div>
+          )}
           <div
             className={`flex items-start gap-3 rounded-2xl bg-surface p-4 leading-relaxed shadow-soft ${
               kidMode ? "text-lg" : "text-sm"

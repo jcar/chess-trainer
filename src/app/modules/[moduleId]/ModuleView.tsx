@@ -32,6 +32,8 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
   concept: "Learn",
   reviewCheckpoint: "Challenge",
   scene: "Story",
+  guessMove: "Guess",
+  plan: "Plan",
 };
 
 export function ModuleView({ moduleId }: { moduleId: string }) {

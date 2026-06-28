@@ -136,11 +136,23 @@ export interface ReplayStep {
   san: string;
   /** Annotation displayed while this move is shown. */
   note: string;
+  /** Strategy Lab: extra arrows to draw on this step (beyond the move arrow),
+   *  e.g. pointing out a weak square or a plan. */
+  arrows?: { from: string; to: string }[];
+  /** Strategy Lab: squares to emphasize on this step (e.g. an outpost, a hole). */
+  highlights?: string[];
+  /** Strategy Lab: a short bolded "key idea" callout shown above the note. */
+  keyIdea?: string;
 }
 
 /**
  * Guided replay: the learner steps forward/back through an annotated line.
  * No free play — the board reflects the current step.
+ *
+ * Used in two registers: the kid-mode "watch the moves" replay, and the adult
+ * **Strategy Lab** (`eval: true`) — a real master game annotated with the *why*,
+ * arrows/highlights per step, and a live Stockfish eval bar so the advantage is
+ * visible as it grows.
  */
 export interface ReplayActivity extends ActivityBase {
   type: "replay";
@@ -150,6 +162,10 @@ export interface ReplayActivity extends ActivityBase {
   /** Intro shown before the first move. */
   intro: string;
   steps: ReplayStep[];
+  /** Strategy Lab: show a live Stockfish evaluation bar beside the board. */
+  eval?: boolean;
+  /** Optional attribution for a real game, e.g. "Capablanca–Tartakower, 1924". */
+  source?: string;
 }
 
 /** The six chess piece kinds (used by visual move-maps). */
@@ -412,11 +428,62 @@ export interface SceneActivity extends ActivityBase {
   cta: string;
 }
 
+/**
+ * Guess the Move (adult "Try"): the learner plays a real master game forward and,
+ * at chosen plies, must *predict* the move before it is revealed. Stockfish scores
+ * the guess — an exact match scores full, a move within an eval-loss band scores
+ * partial — then the game move and the idea behind it are shown. Teaches a learner
+ * to think like the master rather than passively watch.
+ */
+export interface GuessMoveActivity extends ActivityBase {
+  type: "guessMove";
+  /** Starting position (defaults to the standard start if omitted). */
+  startFen?: string;
+  orientation: Orientation;
+  /** The whole game line in SAN; the learner reproduces it ply by ply. */
+  moves: string[];
+  /** Indices into `moves` (0-based plies) at which the learner must guess. */
+  guessAt: number[];
+  /** Optional per-ply notes (parallel to `moves`), shown as each move is revealed. */
+  notes?: (string | undefined)[];
+  /** Intro shown before play. */
+  intro: string;
+  /** Message shown when the line is complete. */
+  successText: string;
+  /** Optional attribution, e.g. "Karpov–Unzicker, 1974". */
+  source?: string;
+}
+
+/**
+ * Find the Plan → convert (adult "Apply"): first the learner reads the position's
+ * imbalances and picks the right *plan* (multiple choice), then immediately
+ * **executes** that plan against the engine (a drill) or plays the key line (a
+ * puzzle). Closes the loop from understanding to doing. `convert` carries a full
+ * sub-activity minus its identity (the player supplies id/title/type).
+ */
+export interface PlanActivity extends ActivityBase {
+  type: "plan";
+  fen: string;
+  orientation: Orientation;
+  /** The strategic question, e.g. "How should White play this position?" */
+  planQuestion: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+  /** After the plan is identified, convert it: play it out (drill) or find the
+   *  line (puzzle). */
+  convert:
+    | { kind: "puzzle"; puzzle: Omit<PuzzleActivity, "type" | "id" | "title" | "blurb" | "dialogue"> }
+    | { kind: "drill"; drill: Omit<DrillActivity, "type" | "id" | "title" | "blurb" | "dialogue"> };
+}
+
 export type Activity =
   | PuzzleActivity
   | DrillActivity
   | QuizActivity
   | ReplayActivity
+  | GuessMoveActivity
+  | PlanActivity
   | MoveMapActivity
   | PictureQuizActivity
   | TargetActivity

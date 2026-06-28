@@ -150,6 +150,25 @@ export const SceneIcon = ({ className }: IconProps) => (
   </Line>
 );
 
+export const GuessMoveIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    {/* a question mark over a target — "predict the move" */}
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M9.8 9.6a2.3 2.3 0 0 1 4.4.8c0 1.6-2.2 1.8-2.2 3.4" />
+    <circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none" />
+  </Line>
+);
+
+export const PlanIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    {/* a route with a flag — "find and follow the plan" */}
+    <path d="M5 19c0-3 3-3 3-6s-3-3-3-6" />
+    <path d="M14 4.5v15" />
+    <path d="M14 5h5l-1.6 2.2L19 9.4h-5" />
+    <circle cx="5" cy="19.2" r="1" fill="currentColor" stroke="none" />
+  </Line>
+);
+
 /* ---- Status / reward icons ---- */
 
 export const StarIcon = ({
@@ -263,4 +282,6 @@ export const ACTIVITY_ICON: Record<
   concept: ConceptIcon,
   reviewCheckpoint: TrophyIcon,
   scene: SceneIcon,
+  guessMove: GuessMoveIcon,
+  plan: PlanIcon,
 };

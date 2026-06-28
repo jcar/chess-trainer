@@ -395,6 +395,85 @@ async function checkActivity(moduleId: string, a: Activity) {
       }
       break;
     }
+
+    case "guessMove": {
+      // A real master game stepped forward; the learner predicts moves at
+      // `guessAt`. Replay the whole SAN line for legality, then confirm each
+      // guess ply is in range and lands on a position with a defensible best
+      // move (the engine returns a top line — i.e. it's not terminal).
+      const game = new Chess(a.startFen);
+      assertLegalPosition(where, game.fen());
+      if (a.moves.length === 0) note(where, "guessMove has no moves");
+      // FEN at each ply, captured BEFORE that ply is played (for guess checks).
+      const fenBefore: string[] = [];
+      let legal = true;
+      for (let i = 0; i < a.moves.length; i++) {
+        fenBefore[i] = game.fen();
+        try {
+          game.move(a.moves[i]);
+        } catch {
+          note(where, `move #${i + 1} ("${a.moves[i]}") is illegal`);
+          legal = false;
+          break;
+        }
+      }
+      if (a.guessAt.length === 0) note(where, "guessMove has no guess plies");
+      for (const g of a.guessAt) {
+        if (g < 0 || g >= a.moves.length) {
+          note(where, `guessAt index ${g} out of range (0..${a.moves.length - 1})`);
+        }
+      }
+      // Engine sanity: each guess position must yield a best move to score against.
+      if (legal) {
+        const engine = getEngine();
+        for (const g of a.guessAt) {
+          if (g < 0 || g >= a.moves.length) continue;
+          const { lines } = await engine.analyze(fenBefore[g], { depth: EVAL_DEPTH, multiPV: 1 });
+          if (!lines[0]?.move) {
+            note(where, `guess ply ${g}: engine found no move (terminal position?)`);
+          }
+        }
+      }
+      break;
+    }
+
+    case "plan": {
+      // Pick-the-plan MCQ over a position, then a convert sub-activity.
+      if (!assertLegalPosition(where, a.fen)) break;
+      if (a.options.length < 2) note(where, "plan needs ≥2 options");
+      if (a.correctIndex < 0 || a.correctIndex >= a.options.length) {
+        note(where, `correctIndex ${a.correctIndex} out of range`);
+      }
+      const conv = a.convert;
+      const cWhere = `${where} convert`;
+      if (conv.kind === "puzzle") {
+        const p = conv.puzzle;
+        if (assertLegalPosition(cWhere, p.fen)) {
+          const probe = new Chess(p.fen);
+          let ok = true;
+          for (let i = 0; i < p.solution.length; i++) {
+            if (!playUci(probe, p.solution[i])) {
+              note(cWhere, `solution move #${i + 1} ("${p.solution[i]}") is illegal`);
+              ok = false;
+              break;
+            }
+          }
+          if (ok && p.goal) await checkLineSound(cWhere, p.fen, p.solution, p.goal);
+          else if (!p.goal) warn(cWhere, "convert puzzle has no `goal` — not engine-verified");
+        }
+      } else {
+        const d = conv.drill;
+        if (assertLegalPosition(cWhere, d.fen)) {
+          const { lines } = await getEngine().analyze(d.fen, { depth: EVAL_DEPTH, multiPV: 1 });
+          const s = lines[0]?.score;
+          const winning = s && (isMate(s) ? s.mate > 0 : s.cp >= 500);
+          if (!winning) {
+            note(cWhere, `convert drill not winnable for the side to move (engine: ${JSON.stringify(s)})`);
+          }
+        }
+      }
+      break;
+    }
   }
 }
 

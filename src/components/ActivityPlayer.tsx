@@ -24,6 +24,8 @@ import { CoordinatePlayer } from "@/components/activities/CoordinatePlayer";
 import { PracticeSetPlayer } from "@/components/activities/PracticeSetPlayer";
 import { OpeningDrillPlayer } from "@/components/activities/OpeningDrillPlayer";
 import { ConceptPlayer } from "@/components/activities/ConceptPlayer";
+import { GuessMovePlayer } from "@/components/activities/GuessMovePlayer";
+import { PlanPlayer } from "@/components/activities/PlanPlayer";
 import { PipChallengePlayer } from "@/components/activities/PipChallengePlayer";
 import { ScenePlayer } from "@/components/activities/ScenePlayer";
 import { SpeakButton } from "@/components/kids/SpeakButton";
@@ -67,6 +69,8 @@ const TYPE_LABEL: Record<Activity["type"], string> = {
   concept: "Learn",
   reviewCheckpoint: "Pip's Challenge",
   scene: "Story",
+  guessMove: "Guess the move",
+  plan: "Find the plan",
 };
 
 interface Props {
@@ -350,6 +354,12 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           advanceLabel={next ? "Got it" : kidMode ? "All done!" : "Finish"}
           kidMode={kidMode}
         />
+      )}
+      {activity.type === "guessMove" && (
+        <GuessMovePlayer activity={activity} onComplete={handleComplete} />
+      )}
+      {activity.type === "plan" && (
+        <PlanPlayer activity={activity} onComplete={handleComplete} />
       )}
       {activity.type === "reviewCheckpoint" && (
         <PipChallengePlayer activity={activity} onComplete={handleComplete} />
