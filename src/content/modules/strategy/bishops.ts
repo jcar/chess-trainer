@@ -20,6 +20,14 @@ export const bishopsLesson: Lesson = {
         "Place your pawns on the opposite colour to your bishop.",
         "A bad bishop won't improve on its own — free it or trade it.",
       ],
+      diagrams: [
+        {
+          fen: "4k3/3p1p2/4p3/3pB3/3P1P2/4P3/8/4K3 w - - 0 1",
+          orientation: "white",
+          caption:
+            "White's bishop sits OUTSIDE its pawn chain on an open diagonal — a good bishop. Black's would-be bishop is hemmed by pawns on d5/e6/f7 (its own colour) — the textbook bad bishop.",
+        },
+      ],
     },
     {
       type: "quiz",
@@ -184,6 +192,74 @@ export const bishopsLesson: Lesson = {
             "— the better minor pieces are White's.",
         },
       ],
+    },
+    {
+      type: "guessMove",
+      id: "bishops-guess",
+      title: "Guess the Move: place the bishops",
+      blurb: "Predict where the bishops belong.",
+      orientation: "white",
+      source: "Queen's Gambit Declined",
+      intro:
+        "You're White. Predict the bishop moves. The question behind each: which diagonal gives this bishop the most scope — and keeps your pawns off its colour?",
+      moves: [
+        "d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5", "Be7", "e3", "O-O", "Bd3",
+      ],
+      guessAt: [6, 10],
+      notes: [
+        undefined, undefined, undefined, undefined, undefined, undefined,
+        "The dark-squared bishop steps to its most active diagonal, pinning the f6-knight — a good bishop with a clear target.",
+        undefined, undefined, undefined,
+        "The light-squared bishop takes an open diagonal toward Black's king. Note White's pawns sit on dark squares, off this bishop's colour.",
+      ],
+      successText:
+        "Both bishops developed to open diagonals, pawns kept off their colours — that's how you end up with the better minor pieces.",
+    },
+    {
+      type: "plan",
+      id: "bishops-plan-apply",
+      title: "Find the plan, then convert",
+      blurb: "Back your bishops, then bring home the point.",
+      fen: "2b2rk1/pp3ppp/2p1p3/3p4/3P1B2/3B4/PP3PPP/2R1R1K1 w - - 0 1",
+      orientation: "white",
+      planQuestion:
+        "Your two bishops rake open diagonals; Black's c8-bishop is buried behind its own pawns. What's the plan?",
+      options: [
+        "Keep the bishops, open lines, and let the pair dominate while you convert the extra material.",
+        "Trade your active bishops off to simplify the position.",
+        "Lock the centre with pawn moves to make the position closed.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Two good bishops on an open board are a powerful team — never trade them for Black's passive piece, and never close the lines they thrive on. Open up and convert.",
+      convert: {
+        kind: "drill",
+        drill: {
+          fen: "2b2rk1/pp3ppp/2p1p3/3p4/3P1B2/3B4/PP3PPP/2R1R1K1 w - - 0 1",
+          orientation: "white",
+          objective: "checkmate",
+          engineSkill: 2,
+          instructions:
+            "White to play. Keep the board open for your two bishops, invade with the rooks, and convert the extra material into checkmate.",
+          successText: "Converted — the bishop pair on open lines is overwhelming.",
+        },
+      },
+    },
+    {
+      type: "quiz",
+      id: "bishops-review",
+      title: "Review: pawns and bishops",
+      blurb: "The rule that keeps a bishop good.",
+      question:
+        "You have a bishop and a choice of where to fix your pawns. To keep the bishop strong, you should place your pawns...",
+      options: [
+        "On the opposite colour to your bishop, leaving its diagonals open.",
+        "On the same colour as your bishop, to support it.",
+        "All on the same file as your bishop.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Pawns on the bishop's own colour block its diagonals and turn it bad. Keep them on the opposite colour and the bishop stays mobile with clear lines.",
     },
   ],
 };

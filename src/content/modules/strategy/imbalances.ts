@@ -21,6 +21,14 @@ export const imbalancesLesson: Lesson = {
         "Good plans grow out of the imbalances you find.",
         "A useful question: what is my worst-placed piece?",
       ],
+      diagrams: [
+        {
+          fen: "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1",
+          orientation: "white",
+          caption:
+            "Material is dead level — so the game is decided by the quieter imbalances: who has the better minor piece, more space, the safer king, and the more active pieces.",
+        },
+      ],
     },
     {
       type: "quiz",
@@ -145,6 +153,75 @@ export const imbalancesLesson: Lesson = {
           arrows: [{ from: "c4", to: "f7" }],
         },
       ],
+    },
+    {
+      type: "guessMove",
+      id: "imbalances-guess",
+      title: "Guess the Move: press the lead",
+      blurb: "Predict the moves that turn a head start into pressure.",
+      orientation: "white",
+      source: "Italian Game, Giuoco Piano",
+      intro:
+        "You're White. Play the opening forward; at two points, predict the move before it's revealed. The thread to follow: a lead in development wants the centre opened, not kept closed.",
+      moves: [
+        "e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "c3", "Nf6", "d4", "exd4", "cxd4", "Bb4+", "Nc3",
+      ],
+      guessAt: [6, 8],
+      notes: [
+        undefined, undefined, undefined, undefined, undefined, undefined,
+        "Quietly preparing d4 — the move that opens the centre while you're the better-developed side.",
+        undefined,
+        "Strike! Opening the centre is exactly what a development lead wants — closed lines would only let Black catch up.",
+        undefined, undefined, undefined, undefined,
+      ],
+      successText:
+        "That's the imbalance speaking: ahead in development, you open lines so your ready pieces outgun Black's sleeping ones.",
+    },
+    {
+      type: "plan",
+      id: "imbalances-plan-apply",
+      title: "Find the plan, then convert",
+      blurb: "Read the imbalances, pick the plan, and bring home the point.",
+      fen: "5rk1/ppp2ppp/8/3N4/8/8/PPP2PPP/2R1R1K1 w - - 0 1",
+      orientation: "white",
+      planQuestion:
+        "Run the imbalance scan: you're up material, you own the only open file, and your knight dominates from d5. What's the plan?",
+      options: [
+        "Use the open file and the strong knight together — bring a rook to the 7th and let the pieces work — then convert the extra material.",
+        "Trade both rooks at once to reach a quiet knight ending.",
+        "Shuffle your king and wait for Black to find a plan.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Stack your advantages: the open file is a highway for the rooks, the d5-knight is untouchable, and you're up material. Activate everything and the win plays itself.",
+      convert: {
+        kind: "drill",
+        drill: {
+          fen: "5rk1/ppp2ppp/8/3N4/8/8/PPP2PPP/2R1R1K1 w - - 0 1",
+          orientation: "white",
+          objective: "checkmate",
+          engineSkill: 2,
+          instructions:
+            "White to play. Use the open file and the dominant knight to invade and convert your material edge into checkmate.",
+          successText: "Converted — active pieces plus an extra exchange make the win routine.",
+        },
+      },
+    },
+    {
+      type: "quiz",
+      id: "imbalances-review",
+      title: "Review: the planning habit",
+      blurb: "One question that always points somewhere useful.",
+      question:
+        "Nothing is forcing and you're unsure what to do. Which question most reliably produces a good move?",
+      options: [
+        "What is my worst-placed piece — and how do I improve it?",
+        "Which pawn can I push the furthest?",
+        "Can I offer a draw?",
+      ],
+      correctIndex: 0,
+      explanation:
+        "When the position is quiet, improving your worst piece raises the quality of your whole army and almost always suggests a concrete, useful move.",
     },
   ],
 };
