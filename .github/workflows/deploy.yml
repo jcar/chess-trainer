@@ -39,8 +39,10 @@ jobs:
       - name: Build (static export)
         run: npm run build
         env:
-          # Serve under the repo subpath, e.g. /chess-trainer
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Custom domain (chesshall.app, via public/CNAME) serves at the root, so
+          # the site has NO base path. (Was steps.pages.outputs.base_path for the
+          # github.io project subpath.)
+          NEXT_PUBLIC_BASE_PATH: ""
 
       - uses: actions/upload-pages-artifact@v3
         with:
