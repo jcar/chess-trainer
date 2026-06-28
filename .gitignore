@@ -51,3 +51,4 @@ next-env.d.ts
 # src/content/tactics-puzzles.json ships). Regenerate via scripts/import-lichess-puzzles.ts
 *.csv
 *.csv.zst
+scripts/strategy/draft-annotations.json
