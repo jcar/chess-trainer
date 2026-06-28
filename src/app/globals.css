@@ -242,6 +242,62 @@
   100% { box-shadow: 0 0 0 0 rgba(79,143,247,0); }
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   The Arcade — a self-contained neon "cabinet" look. All colors live in --arc-*
+   vars scoped to .arcade-cabinet, so this never affects the Midnight Club theme.
+   ────────────────────────────────────────────────────────────────────────── */
+.arcade-cabinet {
+  --arc-bg: #06080f;
+  --arc-panel: #0c1322;
+  --arc-edge: #1c2a45;
+  --arc-cyan: #22e3ff;
+  --arc-magenta: #ff45b5;
+  --arc-lime: #a6ff3d;
+  --arc-amber: #ffd23d;
+  --arc-text: #dce8ff;
+  --arc-dim: #7387ac;
+  color: var(--arc-text);
+}
+/* CRT scanline overlay — put on a position:relative container. */
+.arcade-scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.22) 0px,
+    rgba(0, 0, 0, 0.22) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity: 0.5;
+}
+@keyframes arcadeShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-5px, 2px); }
+  40% { transform: translate(5px, -2px); }
+  60% { transform: translate(-3px, -2px); }
+  80% { transform: translate(3px, 2px); }
+}
+.arcade-shake { animation: arcadeShake 0.36s linear; }
+@keyframes neonPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+.arcade-pulse { animation: neonPulse 1.4s ease-in-out infinite; }
+@keyframes zapFlash {
+  0% { background-color: rgba(255, 69, 181, 0); }
+  30% { background-color: rgba(255, 69, 181, 0.6); }
+  100% { background-color: rgba(255, 69, 181, 0); }
+}
+.arcade-zap { animation: zapFlash 0.42s ease-out; }
+@keyframes arcadeWin {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.arcade-win { animation: arcadeWin 0.5s cubic-bezier(0.2, 0.8, 0.3, 1.2); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
 }

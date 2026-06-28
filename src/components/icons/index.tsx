@@ -55,6 +55,15 @@ export const SettingsIcon = ({ className }: IconProps) => (
   </Line>
 );
 
+// A joystick — the Arcade room.
+export const ArcadeIcon = ({ className }: IconProps) => (
+  <Line className={className}>
+    <circle cx="12" cy="6" r="2.6" />
+    <path d="M12 8.6V14" />
+    <path d="M5.5 20a6.5 6.5 0 0 1 13 0z" />
+  </Line>
+);
+
 export const ReplayIcon = ({ className }: IconProps) => (
   <Line className={className}>
     <path d="M2.6 12S6 5.8 12 5.8 21.4 12 21.4 12 18 18.2 12 18.2 2.6 12 2.6 12Z" />

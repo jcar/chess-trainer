@@ -11,7 +11,12 @@ type SoundName =
   | "step"
   | "star"
   | "fanfare"
-  | "blip";
+  | "blip"
+  // Arcade SFX
+  | "zap"
+  | "coin"
+  | "levelup"
+  | "gameover";
 
 let ctx: AudioContext | null = null;
 let muted = false;
@@ -35,7 +40,8 @@ function getCtx(): AudioContext | null {
   }
 }
 
-/** Play one short tone with a smooth envelope. */
+/** Play one short tone with a smooth envelope. Pass `endFreq` to glide the pitch
+ *  (for arcade sweeps like a "zap"). */
 function tone(
   c: AudioContext,
   freq: number,
@@ -43,12 +49,14 @@ function tone(
   durationMs: number,
   type: OscillatorType = "sine",
   peak = 0.18,
+  endFreq?: number,
 ): void {
   const osc = c.createOscillator();
   const gain = c.createGain();
   osc.type = type;
   osc.frequency.setValueAtTime(freq, startAt);
   const dur = durationMs / 1000;
+  if (endFreq !== undefined) osc.frequency.linearRampToValueAtTime(endFreq, startAt + dur);
   gain.gain.setValueAtTime(0.0001, startAt);
   gain.gain.exponentialRampToValueAtTime(peak, startAt + 0.012);
   gain.gain.exponentialRampToValueAtTime(0.0001, startAt + dur);
@@ -105,6 +113,29 @@ export function playSound(name: SoundName): void {
       tone(c, 784, t + 0.24, 130, "triangle", 0.16);
       tone(c, 1047, t + 0.38, 200, "triangle", 0.18);
       tone(c, 1319, t + 0.56, 300, "triangle", 0.2);
+      break;
+    case "zap":
+      // Harsh buzzy hit that sweeps down — you got fried.
+      tone(c, 320, t, 90, "sawtooth", 0.2, 90);
+      tone(c, 160, t + 0.06, 140, "square", 0.16, 60);
+      break;
+    case "coin":
+      // Classic arcade pickup — two quick rising blips.
+      tone(c, 988, t, 60, "square", 0.12);
+      tone(c, 1319, t + 0.05, 130, "square", 0.13);
+      break;
+    case "levelup":
+      // Bright rising power chord.
+      tone(c, 523, t, 90, "square", 0.14);
+      tone(c, 659, t + 0.09, 90, "square", 0.14);
+      tone(c, 880, t + 0.18, 110, "square", 0.15);
+      tone(c, 1175, t + 0.3, 220, "square", 0.17);
+      break;
+    case "gameover":
+      // Descending "wah-wah".
+      tone(c, 392, t, 180, "sawtooth", 0.16, 330);
+      tone(c, 311, t + 0.18, 220, "sawtooth", 0.16, 262);
+      tone(c, 196, t + 0.42, 360, "square", 0.16, 150);
       break;
   }
 }

@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { SettingsMenu } from "@/components/nav/SettingsMenu";
-import { PuzzleIcon, OpeningDrillIcon, PlayIcon, CrownGlyph } from "@/components/icons";
+import { PuzzleIcon, OpeningDrillIcon, PlayIcon, CrownGlyph, ArcadeIcon } from "@/components/icons";
 
 type Item = {
   href: string;
@@ -31,6 +31,7 @@ function HallGlyph({ className = "" }: { className?: string }) {
 
 const NAV: Item[] = [
   { href: "/", label: "Hall", Icon: HallGlyph, exact: true },
+  { href: "/arcade", label: "Arcade", Icon: ArcadeIcon },
   { href: "/tactics", label: "Tactics", Icon: PuzzleIcon },
   { href: "/trainer", label: "Openings", Icon: OpeningDrillIcon },
   { href: "/play", label: "Play", Icon: PlayIcon },
