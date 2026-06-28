@@ -152,20 +152,32 @@ export const pawnStructures: Lesson = {
     },
     {
       id: "ps-iqp-plan",
-      type: "sort",
-      title: "Apply it: playing against the IQP",
-      blurb: "You face an isolated d-pawn.",
-      prompt: "Black has an isolated queen's pawn on d5. As White (the defender), what's the soundest plan?",
+      type: "plan",
+      title: "Apply it: play against the IQP, then convert",
+      blurb: "Read the structure, pick the plan, execute it.",
       fen: "r1bq1rk1/pp3ppp/2n2n2/3p4/8/2N2N2/PP3PPP/R1BQ1RK1 w - - 0 1",
       orientation: "white",
+      planQuestion: "Black has an isolated queen's pawn on d5. As White (the defender), what's the soundest plan?",
       options: [
-        { label: "Blockade d4 with a piece, trade down, and head for the endgame" },
-        { label: "Throw every pawn forward on the kingside and ignore the d-pawn" },
-        { label: "Trade off all your own pieces as fast as you possibly can" },
+        "Blockade d4 with a piece, trade down, and win the isolated pawn in the endgame.",
+        "Throw every pawn forward on the kingside and ignore the d-pawn.",
+        "Trade off all your own pieces as fast as you possibly can.",
       ],
       correctIndex: 0,
       explanation:
-        "Against an IQP you blockade the pawn (the d4 square is ideal for a knight), neutralize the owner's active pieces by trading them, and steer toward an endgame where the isolated pawn is simply weak. The owner wants the opposite: keep pieces on and attack.",
+        "Against an IQP: blockade the pawn (d4 is ideal for a knight), trade the owner's active pieces, and steer to an endgame where the pawn is simply weak — then win it, as you'll now demonstrate.",
+      convert: {
+        kind: "drill",
+        drill: {
+          fen: "5rk1/pp3ppp/8/3p4/3P4/8/PP3PPP/2R1R1K1 w - - 0 1",
+          orientation: "white",
+          objective: "checkmate",
+          engineSkill: 2,
+          instructions:
+            "You've reached the endgame a pawn up, with Black's d5-pawn isolated and weak. Pressure it down the file, win it, and convert the extra material into checkmate.",
+          successText: "Converted — blockade, trade, and the isolated pawn falls. Textbook IQP technique.",
+        },
+      },
     },
     {
       id: "int-pawn-structures-recap",

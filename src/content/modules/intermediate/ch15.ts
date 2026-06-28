@@ -157,21 +157,33 @@ export const ch15: Lesson = {
     },
     {
       id: "ch15-find-plan",
-      type: "sort",
-      title: "Apply it: find the plan",
-      blurb: "Quiet position — what's the idea?",
-      prompt:
-        "No tactic is available. The d-file is open and your pieces are ready. What is the most purposeful plan for White?",
+      type: "plan",
+      title: "Apply it: seize the file, then convert",
+      blurb: "Quiet position — pick the plan, then execute it.",
       fen: "2rq1rk1/pp2bppp/2n1pn2/8/2B5/2N1PN2/PP3PPP/2RQ1RK1 w - - 0 1",
       orientation: "white",
+      planQuestion:
+        "No tactic is available. The d-file is open and your pieces are ready. What is the most purposeful plan for White?",
       options: [
-        { label: "Contest and seize the open d-file, aiming for the 7th rank" },
-        { label: "Shuffle the king back and forth and wait" },
-        { label: "Trade every piece as fast as possible, with no goal" },
+        "Contest and seize the open d-file, aiming to invade the back ranks with a rook.",
+        "Shuffle the king back and forth and wait.",
+        "Trade every piece as fast as possible, with no goal.",
       ],
       correctIndex: 0,
       explanation:
-        "An open file is a highway. Double rooks (and the queen) on the d-file, fight for control, and look to invade the 7th rank. That's a concrete plan built from the position's main imbalance — far better than aimless shuffling or planless trades.",
+        "An open file is a highway. Double rooks (and the queen) on the d-file, fight for control, and invade — a rook that reaches the enemy's back rank can be decisive, as you'll now show.",
+      convert: {
+        kind: "puzzle",
+        puzzle: {
+          fen: "6k1/5ppp/8/8/8/8/6PP/R5K1 w - - 0 1",
+          orientation: "white",
+          goal: { type: "mate", inMoves: 1 },
+          prompt: "Your rook owns the open file straight to the back rank. Finish in one.",
+          successText:
+            "Ra8# — controlling the open file delivered the rook to the back rank for mate. That's the payoff for seizing the file.",
+          solution: ["a1a8"],
+        },
+      },
     },
     {
       id: "ch15-worst-piece",
