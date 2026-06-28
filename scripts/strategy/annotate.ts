@@ -23,7 +23,14 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Chess } from "chess.js";
 import { GoogleGenAI } from "@google/genai";
-import { strategy } from "../../src/content/modules/strategy/index";
+import { getModule } from "../../src/content";
+import type { Module } from "../../src/content/types";
+
+// Which module to annotate/fact-check (default strategy). e.g. `... annotate.ts intermediate`
+const MODULE_ID = process.argv[2] ?? "strategy";
+const found = getModule(MODULE_ID);
+if (!found) throw new Error(`Unknown module "${MODULE_ID}".`);
+const mod: Module = found;
 import type { Activity } from "../../src/content/types";
 import { getEngine, quitEngine, type Score } from "../lib/engine";
 
@@ -171,7 +178,7 @@ async function main() {
   );
 
   const jobs: { activity: Activity; type: "lab" | "guessMove" }[] = [];
-  for (const lesson of strategy.lessons) {
+  for (const lesson of mod.lessons) {
     for (const a of lesson.activities) {
       if (a.type === "replay" && a.eval) jobs.push({ activity: a, type: "lab" });
       else if (a.type === "guessMove") jobs.push({ activity: a, type: "guessMove" });
@@ -182,8 +189,8 @@ async function main() {
   const out: JobOutput[] = [];
   for (const { activity, type } of jobs) {
     const lessonId =
-      strategy.lessons.find((l) => l.activities.some((x) => x.id === activity.id))?.id ?? "";
-    const theme = THEME[lessonId] ?? strategy.lessons.find((l) => l.id === lessonId)?.summary ?? "";
+      mod.lessons.find((l) => l.activities.some((x) => x.id === activity.id))?.id ?? "";
+    const theme = THEME[lessonId] ?? mod.lessons.find((l) => l.id === lessonId)?.summary ?? "";
 
     let startFen: string | undefined;
     let sans: string[];

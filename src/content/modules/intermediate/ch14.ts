@@ -166,15 +166,15 @@ export const ch14: Lesson = {
       type: "replay",
       title: "See it: removing the defender",
       blurb: "Knock out the guard, take the prize.",
-      startFen: "4k3/pp3ppp/2n5/1B2b3/8/5N2/5PPP/6K1 w - - 0 1",
+      startFen: "3r2k1/3n1ppp/8/1B2b3/8/5N2/5PPP/R4K2 w - - 0 1",
       orientation: "white",
       eval: true,
       intro:
-        "Black's bishop on e5 is attacked by the knight, but it's defended by the knight on c6. So deal with the defender first. Watch the eval bar swing once the guard is gone and the bishop falls.",
+        "Black's bishop on e5 is attacked by your knight — but it's defended by the knight on d7, so taking it just trades. Deal with the defender first. Watch the eval bar swing once the guard is gone and the bishop falls.",
       steps: [
-        { san: "Bxc6+", keyIdea: "Remove the guard (with check)", note: "Remove the guard: the bishop captures the only defender of e5 — with check, so Black has no time for anything else." },
-        { san: "bxc6", note: "Black recaptures. The bishop on e5 has lost its protector." },
-        { san: "Nxe5", note: "Now the knight takes the bishop for free. Removing the defender: eliminate the guard, then collect what it was guarding." },
+        { san: "Bxd7", keyIdea: "Remove the guard", note: "Capture the only defender of e5. The bishop's protection is about to disappear." },
+        { san: "Rxd7", note: "Black recaptures with the rook — but the knight that guarded e5 is gone, and the rook doesn't cover e5." },
+        { san: "Nxe5", note: "Now the knight takes the bishop for free. Removing the defender: eliminate the guard, then collect what it was guarding — White is up a piece." },
       ],
     },
     {
