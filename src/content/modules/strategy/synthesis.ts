@@ -18,7 +18,16 @@ export const synthesisLesson: Lesson = {
       points: [
         "Trade material for an imbalance when the payoff is greater.",
         "Many pluses? Make a plan around the most important one.",
-        "When winning, kill counterplay, then simplify to convert.",
+        "Master the will to win a won game — don't relax once you're ahead.",
+        "When winning, kill counterplay first, then simplify to convert.",
+      ],
+      diagrams: [
+        {
+          fen: "r2q1rk1/ppp2ppp/2n5/2b1N3/2B1P3/8/PPP2PPP/R2Q1RK1 w - - 0 12",
+          orientation: "white",
+          caption:
+            "Real positions stack imbalances: White's active knight on e5 and bishop on c4 versus Black's pieces and structure. The skill is naming the biggest factor and building one plan around it — not drifting move to move.",
+        },
       ],
     },
     {
@@ -165,6 +174,74 @@ export const synthesisLesson: Lesson = {
             "them. The brief pawn investment bought a lasting structural edge.",
         },
       ],
+    },
+    {
+      type: "guessMove",
+      id: "synthesis-guess",
+      title: "Guess the Move: pay for activity",
+      blurb: "Predict a gambit that trades a pawn for lasting pressure.",
+      orientation: "black",
+      source: "Benko Gambit",
+      intro:
+        "You're Black, and you're about to invest a pawn — not for a quick trick, but for permanent queenside activity. Predict the moves. The thread: material is just one imbalance; lasting pressure can be worth more.",
+      moves: [
+        "d4", "Nf6", "c4", "c5", "d5", "b5", "cxb5", "a6", "bxa6", "Bxa6",
+      ],
+      guessAt: [5, 9],
+      notes: [
+        undefined, undefined, undefined, undefined, undefined,
+        "The gambit! Offering a pawn to blast open the a- and b-files. You won't win it back soon — you're buying long-term queenside pressure instead.",
+        undefined, undefined, undefined,
+        "Recapture by developing the bishop onto a long open diagonal. Down a pawn, but the half-open files and active pieces are real, lasting compensation.",
+      ],
+      successText:
+        "A pawn for the initiative on the queenside — the essence of synthesis: weigh material against the other imbalances and pay when the return is greater.",
+    },
+    {
+      type: "plan",
+      id: "synthesis-plan-apply",
+      title: "Find the plan, then convert",
+      blurb: "Weigh the imbalances, then win.",
+      fen: "5rk1/p1p2ppp/2p5/8/8/5N2/PP3PPP/2R1R1K1 w - - 0 1",
+      orientation: "white",
+      planQuestion:
+        "You're up material and Black's queenside pawns are shattered (doubled and weak). With several edges at once, what's the plan?",
+      options: [
+        "Pick the biggest factor — your extra material — kill any counterplay, and simplify toward a winning ending.",
+        "Chase the smallest weakness while ignoring your own king.",
+        "Trade into a same-coloured pawn race and hope.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "With many pluses, build the plan around the most important one and convert cleanly: neutralise counterplay first, then trade down so your extra material decides.",
+      convert: {
+        kind: "drill",
+        drill: {
+          fen: "5rk1/p1p2ppp/2p5/8/8/5N2/PP3PPP/2R1R1K1 w - - 0 1",
+          orientation: "white",
+          objective: "checkmate",
+          engineSkill: 2,
+          instructions:
+            "White to play. Use the open file and your extra material, shut down Black's counterplay, and convert into checkmate.",
+          successText: "Converted — biggest edge first, counterplay snuffed out, point banked.",
+        },
+      },
+    },
+    {
+      type: "quiz",
+      id: "synthesis-review",
+      title: "Review: converting a won game",
+      blurb: "The winner's discipline.",
+      question:
+        "You've reached a clearly winning position. What's the most important habit for actually converting it?",
+      options: [
+        "Shut down the opponent's counterplay first, then simplify so your edge decides.",
+        "Grab every pawn you can before finishing.",
+        "Attack the king immediately, calculation optional.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "Won games are lost by allowing counterplay. Take away the opponent's activity, then trade pieces to reach a position where your advantage is overwhelming and the win is routine.",
     },
     {
       type: "concept",

@@ -20,6 +20,15 @@ export const endgamesLesson: Lesson = {
         "Activate your king — centralize it in the endgame.",
         "The opposition: whoever doesn't have to move holds the squares.",
         "Lead the pawn with your king to promote it.",
+        "Know the queening square and the rule of the square for passed pawns.",
+      ],
+      diagrams: [
+        {
+          fen: "8/8/3k4/8/3P4/3K4/8/8 w - - 0 1",
+          orientation: "white",
+          caption:
+            "King-and-pawn technique in one picture: the king leads the pawn rather than pushing it blindly. Win the opposition, your king clears a path, and the pawn follows it home.",
+        },
       ],
     },
     {
@@ -144,6 +153,22 @@ export const endgamesLesson: Lesson = {
       body:
         "King activity and the opposition decide king-and-pawn endings — and most endings simplify toward them. Drill the must-know endings against the engine until converting is automatic.",
       practice: { tool: "endgames", label: "Open the Endgame Trainer" },
+    },
+    {
+      type: "quiz",
+      id: "endgames-review",
+      title: "Review: the endgame king",
+      blurb: "The piece that decides.",
+      question:
+        "In a king-and-pawn endgame, what is the single most important winning tool?",
+      options: [
+        "An active king that leads the pawn and seizes the opposition.",
+        "Pushing the pawn forward as fast as possible.",
+        "Keeping your king safely tucked on the back rank.",
+      ],
+      correctIndex: 0,
+      explanation:
+        "In the endgame the king is a fighting piece. It marches in front of the pawn and uses the opposition to force the enemy king aside — push the pawn too early and you surrender the opposition and the win.",
     },
   ],
 };

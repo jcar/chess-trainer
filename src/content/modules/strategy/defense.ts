@@ -22,6 +22,15 @@ export const defenseLesson: Lesson = {
         "Defend actively: seek counterplay and trade the dangerous attackers.",
         "Know the saving resources: perpetual check, fortress, drawn endings.",
         "Prophylaxis: ask 'what does my opponent want?' and stop it.",
+        "Give back material to blunt an attack — a pawn or the exchange is cheap if it kills the initiative.",
+      ],
+      diagrams: [
+        {
+          fen: "5rk1/pp3ppp/2p5/8/3P4/2P1r3/PP4PP/R4RK1 w - - 0 1",
+          orientation: "white",
+          caption:
+            "Black's rook has barged to e3. Passive defence drifts — instead, defend actively: challenge the intruder, trade off the dangerous piece, and seek your own counterplay.",
+        },
       ],
     },
     {
@@ -89,6 +98,29 @@ export const defenseLesson: Lesson = {
       correctIndex: 1,
       explanation:
         "Even lost positions have lifelines: a perpetual check (the opponent's king can never escape the checks) or a fortress (a setup the extra material can't break down). Steering toward these — or toward a drawn ending — saves half a point that the scoreboard never forgets.",
+    },
+    {
+      type: "guessMove",
+      id: "defense-guess",
+      title: "Guess the Move: defend solidly",
+      blurb: "Predict the moves of a rock-solid defence.",
+      orientation: "black",
+      source: "Caro-Kann Defence",
+      intro:
+        "You're Black, choosing a sound, resilient setup against 1.e4. Predict the moves. The thread: resolve the centre cleanly and develop your pieces to safe, active squares — especially the bishop, BEFORE it gets shut in.",
+      moves: [
+        "e4", "c6", "d4", "d5", "Nc3", "dxe4", "Nxe4", "Bf5", "Ng3", "Bg6", "h4", "h6",
+      ],
+      guessAt: [5, 7],
+      notes: [
+        undefined, undefined, undefined, undefined, undefined,
+        "Resolve the central tension cleanly — no loose pawns, no weaknesses. A solid defender removes targets before the opponent can use them.",
+        undefined,
+        "Develop the light-squared bishop OUTSIDE the pawn chain. This is the whole point of the Caro-Kann: you avoid the bad bishop that hems in similar defences.",
+        undefined, undefined, undefined, undefined,
+      ],
+      successText:
+        "A clean centre and an active, un-trapped bishop: that's the foundation of resilient defence — give the attacker nothing to bite on.",
     },
     {
       type: "concept",
