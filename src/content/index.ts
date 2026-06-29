@@ -8,17 +8,19 @@ import { fundamentals } from "./modules/fundamentals";
 import { intermediate } from "./modules/intermediate";
 import { checkmatePatterns } from "./modules/checkmate-patterns";
 import { attackingKing } from "./modules/attacking-king";
+import { masterGames } from "./modules/master-games";
 import { openings } from "./modules/openings";
 import { strategy } from "./modules/strategy";
 
 // Order = easiest first: absolute beginner → beginner → intermediate → mating
-// patterns → attacking the king → openings → strategy.
+// patterns → attacking the king → master games → openings → strategy.
 export const MODULES: Module[] = [
   chessForKids,
   fundamentals,
   intermediate,
   checkmatePatterns,
   attackingKing,
+  masterGames,
   openings,
   strategy,
 ];
