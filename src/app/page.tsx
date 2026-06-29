@@ -12,6 +12,7 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { CHARACTER_IMAGES } from "@/lib/art/portraitManifest";
 import { withBasePath } from "@/lib/basePath";
 import { useShowSupport } from "@/lib/prefs/support";
+import { RecommendedNext } from "@/components/home/RecommendedNext";
 import {
   ChevronRightIcon,
   StarIcon,
@@ -32,18 +33,6 @@ function GearBagGlyph({ className = "" }: { className?: string }) {
       <path d="M9 8V6a3 3 0 0 1 6 0v2" />
     </svg>
   );
-}
-
-/** The first not-yet-completed activity across all modules (for "Continue"). */
-function firstIncomplete(
-  isDone: (id: string) => boolean,
-): { modId: string; actId: string } | null {
-  for (const mod of MODULES) {
-    for (const a of getModuleActivities(mod)) {
-      if (!isDone(a.id)) return { modId: mod.id, actId: a.id };
-    }
-  }
-  return null;
 }
 
 // Crest glyph + color tone per module.
@@ -93,11 +82,10 @@ const TOOLS = [
 ] as const;
 
 export default function HomePage() {
-  const { moduleProgress, getActivityState } = useProgress();
+  const { moduleProgress } = useProgress();
   const { counts: trainerCounts } = useTrainer();
   const daily = useDailyStreak();
   const showSupport = useShowSupport();
-  const cont = firstIncomplete((id) => getActivityState(id).completed);
   const started = MODULES.some(
     (mod) => moduleProgress(getModuleActivities(mod).map((a) => a.id)) > 0,
   );
@@ -143,22 +131,7 @@ export default function HomePage() {
           </Card>
         </Link>
 
-        <Link href={cont ? `/modules/${cont.modId}/${cont.actId}` : "/daily"} className="block">
-          <Card interactive className="flex h-full items-center gap-3.5 p-4">
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-on-accent" style={{ backgroundColor: "var(--color-sage)" }}>
-              <PlayIcon className="h-6 w-6" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="font-display text-lg font-semibold text-ink">
-                {cont ? "Continue learning" : "All caught up"}
-              </p>
-              <p className="text-sm text-ink-soft">
-                {cont ? "Pick up where you left off" : "Review or train your skills"}
-              </p>
-            </div>
-            <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
-          </Card>
-        </Link>
+        <RecommendedNext />
       </section>
 
       {/* ── The gallery: modules as framed plates ── */}
