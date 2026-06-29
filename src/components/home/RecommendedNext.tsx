@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useProgress } from "@/lib/progress/useProgress";
 import { useSrs } from "@/lib/srs/useSrs";
 import { recommendNext, type Recommendation } from "@/lib/learner/recommend";
+import { usePlacement } from "@/lib/learner/placementStore";
 import { Card } from "@/components/ui/Card";
 import { ChevronRightIcon, PlayIcon, PuzzleIcon, FlameIcon } from "@/components/icons";
 
@@ -26,12 +27,23 @@ const STYLE: Record<
 export function RecommendedNext() {
   const { snapshot } = useProgress();
   const srs = useSrs();
+  const placement = usePlacement();
   // Capture "now" once at mount (lazy init) — calling Date.now() during render is
   // impure. Due-review counts don't need second-by-second precision.
   const [now] = useState(() => Date.now());
   // Both stores share an empty server/first-client snapshot, so SSR and hydration
   // agree (recommendation resolves to "start"); it fills in once data loads.
-  const { rec } = recommendNext(snapshot(), srs, now);
+  let { rec } = recommendNext(snapshot(), srs, now);
+  // A brand-new learner who took the placement test should start where it placed
+  // them, not at the default first module.
+  if (rec.kind === "start" && placement) {
+    rec = {
+      kind: "start",
+      href: placement.recommendedHref,
+      title: `Start: ${placement.recommendedLabel}`,
+      detail: `Placed at ${placement.level} — your recommended starting room`,
+    };
+  }
   const s = STYLE[rec.kind];
 
   return (

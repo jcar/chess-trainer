@@ -23,6 +23,7 @@ import {
   FlameIcon,
   CheckIcon,
   PlayIcon,
+  SearchIcon,
 } from "@/components/icons";
 
 /** A shopping-bag glyph for the gear guide (no matching icon in the icon set). */
@@ -238,6 +239,19 @@ export default function HomePage() {
             New here? Start in the right place
             <span className="h-px flex-1 bg-line" />
           </h2>
+          <Link href="/placement" className="block">
+            <Card interactive className="flex items-center gap-3.5 p-4">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-on-accent" style={{ backgroundColor: "var(--color-primary)" }}>
+                <SearchIcon className="h-6 w-6" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="font-display text-lg font-semibold text-ink">Not sure where to begin?</p>
+                <p className="text-sm text-ink-soft">Take the 2-minute placement test — find your level and the right room.</p>
+              </div>
+              <ChevronRightIcon className="h-5 w-5 shrink-0 text-ink-soft" />
+            </Card>
+          </Link>
+          <p className="pt-1 text-xs text-ink-soft/80">…or jump straight in:</p>
           <div className="grid gap-3 sm:grid-cols-3">
             {[
               { href: "/modules/chess-for-kids", title: "Brand new", sub: "Never played — or learning with a child" },
