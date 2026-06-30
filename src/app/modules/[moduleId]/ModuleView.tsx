@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { notFound } from "next/navigation";
-import { getModule } from "@/content";
+import { getModule, getModuleActivities } from "@/content";
 import type { Activity } from "@/content/types";
 import { useProgress } from "@/lib/progress/useProgress";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
+import { ProgressBar } from "@/components/ui/ProgressBar";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { buttonClasses } from "@/components/ui/Button";
 import { QuestMap } from "@/components/kids/QuestMap";
@@ -36,9 +38,28 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
   plan: "Plan",
 };
 
+/** Lesson titles carry a continuous chapter number ("9. …") shared across modules;
+ *  strip it so each room reads as its own clean list. */
+const cleanTitle = (t: string) => t.replace(/^\s*\d+\.\s*/, "");
+
+/** Distinct activity-type labels in a lesson, in first-seen order. */
+function typeChips(activities: Activity[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const a of activities) {
+    const label = TYPE_BADGE[a.type];
+    if (!seen.has(label)) {
+      seen.add(label);
+      out.push(label);
+    }
+  }
+  return out;
+}
+
 export function ModuleView({ moduleId }: { moduleId: string }) {
   const mod = getModule(moduleId);
-  const { getActivityState } = useProgress();
+  const { getActivityState, allComplete } = useProgress();
+  const [overrides, setOverrides] = useState<Record<string, boolean>>({});
 
   if (!mod) notFound();
   const kid = !!mod.kidMode;
@@ -88,9 +109,30 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
     );
   }
 
-  // ---- Standard (non-kid) module listing ----
+  // ---- Standard (non-kid) module overview: collapsible lessons ----
+  const allIds = getModuleActivities(mod).map((a) => a.id);
+  const total = allIds.length;
+  const done = allIds.filter((id) => getActivityState(id).completed).length;
+  const modulePct = total ? Math.round((done / total) * 100) : 0;
+
+  // The first not-yet-complete activity across the module (in order) → the
+  // "Continue" target and the lesson to auto-expand.
+  let nextHref: string | null = null;
+  let currentLessonId: string | null = null;
+  for (const lesson of mod.lessons) {
+    const next = lesson.activities.find((a) => !getActivityState(a.id).completed);
+    if (next) {
+      nextHref = `/modules/${mod.id}/${next.id}`;
+      currentLessonId = lesson.id;
+      break;
+    }
+  }
+  const continueLabel = done === 0 ? "Start" : nextHref ? "Continue" : "Review";
+  const continueHref =
+    nextHref ?? `/modules/${mod.id}/${mod.lessons[0].activities[0].id}`;
+
   return (
-    <main className="space-y-7">
+    <main className="space-y-6">
       <PageHeader
         backHref="/"
         backLabel="All modules"
@@ -99,55 +141,123 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
         subtitle={mod.description}
       />
 
-      {mod.lessons.map((lesson) => (
-        <section key={lesson.id} className="space-y-3">
-          <div>
-            <h2 className="font-display text-lg font-semibold text-primary-strong">
-              {lesson.title}
-            </h2>
-            <p className="text-sm text-ink-soft">{lesson.summary}</p>
-          </div>
-          <ul className="space-y-2">
-            {lesson.activities.map((activity) => {
-              const done = getActivityState(activity.id).completed;
-              const Icon = ACTIVITY_ICON[activity.type];
-              return (
-                <li key={activity.id}>
-                  <Link href={`/modules/${mod.id}/${activity.id}`} className="block">
-                    <Card interactive className="flex items-center gap-3 p-4">
-                      <span
-                        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${
-                          done
-                            ? "bg-sage/15 text-sage"
-                            : "bg-primary/8 text-primary"
-                        }`}
-                      >
-                        {done ? (
-                          <CheckIcon className="h-5 w-5" />
-                        ) : (
-                          <Icon className="h-5 w-5" />
-                        )}
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-medium text-ink">
-                          {activity.title}
-                        </span>
-                        {activity.blurb && (
-                          <span className="block text-sm text-ink-soft">
-                            {activity.blurb}
+      {/* Module progress + a single forward action. */}
+      <Card className="space-y-3 p-4">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-sm text-ink-soft">
+            <span className="font-semibold text-ink">
+              {done} / {total}
+            </span>{" "}
+            activities · {modulePct}% complete
+          </p>
+          <Link href={continueHref} className={buttonClasses("primary", "md")}>
+            {continueLabel} <ChevronRightIcon className="h-4 w-4" />
+          </Link>
+        </div>
+        <ProgressBar pct={modulePct} tone="primary" />
+      </Card>
+
+      {/* Lessons, collapsed by default — the current one auto-opens. */}
+      <div className="space-y-2.5">
+        {mod.lessons.map((lesson) => {
+          const ids = lesson.activities.map((a) => a.id);
+          const lDone = ids.filter((id) => getActivityState(id).completed).length;
+          const lPct = ids.length ? Math.round((lDone / ids.length) * 100) : 0;
+          const lComplete = ids.length > 0 && allComplete(ids);
+          const open = overrides[lesson.id] ?? lesson.id === currentLessonId;
+          const chips = typeChips(lesson.activities);
+
+          return (
+            <Card key={lesson.id} className="overflow-hidden p-0">
+              <button
+                type="button"
+                onClick={() => setOverrides((o) => ({ ...o, [lesson.id]: !open }))}
+                aria-expanded={open}
+                className="flex w-full items-center gap-3 p-4 text-left transition hover:bg-primary/[0.03]"
+              >
+                <span
+                  className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl text-sm font-semibold ${
+                    lComplete
+                      ? "bg-sage/15 text-sage"
+                      : lDone > 0
+                        ? "bg-primary/10 text-primary"
+                        : "bg-ink/5 text-ink-soft"
+                  }`}
+                >
+                  {lComplete ? (
+                    <CheckIcon className="h-5 w-5" />
+                  ) : (
+                    <span className="font-mono text-xs">
+                      {lDone}/{ids.length}
+                    </span>
+                  )}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-base font-semibold text-ink">
+                    {cleanTitle(lesson.title)}
+                  </span>
+                  <span className="block truncate text-sm text-ink-soft">
+                    {lesson.summary}
+                  </span>
+                  <span className="mt-1.5 flex flex-wrap gap-1.5">
+                    {chips.slice(0, 4).map((c) => (
+                      <Chip key={c} tone="neutral">
+                        {c}
+                      </Chip>
+                    ))}
+                    {chips.length > 4 && <Chip tone="neutral">…</Chip>}
+                  </span>
+                </span>
+                <ChevronRightIcon
+                  className={`h-5 w-5 shrink-0 text-ink-soft transition-transform ${
+                    open ? "rotate-90" : ""
+                  }`}
+                />
+              </button>
+
+              {!lComplete && lDone > 0 && (
+                <div className="px-4 pb-3">
+                  <ProgressBar pct={lPct} tone="primary" />
+                </div>
+              )}
+
+              {open && (
+                <ul className="border-t border-line/70">
+                  {lesson.activities.map((activity) => {
+                    const aDone = getActivityState(activity.id).completed;
+                    const Icon = ACTIVITY_ICON[activity.type];
+                    return (
+                      <li key={activity.id}>
+                        <Link
+                          href={`/modules/${mod.id}/${activity.id}`}
+                          className="flex items-center gap-3 px-4 py-2.5 transition hover:bg-primary/[0.04]"
+                        >
+                          <span
+                            className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${
+                              aDone ? "bg-sage/15 text-sage" : "bg-ink/5 text-ink-soft"
+                            }`}
+                          >
+                            {aDone ? (
+                              <CheckIcon className="h-4 w-4" />
+                            ) : (
+                              <Icon className="h-4 w-4" />
+                            )}
                           </span>
-                        )}
-                      </span>
-                      <Chip tone="neutral">{TYPE_BADGE[activity.type]}</Chip>
-                      <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-soft" />
-                    </Card>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      ))}
+                          <span className="min-w-0 flex-1 text-sm font-medium text-ink">
+                            {activity.title}
+                          </span>
+                          <Chip tone="neutral">{TYPE_BADGE[activity.type]}</Chip>
+                          <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-soft/60" />
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </Card>
+          );
+        })}
+      </div>
     </main>
   );
 }
