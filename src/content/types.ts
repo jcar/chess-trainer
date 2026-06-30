@@ -502,6 +502,10 @@ export interface Lesson {
   title: string;
   summary: string;
   activities: Activity[];
+  /** Optional grouping label for the module landing page (e.g. the Openings room
+   *  groups lessons by "1.e4 e5 — Open Games", "1.d4 Openings", …). When set, the
+   *  landing page renders a section divider at each change of value. */
+  section?: string;
 }
 
 export interface Module {

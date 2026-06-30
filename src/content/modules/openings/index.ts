@@ -84,6 +84,60 @@ const overviewLesson: Lesson = {
   ],
 };
 
+// Lessons grouped by opening family. Each section's checkpoint review sits at the
+// end of that section. The landing page renders a divider at each section change.
+const SECTIONS: { label: string; lessons: Lesson[] }[] = [
+  {
+    label: "1.e4 e5 — Open Games",
+    lessons: [
+      italianLesson,
+      ruyLopezLesson,
+      scotchGameLesson,
+      fourKnightsLesson,
+      petroffLesson,
+      kingsGambitLesson,
+      viennaGameLesson,
+    ],
+  },
+  {
+    label: "Other 1.e4 Defences",
+    lessons: [
+      sicilianDefenceLesson,
+      alapinSicilianLesson,
+      frenchDefenceLesson,
+      caroKannLesson,
+      scandinavianLesson,
+      alekhineLesson,
+      pircLesson,
+      openingReview1,
+    ],
+  },
+  {
+    label: "1.d4 Openings",
+    lessons: [
+      queensGambitDeclinedLesson,
+      slavDefenceLesson,
+      kingsIndianLesson,
+      nimzoIndianLesson,
+      londonSystemLesson,
+      queensGambitLesson,
+      queensGambitAcceptedLesson,
+      semiSlavLesson,
+      queensIndianLesson,
+      bogoIndianLesson,
+      grunfeldLesson,
+      benoniLesson,
+      benkoGambitLesson,
+      dutchDefenceLesson,
+      openingReview2,
+    ],
+  },
+  {
+    label: "Flank Openings",
+    lessons: [englishOpeningLesson, retiLesson, larsenLesson, openingReview3],
+  },
+];
+
 export const openings: Module = {
   id: "openings",
   title: "Chess Openings",
@@ -92,43 +146,6 @@ export const openings: Module = {
   level: "Advanced",
   lessons: [
     overviewLesson,
-    // 1.e4 e5 — the Open Games
-    italianLesson,
-    ruyLopezLesson,
-    scotchGameLesson,
-    fourKnightsLesson,
-    petroffLesson,
-    kingsGambitLesson,
-    viennaGameLesson,
-    // Other 1.e4 defences
-    sicilianDefenceLesson,
-    alapinSicilianLesson,
-    frenchDefenceLesson,
-    caroKannLesson,
-    scandinavianLesson,
-    alekhineLesson,
-    pircLesson,
-    openingReview1,
-    // 1.d4 openings
-    queensGambitDeclinedLesson,
-    slavDefenceLesson,
-    kingsIndianLesson,
-    nimzoIndianLesson,
-    londonSystemLesson,
-    queensGambitLesson,
-    queensGambitAcceptedLesson,
-    semiSlavLesson,
-    queensIndianLesson,
-    bogoIndianLesson,
-    grunfeldLesson,
-    benoniLesson,
-    benkoGambitLesson,
-    dutchDefenceLesson,
-    openingReview2,
-    // Flank
-    englishOpeningLesson,
-    retiLesson,
-    larsenLesson,
-    openingReview3,
+    ...SECTIONS.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s.label }))),
   ],
 };
