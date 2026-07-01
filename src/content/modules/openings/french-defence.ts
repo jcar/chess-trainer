@@ -19,37 +19,6 @@ export const frenchDefenceLesson: Lesson = {
         "The French begins 1.e4 e6. Let's walk through the Advance Variation, " +
         "where White pushes e5 and Black counters with the ...c5 break.",
     }),
-    {
-      type: "quiz",
-      id: "french-defence-idea",
-      title: "Why the French?",
-      blurb: "The trade-off Black accepts.",
-      question: "What is the main idea behind meeting 1.e4 with 1...e6?",
-      options: [
-        "Black accepts a cramped game for a solid, resilient structure.",
-        "Black wins material in the opening by force after ...d5.",
-        "Black avoids all pawn-structure weaknesses entirely in this line.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The French gives Black a touch less space, but the pawn wall is very " +
-        "hard to break down. Black happily defends and then counterattacks " +
-        "White's centre with ...c5.",
-    },
-    {
-      type: "sort",
-      id: "french-defence-aim",
-      title: "The freeing break",
-      blurb: "Spot the key pawn move.",
-      prompt: "What is Black's typical freeing pawn-break in the French?",
-      fen: frenchDefence.tabiyaFen,
-      orientation: "white",
-      options: [{ label: "c5" }, { label: "h5" }, { label: "a5" }],
-      correctIndex: 0,
-      explanation:
-        "...c5 strikes at the base of White's pawn chain on d4. It frees Black's " +
-        "game and is the thematic counterattack in almost every French line.",
-    },
     buildOpeningDrill(frenchDefence, {
       id: "french-defence-recall",
       title: "Play it: the French as Black",

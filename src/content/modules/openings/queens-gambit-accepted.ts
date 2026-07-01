@@ -20,42 +20,6 @@ export const queensGambitAcceptedLesson: Lesson = {
         "Let's walk through the calm main line where Black develops and breaks " +
         "with ...c5.",
     }),
-    {
-      type: "quiz",
-      id: "queens-gambit-accepted-idea",
-      title: "Why take on c4?",
-      blurb: "The real point of accepting.",
-      question:
-        "After 2...dxc4, what is Black's real plan with the extra pawn?",
-      options: [
-        "Trade queens at once to defuse the position.",
-        "Develop freely and play a timely ...c5, giving the pawn back if needed.",
-        "Cling to the extra pawn on c4 at all costs.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The c4-pawn is hard to hold, so Black doesn't try. The point of " +
-        "accepting is fast, free development and a quick ...c5 break — the pawn " +
-        "is happily returned for an easy game.",
-    },
-    {
-      type: "sort",
-      id: "queens-gambit-accepted-aim",
-      title: "What is Black after?",
-      blurb: "Read Black's plan.",
-      prompt: "After 2...dxc4, what is Black's real plan?",
-      fen: queensGambitAccepted.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "Develop freely, give the pawn back if needed" },
-        { label: "Hold the pawn at all costs" },
-        { label: "Trade queens at once" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Black grabs c4 as a loan, not a prize — the aim is quick development " +
-        "and the freeing ...c5 break, returning the pawn when it suits.",
-    },
     buildOpeningDrill(queensGambitAccepted, {
       id: "queens-gambit-accepted-recall",
       title: "Play it: the QGA as Black",

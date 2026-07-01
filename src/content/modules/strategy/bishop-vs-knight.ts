@@ -31,106 +31,6 @@ export const bishopVsKnightLesson: Lesson = {
       ],
     },
     {
-      type: "quiz",
-      id: "bvn-open",
-      title: "Open positions",
-      blurb: "Which minor piece shines?",
-      question:
-        "In open positions with pawns on both wings, which is usually better?",
-      options: [
-        "The knight, thanks to its forking ability.",
-        "The bishop, thanks to its long range.",
-        "They are always exactly equal.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "When the position is open and there are targets on both sides of the " +
-        "board, the bishop's long range lets it switch wings in a single move. " +
-        "A knight, slow and short-stepping, can't keep up.",
-    },
-    {
-      type: "sort",
-      id: "bvn-position",
-      title: "Bishop or knight here?",
-      blurb: "Read the structure.",
-      prompt:
-        "The position is wide open with targets on both sides. Bishop or knight?",
-      fen: "4k3/pp4p1/2p5/8/3P4/2P5/PP4P1/4K3 w - - 0 1",
-      orientation: "white",
-      options: [{ label: "Bishop" }, { label: "Knight" }],
-      correctIndex: 0,
-      explanation:
-        "Few pawns, open lines, and weaknesses on both wings — this is the " +
-        "bishop's playground. It can hit targets on opposite sides of the board " +
-        "without losing a tempo.",
-    },
-    {
-      type: "quiz",
-      id: "bvn-pair",
-      title: "The bishop pair",
-      blurb: "Why two bishops are special.",
-      question: "Why is the 'bishop pair' an advantage?",
-      options: [
-        "Two bishops can give check at the same time.",
-        "Two bishops cover both colours and dominate open boards.",
-        "Bishops are worth more points than knights.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "A lone bishop only ever controls one colour of square. A pair covers " +
-        "both, so together they sweep the whole board. On open lines that combined " +
-        "reach is a real, lasting plus.",
-    },
-    {
-      type: "sort",
-      id: "bvn-use-pair",
-      title: "Using the bishop pair",
-      blurb: "Play to your strength.",
-      prompt: "You hold the bishop pair. What do you want?",
-      fen: "4k3/pp3ppp/2p5/3p4/3P4/2P5/PP3PPP/4K3 w - - 0 1",
-      orientation: "white",
-      options: [{ label: "Open the position" }, { label: "Lock the pawns" }],
-      correctIndex: 0,
-      explanation:
-        "Bishops crave space. With the pair, open files and diagonals so both " +
-        "bishops can stretch out. Locking the pawns would only help the enemy " +
-        "knights and waste your advantage.",
-    },
-    {
-      type: "sort",
-      id: "bishop-vs-knight-apply1",
-      title: "Which minor to keep?",
-      blurb: "Trade the right piece for the structure.",
-      prompt:
-        "The pawns are locked across the board and you may swap one minor piece. Which do you keep?",
-      fen: "r3k2r/pp3ppp/2n1p3/2ppP3/2PP1B2/2N5/PP3PPP/R3K2R w KQkq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Keep the knight, trade the bishop" },
-        { label: "Keep the bishop, trade the knight" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "In a closed, locked position the bishop bumps into its own pawn chains while the knight hops over them to good squares. Keep the knight here and let the bishop go — the piece that fits the structure is the one worth holding on to.",
-    },
-    {
-      type: "sort",
-      id: "bishop-vs-knight-apply2",
-      title: "Play to your bishops",
-      blurb: "You hold the pair.",
-      prompt:
-        "You have the two bishops against bishop and knight. Offered a pawn break that opens the centre, do you take it?",
-      fen: "r3k2r/pp3ppp/2b1p3/3p4/3P4/2P1B3/PP3PPP/R3K2R w KQkq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "No — keep the centre closed and safe" },
-        { label: "Yes — open lines so both bishops stretch out" },
-      ],
-      correctIndex: 1,
-      explanation:
-        "The bishop pair is at its strongest on an open board, where the two bishops sweep squares of both colours from a distance. Take the break and open lines. Keeping the centre shut would only blunt your bishops and help the enemy knight find a foothold.",
-    },
-    {
       type: "replay",
       id: "bvn-demo",
       title: "Letting the bishops breathe",
@@ -235,22 +135,6 @@ export const bishopVsKnightLesson: Lesson = {
           successText: "Converted — an open board lets the bishop and rooks overwhelm.",
         },
       },
-    },
-    {
-      type: "quiz",
-      id: "bvn-review",
-      title: "Review: which piece, which position",
-      blurb: "The pawns are the tiebreaker.",
-      question:
-        "Bishop and knight are roughly equal in value. What decides which is actually stronger in a given game?",
-      options: [
-        "The pawn structure — open positions favour the bishop, locked ones favour the knight.",
-        "Which piece has moved more often.",
-        "The bishop is always stronger because it is worth more points.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Neither piece is better in the abstract. Open lines and targets on both wings suit the bishop; locked pawn chains suit the knight. Read the pawns, then judge.",
     },
   ],
 };

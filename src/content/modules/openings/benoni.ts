@@ -19,41 +19,6 @@ export const benoniLesson: Lesson = {
         "The Benoni begins 1.d4 Nf6 2.c4 c5 3.d5 e6. Let's walk through the " +
         "Modern Benoni, where Black accepts less space for active piece play.",
     }),
-    {
-      type: "quiz",
-      id: "benoni-idea",
-      title: "What does Black get?",
-      blurb: "Space versus activity.",
-      question: "What does Black accept, and what does Black get, in the Modern Benoni?",
-      options: [
-        "Black gets a safe, symmetric game.",
-        "Black wins a clean pawn.",
-        "Black accepts less space for dynamic counterplay — a queenside majority and the g7-bishop.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "Black willingly cedes central space. In return Black gets a queenside " +
-        "pawn majority, the fianchettoed g7-bishop, and the ...b5 break — rich, " +
-        "fighting counterplay rather than a quiet equality.",
-    },
-    {
-      type: "sort",
-      id: "benoni-aim",
-      title: "The Benoni bargain",
-      blurb: "Name what Black gets.",
-      prompt: "What does Black get in the Modern Benoni?",
-      fen: benoni.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "Dynamic counterplay for less space" },
-        { label: "A safe, symmetric game" },
-        { label: "An extra pawn" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "It's a trade: Black hands over central space and takes dynamic " +
-        "counterplay in return — a queenside majority and an active bishop on g7.",
-    },
     buildOpeningDrill(benoni, {
       id: "benoni-recall",
       title: "Play it: the Benoni as Black",

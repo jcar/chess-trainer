@@ -19,41 +19,6 @@ export const grunfeldLesson: Lesson = {
         "The Grünfeld begins 1.d4 Nf6 2.c4 g6 3.Nc3 d5. Let's walk through the " +
         "Exchange Variation, where White grabs the centre and Black takes aim.",
     }),
-    {
-      type: "quiz",
-      id: "grunfeld-idea",
-      title: "What's Black's plan?",
-      blurb: "The hypermodern idea.",
-      question: "What is Black's main idea in the Grünfeld Defence?",
-      options: [
-        "Black tries to prevent any White centre from forming.",
-        "Black lets White build a big centre, then attacks it with the g7-bishop and ...c5.",
-        "Black aims for a symmetric structure.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The Grünfeld is hypermodern: Black invites White to occupy the centre " +
-        "with pawns, then undermines it with the fianchettoed bishop and the " +
-        "...c5 break, turning White's space into a target.",
-    },
-    {
-      type: "sort",
-      id: "grunfeld-aim",
-      title: "Allow, then attack",
-      blurb: "Name the Grünfeld plan.",
-      prompt: "What does Black allow, then target, in the Grünfeld?",
-      fen: grunfeld.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "A big White centre, then attacks it" },
-        { label: "An early queen trade" },
-        { label: "A symmetrical pawn structure" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Black deliberately lets White build a broad pawn centre, then strikes " +
-        "it with the g7-bishop and ...c5 — space for activity, the hypermodern way.",
-    },
     buildOpeningDrill(grunfeld, {
       id: "grunfeld-recall",
       title: "Play it: the Grünfeld as Black",

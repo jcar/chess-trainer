@@ -192,23 +192,5 @@ export const weakSquaresLesson: Lesson = {
         },
       },
     },
-
-    // ── REVIEW: judgment call ──────────────────────────────────────────────────
-    {
-      type: "quiz",
-      id: "ws-review",
-      title: "Review: read the imbalance",
-      blurb: "Name the trade-off honestly.",
-      question:
-        "In a structure where you own a permanent d5 outpost but the opponent has the bishop pair and a ...f5 break, how should you judge the position?",
-      options: [
-        "It's roughly balanced: a lasting structural trump (the outpost) versus real dynamic compensation. Play it on its merits.",
-        "You're winning by force — a hole always decides the game.",
-        "You're worse — outposts don't matter once the opponent has two bishops.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Strong players weigh imbalances honestly. A permanent outpost is a genuine long-term asset, but dynamic factors (the bishop pair, a pawn break) can fully balance it. Recognising the trade-off — rather than over- or under-valuing your trump — is the heart of positional judgment.",
-    },
   ],
 };

@@ -32,99 +32,6 @@ export const imbalancesLesson: Lesson = {
       ],
     },
     {
-      type: "quiz",
-      id: "imbalances-list",
-      title: "What is an imbalance?",
-      blurb: "The differences that shape a game.",
-      question: "What is an 'imbalance' in chess?",
-      options: [
-        "A move that breaks the rules of the opening.",
-        "Any difference between the two sides — pieces, pawn structure, space, king safety.",
-        "A position where one side has more total material.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "An imbalance is simply any way the two sides differ. Material is only one kind; pawn structure, space, the safety of each king, and which pieces each side has all create imbalances you can play with.",
-    },
-    {
-      type: "quiz",
-      id: "imbalances-plan",
-      title: "Where plans come from",
-      blurb: "Read the board, then decide.",
-      question: "Where do good plans come from?",
-      options: [
-        "From memorizing long move sequences.",
-        "From always attacking the king as fast as possible.",
-        "From the imbalances in the position.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "A plan should fit the position in front of you. Find the imbalances first — they tell you which part of the board is yours and what you should be aiming at.",
-    },
-    {
-      type: "sort",
-      id: "imbalances-worst-piece",
-      title: "Your worst piece",
-      blurb: "The fastest way to a better position.",
-      prompt:
-        "A great planning question is: what is your WORST-placed piece?",
-      fen: "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1",
-      orientation: "white",
-      options: [{ label: "Improve it" }, { label: "Trade the queens" }],
-      correctIndex: 0,
-      explanation:
-        "Spot the piece doing the least and find it a better home. Improving your worst piece raises the quality of your whole position, and it usually points to a clear, useful move when nothing else is obvious.",
-    },
-    {
-      type: "quiz",
-      id: "imbalances-checklist",
-      title: "The planning checklist",
-      blurb: "Compare before you commit.",
-      question: "Before choosing a plan, what should you compare?",
-      options: [
-        "Only the total point count of material.",
-        "Only whose turn it is to move.",
-        "Minor pieces, pawns, space, files, king safety — the imbalances.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "Run through the list: the minor pieces (bishops vs knights), the pawn structure, who has more space, which files are open, and how safe each king is. The differences you find are the raw material for your plan.",
-    },
-    {
-      type: "sort",
-      id: "imbalances-apply1",
-      title: "Read the biggest imbalance",
-      blurb: "Let the difference choose the plan.",
-      prompt:
-        "White is fully developed and castled while Black is still uncastled with pieces on the back rank. Which plan fits this imbalance?",
-      fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b kq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Attack before Black catches up" },
-        { label: "Trade everything to a quiet endgame" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The lead in development is a temporary imbalance — it disappears the moment Black finishes developing and castles. Press now: open lines and create threats while your extra ready pieces still count for something. Trading into an endgame just lets Black catch up for free.",
-    },
-    {
-      type: "sort",
-      id: "imbalances-apply2",
-      title: "Evaluate the trade",
-      blurb: "Is this exchange good for you?",
-      prompt:
-        "Your knight sits passively on the rim while Black's bishop rakes a long open diagonal. You can swap them off. Good idea?",
-      fen: "r2qk2r/ppp2ppp/2np1n2/4p1b1/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w kq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "No — keep both pieces" },
-        { label: "Yes — trade your worse piece for their better one" },
-      ],
-      correctIndex: 1,
-      explanation:
-        "When you can swap your worst-placed piece for the opponent's best-placed one, take it. The trade erases a piece-quality imbalance that was working against you and leaves the remaining forces more even — a clear gain even though the material count never changed.",
-    },
-    {
       type: "replay",
       id: "imbalances-plan-demo",
       title: "Spotting the plan",
@@ -207,22 +114,6 @@ export const imbalancesLesson: Lesson = {
           successText: "Converted — active pieces plus an extra exchange make the win routine.",
         },
       },
-    },
-    {
-      type: "quiz",
-      id: "imbalances-review",
-      title: "Review: the planning habit",
-      blurb: "One question that always points somewhere useful.",
-      question:
-        "Nothing is forcing and you're unsure what to do. Which question most reliably produces a good move?",
-      options: [
-        "What is my worst-placed piece — and how do I improve it?",
-        "Which pawn can I push the furthest?",
-        "Can I offer a draw?",
-      ],
-      correctIndex: 0,
-      explanation:
-        "When the position is quiet, improving your worst piece raises the quality of your whole army and almost always suggests a concrete, useful move.",
     },
   ],
 };

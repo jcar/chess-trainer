@@ -68,35 +68,6 @@ export const pieceVision: Lesson = {
           caption: "The bishop attacks White's undefended rook on e1 — it's your piece that's hanging now.",
         },
       ],
-      check: {
-        question: "Your rook is attacked by the bishop and nothing defends it. The safe reply is to:",
-        options: [
-          "Move the rook to safety (or defend it)",
-          "Ignore it and carry on with your own plan",
-          "Push a pawn on the far side of the board",
-        ],
-        correctIndex: 0,
-        explanation:
-          "An attacked, undefended piece must be dealt with — move it or defend it. Scanning your own pieces for danger before each move is what stops you hanging material.",
-      },
-    },
-    {
-      id: "fund-pv-safe-capture",
-      type: "sort",
-      title: "Apply it: is the capture safe?",
-      blurb: "Count the recapture first.",
-      prompt:
-        "White can play Bxc6, winning a pawn. Black's pawns on b7 and d7 both guard c6. Should White take?",
-      fen: "4k3/1p1p4/2p5/1B6/8/8/8/4K3 w - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "No — c6 is defended, so White loses a bishop for a pawn" },
-        { label: "Yes — winning any pawn is always worth it" },
-        { label: "Yes — bishops should always capture when they can" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Before any capture, ask 'what recaptures?' Here b7 or d7 takes back, so Bxc6 trades a 3-point bishop for a 1-point pawn — a losing deal. Capture only when you come out ahead or even.",
     },
     {
       id: "fund-pv-opponent-wants",

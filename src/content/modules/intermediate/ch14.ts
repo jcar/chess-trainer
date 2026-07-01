@@ -47,23 +47,6 @@ export const ch14: Lesson = {
       },
     },
     {
-      id: "forcing-moves",
-      type: "quiz",
-      title: "Calculate forcing moves first",
-      blurb: "Where to point your attention.",
-      question:
-        "When looking for a tactic, which moves should you calculate FIRST?",
-      options: [
-        "Quiet little pawn moves out on the wing that very slowly improve your pawn structure.",
-        "Forcing moves: checks, captures, and threats that limit the opponent's replies.",
-        "Only queen moves, since the queen is your most powerful attacker.",
-        "Whichever move happens to look the prettiest on the board.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Checks, captures, and threats force the opponent's hand, so they're easiest to calculate and most likely to be tactics. Scan every check and capture before anything else — that habit alone finds most combinations.",
-    },
-    {
       id: "smothered-mate",
       type: "puzzle",
       title: "Smothered mate",
@@ -127,23 +110,6 @@ export const ch14: Lesson = {
       },
     },
     {
-      id: "discovered-attack",
-      type: "quiz",
-      title: "Discovered attack",
-      blurb: "Two threats from one move.",
-      question:
-        "A 'discovered attack' works by:",
-      options: [
-        "Moving a piece so the one behind it is unleashed on a target, often threatening too.",
-        "Hiding your queen behind a pawn so the opponent cannot see where it is really aiming.",
-        "Throwing every one of your pieces at the enemy king in a single coordinated assault.",
-        "Castling on the queenside to swing the rook into the attack with an element of surprise.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "You move a front piece and 'discover' the attack of the piece behind it. Because the moving piece can ALSO create a threat (even a check), the opponent often can't deal with both. A discovered CHECK is especially deadly — the moving piece can grab material with impunity.",
-    },
-    {
       id: "discovered-tactic",
       type: "puzzle",
       title: "Try it: the discovered attack",
@@ -178,23 +144,6 @@ export const ch14: Lesson = {
       ],
     },
     {
-      id: "removing-the-defender",
-      type: "quiz",
-      title: "Removing the defender",
-      blurb: "Knock out the guard.",
-      question:
-        "Your opponent's knight is the only thing defending a key mating square. The tactical idea is to:",
-      options: [
-        "Ignore the defending knight entirely and play on a completely different part of the board.",
-        "Eliminate or chase away that defender so the now-undefended square or piece falls.",
-        "Offer a draw, since a defended mating square cannot be exploited.",
-        "Trade the queens off at once to simplify into a safer endgame.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "'Removing the defender' (or 'removing the guard') means taking out the piece holding everything together. Capture it, deflect it, or attack it so it must move — then collect what it was defending.",
-    },
-    {
       id: "removing-defender-tactic",
       type: "puzzle",
       title: "Try it: removing the defender",
@@ -211,23 +160,6 @@ export const ch14: Lesson = {
       successText:
         "Won the bishop! Bxf6 removes the only guard of d7; after the recapture, Rxd7 takes the piece it was protecting. Removing the defender: eliminate the guard, then collect what it held together.",
       solution: ["e7f6", "g7f6", "b7d7"],
-    },
-    {
-      id: "deflection",
-      type: "quiz",
-      title: "Deflection & overloading",
-      blurb: "Too many jobs for one piece.",
-      question:
-        "A piece is 'overloaded' when it has two defensive duties at once. You exploit this by:",
-      options: [
-        "Piling on a third defensive job until the piece can no longer cope.",
-        "Deflecting it — forcing it to handle one duty so it abandons the other.",
-        "Trading it off for a mere pawn to remove it from the board.",
-        "Leaving it alone and looking for a tactic somewhere else instead.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "An overloaded piece can't be in two places at once. Deflection forces it away from one of its duties (often with a check or a capture it must answer), and you cash in on the square or piece it was forced to abandon — a classic back-rank theme.",
     },
     {
       id: "deflection-tactic",

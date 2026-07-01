@@ -20,41 +20,6 @@ export const scandinavianLesson: Lesson = {
         "where Black recaptures with the queen, retreats it to a5, and develops " +
         "smoothly.",
     }),
-    {
-      type: "quiz",
-      id: "scandinavian-idea",
-      title: "What is Black doing?",
-      blurb: "The point of 1...d5.",
-      question: "What is Black's idea in the Scandinavian Defence?",
-      options: [
-        "Black wins the e4-pawn for free.",
-        "Black challenges e4 at once; the queen comes out early but development is quick and clear.",
-        "Black forces an early queen trade.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "1...d5 hits e4 immediately. After the exchange the queen does come out " +
-        "early to recapture, but it is well-timed: it retreats to a safe square " +
-        "and Black gets fast, easy development.",
-    },
-    {
-      type: "sort",
-      id: "scandinavian-aim",
-      title: "How does Black reply?",
-      blurb: "Spot the first move.",
-      prompt: "How does Black answer 1.e4 in the Scandinavian?",
-      fen: scandinavian.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "1...d5, hitting e4 at once" },
-        { label: "1...e5" },
-        { label: "1...c5" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The Scandinavian is defined by 1...d5, challenging White's king's pawn " +
-        "on the very first move.",
-    },
     buildOpeningDrill(scandinavian, {
       id: "scandinavian-recall",
       title: "Play it: the Scandinavian as Black",

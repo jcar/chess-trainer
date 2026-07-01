@@ -20,40 +20,6 @@ export const kingsGambitLesson: Lesson = {
         "Let's walk through the Kieseritzky, where White accepts the gambit's " +
         "sharp, double-edged play.",
     }),
-    {
-      type: "quiz",
-      id: "kings-gambit-idea",
-      title: "Why 2.f4?",
-      blurb: "The point of the gambit.",
-      question: "What is White offering with 2.f4 in the King's Gambit?",
-      options: [
-        "A pawn, in return for fast attack and the centre.",
-        "A trade of queens to reach an early endgame.",
-        "A quiet, defensive move to shore up the king.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "2.f4 sacrifices the f-pawn to open the f-file and grab the centre. " +
-        "White trades material for the initiative — a bold, attacking choice.",
-    },
-    {
-      type: "sort",
-      id: "kings-gambit-aim",
-      title: "Read the offer",
-      blurb: "What is 2.f4 offering?",
-      prompt: "What is White offering with 2.f4 in the King's Gambit?",
-      fen: kingsGambit.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "A pawn, for fast attack and the centre" },
-        { label: "A trade of queens" },
-        { label: "A draw" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The f-pawn is on offer. If Black takes it with ...exf4, White gets the " +
-        "open f-file and a strong centre to attack with.",
-    },
     buildOpeningDrill(kingsGambit, {
       id: "kings-gambit-recall",
       title: "Play it: the King's Gambit as White",

@@ -31,58 +31,6 @@ export const openFilesLesson: Lesson = {
       ],
     },
     {
-      type: "quiz",
-      id: "of-rooks",
-      title: "Where rooks belong",
-      blurb: "Give your rooks scope.",
-      question: "Where do rooks belong?",
-      options: [
-        "On the same file as the enemy king always.",
-        "On open or half-open files where they have scope.",
-        "Behind their own pawns for safety.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Rooks are long-range pieces that need open lines to do their work. " +
-        "A rook stuck behind its own pawns sees nothing; placed on an open or " +
-        "half-open file it can hit enemy pawns and invade.",
-    },
-    {
-      type: "sort",
-      id: "of-seventh",
-      title: "Pig on the 7th",
-      blurb: "Why the 7th rank is gold.",
-      prompt: "Your rook reaches the enemy's 7th rank. Why is that great?",
-      fen: "6k1/R4ppp/8/8/8/8/5PPP/6K1 w - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "It attacks pawns and traps the king" },
-        { label: "It threatens to promote" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "A rook on the 7th rank sits right where the enemy pawns started, " +
-        "munching them from the side, while pinning the enemy king to its back " +
-        "rank. That double duty is why it's called a 'pig on the seventh.'",
-    },
-    {
-      type: "quiz",
-      id: "of-double",
-      title: "Doubling rooks",
-      blurb: "Two are better than one.",
-      question: "What does 'doubling rooks' on a file achieve?",
-      options: [
-        "It is required before castling.",
-        "It defends your back rank.",
-        "It multiplies pressure and helps you invade.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "Stacking both rooks on the same open file concentrates force: the " +
-        "opponent can't hold the file with one defender, and you break through " +
-        "to invade the 7th or 8th rank.",
-    },
-    {
       type: "puzzle",
       id: "of-back-rank",
       title: "Back-rank mate",
@@ -100,26 +48,6 @@ export const openFilesLesson: Lesson = {
         "Ra8# — the rook crashes in on the open file and the king, hemmed in by " +
         "its own pawns, has no escape.",
       solution: ["a1a8"],
-    },
-    {
-      type: "sort",
-      id: "of-apply2",
-      title: "Which rook takes the file?",
-      blurb: "Seize the open line.",
-      prompt:
-        "The d-file is wide open. With rooks on a1 and f1, which one should grab it?",
-      fen: "3q1rk1/pp3ppp/2p2n2/8/8/2P2N2/PP3PPP/R2Q1RK1 w - - 0 14",
-      orientation: "white",
-      options: [
-        { label: "Neither — keep both rooks where they are" },
-        { label: "The a1-rook, leaving f1 to guard the king" },
-        { label: "The f1-rook, so the a1-rook can double behind it" },
-      ],
-      correctIndex: 2,
-      explanation:
-        "Take the open file with the rook that lets you double up: Rfd1 first, " +
-        "then Rad1 stacks behind it. Two rooks on the file overwhelm a lone " +
-        "defender and force the invasion of the 7th rank.",
     },
     {
       type: "replay",
@@ -223,22 +151,6 @@ export const openFilesLesson: Lesson = {
           solution: ["a1a8"],
         },
       },
-    },
-    {
-      type: "quiz",
-      id: "open-files-review",
-      title: "Review: the 7th-rank rook",
-      blurb: "Why it's so feared.",
-      question:
-        "Why is a rook on the opponent's 7th rank so powerful?",
-      options: [
-        "It attacks pawns from the side and pins the king to its back rank.",
-        "It can promote to a queen there.",
-        "It is immune from capture on the 7th rank.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The enemy's 7th rank is where the pawns live and the king hides. A rook there rakes the pawns sideways and keeps the king pinned to the back rank — often worth a pawn or more in practical terms.",
     },
   ],
 };

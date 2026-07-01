@@ -47,23 +47,6 @@ export const ch1: Lesson = {
       },
     },
     {
-      id: "how-a-game-ends",
-      type: "quiz",
-      title: "How do you win?",
-      blurb: "What 'winning' really means.",
-      question:
-        "You win a game outright (not on the clock, not by resignation) when you do what?",
-      options: [
-        "Capture the opponent's king on your turn to move.",
-        "Trap the king in check with no legal escape — checkmate.",
-        "Capture the opponent's queen and both rooks.",
-        "Occupy all four central squares with your pawns.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The king is never actually captured. Checkmate means the king is in check and has no legal escape — it can't move to safety, the check can't be blocked, and the attacker can't be captured. The game ends instantly.",
-    },
-    {
       id: "ch1-stalemate-concept",
       type: "concept",
       title: "Stalemate: the winner's trap",
@@ -84,23 +67,6 @@ export const ch1: Lesson = {
         explanation:
           "No legal move + NOT in check = stalemate, a draw. The fix here was to leave the king one escape square (e.g. Qc7), or bring the king closer first, and mate next move.",
       },
-    },
-    {
-      id: "check-mate-stalemate",
-      type: "quiz",
-      title: "Check, checkmate, or stalemate?",
-      blurb: "Three words that are easy to mix up.",
-      question:
-        "It's your opponent's turn. Their king is NOT in check, but they have no legal move at all. What's the result?",
-      options: [
-        "They lose the game by checkmate.",
-        "They skip the turn and you move again.",
-        "The game is drawn by stalemate.",
-        "You win automatically on the spot.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "No legal move + not in check = stalemate, which is a draw. Compare: no legal move + IN check = checkmate (a loss). The difference is whether the king is currently under attack. This is why you must be careful not to stalemate a lone king when you're winning.",
     },
     {
       id: "back-rank-mate-1",
@@ -155,23 +121,6 @@ export const ch1: Lesson = {
       ],
       successText:
         "Checkmate! Kc7 boxes the king so its only move is to a7, and then Ra1# pins it to the edge with your king covering every escape. King + rook always wins — the king does the cornering, the rook does the checking.",
-    },
-    {
-      id: "ways-to-win",
-      type: "quiz",
-      title: "The ways a game ends",
-      blurb: "Checkmate isn't the only one.",
-      question:
-        "Besides checkmate, which of these ALSO ends the game in a win for one side?",
-      options: [
-        "Resignation, running out of time, or an opponent who abandons the game.",
-        "Capturing the enemy queen.",
-        "Getting a pawn to the other side of the board.",
-        "Putting the king in check three times.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "A game is won by checkmate, by the opponent resigning, by the opponent running out of time (flag-fall), or by abandonment. Winning a queen or promoting a pawn is huge — but the game only ends when the king is mated or one of those other things happens.",
     },
     {
       id: "ch1-recap",

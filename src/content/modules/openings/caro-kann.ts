@@ -19,41 +19,6 @@ export const caroKannLesson: Lesson = {
         "The Caro-Kann begins 1.e4 c6. Let's walk through the Classical, where " +
         "Black develops the light-squared bishop to f5 before playing ...e6.",
     }),
-    {
-      type: "quiz",
-      id: "caro-kann-idea",
-      title: "Why the Caro-Kann?",
-      blurb: "How it improves on the French.",
-      question: "How does the Caro-Kann improve on the French Defence?",
-      options: [
-        "It develops the light-squared bishop outside the pawn chain to f5.",
-        "It lets Black win White's e-pawn for free in the opening.",
-        "It forces an immediate queen trade and a quiet endgame.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "In the French, ...e6 traps the light-squared bishop behind the pawns. " +
-        "The Caro-Kann plays ...c6 instead, so the bishop comes out to f5 first " +
-        "and ...e6 only follows once it is safely outside.",
-    },
-    {
-      type: "sort",
-      id: "caro-kann-aim",
-      title: "The happy bishop",
-      blurb: "Spot the freed piece.",
-      prompt: "Which piece does the Caro-Kann develop happily (unlike the French)?",
-      fen: caroKann.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "The light-squared bishop" },
-        { label: "The dark-squared bishop" },
-        { label: "The queen" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The light-squared bishop is the French's problem piece. The Caro-Kann " +
-        "lets it out to f5 or g6 before ...e6, so it never gets boxed in.",
-    },
     buildOpeningDrill(caroKann, {
       id: "caro-kann-recall",
       title: "Play it: the Caro-Kann as Black",

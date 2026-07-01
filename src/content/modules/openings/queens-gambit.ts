@@ -19,38 +19,6 @@ export const queensGambitLesson: Lesson = {
         "When Black declines with 2...e6, White develops with pressure on d5 — Nc3, " +
         "Bg5, e3, Nf3 — and aims for the e4 break or a minority attack. Step through it.",
     }),
-    {
-      type: "quiz",
-      id: "queens-gambit-idea",
-      title: "Is the pawn really sacrificed?",
-      blurb: "What 2.c4 is really for.",
-      question: "In the Queen's Gambit, what is White's idea behind 2.c4?",
-      options: [
-        "A true sacrifice — White gives up the c-pawn for an attack.",
-        "To pressure d5 and deflect it, building a big centre; Black can't comfortably keep the pawn.",
-        "To open the c-file for the rook as fast as possible.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "It's a gambit in name only. If Black grabs the pawn with ...dxc4, holding it costs time and the centre, so White regains it (Bxc4) with a freer game. The real point of c4 is to challenge d5 and clamp the centre.",
-    },
-    {
-      type: "sort",
-      id: "queens-gambit-aim",
-      title: "How does White start?",
-      blurb: "Spot the Queen's Gambit move.",
-      prompt: "After 1.d4 d5, which move begins the Queen's Gambit?",
-      fen: queensGambit.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "2.c4, challenging d5" },
-        { label: "2.Bf4, the London setup" },
-        { label: "2.e4, a gambit in the centre" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The Queen's Gambit is defined by 2.c4 — attacking Black's d5-pawn from the side to deflect it and seize the centre.",
-    },
     buildOpeningDrill(queensGambit, {
       id: "queens-gambit-recall",
       title: "Play it: the Queen's Gambit as White",

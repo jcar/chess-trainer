@@ -54,23 +54,6 @@ export const ch2: Lesson = {
       },
     },
     {
-      id: "opening-principles",
-      type: "quiz",
-      title: "The three opening goals",
-      blurb: "What you're trying to do in the first few moves.",
-      question:
-        "Which trio best captures the priorities of a good opening?",
-      options: [
-        "Attack the enemy king, grab pawns, trade off the queens.",
-        "Control the center, develop pieces, castle to safety.",
-        "Push the h-pawn, fianchetto both bishops, double the rooks.",
-        "Bring the queen out early to create immediate threats.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Center, develop, castle. Fight for the central squares with pawns and pieces, get your knights and bishops off the back rank, and tuck your king away by castling. Everything else flows from these three.",
-    },
-    {
       id: "e4-italian",
       type: "replay",
       title: "A reliable 1.e4 opening",
@@ -132,23 +115,6 @@ export const ch2: Lesson = {
       successText:
         "Checkmate! Qxf7# is 'Scholar's Mate'. The queen takes f7 with the bishop defending it, so the king can't recapture — and it has no escape. Learn it so you can both deliver it and, more importantly, defend against it.",
       solution: ["h5f7"],
-    },
-    {
-      id: "development-order",
-      type: "quiz",
-      title: "Knights or queen first?",
-      blurb: "A common beginner mistake.",
-      question:
-        "Why is bringing your queen out on move 2 or 3 usually a bad idea?",
-      options: [
-        "The rules don't let the queen move in the first few turns.",
-        "The opponent develops with tempo by attacking your exposed queen.",
-        "Giving check with the queen this early is against the rules.",
-        "The queen is too valuable to risk moving at all.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "An early queen becomes a target. Each time the opponent attacks it, they develop a piece 'for free' while you waste moves running away. Develop knights and bishops first; bring the queen out once it's safe.",
     },
     {
       id: "ch2-guess-principles",

@@ -20,41 +20,6 @@ export const londonSystemLesson: Lesson = {
         "the trademark structure White aims for, building a solid and " +
         "comfortable position.",
     }),
-    {
-      type: "quiz",
-      id: "london-system-idea",
-      title: "Why play the London?",
-      blurb: "The appeal of a system.",
-      question: "Why is the London System so popular among players who want an easy game?",
-      options: [
-        "White can aim for the same solid set-up against almost anything Black plays.",
-        "It forces Black into an early queen trade and a dull, simplified endgame.",
-        "It wins a central pawn by force within the first handful of moves.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The London is a 'system': Bf4, e3, a bishop to d3 or e2, c3, and " +
-        "Nbd2 work against nearly any reply. You reach a comfortable " +
-        "middlegame without memorizing long forcing lines.",
-    },
-    {
-      type: "sort",
-      id: "london-system-aim",
-      title: "The signature move",
-      blurb: "Spot the London bishop.",
-      prompt: "Which bishop move is the signature of the London System?",
-      fen: londonSystem.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "Bf4" },
-        { label: "Bg5" },
-        { label: "Bb5" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The hallmark of the London is developing the dark-squared bishop to " +
-        "f4 early — before e3 would shut it in behind the pawn chain.",
-    },
     buildOpeningDrill(londonSystem, {
       id: "london-system-recall",
       title: "Play it: the London as White",

@@ -20,41 +20,6 @@ export const alekhineLesson: Lesson = {
         "where Black provokes the pawns, develops calmly, and prepares to chip " +
         "at the centre.",
     }),
-    {
-      type: "quiz",
-      id: "alekhine-idea",
-      title: "What is Black doing?",
-      blurb: "The hypermodern idea.",
-      question: "What is the idea behind 1...Nf6 in the Alekhine Defence?",
-      options: [
-        "It forces an immediate queen trade.",
-        "Black provokes White's pawns forward, then attacks the overextended centre.",
-        "It aims for a symmetrical position.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "This is a hypermodern idea: rather than occupying the centre with " +
-        "pawns, Black lets White push them forward, then undermines the " +
-        "overextended front with breaks like ...d6 and ...c5.",
-    },
-    {
-      type: "sort",
-      id: "alekhine-aim",
-      title: "The invitation",
-      blurb: "What Black is inviting.",
-      prompt: "What is Black inviting with 1...Nf6 in the Alekhine?",
-      fen: alekhine.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "White to overextend, then attack the pawns" },
-        { label: "An immediate queen trade" },
-        { label: "A symmetrical game" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "By poking the e-pawn, Black tempts White to push the centre forward. " +
-        "Once it overextends, Black treats the pawns as targets and strikes back.",
-    },
     buildOpeningDrill(alekhine, {
       id: "alekhine-recall",
       title: "Play it: the Alekhine as Black",

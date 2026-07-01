@@ -20,41 +20,6 @@ export const petroffLesson: Lesson = {
         "Let's walk through the Classical Variation, where both sides develop " +
         "smoothly to a balanced position.",
     }),
-    {
-      type: "quiz",
-      id: "petroff-idea",
-      title: "Why 2...Nf6?",
-      blurb: "The point of the Petroff.",
-      question: "What is Black's idea with 2...Nf6 in the Petroff Defence?",
-      options: [
-        "Counterattack the e4-pawn instead of defending e5.",
-        "Defend the e5-pawn with a developing piece.",
-        "Win the e4-pawn outright for free.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Rather than passively defending e5, Black hits White's e4-pawn at once " +
-        "— meeting a threat with a threat. The play tends to be symmetrical and " +
-        "very solid, which is exactly why the Petroff is so reliable.",
-    },
-    {
-      type: "sort",
-      id: "petroff-aim",
-      title: "Read the idea",
-      blurb: "What is 2...Nf6 doing?",
-      prompt: "What is Black's idea with 2...Nf6 in the Petroff?",
-      fen: petroff.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "Counterattack e4 instead of defending e5" },
-        { label: "Defend the e5-pawn" },
-        { label: "Prepare an early ...Qh4" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The knight on f6 attacks White's e4-pawn. Black ignores the threat to " +
-        "e5 and counterattacks instead — the hallmark of the Petroff.",
-    },
     buildOpeningDrill(petroff, {
       id: "petroff-recall",
       title: "Play it: the Petroff as Black",

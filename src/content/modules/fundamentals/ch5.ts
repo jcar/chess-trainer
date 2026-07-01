@@ -30,7 +30,7 @@ export const ch5: Lesson = {
       title: "Which material can mate",
       blurb: "Not every advantage is enough.",
       body:
-        "To force mate you must control enough squares to trap the king at the edge. A queen, a rook, or two bishops can do it. A single bishop or a single knight cannot — there just aren't enough squares covered, so the king always slips away and the game is a draw.\n\nIn the diagram, White has a lone bishop. No matter how perfectly White plays, the bishop and king can never corner a lone king. Keep this in mind when simplifying: trade down to a rook, a queen, or a pawn that can promote — not to a single minor piece.",
+        "To force mate you must control enough squares to trap the king at the edge. A queen, a rook, or two bishops can do it (and bishop + knight can too, though that one is notoriously hard). A single bishop or a single knight cannot — there just aren't enough squares covered, so the king always slips away and the game is a draw.\n\nIn the diagram, White has a lone bishop. No matter how perfectly White plays, the bishop and king can never corner a lone king. Keep this in mind when simplifying: trade down to a rook, a queen, or a pawn that can promote — not to a single minor piece.",
       diagrams: [
         {
           fen: "4k3/8/8/8/8/8/3B4/4K3 w - - 0 1",
@@ -45,23 +45,6 @@ export const ch5: Lesson = {
         explanation:
           "A lone bishop (or lone knight) can't control enough squares to trap a king. It's a draw. You need a rook, queen, two bishops, or bishop + knight to force mate.",
       },
-    },
-    {
-      id: "which-material-mates",
-      type: "quiz",
-      title: "Can you force mate?",
-      blurb: "Bare king versus...",
-      question:
-        "Against a lone king (and nothing else), which of these CANNOT force checkmate?",
-      options: [
-        "King and queen versus the lone king.",
-        "King and rook versus the lone king.",
-        "King and a single bishop, nothing more.",
-        "King and two bishops versus the lone king.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "A lone bishop (or a lone knight) can't force mate — there simply isn't enough control of squares. King+queen, king+rook, and king+two-bishops all win. King + bishop + knight wins too, but it's notoriously hard.",
     },
     {
       id: "ch5-two-knights-concept",
@@ -86,23 +69,6 @@ export const ch5: Lesson = {
       },
     },
     {
-      id: "two-knights-exception",
-      type: "quiz",
-      title: "The famous exception",
-      blurb: "Two knights and a king...",
-      question:
-        "King and TWO knights versus a lone king is generally:",
-      options: [
-        "An easy forced win, like king and rook.",
-        "Not a forced win against best defense by Black.",
-        "Always a forced win in under ten moves.",
-        "Illegal to play out under the rules of chess.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Two knights can't force mate against a lone king: every attempt either lets the king escape or produces stalemate. (With an extra enemy pawn on the board it can become winnable.) A surprising and useful fact.",
-    },
-    {
       id: "ch5-stalemate-concept",
       type: "concept",
       title: "The winner's trap: stalemate",
@@ -116,30 +82,6 @@ export const ch5: Lesson = {
           caption: "Black to move, NOT in check, but no legal square (a7/b7/b8 all covered). Stalemate — a wasted win.",
         },
       ],
-      check: {
-        question: "You're up a rook. The enemy king has no legal move and is NOT in check. What happened?",
-        options: ["Stalemate — you just drew a won game", "Checkmate — you won", "Nothing; the opponent skips their turn"],
-        correctIndex: 0,
-        explanation:
-          "No legal move + not in check = stalemate, a draw. Always leave the lone king an escape square until the very move you deliver mate.",
-      },
-    },
-    {
-      id: "stalemate-danger",
-      type: "quiz",
-      title: "The winner's trap",
-      blurb: "How to throw away a won game.",
-      question:
-        "You're up a queen against a lone king. What's the single biggest way to blow it?",
-      options: [
-        "Checking the king too often as you herd it.",
-        "Stalemating the king — no legal move while NOT in check.",
-        "Promoting one of your extra pawns to a second queen.",
-        "Trading your queen to capture the enemy king outright.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Stalemate is the classic blunder when winning. Before each move, ask: 'If I play this, does my opponent still have a legal move?' Leave the king an escape square until the moment you actually deliver checkmate.",
     },
     {
       id: "two-rook-drill",
@@ -154,23 +96,6 @@ export const ch5: Lesson = {
         "Two rooks versus a lone king. Use the ladder from Chapter 4: one rook holds a rank/file while the other checks, walking the king to the edge. Your king isn't needed. Drive the king to a back rank and mate.",
       successText:
         "Checkmate! Two rooks are the easiest heavy-piece mate — they fence the king to the edge by themselves. Notice you never needed your king's help.",
-    },
-    {
-      id: "lone-minor-quiz",
-      type: "quiz",
-      title: "A piece up — but a draw?",
-      blurb: "When an extra piece isn't enough.",
-      question:
-        "Your opponent has only a king. You have a king and one knight (no pawns). The result with best play is:",
-      options: [
-        "You win by force with careful technique.",
-        "A draw — a single knight can't force mate.",
-        "You lose despite being a piece ahead.",
-        "An automatic stalemate ends it at once.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "It's a draw. A lone knight (like a lone bishop) cannot corner and mate a king. This is why, when simplifying a winning game, you must keep enough force — a rook, a queen, or a pawn that can promote.",
     },
     {
       id: "ch5-recap",

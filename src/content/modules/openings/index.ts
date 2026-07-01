@@ -63,24 +63,6 @@ const overviewLesson: Lesson = {
         "Pair this with the Openings Trainer to build a repertoire you'll remember.",
       ],
     },
-    {
-      type: "quiz",
-      id: "openings-families",
-      title: "The opening families",
-      blurb: "How openings are grouped.",
-      question:
-        "Openings are usually grouped by White's first move. Which pair are both 'King's Pawn' openings?",
-      options: [
-        "1.e4 e5 (Open Games) and the Sicilian (1.e4 c5).",
-        "The Queen's Gambit and the Slav Defence.",
-        "The English Opening and the Réti Opening.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Everything that starts with 1.e4 is a King's Pawn opening. 1.d4 openings " +
-        "(like the Queen's Gambit) are Queen's Pawn openings, and 1.c4 / 1.Nf3 " +
-        "are flank openings. This course is grouped the same way.",
-    },
   ],
 };
 

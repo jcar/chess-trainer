@@ -35,6 +35,7 @@ export const pawnEndgames: Lesson = {
         "Lead with the king — the pawn follows behind.",
         "The opposition: kings facing with one square between; the side NOT to move wins the standoff.",
         "Get your king to the 'key squares' in front of the pawn and the win is automatic.",
+        "The 'square of the pawn': if the lone defending king can step into the box from the pawn to its queening square, it catches the runner without help.",
       ],
       diagrams: [
         {
@@ -54,23 +55,6 @@ export const pawnEndgames: Lesson = {
         explanation:
           "The side NOT on move holds the opposition. Here White must move, so Black has it — but White still wins because the king already stands in FRONT of the pawn. Leading with the king is what matters most.",
       },
-    },
-    {
-      id: "fund-opposition-quiz",
-      type: "quiz",
-      title: "What is the opposition?",
-      blurb: "The key idea in pawn endings.",
-      question:
-        "Two kings stand on the e-file with one empty square between them (e.g. Ke6 vs Ke8). Who 'has the opposition'?",
-      options: [
-        "Whoever has more pawns on the board at the time.",
-        "The player who does NOT have to move — the other king must step aside.",
-        "The player to move, because they get to choose first.",
-        "Neither — the opposition only matters with rooks on the board.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The side NOT on move has the opposition. The king forced to move must give ground, letting the other king advance. Winning a king-and-pawn ending is usually about grabbing the opposition at the right moment.",
     },
     {
       id: "fund-kp-replay",
@@ -109,23 +93,6 @@ export const pawnEndgames: Lesson = {
         "Promoted! Leading with the king and taking the opposition is the technique behind every pawn ending. You'll win this one for the rest of your life.",
     },
     {
-      id: "fund-square-quiz",
-      type: "quiz",
-      title: "The square of the pawn",
-      blurb: "Can the king catch the runner?",
-      question:
-        "A lone king is chasing a passed pawn with no kings nearby to help. How do you tell at a glance if the king can catch it before it promotes?",
-      options: [
-        "Count the total number of pieces left on the board.",
-        "Draw the imaginary square from the pawn to its promotion square — if the king can step INTO that square on its move, it catches the pawn.",
-        "If the pawn is past the halfway line it can never be caught.",
-        "Whichever side has the move always wins the race.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The 'square of the pawn': picture a square whose side runs from the pawn to its queening square. If the defending king is inside that square (or can step into it on its move), it catches the pawn. A quick visual shortcut — no counting moves needed.",
-    },
-    {
       id: "fund-keysquares-drill",
       type: "drill",
       title: "Drill: reach the key squares",
@@ -138,24 +105,6 @@ export const pawnEndgames: Lesson = {
         "Your king is two ranks ahead of the pawn — you control the 'key squares', so this wins no matter who is to move. Grab the opposition, lead with the king, and promote.",
       successText:
         "Promoted! When your king reaches the key squares (two ranks ahead of the pawn), the win is guaranteed. That's the target in every king-and-pawn race.",
-    },
-    {
-      id: "fund-kp-rule-sort",
-      type: "sort",
-      title: "Where does the king belong?",
-      blurb: "The one rule to remember.",
-      prompt:
-        "You have an extra pawn in a king-and-pawn ending. Where should your king go?",
-      fen: "8/8/8/4k3/8/8/4P3/4K3 w - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "In FRONT of the pawn, leading it up the board" },
-        { label: "Behind the pawn, pushing it from the back" },
-        { label: "Far away, hunting the enemy king" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Lead with the king IN FRONT of the pawn. The king clears the path and shoulders the enemy king aside; the pawn follows safely behind. A pawn that races ahead of its own king usually gets blockaded and lost.",
     },
     {
       id: "fund-pawn-endgames-practice",

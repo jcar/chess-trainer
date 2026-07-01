@@ -28,7 +28,7 @@ export const ch9: Lesson = {
       title: "Openings: understand, don't memorize",
       blurb: "Why plans beat move lists.",
       body:
-        "At the intermediate level, an opening is not a list of moves to recite — it's a way of reaching a middlegame you understand. The goal is to learn the typical pawn structures, where each piece belongs, and the plan you're steering toward.\n\nThe diagram is the main line of the Closed Ruy Lopez: both sides simply followed the principles — center, develop, castle — into a rich middlegame that revolves around White's coming d4 break. You don't memorize this; you understand the plan, so you'd find these moves on your own. A small, consistent repertoire works best: one main opening for White and reliable answers to 1.e4 and 1.d4 as Black.",
+        "At the intermediate level, an opening is not a list of moves to recite — it's a way of reaching a middlegame you understand. The goal is to learn the typical pawn structures, where each piece belongs, and the plan you're steering toward.\n\nThe diagram is the main line of the Closed Ruy Lopez: both sides simply followed the principles — center, develop, castle — into a rich middlegame that revolves around White's coming d4 break. You don't memorize this; you understand the plan, so you'd find these moves on your own. A small, consistent repertoire works best: one main opening for White and reliable answers to 1.e4 and 1.d4 as Black.\n\nBecause you know the resulting position rather than one move order, you'll recognize it even when it arrives by a different route — that's a transposition. And when an opponent leaves theory with an off-beat move, you don't panic: fall back on principles and let good development punish the weaker move on its own.",
       points: [
         "Learn the plan and structure, not twenty memorized moves.",
         "A compact repertoire you know well beats a thick one you don't.",
@@ -52,40 +52,6 @@ export const ch9: Lesson = {
         explanation:
           "Understanding beats memorizing. Know which squares matter, where your pieces belong, and what plan you're aiming for, and you'll play well even when your opponent leaves theory.",
       },
-    },
-    {
-      id: "study-openings-right",
-      type: "quiz",
-      title: "How to actually learn an opening",
-      blurb: "Memorization vs. understanding.",
-      question:
-        "What's the most useful way to study an opening as an improving player?",
-      options: [
-        "Memorize the first twenty moves of every single main line by heart, in exact move order.",
-        "Understand the typical pawn structures, piece placements, and middlegame plans it leads to.",
-        "Learn only the sharp lines that win material in the first few moves.",
-        "Skip opening study entirely and just improvise from move one.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Understanding beats memorizing. If you know WHY the moves are played — which squares matter, where your pieces belong, what plan you're aiming for — you'll find good moves even when your opponent plays something unexpected.",
-    },
-    {
-      id: "what-is-repertoire",
-      type: "quiz",
-      title: "What's a repertoire?",
-      blurb: "Your set of go-to openings.",
-      question:
-        "A practical opening 'repertoire' for an improving player is best described as:",
-      options: [
-        "A thick binder covering every opening ever played at the master level, kept ready.",
-        "A small, consistent set you know well: a White opening plus defenses to 1.e4 and 1.d4.",
-        "Whatever your opponent happens to play that day, reacted to fresh over the board.",
-        "A collection of sharp gambits, chosen purely to surprise unprepared opponents.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Pick a compact repertoire and learn it deeply: one main opening for White, and reliable answers to 1.e4 and 1.d4 for Black. Familiar positions mean you spend your thinking time on plans, not panic.",
     },
     {
       id: "ruy-model-game",
@@ -115,40 +81,6 @@ export const ch9: Lesson = {
         { san: "c3", keyIdea: "Understand the plan: the d4 break", note: "Prepare d4 — White's central break and the heart of the plan." },
         { san: "O-O", note: "Both kings are safe; a long, strategic middlegame begins around the d4 break." },
       ],
-    },
-    {
-      id: "transposition",
-      type: "quiz",
-      title: "Move order & transposition",
-      blurb: "Different paths, same position.",
-      question:
-        "Your opponent plays the moves of your favorite opening but in a different order, reaching the same setup. This is called:",
-      options: [
-        "Cheating — they have stolen your preparation against the rules.",
-        "A transposition — reaching a known position by a different move order.",
-        "An illegal sequence that the arbiter should force them to take back.",
-        "A gambit, since changing the move order must cost one side a pawn.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Transpositions are everywhere. Because you understand the resulting structure (not just one move sequence), you'll recognize the position no matter which order the moves arrived in.",
-    },
-    {
-      id: "offbeat-response",
-      type: "quiz",
-      title: "When they leave theory",
-      blurb: "Facing an unfamiliar move.",
-      question:
-        "Your opponent plays a strange, non-theoretical move in the opening. What's the soundest response?",
-      options: [
-        "Resign on the spot, since you are now out of your prepared lines.",
-        "Fall back on principles: develop a piece, fight for the center, keep the king safe.",
-        "Mirror their strange move exactly and aim for a symmetrical, dead-equal position.",
-        "Launch an immediate piece sacrifice to punish them for leaving theory.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Offbeat moves are usually slightly inferior. Don't try to refute them with a wild attack — just play principled chess. Good development almost always punishes a bad opening move on its own.",
     },
     {
       id: "ch9-guess-london",

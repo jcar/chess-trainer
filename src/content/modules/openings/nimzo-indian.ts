@@ -20,42 +20,6 @@ export const nimzoIndianLesson: Lesson = {
         "through the calm Rubinstein handling, where both sides develop and " +
         "the fight for the centre takes shape.",
     }),
-    {
-      type: "quiz",
-      id: "nimzo-indian-idea",
-      title: "Why ...Bb4?",
-      blurb: "The point of the pin.",
-      question: "What is the main idea behind Black's bishop move 3...Bb4 in the Nimzo-Indian?",
-      options: [
-        "To pin the c3-knight and fight for control of the e4-square.",
-        "To threaten an immediate checkmate against White on the c3-square.",
-        "To win White's undefended c4-pawn by force in a few moves.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The bishop pins the c3-knight, weakening White's grip on e4. If White " +
-        "ever captures the bishop, Black is happy to leave White with doubled, " +
-        "vulnerable pawns in return for the dark-squared bishop.",
-    },
-    {
-      type: "sort",
-      id: "nimzo-indian-aim",
-      title: "Which knight is pinned?",
-      blurb: "Read the pin.",
-      prompt: "Black's bishop has gone to b4. Which White knight does it pin?",
-      fen: nimzoIndian.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "The c3-knight" },
-        { label: "The f3-knight" },
-        { label: "The g1-knight" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The bishop on b4 pins the knight on c3 against the king on e1, so the " +
-        "knight cannot move without exposing the king — and its control of e4 " +
-        "is loosened.",
-    },
     buildOpeningDrill(nimzoIndian, {
       id: "nimzo-indian-recall",
       title: "Play it: the Nimzo as Black",

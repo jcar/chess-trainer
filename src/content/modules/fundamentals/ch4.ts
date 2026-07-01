@@ -54,23 +54,6 @@ export const ch4: Lesson = {
       },
     },
     {
-      id: "why-king-helps",
-      type: "quiz",
-      title: "The king is a worker",
-      blurb: "Why two rooks are easier than queen-and-king.",
-      question:
-        "Why can two rooks force checkmate without their king's help, while a lone queen cannot?",
-      options: [
-        "Two rooks together are worth more points than one queen.",
-        "Two rooks fence the king alone; one queen needs its king's help.",
-        "The rules forbid a lone queen from giving checkmate by itself.",
-        "It is essentially random which pieces are able to force mate.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Two rooks 'ladder' the king to the edge, each covering a rank. A queen alone can check endlessly but can't trap the king without its own king nearby — and risks stalemate. That's why K+Q mate means bringing your king up.",
-    },
-    {
       id: "ladder-mate",
       type: "replay",
       title: "The two-rook ladder mate",

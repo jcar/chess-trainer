@@ -19,41 +19,6 @@ export const slavDefenceLesson: Lesson = {
         "The Slav Defence begins 1.d4 d5 2.c4 c6. Let's walk through the main " +
         "line where Black supports d5 with ...c6 and gets the light bishop out.",
     }),
-    {
-      type: "quiz",
-      id: "slav-defence-idea",
-      title: "Why ...c6, not ...e6?",
-      blurb: "The point of the Slav.",
-      question: "What is the main idea behind supporting d5 with ...c6 in the Slav?",
-      options: [
-        "It keeps the light bishop's diagonal open so it can go to f5 or g4.",
-        "It hands the entire centre to White so Black can attack on the wing.",
-        "It traps Black's own bishop behind the pawns to keep the king safe.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "By guarding d5 with the c-pawn instead of ...e6, Black avoids blocking " +
-        "the c8-bishop. That bishop can then develop actively to f5 or g4 " +
-        "before ...e6 shuts it in.",
-    },
-    {
-      type: "sort",
-      id: "slav-defence-aim",
-      title: "How does the Slav differ from the QGD?",
-      blurb: "Spot the supporting pawn.",
-      prompt: "How does the Slav support d5 differently from the QGD?",
-      fen: slavDefence.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "With ...c6" },
-        { label: "With ...e6" },
-        { label: "With ...f6" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The Slav guards d5 with ...c6, leaving the light-squared bishop free " +
-        "to develop — that's the whole point compared with the QGD's ...e6.",
-    },
     buildOpeningDrill(slavDefence, {
       id: "slav-defence-recall",
       title: "Play it: the Slav as Black",

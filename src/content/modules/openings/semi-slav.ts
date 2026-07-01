@@ -20,41 +20,6 @@ export const semiSlavLesson: Lesson = {
         "walk through the classic Meran where Black takes on c4 and expands " +
         "with ...b5.",
     }),
-    {
-      type: "quiz",
-      id: "semi-slav-idea",
-      title: "How is d5 held?",
-      blurb: "The Semi-Slav's solid core.",
-      question:
-        "What makes the Semi-Slav so solid in the centre?",
-      options: [
-        "It leaves d5 undefended to free the pieces.",
-        "It gives up the centre entirely for quick development.",
-        "It supports d5 with both ...c6 and ...e6.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "Backing d5 with both ...c6 and ...e6 builds a sturdy pawn wall. From " +
-        "this fortress Black can grab the c4-pawn and expand with ...b5.",
-    },
-    {
-      type: "sort",
-      id: "semi-slav-aim",
-      title: "Reading the centre",
-      blurb: "What holds d5?",
-      prompt: "How does the Semi-Slav support the d5-pawn?",
-      fen: semiSlav.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "With both ...c6 and ...e6" },
-        { label: "With ...e6 only" },
-        { label: "It doesn't — d5 is given up" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Both ...c6 and ...e6 prop up d5, giving the Semi-Slav its famously " +
-        "solid centre while still allowing ...dxc4 and ...b5 later.",
-    },
     buildOpeningDrill(semiSlav, {
       id: "semi-slav-recall",
       title: "Play it: the Semi-Slav as Black",

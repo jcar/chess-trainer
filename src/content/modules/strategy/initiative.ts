@@ -20,6 +20,7 @@ export const initiativeLesson: Lesson = {
         "The initiative is dictating the tempo: force the opponent to react to you.",
         "Open the position so your active pieces can strike.",
         "Don't waste time grabbing pawns; keep developing.",
+        "Dynamic edges (a development lead, an exposed king) are fleeting and must be cashed in fast; static edges (a weak enemy pawn, the bishop pair) keep their value over time.",
       ],
       diagrams: [
         {
@@ -29,96 +30,6 @@ export const initiativeLesson: Lesson = {
             "Both sides have developed quickly. Whoever castles and opens a line first gets the initiative — the right to make threats while the other side scrambles to respond.",
         },
       ],
-    },
-    {
-      type: "quiz",
-      id: "init-temporary",
-      title: "Use it or lose it",
-      blurb: "The clock on a lead.",
-      question: "Why must you USE a lead in development quickly?",
-      options: [
-        "It becomes permanent after move 10.",
-        "It turns into an extra pawn automatically.",
-        "It's temporary — the opponent will catch up if you delay.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "Every quiet move you make lets the opponent develop another piece. A " +
-        "development lead is borrowed time: open lines, create threats, and act " +
-        "while your pieces are out and theirs are still home.",
-    },
-    {
-      type: "sort",
-      id: "init-open",
-      title: "Open it up",
-      blurb: "More pieces out = open the board.",
-      prompt: "You're ahead in development. What helps you exploit it?",
-      fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R w KQkq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Open the position with pawn breaks" },
-        { label: "Keep the position closed" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Open lines favour the side with more active pieces. When you're better " +
-        "developed, pawn breaks rip the position open so your ready pieces reach " +
-        "the enemy before he can finish developing.",
-    },
-    {
-      type: "quiz",
-      id: "init-static-dynamic",
-      title: "Dynamic vs static",
-      blurb: "Two kinds of advantage.",
-      question: "A 'dynamic' advantage is one that...",
-      options: [
-        "Only matters in the endgame.",
-        "Is temporary and must be used before it vanishes.",
-        "Lasts forever, like a weak pawn.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Static edges (a weak enemy pawn, the bishop pair) keep their value over " +
-        "time. Dynamic edges — a lead in development, an exposed king — are " +
-        "fleeting: cash them in with energetic play or they evaporate.",
-    },
-    {
-      type: "sort",
-      id: "init-dont",
-      title: "Don't dawdle",
-      blurb: "The classic mistake.",
-      prompt: "With a development lead, what should you avoid?",
-      fen: "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Bringing rooks to open files" },
-        { label: "Grabbing pawns and wasting time" },
-      ],
-      correctIndex: 1,
-      explanation:
-        "Stopping to win a pawn with an already-developed piece gives the " +
-        "opponent free moves to catch up. With a lead, time is worth more than a " +
-        "pawn — keep developing and attacking.",
-    },
-    {
-      type: "sort",
-      id: "init-apply2",
-      title: "Forcing or quiet?",
-      blurb: "Keep them on the back foot.",
-      prompt:
-        "You're better developed and want to keep the initiative. Which move serves you?",
-      fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "A forcing move that makes a threat" },
-        { label: "A slow, do-nothing waiting move" },
-        { label: "A pawn grab that pulls a piece off the attack" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The initiative is kept with threats: a forcing move makes the opponent " +
-        "react instead of develop. Quiet moves and pawn-grabs hand back the free " +
-        "time you need to keep them on the defensive.",
     },
     {
       type: "replay",
@@ -226,22 +137,6 @@ export const initiativeLesson: Lesson = {
           successText: "Converted — relentless activity never let Black off the hook.",
         },
       },
-    },
-    {
-      type: "quiz",
-      id: "initiative-review",
-      title: "Review: the nature of a lead",
-      blurb: "Borrowed time.",
-      question:
-        "A lead in development is best understood as...",
-      options: [
-        "A temporary, dynamic edge that you must cash in before the opponent catches up.",
-        "A permanent advantage that lasts the whole game.",
-        "An automatic extra pawn once you castle.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Development leads are dynamic — they decay with every quiet move. Open lines and create threats while your pieces are out and the opponent's are still at home, or the edge simply evaporates.",
     },
   ],
 };

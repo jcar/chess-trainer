@@ -19,37 +19,6 @@ export const italianLesson: Lesson = {
         "The Italian begins 1.e4 e5 2.Nf3 Nc6 3.Bc4. Let's walk through the " +
         "calm, classical handling where both sides develop and castle.",
     }),
-    {
-      type: "quiz",
-      id: "italian-idea",
-      title: "Why Bc4?",
-      blurb: "The point of the Italian bishop.",
-      question: "What is the point of White's bishop move 3.Bc4 in the Italian Game?",
-      options: [
-        "It aims at f7, the square only Black's king defends.",
-        "It threatens to win Black's queen with a discovered attack.",
-        "It stops Black from castling on the kingside entirely.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The bishop on c4 stares down the a2–g8 diagonal at f7. Early on, only " +
-        "the king guards f7, so it is the natural target in the Italian and " +
-        "many 1.e4 e5 openings.",
-    },
-    {
-      type: "sort",
-      id: "italian-aim",
-      title: "Where is the bishop aiming?",
-      blurb: "Read the diagonal.",
-      prompt: "White's bishop sits on c4. Which Black square is it aiming at?",
-      fen: italianGame.tabiyaFen,
-      orientation: "white",
-      options: [{ label: "f7" }, { label: "a7" }, { label: "h7" }],
-      correctIndex: 0,
-      explanation:
-        "From c4 the bishop's diagonal runs c4–d5–e6–f7 — straight at Black's " +
-        "most sensitive early square.",
-    },
     buildOpeningDrill(italianGame, {
       id: "italian-recall",
       title: "Play it: the Italian as White",

@@ -20,41 +20,6 @@ export const scotchGameLesson: Lesson = {
         "line, where White opens the centre and both sides develop into a clear, " +
         "open game.",
     }),
-    {
-      type: "quiz",
-      id: "scotch-game-idea",
-      title: "Why 3.d4?",
-      blurb: "The point of the early central break.",
-      question: "What is the point of White's pawn move 3.d4 in the Scotch Game?",
-      options: [
-        "It opens the centre at once for fast, free piece play.",
-        "It wins a clean central pawn by force in a few moves.",
-        "It sets a trap that snares Black's queen on the next move.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Rather than maneuvering slowly like the Italian or Ruy Lopez, the " +
-        "Scotch challenges e5 immediately. The pawns come off and the pieces get " +
-        "open lines straight away — a direct, active approach.",
-    },
-    {
-      type: "sort",
-      id: "scotch-game-aim",
-      title: "What does d4 strike at?",
-      blurb: "Read the centre.",
-      prompt: "What does White's 3.d4 strike at?",
-      fen: scotchGame.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "The centre (e5)" },
-        { label: "The black king" },
-        { label: "The a7-pawn" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The pawn on d4 attacks Black's e5-pawn directly. Challenging the centre " +
-        "this early is what opens the position and defines the Scotch.",
-    },
     buildOpeningDrill(scotchGame, {
       id: "scotch-game-recall",
       title: "Play it: the Scotch as White",

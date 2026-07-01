@@ -20,41 +20,6 @@ export const pircLesson: Lesson = {
         "Classical, where Black fianchettoes, castles, and prepares to strike " +
         "back.",
     }),
-    {
-      type: "quiz",
-      id: "pirc-idea",
-      title: "What is Black doing?",
-      blurb: "The hypermodern plan.",
-      question: "What is Black's plan in the Pirc Defence?",
-      options: [
-        "Black trades queens early.",
-        "Black tries to stop White occupying the centre at all.",
-        "Black gives White a big centre, fianchettoes, and strikes back later with ...e5 or ...c5.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "The Pirc is hypermodern: Black allows the broad centre, fianchettoes " +
-        "the bishop to g7, castles, and then counterattacks the centre with a " +
-        "well-timed ...e5 or ...c5.",
-    },
-    {
-      type: "sort",
-      id: "pirc-aim",
-      title: "The Pirc set-up",
-      blurb: "Spot the plan.",
-      prompt: "What is the Pirc setup for Black?",
-      fen: pirc.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "Fianchetto ...g6/...Bg7, hit the centre later" },
-        { label: "Occupy the centre with pawns first" },
-        { label: "Trade queens early" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Black's defining set-up is ...g6 and ...Bg7, castling behind the " +
-        "fianchetto, then breaking with ...e5 or ...c5 once the time is right.",
-    },
     buildOpeningDrill(pirc, {
       id: "pirc-recall",
       title: "Play it: the Pirc as Black",

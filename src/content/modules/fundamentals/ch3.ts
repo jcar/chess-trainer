@@ -54,23 +54,6 @@ export const ch3: Lesson = {
       },
     },
     {
-      id: "meeting-first-moves",
-      type: "quiz",
-      title: "Responding as Black",
-      blurb: "You move second — does that change the plan?",
-      question:
-        "As Black, what's the soundest general approach to the opening?",
-      options: [
-        "Copy White's moves forever to keep the game equal.",
-        "Use the same principles, accepting White's small head start.",
-        "Attack at once on the wing before developing pieces.",
-        "Keep all your pieces at home until White commits.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Black plays by the same rules. White's extra tempo gives a nudge of initiative, not a winning advantage. Contest the center, develop smoothly, get your king safe, and you'll be fine.",
-    },
-    {
       id: "ruy-lopez-black",
       type: "replay",
       title: "Meeting 1.e4 with ...e5",
@@ -131,23 +114,6 @@ export const ch3: Lesson = {
       successText:
         "Won the queen! Nc2+ forks the king on e1 and the queen on b4. White must deal with the check, and then ...Nxb4 collects the queen. This is a 'fork' — one piece attacking two targets.",
       solution: ["e3c2", "e1f1", "c2b4"],
-    },
-    {
-      id: "building-blocks",
-      type: "quiz",
-      title: "Why setup openings work",
-      blurb: "The appeal of a repeatable structure.",
-      question:
-        "What's the main practical advantage of a setup-based opening for a beginner?",
-      options: [
-        "It forces a winning checkmate against White around move 10.",
-        "You reach one setup each game, so there's less to memorize.",
-        "It wins a clean extra pawn by force during the opening.",
-        "It lets you safely skip castling and keep your king central.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Setup openings reduce memorization: you learn one healthy formation (pawns and piece squares) and steer toward it. You still must watch for direct threats, but you're rarely lost in the opening.",
     },
     {
       id: "ch3-guess-principles",

@@ -20,37 +20,6 @@ export const ruyLopezLesson: Lesson = {
         "classic Closed handling, where both sides develop fully and castle " +
         "before the long strategic battle starts.",
     }),
-    {
-      type: "quiz",
-      id: "ruy-lopez-idea",
-      title: "Why Bb5?",
-      blurb: "The point of the Spanish bishop.",
-      question: "What is the point of White's bishop move 3.Bb5 in the Ruy Lopez?",
-      options: [
-        "It pressures the c6-knight, the main defender of Black's e5-pawn.",
-        "It pins Black's queen against the king down the open file.",
-        "It threatens an immediate checkmate that Black must defend.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The bishop on b5 leans on the c6-knight. That knight is the chief " +
-        "defender of e5, so pressuring it begins a slow campaign against Black's " +
-        "central pawn — the heart of the Ruy Lopez.",
-    },
-    {
-      type: "sort",
-      id: "ruy-lopez-aim",
-      title: "Which knight is under fire?",
-      blurb: "Read the diagonal.",
-      prompt: "The Ruy Lopez bishop on b5 is pressuring which black knight?",
-      fen: ruyLopez.tabiyaFen,
-      orientation: "white",
-      options: [{ label: "c6" }, { label: "f6" }, { label: "g8" }],
-      correctIndex: 0,
-      explanation:
-        "From b5 the bishop attacks the knight on c6 — the piece that defends " +
-        "e5. That is the target the whole Ruy Lopez is built around.",
-    },
     buildOpeningDrill(ruyLopez, {
       id: "ruy-lopez-recall",
       title: "Play it: the Ruy Lopez as White",

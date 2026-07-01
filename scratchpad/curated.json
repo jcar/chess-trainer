@@ -1,0 +1,458 @@
+{
+  "tactic.discovered": [
+    {
+      "id": "lc-I9r0p",
+      "fen": "1Q4R1/4pr2/8/2b2k2/2P5/1P2pb2/7B/4R1K1 b - - 0 40",
+      "orientation": "black",
+      "solution": [
+        "e3e2"
+      ],
+      "rating": 928,
+      "pieces": 13,
+      "score": 41.1
+    },
+    {
+      "id": "lc-MZeox",
+      "fen": "1r3rk1/5pB1/p3pb2/8/4B3/8/P1q2PR1/7K w - - 0 34",
+      "orientation": "white",
+      "solution": [
+        "g7f6"
+      ],
+      "rating": 1338,
+      "pieces": 14,
+      "score": 44.18
+    },
+    {
+      "id": "lc-qBxHm",
+      "fen": "1r5k/7p/p5p1/3B4/8/5Q1q/7b/3R1R1K b - - 4 40",
+      "orientation": "black",
+      "solution": [
+        "h2g3",
+        "h1g1",
+        "h3h2"
+      ],
+      "rating": 1293,
+      "pieces": 12,
+      "score": 46.14
+    }
+  ],
+  "tactic.deflection": [
+    {
+      "id": "lc-jP7Ev",
+      "fen": "4r2k/7p/6p1/1q6/8/2bQ1B2/P4R2/3R1K2 b - - 7 33",
+      "orientation": "black",
+      "solution": [
+        "e8e1",
+        "d1e1",
+        "b5d3"
+      ],
+      "rating": 1258,
+      "pieces": 12,
+      "score": 46.06
+    },
+    {
+      "id": "lc-iRu78",
+      "fen": "2r5/p7/4kn1R/5b2/4pP2/1p2b3/1B6/1K1R4 w - - 0 49",
+      "orientation": "white",
+      "solution": [
+        "h6f6",
+        "e6e7",
+        "f6f5"
+      ],
+      "rating": 1098,
+      "pieces": 13,
+      "score": 49.06
+    },
+    {
+      "id": "lc-NSBCR",
+      "fen": "8/1Q3pk1/2p5/4n3/3R3N/6BP/r3q1PK/8 b - - 0 38",
+      "orientation": "black",
+      "solution": [
+        "e5f3",
+        "h4f3",
+        "e2g2"
+      ],
+      "rating": 1316,
+      "pieces": 13,
+      "score": 49.08
+    }
+  ],
+  "tactic.removeDefender": [
+    {
+      "id": "lc-GQHUS",
+      "fen": "6k1/1R1bBpb1/2nP1n2/8/8/2p5/2B3PP/6K1 w - - 4 31",
+      "orientation": "white",
+      "solution": [
+        "e7f6",
+        "g7f6",
+        "b7d7"
+      ],
+      "rating": 1350,
+      "pieces": 14,
+      "score": 52.12
+    },
+    {
+      "id": "lc-6SoRG",
+      "fen": "8/2k5/3b3p/2qn4/2p2P1P/p3r1P1/2R2Q1K/3R4 w - - 2 40",
+      "orientation": "white",
+      "solution": [
+        "d1d5",
+        "c5d5",
+        "f2e3"
+      ],
+      "rating": 1265,
+      "pieces": 15,
+      "score": 55.1
+    },
+    {
+      "id": "lc-JphPJ",
+      "fen": "R4r2/3pk3/2r1pn2/4Q3/1q6/7P/1P3PP1/5RK1 w - - 2 27",
+      "orientation": "white",
+      "solution": [
+        "a8f8",
+        "e7f8",
+        "e5f6"
+      ],
+      "rating": 1069,
+      "pieces": 15,
+      "score": 55.1
+    }
+  ],
+  "tactic.interference": [
+    {
+      "id": "lc-wBle6",
+      "fen": "4Rr1k/6pp/6r1/7q/2Q5/6B1/5P2/4RK2 b - - 6 48",
+      "orientation": "black",
+      "solution": [
+        "h5h1",
+        "f1e2",
+        "f8e8"
+      ],
+      "rating": 1189,
+      "pieces": 12,
+      "score": 46.12
+    },
+    {
+      "id": "lc-N2whM",
+      "fen": "4kr2/1p2n1pp/p1nR4/3N4/8/PP6/K3Qq2/8 w - - 1 37",
+      "orientation": "white",
+      "solution": [
+        "d5c7",
+        "e8f7",
+        "e2f2"
+      ],
+      "rating": 1186,
+      "pieces": 15,
+      "score": 55.02
+    },
+    {
+      "id": "lc-Wtnw3",
+      "fen": "4rk2/5p2/2q3b1/4r3/7Q/pP1P4/P1P5/1K4RR w - - 2 45",
+      "orientation": "white",
+      "solution": [
+        "h4h8",
+        "f8e7",
+        "h8e5"
+      ],
+      "rating": 1093,
+      "pieces": 15,
+      "score": 55.04
+    }
+  ],
+  "tactic.zwischenzug": [
+    {
+      "id": "lc-VEAFF",
+      "fen": "5r1k/1Q5p/3prq2/1p6/7P/6n1/6BK/5R2 w - - 0 42",
+      "orientation": "white",
+      "solution": [
+        "f1f6",
+        "e6f6",
+        "h2g3"
+      ],
+      "rating": 1302,
+      "pieces": 13,
+      "score": 49.16
+    },
+    {
+      "id": "lc-YnnY0",
+      "fen": "5r1k/1q4p1/6rp/2Q5/8/1PB4P/3Rb1P1/7K w - - 0 44",
+      "orientation": "white",
+      "solution": [
+        "c5f8",
+        "h8h7",
+        "d2e2"
+      ],
+      "rating": 1201,
+      "pieces": 14,
+      "score": 52.04
+    },
+    {
+      "id": "lc-i5e1m",
+      "fen": "7k/p7/2nrR3/5n2/8/b1PP2N1/2PB1KP1/8 w - - 0 33",
+      "orientation": "white",
+      "solution": [
+        "e6e8",
+        "h8h7",
+        "g3f5"
+      ],
+      "rating": 1156,
+      "pieces": 14,
+      "score": 52.06
+    }
+  ],
+  "mate.smothered": [
+    {
+      "id": "lc-NpLGM",
+      "fen": "6rk/6pp/7N/8/2pP1P2/6P1/1p4KP/8 w - - 0 41",
+      "orientation": "white",
+      "solution": [
+        "h6f7"
+      ],
+      "rating": 848,
+      "pieces": 12,
+      "score": 38
+    },
+    {
+      "id": "lc-cNV2O",
+      "fen": "kn6/pp5p/N7/8/8/8/P4qPP/2R4K w - - 0 32",
+      "orientation": "white",
+      "solution": [
+        "a6c7"
+      ],
+      "rating": 1134,
+      "pieces": 12,
+      "score": 38.04
+    },
+    {
+      "id": "lc-dZMl0",
+      "fen": "k1r5/7R/1R6/8/3B2n1/8/P5PP/7K b - - 0 39",
+      "orientation": "black",
+      "solution": [
+        "c8c1",
+        "d4g1",
+        "g4f2"
+      ],
+      "rating": 1096,
+      "pieces": 10,
+      "score": 40.2
+    }
+  ],
+  "mate.arabian": [
+    {
+      "id": "lc-8i2Fr",
+      "fen": "2kN4/R7/8/8/8/5n2/2r5/7K b - - 0 47",
+      "orientation": "black",
+      "solution": [
+        "c2h2"
+      ],
+      "rating": 1140,
+      "pieces": 6,
+      "score": 20.12
+    },
+    {
+      "id": "lc-um4iy",
+      "fen": "7k/R7/2K2N2/2P5/3q4/8/8/8 w - - 6 63",
+      "orientation": "white",
+      "solution": [
+        "a7h7"
+      ],
+      "rating": 1363,
+      "pieces": 6,
+      "score": 20.14
+    },
+    {
+      "id": "lc-HvI3p",
+      "fen": "8/8/r7/8/8/2N5/2K5/kq4R1 w - - 0 69",
+      "orientation": "white",
+      "solution": [
+        "g1b1"
+      ],
+      "rating": 1309,
+      "pieces": 6,
+      "score": 20.16
+    }
+  ],
+  "mate.anastasia": [
+    {
+      "id": "lc-M6meK",
+      "fen": "8/4B3/8/8/4nPPK/7Q/1q3k2/8 b - - 0 58",
+      "orientation": "black",
+      "solution": [
+        "b2h8"
+      ],
+      "rating": 1083,
+      "pieces": 8,
+      "score": 26.16
+    },
+    {
+      "id": "lc-FAHoF",
+      "fen": "2Q5/KP1n4/8/3k4/8/8/2R5/7r b - - 0 81",
+      "orientation": "black",
+      "solution": [
+        "h1a1",
+        "c2a2",
+        "a1a2"
+      ],
+      "rating": 983,
+      "pieces": 7,
+      "score": 31.04
+    },
+    {
+      "id": "lc-OM9FL",
+      "fen": "5r2/2R4p/8/8/6pP/kp1N2K1/8/2q5 w - - 2 65",
+      "orientation": "white",
+      "solution": [
+        "c7a7"
+      ],
+      "rating": 1235,
+      "pieces": 10,
+      "score": 32.18
+    }
+  ],
+  "mate.boden": [
+    {
+      "id": "lc-0824f",
+      "fen": "r1bk4/1pp5/2Bb2p1/p7/P7/3R1p2/1BP2P2/2K5 w - - 2 26",
+      "orientation": "white",
+      "solution": [
+        "b2f6"
+      ],
+      "rating": 922,
+      "pieces": 16,
+      "score": 50.08
+    },
+    {
+      "id": "lc-fi0Wh",
+      "fen": "r2k1r2/ppp5/8/2bP4/5Pb1/P2B4/1P2N2P/4RK1R b - - 0 27",
+      "orientation": "black",
+      "solution": [
+        "g4h3"
+      ],
+      "rating": 1277,
+      "pieces": 18,
+      "score": 56.14
+    },
+    {
+      "id": "lc-jjMqN",
+      "fen": "2kb4/3n1p1p/1p2p1p1/pB2B3/5P2/2P5/PP2KP1P/8 w - - 1 28",
+      "orientation": "white",
+      "solution": [
+        "b5a6"
+      ],
+      "rating": 1006,
+      "pieces": 18,
+      "score": 56.14
+    }
+  ],
+  "mate.hook": [
+    {
+      "id": "lc-XAVEG",
+      "fen": "4k3/5p2/4n3/4PK2/6r1/Q7/8/8 b - - 8 79",
+      "orientation": "black",
+      "solution": [
+        "g4f4"
+      ],
+      "rating": 1310,
+      "pieces": 7,
+      "score": 23.04
+    },
+    {
+      "id": "lc-787PI",
+      "fen": "7Q/4k3/8/8/5p2/5Pn1/5KP1/r7 b - - 0 47",
+      "orientation": "black",
+      "solution": [
+        "a1f1"
+      ],
+      "rating": 1156,
+      "pieces": 8,
+      "score": 26.1
+    },
+    {
+      "id": "lc-L1iCX",
+      "fen": "8/8/2B5/8/PR4p1/4kn2/6K1/r7 b - - 9 50",
+      "orientation": "black",
+      "solution": [
+        "a1g1"
+      ],
+      "rating": 1091,
+      "pieces": 8,
+      "score": 26.12
+    }
+  ],
+  "mate.doubleBishop": [
+    {
+      "id": "lc-bwQhn",
+      "fen": "8/6kp/8/3b2BK/5PB1/2b4P/8/8 b - - 9 49",
+      "orientation": "black",
+      "solution": [
+        "d5f7",
+        "h5h4",
+        "c3e1"
+      ],
+      "rating": 1031,
+      "pieces": 9,
+      "score": 37.2
+    },
+    {
+      "id": "lc-FSmU6",
+      "fen": "7k/2p4p/3n2p1/b1BB4/P7/5P1P/8/6K1 w - - 3 33",
+      "orientation": "white",
+      "solution": [
+        "c5d4"
+      ],
+      "rating": 904,
+      "pieces": 12,
+      "score": 38.18
+    },
+    {
+      "id": "lc-W1K2S",
+      "fen": "7k/r4B1p/8/5p2/5b2/1P5P/8/2B3K1 w - - 0 36",
+      "orientation": "white",
+      "solution": [
+        "c1b2",
+        "f4e5",
+        "b2e5"
+      ],
+      "rating": 1142,
+      "pieces": 10,
+      "score": 40.04
+    }
+  ],
+  "attack.f7": [
+    {
+      "id": "lc-9svyG",
+      "fen": "3qk2r/RQ3p2/4p3/2rp3p/5p2/5n2/6PP/3R1K2 w k - 0 28",
+      "orientation": "white",
+      "solution": [
+        "b7f7"
+      ],
+      "rating": 1044,
+      "pieces": 16,
+      "score": 50.1
+    },
+    {
+      "id": "lc-umY4J",
+      "fen": "3bk2r/Q4p2/q5pp/1bB1N3/5P2/1P6/P4KPP/8 w k - 4 29",
+      "orientation": "white",
+      "solution": [
+        "a7f7"
+      ],
+      "rating": 1178,
+      "pieces": 17,
+      "score": 53.08
+    },
+    {
+      "id": "lc-d8Bzk",
+      "fen": "2r1k3/5p1B/4p3/4P3/qb5P/2r5/1p4Q1/1K1R1R2 w - - 0 34",
+      "orientation": "white",
+      "solution": [
+        "g2g8",
+        "b4f8",
+        "g8f7"
+      ],
+      "rating": 1254,
+      "pieces": 15,
+      "score": 55.16
+    }
+  ]
+}

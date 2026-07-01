@@ -21,6 +21,7 @@ export const endgamesLesson: Lesson = {
         "The opposition: whoever doesn't have to move holds the squares.",
         "Lead the pawn with your king to promote it.",
         "Know the queening square and the rule of the square for passed pawns.",
+        "In rook-and-pawn endings, the winning method is the Lucena position — 'building a bridge' so your rook shields the advancing king from checks.",
       ],
       diagrams: [
         {
@@ -30,106 +31,6 @@ export const endgamesLesson: Lesson = {
             "King-and-pawn technique in one picture: the king leads the pawn rather than pushing it blindly. Win the opposition, your king clears a path, and the pawn follows it home.",
         },
       ],
-    },
-    {
-      type: "quiz",
-      id: "endgames-king",
-      title: "The king in the endgame",
-      blurb: "From hiding to fighting.",
-      question: "In the endgame, the king becomes:",
-      options: [
-        "A strong piece that should march to the centre.",
-        "Still a weakling that must hide in the corner.",
-        "Useless until the very last move.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "With most pieces gone, the king is safe enough to fight. A centralized, active king escorts pawns, attacks weaknesses, and is often the deciding piece in the endgame.",
-    },
-    {
-      type: "sort",
-      id: "endgames-opposition",
-      title: "The opposition",
-      blurb: "Who really holds the squares?",
-      prompt:
-        "Kings face off with one empty square between them and it's the OTHER side to move. Who is better?",
-      fen: "8/8/4k3/8/4K3/8/4P3/8 b - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "The side NOT to move" },
-        { label: "The side to move" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "When the kings stand directly opposed with one square between them, whoever does NOT have to move holds the opposition. The side forced to move must give way, letting the other king advance — the key to winning many king-and-pawn endings.",
-    },
-    {
-      type: "sort",
-      id: "endgames-square",
-      title: "The square of the pawn",
-      blurb: "Can the king catch it?",
-      prompt:
-        "Can the lone king catch the passed pawn (the 'square of the pawn')?",
-      fen: "8/8/8/8/k7/8/6P1/6K1 w - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "No, the pawn queens" },
-        { label: "Yes, it's inside the square" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Draw an imaginary square using the pawn's path to promotion as one side. If the enemy king cannot step inside that square on its move, it can never catch the pawn. Here the king is far on the a-file and the g-pawn simply runs in to queen.",
-    },
-    {
-      type: "quiz",
-      id: "endgames-lucena",
-      title: "Building a bridge",
-      blurb: "The winning rook-ending method.",
-      question:
-        "In rook endings, the winning 'building a bridge' technique is called:",
-      options: [
-        "The Philidor position.",
-        "The Lucena position.",
-        "The Réti maneuver.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The Lucena position is the classic win with rook and pawn versus rook: you 'build a bridge' with your rook so it can shield the advancing king from checks and shepherd the pawn home.",
-    },
-    {
-      type: "sort",
-      id: "endgames-apply1",
-      title: "Race or block?",
-      blurb: "The opponent has a runner too.",
-      prompt:
-        "Both sides have a passed pawn racing to promote. With it your move, what wins the race?",
-      fen: "8/6P1/8/8/8/1p6/8/k1K5 w - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Stop their pawn first" },
-        { label: "Push your own pawn to queen" },
-      ],
-      correctIndex: 1,
-      explanation:
-        "Count the tempi before reacting. Your g-pawn is two squares from queening; Black's b-pawn needs two moves and then must get past your king. Push and promote — switching to defence here would only let the faster pawn lose its head start.",
-    },
-    {
-      type: "sort",
-      id: "endgames-apply2",
-      title: "Seize the opposition",
-      blurb: "King move first, not pawn.",
-      prompt:
-        "Kings stand a knight's-move apart and it's your move. To make progress with your pawn, what should you do?",
-      fen: "8/8/3k4/8/3P4/3K4/8/8 w - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Push the pawn at once" },
-        { label: "Step the king forward to take the opposition" },
-        { label: "Shuffle the king sideways and wait" },
-      ],
-      correctIndex: 1,
-      explanation:
-        "In king-and-pawn endings the king leads and the pawn follows. Advancing the king to seize the opposition forces the enemy king to give way, clearing a path for the pawn. Pushing the pawn too early surrenders the opposition and lets the defender block in front of it.",
     },
     {
       type: "drill",
@@ -153,22 +54,6 @@ export const endgamesLesson: Lesson = {
       body:
         "King activity and the opposition decide king-and-pawn endings — and most endings simplify toward them. Drill the must-know endings against the engine until converting is automatic.",
       practice: { tool: "endgames", label: "Open the Endgame Trainer" },
-    },
-    {
-      type: "quiz",
-      id: "endgames-review",
-      title: "Review: the endgame king",
-      blurb: "The piece that decides.",
-      question:
-        "In a king-and-pawn endgame, what is the single most important winning tool?",
-      options: [
-        "An active king that leads the pawn and seizes the opposition.",
-        "Pushing the pawn forward as fast as possible.",
-        "Keeping your king safely tucked on the back rank.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "In the endgame the king is a fighting piece. It marches in front of the pawn and uses the opposition to force the enemy king aside — push the pawn too early and you surrender the opposition and the win.",
     },
   ],
 };

@@ -32,96 +32,6 @@ export const weakPawnsLesson: Lesson = {
       ],
     },
     {
-      type: "quiz",
-      id: "wp-isolated",
-      title: "The isolated pawn",
-      blurb: "A pawn with no friends.",
-      question: "Why is an isolated pawn a weakness?",
-      options: [
-        "It blocks your own bishop.",
-        "It can never advance.",
-        "No pawn can defend it, so pieces must babysit it.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "An isolated pawn has no neighbouring pawns to guard it. Pieces have to " +
-        "drop back and defend it, which ties them down and hands the initiative " +
-        "to the other side.",
-    },
-    {
-      type: "sort",
-      id: "wp-target",
-      title: "Playing against the IQP",
-      blurb: "Two-step plan.",
-      prompt: "How do you play against an isolated pawn?",
-      fen: "r1bq1rk1/pp3ppp/2n1pn2/8/3P4/2N1BN2/PP3PPP/R2Q1RK1 b - - 0 11",
-      orientation: "white",
-      options: [
-        { label: "Blockade it and pile up on it" },
-        { label: "Trade all the rooks at once" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "First plant a piece on the square in front of the isolated pawn so it " +
-        "can't advance, then bring up attackers. A frozen pawn under fire often " +
-        "falls.",
-    },
-    {
-      type: "quiz",
-      id: "wp-backward",
-      title: "The backward pawn",
-      blurb: "Stuck and exposed.",
-      question: "A 'backward' pawn is weak because...",
-      options: [
-        "It is doubled with another pawn.",
-        "It sits on the edge of the board.",
-        "It can't advance safely and the square in front is a hole.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "A backward pawn has been left behind its neighbours and can't push " +
-        "without being lost. The open square just ahead becomes a permanent home " +
-        "for an enemy piece.",
-    },
-    {
-      type: "sort",
-      id: "wp-passed",
-      title: "The passed pawn",
-      blurb: "A future queen.",
-      prompt: "What makes a passed pawn so dangerous?",
-      fen: "8/8/3k4/8/3P4/3K4/8/8 w - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "No enemy pawn can stop it from queening" },
-        { label: "It defends your king" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "A passed pawn has no enemy pawns ahead of it on its file or the files " +
-        "beside it. Nothing but enemy pieces can halt its march to promotion — a " +
-        "long-term trump.",
-    },
-    {
-      type: "sort",
-      id: "wp-apply2",
-      title: "Attack the isolated pawn",
-      blurb: "Where does the knight go?",
-      prompt:
-        "Black's d5-pawn is isolated. Which knight move best fights against it?",
-      fen: "r1bq1rk1/pp3ppp/2n1pn2/3p4/8/2N2N2/PP3PPP/R1BQ1RK1 w - - 0 12",
-      orientation: "white",
-      options: [
-        { label: "Reroute a knight to d4, the blockade square" },
-        { label: "Trade off both knights immediately" },
-        { label: "Push your own a- and b-pawns up the board" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The square in front of an isolated pawn (d4 here) is the ideal blockade " +
-        "post: reroute a knight there so the pawn can never advance, then pile " +
-        "attackers on the frozen target. Retreating wastes the plan.",
-    },
-    {
       type: "replay",
       id: "wp-demo",
       title: "Creating a target",
@@ -199,22 +109,6 @@ export const weakPawnsLesson: Lesson = {
           successText: "Converted — the weak pawn tied Black down while the extra force decided it.",
         },
       },
-    },
-    {
-      type: "quiz",
-      id: "weak-pawns-review",
-      title: "Review: playing against a weak pawn",
-      blurb: "The two-step recipe.",
-      question:
-        "You've spotted a weak (isolated or backward) enemy pawn. What's the standard recipe?",
-      options: [
-        "Blockade the square in front of it, then pile attackers on the pawn itself.",
-        "Trade it off immediately to remove it from the board.",
-        "Ignore it and attack on the opposite wing.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Plant a piece on the square in front so the pawn can't advance to free itself, then bring up attackers. A knight makes the best blockader — it stays active while it sits.",
     },
   ],
 };

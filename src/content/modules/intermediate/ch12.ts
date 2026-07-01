@@ -54,23 +54,6 @@ export const ch12: Lesson = {
       },
     },
     {
-      id: "what-is-gambit",
-      type: "quiz",
-      title: "What you're buying",
-      blurb: "Why give away a pawn?",
-      question:
-        "When you play a sound gambit, what are you trading your pawn FOR?",
-      options: [
-        "Nothing of value — a sound gambit is really just a disguised blunder.",
-        "A lead in development, open lines for your pieces, and the initiative.",
-        "A forced checkmate that arrives automatically a few moves later.",
-        "A guaranteed second queen once the opponent's structure crumbles.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "A gambit buys time. While your opponent spends moves grabbing and holding the pawn, you develop quickly and seize the initiative. If you can't show concrete activity for the pawn, though, it's just a lost pawn.",
-    },
-    {
       id: "evans-gambit",
       type: "replay",
       title: "The Evans Gambit (White)",
@@ -138,23 +121,6 @@ export const ch12: Lesson = {
         { san: "Nf3", note: "White defends." },
         { san: "Bb4+", note: "A developing check that disrupts White's coordination — Black has easy, active play for the pawn." },
       ],
-    },
-    {
-      id: "accept-or-decline",
-      type: "quiz",
-      title: "Facing a gambit",
-      blurb: "Should you grab the pawn?",
-      question:
-        "Your opponent offers a gambit pawn. What's the most reliable practical approach?",
-      options: [
-        "Greedily accept the offer and then cling to that extra pawn at all costs, no matter what happens.",
-        "Accept if you like, but prioritize development and give the pawn back to kill the initiative.",
-        "Decline the offer and settle into a passive, cramped setup behind your own pawns.",
-        "Sacrifice a piece of your own straight back to seize the initiative first.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Against a gambit, don't get greedy. Accepting is usually fine, but the antidote to the opponent's initiative is your OWN development — and often giving the pawn back at the right moment to complete development and reach a safe, equal (or better) position.",
     },
     {
       id: "ch12-guess-evans",

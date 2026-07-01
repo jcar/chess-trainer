@@ -19,42 +19,6 @@ export const bogoIndianLesson: Lesson = {
         "The Bogo-Indian arises after 1.d4 Nf6 2.c4 e6 3.Nf3 Bb4+. Let's walk " +
         "through the main line where Black gives the check and develops smoothly.",
     }),
-    {
-      type: "quiz",
-      id: "bogo-indian-idea",
-      title: "Why ...Bb4+?",
-      blurb: "The point of the check.",
-      question:
-        "What is the idea behind Black's check 3...Bb4+ in the Bogo-Indian?",
-      options: [
-        "It eases development and sidesteps heavy theory.",
-        "It threatens an immediate checkmate.",
-        "It wins the c4-pawn by force.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The check develops a piece with tempo and steers the game into solid, " +
-        "lower-theory waters — a flexible, comfortable cousin of the " +
-        "Nimzo-Indian.",
-    },
-    {
-      type: "sort",
-      id: "bogo-indian-aim",
-      title: "Black's third move",
-      blurb: "Name the defining move.",
-      prompt: "What is Black's third move in the Bogo-Indian?",
-      fen: bogoIndian.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "...Bb4+, a check" },
-        { label: "...d5" },
-        { label: "...c5" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "3...Bb4+ defines the Bogo-Indian: a developing check that eases " +
-        "Black's game and avoids the densest theory.",
-    },
     buildOpeningDrill(bogoIndian, {
       id: "bogo-indian-recall",
       title: "Play it: the Bogo-Indian as Black",

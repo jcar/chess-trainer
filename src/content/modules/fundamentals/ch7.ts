@@ -37,6 +37,7 @@ export const ch7: Lesson = {
         "Your piece vision already spots what attacks what. The simplest tactic of all is just acting on it: an enemy piece that's attacked and undefended is 'hanging' — so take it for free.\n\nTo judge a trade, use the rough point values. Winning a piece for nothing, or trading a smaller piece for a bigger one, puts material in the bank.",
       points: [
         "Values: pawn 1, knight 3, bishop 3, rook 5, queen 9.",
+        "Trading a knight (3) for a rook (5) is 'winning the exchange'.",
         "Hanging = attacked AND undefended → take it for free.",
         "Look for loose enemy pieces before anything fancy.",
       ],
@@ -48,29 +49,6 @@ export const ch7: Lesson = {
           caption: "The rook attacks the bishop on e5 — and nothing defends it.",
         },
       ],
-      check: {
-        question: "In the diagram, which black piece is hanging (attacked and undefended)?",
-        options: ["The bishop on e5", "The king on e8", "Nothing is hanging"],
-        correctIndex: 0,
-        explanation:
-          "The rook on e1 attacks up the open e-file and hits the bishop on e5, which no black piece defends — so White just takes it for free with Rxe5.",
-      },
-    },
-    {
-      id: "piece-values",
-      type: "quiz",
-      title: "What's it worth?",
-      blurb: "The currency of trades.",
-      question: "Using the standard point values, which trade WINS material for you?",
-      options: [
-        "Giving up a rook (5) to capture a bishop (3).",
-        "Giving up a knight (3) to capture a rook (5).",
-        "Giving up a queen (9) to capture a rook (5).",
-        "Giving up a bishop (3) to capture a knight (3).",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Pawn 1, knight 3, bishop 3, rook 5, queen 9. Trading a knight (3) for a rook (5) is 'winning the exchange' — a clear material gain. The others lose material or are even.",
     },
     {
       id: "hanging-piece",
@@ -186,17 +164,6 @@ export const ch7: Lesson = {
           caption: "King and rook share the a-file: check the king, then take the rook behind it.",
         },
       ],
-      check: {
-        question: "In a skewer, what makes the back piece fall?",
-        options: [
-          "The front piece is forced to move (often out of check), exposing the one behind.",
-          "The back piece is always pinned and can never move.",
-          "Both pieces are captured on the same move.",
-        ],
-        correctIndex: 0,
-        explanation:
-          "A skewer attacks the front piece on a line. When it must step aside — especially a king escaping check — the piece lined up behind it is left to be captured.",
-      },
     },
     {
       id: "skewer-tactic",
@@ -246,23 +213,6 @@ export const ch7: Lesson = {
       },
     },
     {
-      id: "ch7-pin-apply",
-      type: "quiz",
-      title: "Exploit the pin",
-      blurb: "It can't run — so pile on.",
-      question:
-        "An enemy knight is pinned to its king and can't move. How do you usually win it?",
-      options: [
-        "Attack it a second time (a pawn is ideal) — it can't flee, so it falls.",
-        "Offer a draw, since a pinned piece makes the game even.",
-        "Trade your bishop for the frozen knight right away for free.",
-        "Ignore it and attack on the other side of the board instead.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "A pinned piece can't run, so add another attacker — often a pawn, the cheapest attacker. The pinned piece can't be defended enough to survive being hit again, and you win it.",
-    },
-    {
       id: "ch7-pin-practice",
       type: "concept",
       title: "Drill the pin",
@@ -278,23 +228,6 @@ export const ch7: Lesson = {
     },
 
     // ---- Apply + recap ----
-    {
-      id: "hanging-vs-defended",
-      type: "quiz",
-      title: "Before you grab it...",
-      blurb: "Is that pawn really free?",
-      question:
-        "Your bishop can capture an enemy pawn. Before you take it, what's the most important thing to check?",
-      options: [
-        "Whether the pawn is sitting on a light square or a dark one.",
-        "Whether the pawn is defended — so you don't lose the bishop for it.",
-        "Whether you are on an even-numbered move of the game.",
-        "Whether your opponent has already castled their king to safety.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Always ask 'if I take, what recaptures?' Capturing a defended pawn with a bishop loses a 3-point piece for 1 point. Good piece vision means seeing both attackers AND defenders before every capture.",
-    },
     {
       id: "ch7-practice",
       type: "concept",

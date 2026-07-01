@@ -32,93 +32,6 @@ export const centerLesson: Lesson = {
       ],
     },
     {
-      type: "quiz",
-      id: "center-why",
-      title: "Why the centre matters",
-      blurb: "The board's crossroads.",
-      question: "Why is central control valuable?",
-      options: [
-        "It prevents the opponent from castling.",
-        "The centre squares are worth bonus points.",
-        "Central pieces and pawns reach both sides of the board quickly.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "From the middle, your pieces touch both wings in a move or two. A knight " +
-        "on the rim is dim; a knight in the centre fights for the whole board.",
-    },
-    {
-      type: "sort",
-      id: "center-attack",
-      title: "Facing a big centre",
-      blurb: "How to hit back.",
-      prompt: "Your opponent has a big pawn centre. A classic response is to...",
-      fen: "rnbqkb1r/ppp1pppp/5n2/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
-      orientation: "black",
-      options: [
-        { label: "Strike at it with a pawn break" },
-        { label: "Trade all the pieces" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "A big centre is only strong while it's intact. Hit it with a pawn break " +
-        "and the proud centre can crumble into weaknesses.",
-    },
-    {
-      type: "quiz",
-      id: "center-types",
-      title: "Overextended centre",
-      blurb: "Too much of a good thing.",
-      question: "An 'overextended' centre is one that...",
-      options: [
-        "Has been traded off completely.",
-        "Has advanced so far it becomes weak and hard to defend.",
-        "Contains more than two pawns.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Pawns that race up the board leave gaps behind them. Once the support " +
-        "runs out, an overextended centre is a row of targets rather than a wall.",
-    },
-    {
-      type: "sort",
-      id: "center-break",
-      title: "Spot the break",
-      blurb: "A pawn lever in the centre.",
-      prompt: "Which move is a typical central break?",
-      fen: "r1bqk2r/ppp1bppp/2n2n2/3pp3/4P3/2NP1N2/PPP2PPP/R1BQKB1R b KQkq - 0 6",
-      orientation: "black",
-      options: [
-        { label: "A timely ...d5 or ...c5" },
-        { label: "A rook lift to h3" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "Central breaks like ...d5 and ...c5 challenge the enemy pawns head-on, " +
-        "opening lines for your pieces. A rook lift is an attacking idea, not a " +
-        "way to fight for the centre.",
-    },
-    {
-      type: "sort",
-      id: "center-apply2",
-      title: "Which break hits the centre?",
-      blurb: "Pick the lever.",
-      prompt:
-        "White has built a pawn centre on d4 and e4. As Black, which pawn break challenges it most directly?",
-      fen: "rnbqkb1r/ppp2ppp/4pn2/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 0 3",
-      orientation: "black",
-      options: [
-        { label: "...c5, striking the base d4" },
-        { label: "...h6, making luft for the king" },
-        { label: "...a6, leaving the centre alone" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "...c5 hits d4, the support of the whole centre. Challenge the base of a " +
-        "pawn duo and the structure starts to crack; a rook's-pawn nudge does " +
-        "nothing to the centre and simply loses time.",
-    },
-    {
       type: "replay",
       id: "center-demo",
       title: "Hitting the centre",
@@ -197,22 +110,6 @@ export const centerLesson: Lesson = {
           successText: "Converted — a strong centre plus the extra exchange decides it.",
         },
       },
-    },
-    {
-      type: "quiz",
-      id: "center-review",
-      title: "Review: when a centre is strong",
-      blurb: "Strength has a condition.",
-      question:
-        "A big pawn centre is a genuine strength only when...",
-      options: [
-        "It's supported and the opponent can't undermine it with a break.",
-        "It has advanced as far up the board as possible.",
-        "It contains at least three connected pawns.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "An unshakable centre dominates; an overextended or undermined one becomes a cluster of targets. Support it, and challenge the opponent's centre with a break before it can solidify.",
     },
   ],
 };

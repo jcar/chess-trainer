@@ -31,91 +31,6 @@ export const knightsLesson: Lesson = {
       ],
     },
     {
-      type: "quiz",
-      id: "knights-outpost",
-      title: "What is an outpost?",
-      blurb: "A knight's dream square.",
-      question: "What is a knight 'outpost'?",
-      options: [
-        "Any square on the opponent's half of the board.",
-        "An advanced square, guarded by your pawn, safe from enemy pawns.",
-        "The square a knight starts the game on.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "An outpost is an advanced square — often on the 5th or 6th rank — that " +
-        "one of your own pawns defends and that no enemy pawn can ever attack. " +
-        "A knight parked there is untouchable.",
-    },
-    {
-      type: "sort",
-      id: "knights-closed",
-      title: "Knight or bishop in a closed position?",
-      blurb: "Locked pawns change everything.",
-      prompt:
-        "In a closed position with locked pawn chains, which piece is usually better?",
-      fen: "4k3/pp3ppp/2p1p3/3pP3/2PP1P2/8/PP4PP/4K3 w - - 0 1",
-      orientation: "white",
-      options: [{ label: "The knight" }, { label: "The bishop" }],
-      correctIndex: 0,
-      explanation:
-        "When pawns are locked, bishops bang into their own chains and have no " +
-        "open diagonals. Knights, which can hop over everything, thrive — they " +
-        "reroute to outposts the bishop can never reach.",
-    },
-    {
-      type: "quiz",
-      id: "knights-support",
-      title: "Why outposts are so strong",
-      blurb: "The pawn does the protecting.",
-      question: "Why is a pawn-supported outpost so strong for a knight?",
-      options: [
-        "It lets the knight move twice in a row.",
-        "Enemy pawns can't chase it, so it sits there for good.",
-        "It makes the knight worth a full rook.",
-      ],
-      correctIndex: 1,
-      explanation:
-        "Because no enemy pawn can attack the square, the only way to remove the " +
-        "knight is to trade a piece for it — usually a bishop, handing you the " +
-        "bishop pair. So the knight simply stays, cramping and harassing for the " +
-        "rest of the game.",
-    },
-    {
-      type: "sort",
-      id: "knights-apply1",
-      title: "Route the knight to the outpost",
-      blurb: "Plan the journey, not just the destination.",
-      prompt:
-        "The d5 square is a protected outpost no Black pawn can attack. What's the right plan for your knight on f3?",
-      fen: "r1bq1rk1/pp3ppp/2np1n2/3Np3/4P3/2N2P2/PPP3PP/R1BQ1RK1 b - - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Manoeuvre a knight onto d5 and leave it there" },
-        { label: "Swap both knights off as fast as you can" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "An outpost is only worth having if you occupy it. Steer a knight to d5, where a pawn defends it and no enemy pawn can ever chase it away. Trading the knights off throws away the very piece best suited to that dream square.",
-    },
-    {
-      type: "sort",
-      id: "knights-apply2",
-      title: "Keep the lock or open up?",
-      blurb: "Match the pawns to your pieces.",
-      prompt:
-        "The pawns are locked and you have the knight while the opponent has the bishop. With a choice between a pawn break and keeping things closed, what suits you?",
-      fen: "r3k2r/pp3ppp/2n1p3/2ppP3/2PP4/2N5/PP3PPP/R3K2R w KQkq - 0 1",
-      orientation: "white",
-      options: [
-        { label: "Open the position with a pawn break" },
-        { label: "Keep the position closed and locked" },
-      ],
-      correctIndex: 1,
-      explanation:
-        "Closed, locked pawns are a knight's home turf — it hops over the blockade to outposts the bishop can never reach. Keep the structure shut. Opening lines would hand the bishop the long, clear diagonals it craves and undo your advantage.",
-    },
-    {
       type: "puzzle",
       id: "knights-fork",
       title: "The knight forks the queen",
@@ -238,22 +153,6 @@ export const knightsLesson: Lesson = {
           solution: ["g5f7", "h8g7", "f7d8"],
         },
       },
-    },
-    {
-      type: "quiz",
-      id: "knights-review",
-      title: "Review: what makes an outpost",
-      blurb: "The condition that matters.",
-      question:
-        "An advanced square becomes a true outpost for your knight only when...",
-      options: [
-        "No enemy pawn can ever attack it (and ideally your own pawn defends it).",
-        "It sits anywhere on the opponent's half of the board.",
-        "Your knight can reach it in one move.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "A support point is only a support point if a pawn can't chase the knight away. Pawn-proof and ideally pawn-defended — that's what turns an advanced square into a permanent home.",
     },
   ],
 };

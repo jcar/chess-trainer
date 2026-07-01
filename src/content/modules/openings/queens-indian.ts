@@ -20,42 +20,6 @@ export const queensIndianLesson: Lesson = {
         "through the calm main line where Black fianchettoes to b7 and battles " +
         "for e4.",
     }),
-    {
-      type: "quiz",
-      id: "queens-indian-idea",
-      title: "Why ...b6?",
-      blurb: "The hypermodern idea.",
-      question:
-        "What is Black's main idea in the Queen's Indian after 3...b6?",
-      options: [
-        "To launch a quick kingside pawn storm against White's king.",
-        "To trade queens early and head for a quiet endgame.",
-        "To fianchetto the bishop and fight for the e4-square.",
-      ],
-      correctIndex: 2,
-      explanation:
-        "Black puts the light-squared bishop on b7 (sometimes a6) and contests " +
-        "e4 from afar — a solid, hypermodern way to meet 3.Nf3 without grabbing " +
-        "the centre with pawns.",
-    },
-    {
-      type: "sort",
-      id: "queens-indian-aim",
-      title: "Where does the bishop go?",
-      blurb: "Place the fianchettoed bishop.",
-      prompt: "Where does Black's light-squared bishop go in the Queen's Indian?",
-      fen: queensIndian.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "b7 (or a6), eyeing e4" },
-        { label: "g7" },
-        { label: "f5" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "The bishop heads to b7 (or a6 to hit c4), pointing down the long " +
-        "diagonal to fight for control of e4.",
-    },
     buildOpeningDrill(queensIndian, {
       id: "queens-indian-recall",
       title: "Play it: the Queen's Indian as Black",

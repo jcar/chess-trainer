@@ -19,37 +19,6 @@ export const sicilianDefenceLesson: Lesson = {
         "The Sicilian begins 1.e4 c5. Let's walk through the famous Najdorf, " +
         "where Black trades on d4 and then builds a flexible, fighting set-up.",
     }),
-    {
-      type: "quiz",
-      id: "sicilian-defence-idea",
-      title: "Why the Sicilian?",
-      blurb: "What Black is really after.",
-      question: "What is the main idea behind meeting 1.e4 with 1...c5?",
-      options: [
-        "It plays for an unbalanced game and the win, not just equality.",
-        "It forces White to trade queens early and simplify the game.",
-        "It guarantees Black an extra pawn straight out of the opening.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Unlike 1...e5, which tends to aim for a balanced, equal game, the " +
-        "Sicilian creates an asymmetrical structure. Both sides attack on " +
-        "opposite wings, and Black plays for the full point.",
-    },
-    {
-      type: "sort",
-      id: "sicilian-defence-aim",
-      title: "The defining pawn",
-      blurb: "Spot the Sicilian pawn.",
-      prompt: "Which black pawn defines the Sicilian and fights for the d4-square?",
-      fen: sicilianDefence.tabiyaFen,
-      orientation: "white",
-      options: [{ label: "c5" }, { label: "e5" }, { label: "g6" }],
-      correctIndex: 0,
-      explanation:
-        "The pawn on c5 contests d4 from the side. When White plays d4, this " +
-        "pawn captures it, giving Black the half-open c-file for counterplay.",
-    },
     buildOpeningDrill(sicilianDefence, {
       id: "sicilian-defence-recall",
       title: "Play it: the Najdorf as Black",

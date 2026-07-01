@@ -20,40 +20,6 @@ export const queensGambitDeclinedLesson: Lesson = {
         "the classical main line where Black builds a sturdy wall and unravels " +
         "patiently.",
     }),
-    {
-      type: "quiz",
-      id: "queens-gambit-declined-idea",
-      title: "What does 'declining' mean?",
-      blurb: "The idea behind ...e6.",
-      question: "What does it mean to 'decline' the Queen's Gambit?",
-      options: [
-        "To support the d5-pawn with ...e6 instead of capturing on c4.",
-        "To refuse to develop any of your pieces until later in the game.",
-        "To immediately give the pawn straight back to White on the next move.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "Declining means you don't take the c4-pawn. Instead, ...e6 props up the " +
-        "d5-pawn, keeping a firm foothold in the centre while you develop.",
-    },
-    {
-      type: "sort",
-      id: "queens-gambit-declined-aim",
-      title: "How does Black decline?",
-      blurb: "Spot the supporting move.",
-      prompt: "How does Black 'decline' the gambit on move 2?",
-      fen: queensGambitDeclined.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "...e6, supporting d5" },
-        { label: "...dxc4, taking the pawn" },
-        { label: "...Nf6, ignoring d5" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "...e6 is the classical declining move: it defends d5 with a pawn so " +
-        "Black keeps a solid share of the centre.",
-    },
     buildOpeningDrill(queensGambitDeclined, {
       id: "queens-gambit-declined-recall",
       title: "Play it: the QGD as Black",

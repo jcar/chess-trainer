@@ -20,41 +20,6 @@ export const englishOpeningLesson: Lesson = {
         "variation, where both sides fianchetto and contest the centre from " +
         "the flank.",
     }),
-    {
-      type: "quiz",
-      id: "english-opening-idea",
-      title: "Why 1.c4?",
-      blurb: "The point of the flank pawn.",
-      question: "What is the strategic idea behind opening with 1.c4 in the English?",
-      options: [
-        "It controls the centre from the flank, fighting especially for the d5-square.",
-        "It occupies the centre with pawns immediately to claim the most space.",
-        "It aims to trade the queens off the board at once for a quiet game.",
-      ],
-      correctIndex: 0,
-      explanation:
-        "The English fights for the centre from the side. The c4-pawn presses " +
-        "on d5, and the play often resembles a Sicilian with the colours " +
-        "reversed and an extra tempo for White.",
-    },
-    {
-      type: "sort",
-      id: "english-opening-aim",
-      title: "Which square does c4 fight for?",
-      blurb: "Read the pawn's reach.",
-      prompt: "Which central square does the move 1.c4 fight for?",
-      fen: englishOpening.tabiyaFen,
-      orientation: "white",
-      options: [
-        { label: "d5" },
-        { label: "e5" },
-        { label: "h5" },
-      ],
-      correctIndex: 0,
-      explanation:
-        "A pawn on c4 attacks the d5-square, the central battleground of the " +
-        "English. Controlling d5 is the heart of White's flank strategy.",
-    },
     buildOpeningDrill(englishOpening, {
       id: "english-opening-recall",
       title: "Play it: the English as White",
