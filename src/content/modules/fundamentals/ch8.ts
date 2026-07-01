@@ -71,6 +71,25 @@ export const ch8: Lesson = {
       },
     },
     {
+      id: "ch8-convert-it",
+      type: "puzzle",
+      title: "Your turn: cash in the edge",
+      blurb: "A loose knight — pick it off and simplify.",
+      fen: "8/8/5n2/3pR3/1p3kr1/1P1B4/1KP5/8 w - - 0 1",
+      orientation: "white",
+      goal: { type: "win-material", minGain: 2 },
+      solution: ["e5f5", "f4e3", "f5f6"],
+      prompt:
+        "White to move. Strategy pays off when you convert it into something concrete. Black's knight on f6 is loose — find the move that wins it.",
+      hints: [
+        "Which black piece has nothing defending it?",
+        "A rook check drives the king away first — where can you check it?",
+        "Rf5+ forces the king off, then Rxf6 collects the undefended knight.",
+      ],
+      successText:
+        "Rf5+ pushes the king away with tempo, and Rxf6 wins the loose knight. Winning material and simplifying is exactly how small edges turn into won games.",
+    },
+    {
       id: "ch8-recap",
       type: "concept",
       title: "Recap: small edges add up",

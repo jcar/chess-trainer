@@ -97,6 +97,25 @@ export const pieceVision: Lesson = {
       },
     },
     {
+      id: "fund-pv-win-it",
+      type: "puzzle",
+      title: "Your turn: spot the double attack",
+      blurb: "One knight leap hits two pieces at once.",
+      fen: "4r1k1/p4p2/5bp1/5q1p/6N1/7P/r4B2/1R3QK1 w - - 0 1",
+      orientation: "white",
+      goal: { type: "win-material", minGain: 2 },
+      solution: ["g4h6", "g8g7", "h6f5"],
+      prompt:
+        "White to move. Piece vision isn't only about single attacks — look for a square where your knight hits TWO black pieces at the same time.",
+      hints: [
+        "Your knight on g4 is looking for a fork — one square that attacks two things.",
+        "Jump to h6: it gives check to the king AND eyes the black queen.",
+        "Nh6+ forks king and queen. The king must step aside, then Nxf5+ wins the queen.",
+      ],
+      successText:
+        "Nh6+ attacks the king and the queen at once — a fork. The king has to move, and the queen falls. Seeing one move create two threats is piece vision at its sharpest.",
+    },
+    {
       id: "fund-piece-vision-recap",
       type: "concept",
       title: "The safe-move habit",

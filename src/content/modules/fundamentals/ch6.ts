@@ -50,6 +50,20 @@ export const ch6: Lesson = {
       },
     },
     {
+      id: "ch6-mate-no-stalemate",
+      type: "drill",
+      title: "Drill: mate — and don't stalemate",
+      blurb: "Deliver the king-and-queen mate without handing over the draw.",
+      fen: "8/8/8/3k4/8/8/4Q3/3K4 w - - 0 1",
+      orientation: "white",
+      objective: "checkmate",
+      engineSkill: 1,
+      instructions:
+        "King and queen versus a lone king: a forced win, and the most famous stalemate trap in chess. Herd the enemy king to the edge — keep your queen a knight's-move away so it can never be captured — then bring your own king up to help and deliver mate. The trap this lesson warns about: until the very move you give mate, always leave the king one legal square. Take its last square away without giving check and it's stalemate — a draw, and half a point thrown away.",
+      successText:
+        "Checkmate, no stalemate. That's the whole idea: when you're winning, leave the king a square until the instant you mate it. Rush it and you hand your opponent a draw.",
+    },
+    {
       id: "ch6-recap",
       type: "concept",
       title: "Recap: claim it or dodge it",
