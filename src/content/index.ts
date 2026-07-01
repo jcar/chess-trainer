@@ -32,6 +32,16 @@ export function getModule(moduleId: string): Module | undefined {
   return MODULES.find((m) => m.id === moduleId);
 }
 
+/**
+ * Strip a leading chapter number ("9. Building a Repertoire" → "Building a
+ * Repertoire") for display. Lesson titles carry a cross-module chapter number
+ * we don't surface in the UI. Shared by the module page and the activity-screen
+ * section locator so the label matches in both places.
+ */
+export function cleanLessonTitle(title: string): string {
+  return title.replace(/^\s*\d+\.\s*/, "");
+}
+
 /** Flattened list of a module's activities, in lesson then activity order. */
 export function getModuleActivities(mod: Module): Activity[] {
   return mod.lessons.flatMap((lesson) => lesson.activities);

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Fragment, useState } from "react";
 import { notFound } from "next/navigation";
-import { getModule, getModuleActivities } from "@/content";
+import { getModule, getModuleActivities, cleanLessonTitle } from "@/content";
 import type { Activity, Lesson } from "@/content/types";
 import { useProgress } from "@/lib/progress/useProgress";
 import { Card } from "@/components/ui/Card";
@@ -37,10 +37,6 @@ const TYPE_BADGE: Record<Activity["type"], string> = {
   guessMove: "Guess",
   plan: "Plan",
 };
-
-/** Lesson titles carry a continuous chapter number ("9. …") shared across modules;
- *  strip it so each room reads as its own clean list. */
-const cleanTitle = (t: string) => t.replace(/^\s*\d+\.\s*/, "");
 
 /** Distinct activity-type labels in a lesson, in first-seen order. */
 function typeChips(activities: Activity[]): string[] {
@@ -227,7 +223,7 @@ export function ModuleView({ moduleId }: { moduleId: string }) {
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block font-display text-base font-semibold text-ink">
-                      {cleanTitle(lesson.title)}
+                      {cleanLessonTitle(lesson.title)}
                     </span>
                     <span className="block truncate text-sm text-ink-soft">
                       {lesson.summary}

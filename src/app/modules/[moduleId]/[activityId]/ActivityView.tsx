@@ -16,7 +16,11 @@ export function ActivityView({
 
   return (
     <main>
-      <ActivityPlayer module={found.module} activity={found.activity} />
+      <ActivityPlayer
+        module={found.module}
+        lesson={found.lesson}
+        activity={found.activity}
+      />
     </main>
   );
 }

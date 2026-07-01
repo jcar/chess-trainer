@@ -7,11 +7,12 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import type { Activity, DialogueLine, Module } from "@/content/types";
+import type { Activity, DialogueLine, Lesson, Module } from "@/content/types";
 import { getNextActivity, getModuleActivities } from "@/content";
 import { useProgress } from "@/lib/progress/useProgress";
 import { LevelChip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { LessonStepper } from "@/components/activities/LessonStepper";
 import { QuizPlayer } from "@/components/activities/QuizPlayer";
 import { ReplayPlayer } from "@/components/activities/ReplayPlayer";
 import { PuzzlePlayer } from "@/components/activities/PuzzlePlayer";
@@ -75,10 +76,11 @@ const TYPE_LABEL: Record<Activity["type"], string> = {
 
 interface Props {
   module: Module;
+  lesson: Lesson;
   activity: Activity;
 }
 
-export function ActivityPlayer({ module: mod, activity }: Props) {
+export function ActivityPlayer({ module: mod, lesson, activity }: Props) {
   const { markComplete, recordAttempt, getActivityState, snapshot, moduleProgress } = useProgress();
   const kidMode = !!mod.kidMode;
   const modPct = Math.round(moduleProgress(getModuleActivities(mod).map((a) => a.id)) * 100);
@@ -231,6 +233,15 @@ export function ActivityPlayer({ module: mod, activity }: Props) {
           <ProgressBar pct={modPct} tone="primary" className="min-w-0 flex-1" />
           <LevelChip module={mod} />
         </div>
+      )}
+
+      {/* Section locator — which lesson you're in and how far through it. */}
+      {!kidMode && (
+        <LessonStepper
+          moduleId={mod.id}
+          lesson={lesson}
+          currentActivityId={activity.id}
+        />
       )}
 
       {kidMode && <Confetti fireKey={confettiKey} />}
