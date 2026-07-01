@@ -130,7 +130,8 @@ export function PracticeSetPlayer({ activity, onComplete }: Props) {
         onSelect={() => playSound("select")}
       />
 
-      <div className="flex items-start gap-3 rounded-2xl bg-surface p-4 text-lg shadow-soft">
+      {/* Reserve a floor so the Show-me button doesn't jump as feedback changes. */}
+      <div className="flex min-h-[5rem] items-start gap-3 rounded-2xl bg-surface p-4 text-lg shadow-soft">
         <p className="flex-1 text-ink">{feedback}</p>
         <SpeakButton text={feedback} size="sm" />
       </div>

@@ -105,27 +105,28 @@ export function ReplayPlayer({ activity, onComplete, kidMode = false }: Props) {
             </p>
             {kidMode && <SpeakButton text={note} size="sm" />}
           </div>
-
-          <div className="flex items-center justify-between gap-3">
-            <button
-              type="button"
-              onClick={() => go(step - 1)}
-              disabled={step === 0}
-              className={buttonClasses("secondary", kidMode ? "kid" : "lg", "disabled:opacity-40")}
-            >
-              <ArrowLeftIcon className="h-5 w-5" /> Back
-            </button>
-            <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
-              {step} / {lastStep}
-            </span>
-            <AdvanceButton
-              onClick={() => go(step + 1)}
-              disabled={step === lastStep}
-              size={kidMode ? "kid" : "lg"}
-              label="Next"
-            />
-          </div>
         </>
+      }
+      controls={
+        <div className="flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => go(step - 1)}
+            disabled={step === 0}
+            className={buttonClasses("secondary", kidMode ? "kid" : "lg", "disabled:opacity-40")}
+          >
+            <ArrowLeftIcon className="h-5 w-5" /> Back
+          </button>
+          <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
+            {step} / {lastStep}
+          </span>
+          <AdvanceButton
+            onClick={() => go(step + 1)}
+            disabled={step === lastStep}
+            size={kidMode ? "kid" : "lg"}
+            label="Next"
+          />
+        </div>
       }
     />
   );

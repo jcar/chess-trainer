@@ -177,39 +177,40 @@ export function PuzzlePlayer({
               ))}
             </ul>
           )}
-
-          <div className="flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={reset}
-              className={buttonClasses("secondary", kidMode ? "kid" : "md")}
-            >
-              Reset
-            </button>
-
-            {kidMode
-              ? !solved && (
-                  <button
-                    type="button"
-                    onClick={showMe}
-                    className={buttonClasses("accent", "kid")}
-                  >
-                    Show me!
-                  </button>
-                )
-              : activity.hints &&
-                hintsShown < activity.hints.length &&
-                !solved && (
-                  <button
-                    type="button"
-                    onClick={() => setHintsShown((n) => n + 1)}
-                    className={buttonClasses("secondary", "md")}
-                  >
-                    Show a hint
-                  </button>
-                )}
-          </div>
         </>
+      }
+      controls={
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={reset}
+            className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+          >
+            Reset
+          </button>
+
+          {kidMode
+            ? !solved && (
+                <button
+                  type="button"
+                  onClick={showMe}
+                  className={buttonClasses("accent", "kid")}
+                >
+                  Show me!
+                </button>
+              )
+            : activity.hints &&
+              hintsShown < activity.hints.length &&
+              !solved && (
+                <button
+                  type="button"
+                  onClick={() => setHintsShown((n) => n + 1)}
+                  className={buttonClasses("secondary", "md")}
+                >
+                  Show a hint
+                </button>
+              )}
+        </div>
       }
     />
   );

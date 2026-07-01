@@ -188,15 +188,16 @@ export function DrillPlayer({
             <p className="flex-1">{message}</p>
             {kidMode && <SpeakButton text={message} size="sm" />}
           </div>
-
-          <button
-            type="button"
-            onClick={reset}
-            className={buttonClasses("secondary", kidMode ? "kid" : "md")}
-          >
-            Reset position
-          </button>
         </>
+      }
+      controls={
+        <button
+          type="button"
+          onClick={reset}
+          className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+        >
+          Reset position
+        </button>
       }
     />
   );

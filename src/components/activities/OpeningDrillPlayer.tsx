@@ -214,31 +214,32 @@ export function OpeningDrillPlayer({
             <p className="flex-1 whitespace-pre-line">{feedback.text}</p>
             {kidMode && <SpeakButton text={feedback.text} size="sm" />}
           </div>
-
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex flex-wrap gap-3">
+        </>
+      }
+      controls={
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={reset}
+              className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+            >
+              Reset
+            </button>
+            {!done && (
               <button
                 type="button"
-                onClick={reset}
-                className={buttonClasses("secondary", kidMode ? "kid" : "md")}
+                onClick={showMe}
+                className={buttonClasses("accent", kidMode ? "kid" : "md")}
               >
-                Reset
+                Show me
               </button>
-              {!done && (
-                <button
-                  type="button"
-                  onClick={showMe}
-                  className={buttonClasses("accent", kidMode ? "kid" : "md")}
-                >
-                  Show me
-                </button>
-              )}
-            </div>
-            <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
-              {Math.min(ply, activity.line.length)} / {activity.line.length}
-            </span>
+            )}
           </div>
-        </>
+          <span className={kidMode ? "text-base font-bold text-ink-soft" : "text-sm text-ink-soft"}>
+            {Math.min(ply, activity.line.length)} / {activity.line.length}
+          </span>
+        </div>
       }
     />
   );

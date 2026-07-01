@@ -211,21 +211,21 @@ export function GuessMovePlayer({ activity, onComplete }: Props) {
             </p>
           )}
 
-          {/* Advance. Disabled while awaiting a guess. */}
-          {!finished && (
-            <AdvanceButton
-              onClick={advance}
-              disabled={atGuessPly || scoring}
-              size="lg"
-              label={guess ? "Continue" : step === 0 ? "Start" : "Next"}
-            />
-          )}
-          {finished && (
-            <div className="rounded-2xl bg-sage/10 p-4 text-sm text-sage">
-              {activity.successText}
-            </div>
-          )}
         </>
+      }
+      controls={
+        finished ? (
+          <div className="rounded-2xl bg-sage/10 p-4 text-sm text-sage">
+            {activity.successText}
+          </div>
+        ) : (
+          <AdvanceButton
+            onClick={advance}
+            disabled={atGuessPly || scoring}
+            size="lg"
+            label={guess ? "Continue" : step === 0 ? "Start" : "Next"}
+          />
+        )
       }
     />
   );
