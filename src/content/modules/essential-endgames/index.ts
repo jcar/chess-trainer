@@ -358,6 +358,6 @@ export const essentialEndgames: Module = {
   title: "Essential Endgames",
   description:
     "The endings you must be able to JUDGE: opposite-coloured bishops, bishop vs knight, the wrong bishop, rook-ending principles, and queen vs pawn. Learn won-from-drawn, then drill the techniques.",
-  level: "Intermediate",
+  level: "Advanced",
   lessons: [overview, oppositeBishops, bishopVsKnight, wrongBishop, rookEndings, queenVsPawn, gym],
 };

@@ -125,7 +125,7 @@ export const openings: Module = {
   title: "Chess Openings",
   description:
     "Meet the most important chess openings — their ideas, plans, and key lines — then drill them move by move.",
-  level: "Advanced",
+  level: "Intermediate",
   lessons: [
     overviewLesson,
     ...SECTIONS.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s.label }))),

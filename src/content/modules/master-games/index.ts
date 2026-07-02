@@ -279,6 +279,6 @@ export const masterGames: Module = {
   title: "Annotated Master Games",
   description:
     "Walk through history's most famous games move by move, with a live eval bar and original annotations: Morphy's Opera Game, the Evergreen, and the Immortal. See ideas play out from the first move to mate.",
-  level: "Intermediate",
+  level: "Improver",
   lessons: [overview, opera, evergreen, immortal],
 };

@@ -514,7 +514,7 @@ export interface Module {
   /** Short marketing-style description for the module card. */
   description: string;
   /** Difficulty band, shown as a chip. */
-  level: "Beginner" | "Intermediate" | "Advanced";
+  level: "Beginner" | "Improver" | "Intermediate" | "Advanced";
   /**
    * When true, the module is presented in "kid mode": bigger/brighter UI,
    * tap-to-move board with legal-move dots and hints, read-aloud speaker

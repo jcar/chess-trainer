@@ -1,9 +1,10 @@
 import type { Module } from "@/content/types";
 
-type Tone = "sage" | "amber" | "clay" | "kid" | "neutral";
+type Tone = "sage" | "primary" | "amber" | "clay" | "kid" | "neutral";
 
 const TONE: Record<Tone, string> = {
   sage: "border-sage/35 bg-sage/12 text-sage",
+  primary: "border-primary/35 bg-primary/12 text-primary-strong",
   amber: "border-amber/35 bg-amber/12 text-amber",
   clay: "border-clay/35 bg-clay/12 text-clay",
   kid: "border-kid-teal/35 bg-kid-teal/12 text-kid-teal",
@@ -36,8 +37,10 @@ export function LevelChip({ module: mod }: { module: Module }) {
   const tone: Tone =
     mod.level === "Beginner"
       ? "sage"
-      : mod.level === "Intermediate"
-        ? "amber"
-        : "clay";
+      : mod.level === "Improver"
+        ? "primary"
+        : mod.level === "Intermediate"
+          ? "amber"
+          : "clay";
   return <Chip tone={tone}>{mod.level}</Chip>;
 }

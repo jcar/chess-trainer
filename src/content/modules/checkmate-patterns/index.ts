@@ -418,7 +418,7 @@ export const checkmatePatterns: Module = {
   title: "Checkmating Patterns",
   description:
     "The named mating nets every player must recognize on sight — back-rank, smothered, Boden's, Anastasia's, the Arabian, épaulette and Damiano's. See each net, then deliver it.",
-  level: "Intermediate",
+  level: "Improver",
   lessons: [
     overview,
     backRank,

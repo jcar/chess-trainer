@@ -23,8 +23,9 @@ function moduleEmblem(mod: Module): {
 } {
   if (mod.kidMode) return { Glyph: (p) => <StarIcon {...p} />, tone: "kid-teal" };
   if (mod.id === "strategy") return { Glyph: PuzzleIcon, tone: "accent" };
-  if (mod.level === "Intermediate") return { Glyph: CrownGlyph, tone: "amber" };
   if (mod.level === "Advanced") return { Glyph: CrownGlyph, tone: "clay" };
+  if (mod.level === "Intermediate") return { Glyph: CrownGlyph, tone: "amber" };
+  if (mod.level === "Improver") return { Glyph: PawnGlyph, tone: "primary" };
   return { Glyph: PawnGlyph, tone: "sage" };
 }
 

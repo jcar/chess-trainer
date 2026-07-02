@@ -22,6 +22,8 @@ export const KIDS_MODULE_ID = "chess-for-kids";
 /** First room of the adult path — the default starting room for a new adult. */
 export const PATH_START_MODULE_ID = "fundamentals";
 
+// Stages map 1:1 to the four difficulty tiers (Beginner → Improver →
+// Intermediate → Advanced), so the band label and each room's level chip agree.
 export const LEARNING_PATH: PathStage[] = [
   {
     id: "learn",
@@ -31,23 +33,24 @@ export const LEARNING_PATH: PathStage[] = [
     moduleIds: ["fundamentals"],
   },
   {
+    id: "build",
+    label: "Build Your Skills",
+    blurb:
+      "Recognize the mating patterns on sight and watch great ideas play out in full games.",
+    moduleIds: ["checkmate-patterns", "master-games"],
+  },
+  {
     id: "level-up",
     label: "Level Up",
     blurb:
-      "Tactics, attacks, endgame technique, and your first opening plans — the skills that start winning games.",
-    moduleIds: [
-      "intermediate",
-      "checkmate-patterns",
-      "attacking-king",
-      "essential-endgames",
-      "master-games",
-    ],
+      "Attacking play, a real opening repertoire, and the calculation that starts winning games.",
+    moduleIds: ["intermediate", "attacking-king", "openings"],
   },
   {
     id: "go-deep",
     label: "Go Deep",
     blurb:
-      "Build a real opening repertoire and think positionally, like a strong club player.",
-    moduleIds: ["openings", "strategy"],
+      "Judge tricky endgames and think positionally, like a strong club player.",
+    moduleIds: ["essential-endgames", "strategy"],
   },
 ];
