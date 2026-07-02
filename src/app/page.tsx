@@ -1,22 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { MODULES, getModuleActivities } from "@/content";
-import type { Module } from "@/content/types";
+import { useState } from "react";
+import { MODULES, getModule, getModuleActivities } from "@/content";
+import { LEARNING_PATH, KIDS_MODULE_ID } from "@/content/path";
 import { useProgress } from "@/lib/progress/useProgress";
+import { useSrs } from "@/lib/srs/useSrs";
+import { recommendNext } from "@/lib/learner/recommend";
+import { usePlacement } from "@/lib/learner/placementStore";
 import { useTrainer } from "@/lib/trainer/useTrainer";
 import { useDailyStreak } from "@/lib/rewards/daily";
 import { Card } from "@/components/ui/Card";
-import { LevelChip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
-import { CHARACTER_IMAGES } from "@/lib/art/portraitManifest";
-import { withBasePath } from "@/lib/basePath";
 import { useShowSupport } from "@/lib/prefs/support";
 import { RecommendedNext } from "@/components/home/RecommendedNext";
+import { ModulePlate } from "@/components/home/ModulePlate";
 import {
   ChevronRightIcon,
-  StarIcon,
-  PawnGlyph,
   CrownGlyph,
   OpeningDrillIcon,
   PuzzleIcon,
@@ -36,45 +36,6 @@ function GearBagGlyph({ className = "" }: { className?: string }) {
   );
 }
 
-// Crest glyph + color tone per module.
-function moduleEmblem(mod: Module): {
-  Glyph: (p: { className?: string }) => React.ReactNode;
-  tone: string;
-} {
-  if (mod.kidMode) return { Glyph: (p) => <StarIcon {...p} />, tone: "kid-teal" };
-  if (mod.id === "strategy") return { Glyph: PuzzleIcon, tone: "accent" };
-  if (mod.level === "Intermediate") return { Glyph: CrownGlyph, tone: "amber" };
-  if (mod.level === "Advanced") return { Glyph: CrownGlyph, tone: "clay" };
-  return { Glyph: PawnGlyph, tone: "sage" };
-}
-
-/** A thin progress ring (the rank-up indicator on each plate). */
-function ProgressRing({ pct, tone }: { pct: number; tone: string }) {
-  const r = 16;
-  const c = 2 * Math.PI * r;
-  const off = c * (1 - Math.max(0, Math.min(100, pct)) / 100);
-  return (
-    <span className="relative grid h-11 w-11 shrink-0 place-items-center">
-      <svg width="44" height="44" className="-rotate-90">
-        <circle cx="22" cy="22" r={r} fill="none" stroke="var(--line)" strokeWidth="4" />
-        <circle
-          cx="22"
-          cy="22"
-          r={r}
-          fill="none"
-          stroke={`var(--color-${tone})`}
-          strokeWidth="4"
-          strokeDasharray={c}
-          strokeDashoffset={off}
-          strokeLinecap="round"
-          style={{ transition: "stroke-dashoffset .6s cubic-bezier(.2,.7,.3,1)" }}
-        />
-      </svg>
-      <span className="absolute font-mono text-[10px] font-semibold text-ink-soft">{pct}%</span>
-    </span>
-  );
-}
-
 const TOOLS = [
   { href: "/tactics", label: "Tactics", sub: "Sharpen your eye", Icon: PuzzleIcon, tone: "amber" },
   { href: "/trainer", label: "Openings", sub: "Drill a repertoire", Icon: OpeningDrillIcon, tone: "primary" },
@@ -83,13 +44,25 @@ const TOOLS = [
 ] as const;
 
 export default function HomePage() {
-  const { moduleProgress } = useProgress();
+  const { moduleProgress, snapshot } = useProgress();
+  const srs = useSrs();
+  const placement = usePlacement();
+  // Capture "now" once (lazy init) — Date.now() during render is impure.
+  const [now] = useState(() => Date.now());
   const { counts: trainerCounts } = useTrainer();
   const daily = useDailyStreak();
   const showSupport = useShowSupport();
   const started = MODULES.some(
     (mod) => moduleProgress(getModuleActivities(mod).map((a) => a.id)) > 0,
   );
+
+  // Which module the "Recommended next" card points at — mirror its placement
+  // override, then pull the module id out of the href so the matching plate can
+  // wear a "Next" badge. (Tool recs like /tactics yield no module → no badge.)
+  const { rec } = recommendNext(snapshot(), srs, now);
+  const recHref =
+    rec.kind === "start" && placement ? placement.recommendedHref : rec.href;
+  const recommendedModuleId = recHref.match(/^\/modules\/([^/]+)/)?.[1] ?? null;
 
   return (
     <div className="space-y-8">
@@ -135,55 +108,62 @@ export default function HomePage() {
         <RecommendedNext />
       </section>
 
-      {/* ── The gallery: modules as framed plates ── */}
-      <section className="space-y-3">
-        <h2 className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-ink-soft">
-          Rooms of the hall
-          <span className="h-px flex-1 bg-line" />
-        </h2>
-        <div className="grid gap-3.5 sm:grid-cols-2">
-          {MODULES.map((mod, i) => {
-            const activityIds = getModuleActivities(mod).map((a) => a.id);
-            const pct = Math.round(moduleProgress(activityIds) * 100);
-            const { Glyph, tone } = moduleEmblem(mod);
-            return (
-              <Link key={mod.id} href={`/modules/${mod.id}`} className="group block rise" style={{ animationDelay: `${120 + i * 55}ms` }}>
-                <Card interactive className="relative flex h-full flex-col gap-3 overflow-hidden p-5">
-                  <span className="plate-motif" aria-hidden />
-                  <div className="flex items-start justify-between gap-3">
-                    {mod.kidMode && CHARACTER_IMAGES.pip ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={withBasePath(`/images/characters/${CHARACTER_IMAGES.pip}`)}
-                        alt=""
-                        aria-hidden
-                        className="h-12 w-12 shrink-0 rounded-2xl object-cover shadow-soft ring-2 ring-white/70"
-                      />
-                    ) : (
-                      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-on-accent shadow-soft" style={{ backgroundColor: `var(--color-${tone})` }}>
-                        <Glyph className="h-7 w-7" />
-                      </span>
-                    )}
-                    <ProgressRing pct={pct} tone={tone} />
-                  </div>
-                  <div className="relative">
-                    <h3 className="font-display text-xl font-semibold tracking-tight text-ink">
-                      {mod.title}
-                    </h3>
-                    <p className="mt-1 line-clamp-2 text-sm text-ink-soft">{mod.description}</p>
-                  </div>
-                  <div className="mt-auto flex items-center justify-between pt-1">
-                    <LevelChip module={mod} />
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-primary-strong opacity-0 transition group-hover:opacity-100">
-                      Enter <ChevronRightIcon className="h-4 w-4" />
-                    </span>
-                  </div>
-                </Card>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+      {/* ── Your learning path: modules grouped into stages (soft — nothing locked) ── */}
+      <div className="space-y-7">
+        {LEARNING_PATH.map((stage, si) => {
+          const mods = stage.moduleIds
+            .map(getModule)
+            .filter((m): m is NonNullable<typeof m> => !!m);
+          const doneCount = mods.filter(
+            (m) => moduleProgress(getModuleActivities(m).map((a) => a.id)) === 1,
+          ).length;
+          return (
+            <section key={stage.id} className="space-y-3">
+              <div>
+                <div className="flex items-center gap-3">
+                  <h2 className="text-xs font-semibold uppercase tracking-[0.24em] text-ink-soft">
+                    <span className="text-primary-strong">Stage {si + 1}</span> · {stage.label}
+                  </h2>
+                  <span className="h-px flex-1 bg-line" />
+                  <span className="shrink-0 text-xs text-ink-soft">
+                    {doneCount > 0 ? `${doneCount} / ${mods.length} done` : `${mods.length} rooms`}
+                  </span>
+                </div>
+                <p className="mt-1.5 max-w-xl text-sm text-ink-soft">{stage.blurb}</p>
+              </div>
+              <div className="grid gap-3.5 sm:grid-cols-2">
+                {mods.map((m, i) => (
+                  <ModulePlate
+                    key={m.id}
+                    module={m}
+                    delayMs={120 + (si * 3 + i) * 55}
+                    highlighted={m.id === recommendedModuleId}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })}
+
+        {/* Young learners — a separate on-ramp, set apart from the adult path. */}
+        {getModule(KIDS_MODULE_ID) && (
+          <section className="space-y-3">
+            <div className="flex items-center gap-3">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.24em] text-ink-soft">
+                Just for kids · ages 5–8
+              </h2>
+              <span className="h-px flex-1 bg-line" />
+            </div>
+            <p className="max-w-xl text-sm text-ink-soft">
+              A gentle, illustrated first course guided by Pip the pawn — perfect for a
+              young child&apos;s very first games.
+            </p>
+            <div className="grid gap-3.5 sm:grid-cols-2">
+              <ModulePlate module={getModule(KIDS_MODULE_ID)!} delayMs={120} />
+            </div>
+          </section>
+        )}
+      </div>
 
       {/* ── Tools / practice ── */}
       <section className="space-y-3">

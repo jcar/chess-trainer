@@ -6,7 +6,8 @@
 // we aggregate due reviews across the whole app and pick the single best next
 // action (review → continue → start → sharpen), so the Hall can coach, not just list.
 
-import { MODULES, getModuleActivities } from "@/content";
+import { MODULES, getModule, getModuleActivities } from "@/content";
+import { PATH_START_MODULE_ID } from "@/content/path";
 import type { ProgressData } from "@/lib/progress/store";
 import type { SrsData } from "@/lib/srs/store";
 
@@ -151,10 +152,12 @@ export function recommendNext(p: ProgressData, srs: SrsData, now: number): Learn
     };
   }
 
-  // 3. Brand-new learner → start at the beginning.
+  // 3. Brand-new learner → start at the beginning of the adult path (Fundamentals),
+  //    NOT MODULES[0] (Chess for Kids, a separate young-learners on-ramp). A learner
+  //    who took the placement test is redirected by RecommendedNext to their level.
   const anyStarted = snapshots.some((s) => s.done > 0);
   if (!anyStarted) {
-    const firstMod = MODULES[0];
+    const firstMod = getModule(PATH_START_MODULE_ID) ?? MODULES[0];
     const firstAct = getModuleActivities(firstMod)[0];
     return {
       rec: {
