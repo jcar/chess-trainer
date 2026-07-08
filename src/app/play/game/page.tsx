@@ -14,6 +14,7 @@ import { getEngine } from "@/lib/chess/stockfish";
 import { recordDailyActivity } from "@/lib/rewards/daily";
 import { personaForElo } from "@/lib/play/opponents";
 import { playRatingStore, type GameResult } from "@/lib/play/rating";
+import { toCp, coachSeverity, reviewClass, praiseFor } from "@/lib/play/moveQuality";
 import { Board } from "@/components/board/Board";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -31,10 +32,6 @@ interface CoachTip { severity: "blunder" | "mistake"; san: string; bestSan: stri
 interface Ply { fenBefore: string; fenAfter: string; uci: string; san: string; byLearner: boolean }
 interface Flag { ply: number; moveLabel: string; san: string; bestSan: string; bestUci: string; playedUci: string; fenBefore: string; loss: number; klass: "blunder" | "mistake" | "inaccuracy" }
 
-function toCp(r: { cp: number | null; mate: number | null }): number {
-  if (r.mate != null) return r.mate > 0 ? 100000 - r.mate : -100000 - r.mate;
-  return r.cp ?? 0;
-}
 function applyMove(fen: string, m: SimpleMove) {
   const d = new ChessGame(fen).tryMove(m);
   return d.ok ? d : new ChessGame(fen).tryMove({ ...m, promotion: "q" });
@@ -117,8 +114,7 @@ function PlayGameView() {
       loss = bestCp - -toCp(after);
     }
     setChecking(false);
-    const severity: CoachTip["severity"] | null =
-      loss >= 300 ? "blunder" : plyIndex >= 8 && loss >= 150 ? "mistake" : null;
+    const severity = coachSeverity(loss, plyIndex);
     if (severity) {
       const bestSan = bestUci ? new ChessGame(fenBefore).tryMove(uciToMove(bestUci)).san ?? bestUci : "?";
       setPraise("");
@@ -126,7 +122,7 @@ function PlayGameView() {
       setBusy(false);
       return;
     }
-    setPraise(loss <= 20 ? "Best move ✓" : loss <= 70 ? "Good move ✓" : "");
+    setPraise(praiseFor(loss));
     await engineReply(res.fen, hist, gameElo);
   }
 
@@ -192,10 +188,7 @@ function PlayGameView() {
       const loss = bestCp - playedCp;
       const bestUci = before.bestMove ?? "";
       const bestSan = bestUci ? new ChessGame(p.fenBefore).tryMove(uciToMove(bestUci)).san ?? bestUci : "?";
-      let klass: Flag["klass"] | null = null;
-      if (loss >= 300) klass = "blunder";
-      else if (loss >= 150) klass = "mistake";
-      else if (loss >= 70) klass = "inaccuracy";
+      const klass = reviewClass(loss);
       if (klass) found.push({ ply: i, moveLabel: moveLabel(i), san: p.san, bestSan, bestUci, playedUci: p.uci, fenBefore: p.fenBefore, loss, klass });
       else good++;
       done++;

@@ -145,6 +145,21 @@ export function replayMoveSquares(
 }
 
 /**
+ * Convert a SAN move (e.g. "Nf3", "O-O", "exd5") legal in `fen` into its UCI
+ * string ("g1f3"), or null if it isn't legal here. Lets non-UI libs turn book
+ * theory (stored as SAN) into a playable move without importing chess.js.
+ */
+export function sanToUci(fen: string, san: string): string | null {
+  const game = new Chess(fen);
+  try {
+    const m = game.move(san);
+    return `${m.from}${m.to}${m.promotion ?? ""}`;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * If the side to move in `fen` is in check, return its king's square (for a
  * "danger" highlight); otherwise null.
  */
