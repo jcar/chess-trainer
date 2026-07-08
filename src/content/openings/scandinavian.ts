@@ -100,5 +100,28 @@ export const scandinavian: Opening = {
         "The bishop eyes the long diagonal — a comfortable, sound set-up.",
       ],
     },
+    {
+      label: "3...Qd6 Variation",
+      summary: "The modern queen retreat: from d6 the queen is flexible and hard to attack. You follow with ...Nf6, ...g6 and ...Bg7 for a sound, well-organised set-up.",
+      branch: { from: "Main Line (3...Qa5)", atPly: 5, tryMove: "Qd6" },
+      sans: [
+        "e4", "d5", "exd5", "Qxd5", "Nc3", "Qd6",
+        "d4", "Nf6", "Nf3", "g6", "Be2", "Bg7",
+      ],
+      notes: [
+        "White takes the centre.",
+        "The Scandinavian.",
+        "Capturing the d5-pawn.",
+        "Recapturing with the queen.",
+        "Developing with tempo by hitting the queen.",
+        "The modern retreat: d6 is flexible and dodges the tempo tricks ...Qa5 can face.",
+        "Grabbing the full centre.",
+        "Developing to the best square.",
+        "Natural development.",
+        "Preparing the fianchetto.",
+        "A modest developing move.",
+        "Completing a harmonious, solid set-up.",
+      ],
+    },
   ],
 };

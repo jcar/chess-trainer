@@ -95,5 +95,28 @@ export const nimzoIndian: Opening = {
         "Preparing to fianchetto and blockade the light squares with ...Bb7.",
       ],
     },
+    {
+      label: "Sämisch Variation",
+      summary: "White spends a tempo on a3 to win the bishop pair immediately, taking on doubled c-pawns to build a big centre; you target those pawns and blockade with ...c5, ...b6 and ...Nc6.",
+      branch: { from: "Rubinstein Variation", atPly: 6, tryMove: "a3" },
+      sans: [
+        "d4", "Nf6", "c4", "e6", "Nc3", "Bb4",
+        "a3", "Bxc3+", "bxc3", "c5", "e3", "O-O",
+      ],
+      notes: [
+        "White takes the centre.",
+        "A flexible developing move.",
+        "Gaining queenside space.",
+        "Freeing the bishop and preparing to develop.",
+        "Defending d4 and guarding the e4-square.",
+        "The Nimzo pin, fighting for e4.",
+        "The Sämisch: forcing the trade at once to grab the bishop pair.",
+        "Trading — and saddling White with doubled c-pawns as the price.",
+        "Recapturing, building a broad centre.",
+        "Striking at the doubled-pawn centre immediately.",
+        "A modest, solid centre.",
+        "King safety; Black will pile up on c4 and the light squares.",
+      ],
+    },
   ],
 };

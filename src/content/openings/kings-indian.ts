@@ -134,5 +134,28 @@ export const kingsIndian: Opening = {
         "The thematic counterstrike, challenging White's broad centre at once.",
       ],
     },
+    {
+      label: "Four Pawns Attack",
+      summary: "White throws four pawns at you — c4, d4, e4 and f4 — for maximum space; you stay flexible, castle, and hit the over-extended centre with the thematic ...c5 break.",
+      branch: { from: "Classical Variation", atPly: 8, tryMove: "f4" },
+      sans: [
+        "d4", "Nf6", "c4", "g6", "Nc3", "Bg7",
+        "e4", "d6", "f4", "O-O", "Nf3", "c5",
+      ],
+      notes: [
+        "White takes the centre.",
+        "Hypermodern: developing first.",
+        "Grabbing more central space.",
+        "Preparing the fianchetto.",
+        "Natural development.",
+        "Completing the fianchetto along the long diagonal.",
+        "Building the big classical centre.",
+        "Restraining e5 and opening the bishop's diagonal.",
+        "The Four Pawns Attack: maximum space — but the broad centre can become a target.",
+        "King safety before striking.",
+        "Developing and bolstering the centre.",
+        "The thematic hit at the over-extended centre; against so many pawns, ...c5 pries it open.",
+      ],
+    },
   ],
 };
