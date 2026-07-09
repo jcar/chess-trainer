@@ -85,6 +85,15 @@ function theoryList(sans: string[]): string {
   if (sans.length === 2) return `${sans[0]} or ${sans[1]}`;
   return `${sans.slice(0, 2).join(", ")}, …`;
 }
+/**
+ * The middlegame plan for one side. `middlegamePlan` is the richer, concrete
+ * plan but is authored for the opening's `trainerColor`, so only use it for that
+ * side; otherwise fall back to that side's always-present whitePlan/blackPlan.
+ */
+function planFor(o: Opening, side: Orientation): string {
+  if (side === o.trainerColor && o.middlegamePlan) return o.middlegamePlan;
+  return side === "white" ? o.whitePlan : o.blackPlan;
+}
 
 type Phase = "playing" | "gameover" | "reviewing" | "done";
 
@@ -108,13 +117,14 @@ function SparringGame() {
   }, [params]);
   const gameAdaptive = params.get("adaptive") === "1";
   const practice = params.get("mode") !== "game";
+  const openingId = params.get("opening") || undefined;
 
   const learnerTurn = color === "white" ? "w" : "b";
 
   const [phase, setPhase] = useState<Phase>("playing");
   const [fen, setFen] = useState(new ChessGame().fen);
   const [history, setHistory] = useState<Ply[]>([]);
-  const [book, setBook] = useState<BookState>(() => initBook());
+  const [book, setBook] = useState<BookState>(() => initBook(openingId));
   const [busy, setBusy] = useState(false);
   const [checking, setChecking] = useState(false);
   const [coaching, setCoaching] = useState<CoachTip | null>(null);
@@ -328,14 +338,18 @@ function SparringGame() {
     setPhase("done");
   }
 
-  // If the learner is Black, let the bot open (book move) after mount.
+  // If the learner is Black, let the bot open (book move) after mount. The ref
+  // guard makes this fire exactly once — including under React StrictMode's
+  // dev-only mount/unmount/remount. (The deferral via setTimeout keeps the
+  // setState out of the effect body per react-hooks/set-state-in-effect; a
+  // clearTimeout cleanup here would be run by StrictMode's first teardown and,
+  // with the ref already set, never re-scheduled — so the bot never opened in
+  // dev. The ref alone prevents a double-schedule, so no cleanup is needed.)
   const opened = useRef(false);
   useEffect(() => {
     if (opened.current) return;
     opened.current = true;
-    if (learnerTurn === "w") return;
-    const t = setTimeout(() => void botReply(fen, [], book), 0);
-    return () => clearTimeout(t);
+    if (learnerTurn === "b") setTimeout(() => void botReply(fen, [], book), 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -474,11 +488,17 @@ function SparringGame() {
             <span className="text-lg" aria-hidden>📖</span>
             <span className="font-display text-base font-semibold text-primary-strong">Out of book — into the middlegame</span>
           </div>
-          <p className="text-sm text-ink-soft">
-            {middlegame.opening?.middlegamePlan
-              ? middlegame.opening.middlegamePlan
-              : "You're past prepared theory. Play on principles: finish developing, keep your king safe, and look for a plan around the pawn structure."}
-          </p>
+          {middlegame.opening ? (
+            <div className="space-y-2 text-sm text-ink-soft">
+              <p>You&apos;re playing the <span className="font-semibold text-primary-strong">{middlegame.opening.name}</span> as {color === "white" ? "White" : "Black"}.</p>
+              <p><span className="font-semibold text-ink">Your plan:</span> {planFor(middlegame.opening, color)}</p>
+              <p className="text-ink-soft/80"><span className="font-semibold">What your opponent is going for:</span> {planFor(middlegame.opening, color === "white" ? "black" : "white")}</p>
+            </div>
+          ) : (
+            <p className="text-sm text-ink-soft">
+              You&apos;re past prepared theory. Play on principles: finish developing, keep your king safe, and look for a plan around the pawn structure.
+            </p>
+          )}
           <button type="button" onClick={() => setMiddlegame(null)} className="self-start text-xs font-semibold text-accent">Got it</button>
         </Card>
       )}

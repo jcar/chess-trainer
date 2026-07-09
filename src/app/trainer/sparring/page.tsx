@@ -5,9 +5,11 @@
 // route, so Back returns here). You don't get to see which line you're facing —
 // that's the point; the coach reveals it as you go.
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Orientation } from "@/content/types";
+import { OPENINGS, getOpening } from "@/content/openings";
+import type { OpeningFamily } from "@/content/openings/types";
 import { OPPONENTS } from "@/lib/play/opponents";
 import { usePlayRating } from "@/lib/play/rating";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -23,6 +25,30 @@ export default function SparringSetupPage() {
   const [adaptive, setAdaptive] = useState(true);
   const [pickElo, setPickElo] = useState(1500);
   const [mode, setMode] = useState<"game" | "practice">("practice");
+  const [openingId, setOpeningId] = useState(""); // "" = Surprise me (random)
+
+  // Openings the book can steer into from move 1 (at least one full-from-start
+  // line), grouped by first-move family for the picker.
+  const openingGroups = useMemo(() => {
+    const reachable = OPENINGS.filter((o) => o.lines.some((l) => !l.startFen));
+    const order: { family: OpeningFamily; label: string }[] = [
+      { family: "1e4-e5", label: "1.e4 e5 — Open games" },
+      { family: "1e4-other", label: "1.e4 — Semi-open (defences)" },
+      { family: "1d4", label: "1.d4 — Closed & Indian" },
+      { family: "flank", label: "Flank openings" },
+    ];
+    return order
+      .map((g) => ({ ...g, items: reachable.filter((o) => o.family === g.family) }))
+      .filter((g) => g.items.length > 0);
+  }, []);
+
+  const chosen = openingId ? getOpening(openingId) : undefined;
+
+  function chooseOpening(id: string) {
+    setOpeningId(id);
+    const o = id ? getOpening(id) : undefined;
+    if (o) setColor(o.trainerColor); // study it from its natural side (still overridable)
+  }
 
   function start() {
     const elo = adaptive ? rating.rating : pickElo;
@@ -32,6 +58,7 @@ export default function SparringSetupPage() {
       adaptive: adaptive ? "1" : "0",
       mode,
     });
+    if (openingId) qs.set("opening", openingId);
     router.push(`/trainer/sparring/game?${qs.toString()}`);
   }
 
@@ -42,9 +69,38 @@ export default function SparringSetupPage() {
         backLabel="Trainer"
         eyebrow="Trainer · Sparring"
         title="Sparring"
-        subtitle="Play a real game from a random opening — you don't know which line you're facing. React to it, and the coach tells you where you are, whether you're still in book, and when the middlegame begins."
+        subtitle={
+          chosen
+            ? `Spar the ${chosen.name} in a full coached game — the bot steers into it and the coach tells you where you are, whether you're still in book, and when the middlegame begins.`
+            : "Play a real game from a random opening — you don't know which line you're facing. React to it, and the coach tells you where you are, whether you're still in book, and when the middlegame begins."
+        }
       />
       <Card className="space-y-4 p-5">
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">Opening</p>
+          <select
+            value={openingId}
+            onChange={(e) => chooseOpening(e.target.value)}
+            className="w-full rounded-2xl border border-line bg-card p-3 text-sm text-ink transition focus:border-primary focus:outline-none"
+          >
+            <option value="">🎲 Surprise me (random opening)</option>
+            {openingGroups.map((g) => (
+              <optgroup key={g.family} label={g.label}>
+                {g.items.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.name} · {o.trainerColor === "white" ? "as White" : "as Black"}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+          <p className="text-xs text-ink-soft">
+            {chosen
+              ? `The bot commits to the ${chosen.name}, so you get the line you're studying.`
+              : "Pick a line to drill in a real game, or leave it random to practise reacting to anything."}
+          </p>
+        </div>
+
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">You play</p>
           <div className="flex gap-2">
@@ -55,9 +111,13 @@ export default function SparringSetupPage() {
             ))}
           </div>
           <p className="text-xs text-ink-soft">
-            {color === "white"
-              ? "The bot will answer 1.e4/1.d4/… with a different defence each game."
-              : "The bot will open with a different first move each game — meet whatever comes."}
+            {chosen
+              ? color === chosen.trainerColor
+                ? `You'll play the ${chosen.name} from its usual side.`
+                : `Note: the ${chosen.name} is normally played as ${chosen.trainerColor === "white" ? "White" : "Black"} — you'll be on the other side of it.`
+              : color === "white"
+                ? "The bot will answer 1.e4/1.d4/… with a different defence each game."
+                : "The bot will open with a different first move each game — meet whatever comes."}
           </p>
         </div>
 

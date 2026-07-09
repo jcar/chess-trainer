@@ -30,10 +30,15 @@ function norm(san: string): string {
   return san.replace(/[+#!?]/g, "");
 }
 
-/** All full-from-start lines, at the opening position. */
-export function initBook(): BookState {
+/**
+ * All full-from-start lines, at the opening position. Pass `openingId` to seed
+ * only that opening's lines (Sparring "spar a specific opening") — everything
+ * downstream reads only `state.candidates`, so a narrower seed just works.
+ */
+export function initBook(openingId?: string): BookState {
   const candidates: Candidate[] = [];
   for (const opening of OPENINGS) {
+    if (openingId && opening.id !== openingId) continue;
     for (const line of opening.lines) {
       if (line.startFen) continue; // keep the "sans from the standard start" invariant
       candidates.push({ opening, line, ply: 0 });
