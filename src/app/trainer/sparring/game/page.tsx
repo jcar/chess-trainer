@@ -205,9 +205,14 @@ function SparringGame() {
     let bookMsg = "";
     if (wasInBook && inBookMove) {
       const who = identify(bookAfter);
+      // If this booked move was also the LAST one in the line, say so — otherwise
+      // "In book" reads as a contradiction next to the "into the middlegame" card
+      // that the same move triggers.
+      const endedBook = !inBook(bookAfter);
+      const tail = endedBook ? " That's the last book move." : "";
       bookMsg = who.opening
-        ? `📖 In book — the ${who.opening.name}${who.line ? ` · ${who.line.label}` : ""}.`
-        : "📖 Book move — still in theory.";
+        ? `📖 In book — the ${who.opening.name}${who.line ? ` · ${who.line.label}` : ""}.${tail}`
+        : `📖 Book move — still in theory.${tail}`;
     } else if (wasInBook && !inBookMove) {
       bookMsg = `Off book. Theory here was ${theoryList(theorySans)}.`;
     }
@@ -486,7 +491,7 @@ function SparringGame() {
         <Card className="space-y-2 border-2 border-accent/40 p-4">
           <div className="flex items-center gap-2">
             <span className="text-lg" aria-hidden>📖</span>
-            <span className="font-display text-base font-semibold text-primary-strong">Out of book — into the middlegame</span>
+            <span className="font-display text-base font-semibold text-primary-strong">Theory ends here — into the middlegame</span>
           </div>
           {middlegame.opening ? (
             <div className="space-y-2 text-sm text-ink-soft">
