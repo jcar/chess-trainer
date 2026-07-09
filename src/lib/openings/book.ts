@@ -82,6 +82,37 @@ export function theoryMoves(state: BookState): TheoryMove[] {
   return [...bySan.values()];
 }
 
+export interface DeviationLesson {
+  /** The opening we were in (only once candidates converged to one). */
+  opening?: Opening;
+  /** The line (only once it's the single candidate). */
+  line?: OpeningLine;
+  /** The booked moves that were available, weight-sorted (best/most-common first). */
+  theory: TheoryMove[];
+  /** Authored "why this wrong move is bad" for the played move, if one exists. */
+  mistakeWhy?: string;
+}
+
+/**
+ * Explain a move that left book, resolved against the PRE-move book state (its
+ * candidates are still populated). Powers the Sparring off-book coaching card:
+ * the correct book move + its idea, plus any authored refutation of the move
+ * the learner actually played.
+ */
+export function explainDeviation(before: BookState, playedSan: string): DeviationLesson {
+  const played = norm(playedSan);
+  const theory = [...theoryMoves(before)].sort((a, b) => b.weight - a.weight);
+  const id = identify(before);
+  let mistakeWhy: string | undefined;
+  for (const c of before.candidates) {
+    const cm = c.line.commonMistakes?.find(
+      (m) => m.ply === c.ply && norm(m.move) === played,
+    );
+    if (cm) { mistakeWhy = cm.why; break; }
+  }
+  return { opening: id.opening, line: id.line, theory, mistakeWhy };
+}
+
 /** Pick a booked reply for the bot (weighted toward core theory), or null. */
 export function pickBotSan(state: BookState, rand: number = Math.random()): string | null {
   const moves = theoryMoves(state);

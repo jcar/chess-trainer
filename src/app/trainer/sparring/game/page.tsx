@@ -26,6 +26,7 @@ import {
   pickBotSan,
   identify,
   slipLine,
+  explainDeviation,
   type BookState,
 } from "@/lib/openings/book";
 import { lineKey } from "@/lib/trainer/lines";
@@ -43,7 +44,7 @@ import { useToolBack } from "@/lib/nav/useToolBack";
 const COACH_DEPTH = 10;
 const REVIEW_DEPTH = 10;
 
-interface Ply { fenBefore: string; fenAfter: string; uci: string; san: string; byLearner: boolean }
+interface Ply { fenBefore: string; fenAfter: string; uci: string; san: string; byLearner: boolean; bookBefore: BookState }
 interface CoachTip {
   kind: "blunder" | "mistake" | "offbook";
   san: string;
@@ -55,6 +56,12 @@ interface CoachTip {
   bookBefore: BookState;
   theoryText: string;
   loss: number;
+  // Off-book teaching (populated when the move left authored theory).
+  bookMove?: string;
+  bookMoveNote?: string;
+  mistakeWhy?: string;
+  openingName?: string;
+  lineLabel?: string;
 }
 interface Flag { ply: number; moveLabel: string; san: string; bestSan: string; bestUci: string; playedUci: string; fenBefore: string; loss: number; klass: "blunder" | "mistake" | "inaccuracy" }
 interface RatingChange { before: number; after: number; delta: number }
@@ -153,7 +160,7 @@ function SparringGame() {
     const res = applyMove(curFen, uciToMove(uci));
     if (!res.ok) { setBusy(false); return; }
     const bookAfter = advanceBook(curBook, res.san ?? "");
-    setHistory([...hist, { fenBefore: curFen, fenAfter: res.fen, uci, san: res.san ?? uci, byLearner: false }]);
+    setHistory([...hist, { fenBefore: curFen, fenAfter: res.fen, uci, san: res.san ?? uci, byLearner: false, bookBefore: curBook }]);
     setFen(res.fen);
     setBook(bookAfter);
     setBusy(false);
@@ -196,10 +203,11 @@ function SparringGame() {
     }
 
     const severity = coachSeverity(loss, plyIndex);
-    const leftBookInaccurate = wasInBook && !inBookMove && loss >= 70;
-    const shouldPause = practice && (severity !== null || leftBookInaccurate);
+    const leftBook = wasInBook && !inBookMove;
+    const shouldPause = practice && (severity !== null || leftBook);
 
     if (shouldPause) {
+      const lesson = leftBook ? explainDeviation(bookBefore, res.san ?? "") : null;
       setVerdict(bookMsg);
       setCoaching({
         kind: severity ?? "offbook",
@@ -212,6 +220,11 @@ function SparringGame() {
         bookBefore,
         theoryText: theorySans.length ? theoryList(theorySans) : "",
         loss,
+        bookMove: lesson?.theory[0]?.san,
+        bookMoveNote: lesson?.theory[0]?.note,
+        mistakeWhy: lesson?.mistakeWhy,
+        openingName: lesson?.opening?.name,
+        lineLabel: lesson?.line?.label,
       });
       setBusy(false);
       return;
@@ -239,7 +252,7 @@ function SparringGame() {
     const slip = wasInBook && !inBookMove ? slipLine(book, color) : null;
 
     const bookAfter = advanceBook(book, res.san ?? "");
-    const nextHist: Ply[] = [...history, { fenBefore: before, fenAfter: res.fen, uci: res.uci ?? `${from}${to}`, san: res.san ?? "", byLearner: true }];
+    const nextHist: Ply[] = [...history, { fenBefore: before, fenAfter: res.fen, uci: res.uci ?? `${from}${to}`, san: res.san ?? "", byLearner: true, bookBefore: book }];
     setHistory(nextHist);
     setFen(res.fen);
     setBook(bookAfter);
@@ -261,14 +274,22 @@ function SparringGame() {
     return true;
   }
 
-  function takeBack() {
-    if (!coaching) return;
-    setHistory((h) => h.slice(0, -1));
-    setFen(coaching.fenBefore);
-    setBook(coaching.bookBefore);
-    setUsedTakeback(true);
+  // Rewind to just before the learner's most recent move, dropping the bot's
+  // reply too. Available throughout practice (persistent button) and from the
+  // coaching pause (where the last learner ply is the pending move).
+  function takeBackLast() {
+    let idx = -1;
+    for (let i = history.length - 1; i >= 0; i--) if (history[i].byLearner) { idx = i; break; }
+    if (idx < 0) return;
+    const at = history[idx];
+    setHistory(history.slice(0, idx));
+    setFen(at.fenBefore);
+    setBook(at.bookBefore);
+    setFaced(identify(at.bookBefore).opening ?? null);
+    setMiddlegame(null); // let the middlegame card re-fire if the boundary is crossed again
     setCoaching(null);
-    setVerdict(coaching.theoryText ? `Try again — theory here was ${coaching.theoryText}.` : "Try again.");
+    setUsedTakeback(true); // already disables adaptive rating in finish()
+    setVerdict("Took it back — your move again. Try the book line.");
   }
 
   async function playOn() {
@@ -470,15 +491,33 @@ function SparringGame() {
             </Chip>
             <span className="font-mono text-ink">{coaching.san}</span>
           </div>
-          <p className="text-sm text-ink-soft">
-            {coaching.kind === "offbook"
-              ? <>That leaves theory{coaching.theoryText ? <> (book was <span className="font-semibold text-ink">{coaching.theoryText}</span>)</> : ""} and gives up some ground. </>
-              : coaching.kind === "blunder" ? "That drops material or misses a big chance. " : "That gives up some of your advantage. "}
-            A stronger move was <span className="font-semibold text-sage">{coaching.bestSan}</span>.
-            <span className="text-clay"> (red = your move, green = better)</span>
-          </p>
+          {coaching.kind === "offbook" ? (
+            <div className="space-y-2 text-sm text-ink-soft">
+              <p>
+                You left the book{coaching.openingName ? <> in the <span className="font-semibold text-primary-strong">{coaching.openingName}{coaching.lineLabel ? ` · ${coaching.lineLabel}` : ""}</span></> : ""}.
+                {coaching.bookMove
+                  ? <> The book move here is <span className="font-semibold text-ink">{coaching.bookMove}</span>.</>
+                  : coaching.theoryText ? <> Theory here was <span className="font-semibold text-ink">{coaching.theoryText}</span>.</> : ""}
+              </p>
+              {coaching.bookMoveNote && <p className="text-ink">{coaching.bookMoveNote}</p>}
+              {coaching.mistakeWhy && (
+                <p><span className="font-semibold text-clay">Why not {coaching.san}?</span> {coaching.mistakeWhy}</p>
+              )}
+              <p>
+                {coaching.loss >= 70
+                  ? <>That gives up some ground — a stronger move was <span className="font-semibold text-sage">{coaching.bestSan}</span>. <span className="text-clay">(red = your move, green = better)</span></>
+                  : "This is playable — just off your prepared line."}
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm text-ink-soft">
+              {coaching.kind === "blunder" ? "That drops material or misses a big chance. " : "That gives up some of your advantage. "}
+              A stronger move was <span className="font-semibold text-sage">{coaching.bestSan}</span>.
+              <span className="text-clay"> (red = your move, green = better)</span>
+            </p>
+          )}
           <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={takeBack} className={buttonClasses("primary", "md")}>Take it back</button>
+            <button type="button" onClick={takeBackLast} className={buttonClasses("primary", "md")}>Take it back</button>
             <button type="button" onClick={() => void playOn()} className={buttonClasses("secondary", "md")}>Play on</button>
           </div>
         </Card>
@@ -503,6 +542,16 @@ function SparringGame() {
       {id.opening && phase === "playing" && <OpeningSummary opening={id.opening} triggerLabel="Plans & ideas for this opening" />}
 
       <div className="flex flex-wrap gap-3">
+        {phase === "playing" && practice && !coaching && history.some((p) => p.byLearner) && (
+          <button
+            type="button"
+            onClick={takeBackLast}
+            disabled={busy || checking}
+            className={`${buttonClasses("secondary", "md")} disabled:cursor-not-allowed disabled:opacity-50`}
+          >
+            ↩ Take back
+          </button>
+        )}
         {phase === "playing" && (
           <button type="button" onClick={() => finish("You ended the game. Let's review it.")} className={buttonClasses("secondary", "md")}>End &amp; review</button>
         )}
