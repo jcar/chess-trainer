@@ -8,6 +8,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { OpeningCatalog } from "@/components/trainer/OpeningCatalog";
+import { ReviewDueBanner } from "@/components/trainer/ReviewDueBanner";
 import { ChevronRightIcon, PlayIcon } from "@/components/icons";
 
 export default function TrainerPage() {
@@ -20,6 +21,8 @@ export default function TrainerPage() {
         title="Openings Trainer"
         subtitle="Drill lines until they're second nature — or spar a real game from a surprise opening with a coach at your side."
       />
+
+      <ReviewDueBanner />
 
       <Link href="/trainer/sparring" className="block">
         <Card interactive className="flex items-center gap-3.5 p-4">

@@ -5,8 +5,9 @@
 // checkpoint every few cards. Drill mechanic adapted from OpeningDrillPlayer, but
 // it reports whether the recall was clean so the store can advance mastery.
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { TrainerLine } from "@/lib/trainer/lines";
+import { recordDailyActivity } from "@/lib/rewards/daily";
 import { ChessGame, buildReplayFens, replayMoveSquares } from "@/lib/chess/game";
 import { Board } from "@/components/board/Board";
 import { buttonClasses } from "@/components/ui/Button";
@@ -22,20 +23,40 @@ interface Props {
 }
 
 const WHY_EVERY = 3; // show a "why" checkpoint after every N drilled lines
+const MAX_ATTEMPTS = 2; // a missed line comes back once more for a clean recall
 
 export function TrainerSession({ queue, recordLineResult, onExit }: Props) {
+  // The working queue grows when a missed line is re-queued (repeat-until-correct),
+  // so it's local state seeded from the prop.
+  const [q, setQ] = useState<TrainerLine[]>(queue);
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState<"drill" | "why">("drill");
   const [cleanCount, setCleanCount] = useState(0);
+  const attempts = useRef<Record<string, number>>({});
+  const dailyLogged = useRef(false);
 
-  const done = idx >= queue.length;
-  const current = queue[idx];
+  const done = idx >= q.length;
+  const current = q[idx];
 
   function afterDrill(clean: boolean) {
-    recordLineResult(current.key, clean);
+    if (!dailyLogged.current) { recordDailyActivity(); dailyLogged.current = true; }
+    const key = current.key;
+    const n = (attempts.current[key] ?? 0) + 1;
+    attempts.current[key] = n;
+
+    // Record every attempt: a miss registers a lapse now (feeding the SRS
+    // "mistake bank"), a clean recall pushes the line further out.
+    recordLineResult(key, clean);
     if (clean) setCleanCount((c) => c + 1);
-    // Interleave a "why" checkpoint, except right at the very end.
-    const isLast = idx + 1 >= queue.length;
+
+    // A missed line comes back once more this session so the learner gets a
+    // clean-recall retry before moving on (repeat-until-correct).
+    const requeue = !clean && n < MAX_ATTEMPTS;
+    if (requeue) setQ((prev) => [...prev, current]);
+
+    // Interleave a "why" checkpoint, except right at the very end. A re-queue
+    // extends the session, so it's never the last card.
+    const isLast = !requeue && idx + 1 >= q.length;
     if (!isLast && (idx + 1) % WHY_EVERY === 0) {
       setPhase("why");
     } else {
@@ -56,7 +77,8 @@ export function TrainerSession({ queue, recordLineResult, onExit }: Props) {
         </p>
         <p className="text-ink-soft">
           You drilled {queue.length} {queue.length === 1 ? "line" : "lines"} —{" "}
-          {cleanCount} clean {cleanCount === 1 ? "recall" : "recalls"}.
+          {cleanCount} clean {cleanCount === 1 ? "recall" : "recalls"}
+          {q.length > queue.length ? `, with ${q.length - queue.length} retried` : ""}.
         </p>
         <div className="flex justify-center">
           <button
@@ -76,7 +98,7 @@ export function TrainerSession({ queue, recordLineResult, onExit }: Props) {
       <div className="space-y-1.5">
         <div className="flex items-center justify-between text-sm text-ink-soft">
           <span className="font-semibold">
-            {idx + 1} / {queue.length}
+            {idx + 1} / {q.length}
           </span>
           <button
             type="button"
@@ -86,7 +108,7 @@ export function TrainerSession({ queue, recordLineResult, onExit }: Props) {
             End session
           </button>
         </div>
-        <ProgressBar pct={(idx / queue.length) * 100} />
+        <ProgressBar pct={(idx / q.length) * 100} />
       </div>
 
       {phase === "drill" ? (

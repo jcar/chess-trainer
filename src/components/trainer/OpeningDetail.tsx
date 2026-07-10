@@ -8,7 +8,7 @@
 import Link from "next/link";
 import type { Opening } from "@/content/openings/types";
 import type { TrainerLine } from "@/lib/trainer/lines";
-import { openingLines, lineState, masteryCounts } from "@/lib/trainer/lines";
+import { openingLines, lineState, masteryCounts, orderedLines, reviewQueue } from "@/lib/trainer/lines";
 import { useTrainer } from "@/lib/trainer/useTrainer";
 import { Board } from "@/components/board/Board";
 import { Card } from "@/components/ui/Card";
@@ -65,11 +65,21 @@ export function OpeningDetail({ opening, onStartSession }: Props) {
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"
-          onClick={() => onStartSession(lines)}
+          onClick={() => onStartSession(orderedLines(srs, [opening.id]))}
           className={buttonClasses("primary", "lg")}
         >
           Train all lines
         </button>
+        {counts.due > 0 && counts.due < counts.total && (
+          <button
+            type="button"
+            onClick={() => onStartSession(reviewQueue(srs, [opening.id], 99))}
+            className={buttonClasses("secondary", "lg")}
+            title="Just the lines due for review right now"
+          >
+            Review due ({counts.due})
+          </button>
+        )}
         <Link
           href={`/play?fen=${encodeURIComponent(opening.tabiyaFen)}&color=${opening.trainerColor}`}
           className={buttonClasses("secondary", "lg")}

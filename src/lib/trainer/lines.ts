@@ -135,6 +135,80 @@ export function dueQueue(srs: SrsData, openingIds: string[]): TrainerLine[] {
   return interleave(byOpening);
 }
 
+/**
+ * A bounded daily-review session: every line whose SRS review is DUE now (most
+ * overdue / most-missed first — the "mistake bank"), then up to `newLimit`
+ * never-seen lines so a session also introduces fresh material without
+ * overwhelming. This is the queue behind "Review due today".
+ */
+export function reviewQueue(
+  srs: SrsData,
+  openingIds: string[],
+  newLimit = 8,
+): TrainerLine[] {
+  const now = Date.now();
+  const all = repertoireLines(openingIds);
+  const due = all
+    .filter((l) => {
+      const it = srs[srsKey(l.key)];
+      return !!it && it.due <= now;
+    })
+    .sort((a, b) => {
+      const A = srs[srsKey(a.key)]!;
+      const B = srs[srsKey(b.key)]!;
+      if (B.lapses !== A.lapses) return B.lapses - A.lapses; // mistakes first
+      return A.due - B.due; // then most overdue
+    });
+  const fresh = all.filter((l) => !srs[srsKey(l.key)]).slice(0, newLimit);
+  return [...due, ...fresh];
+}
+
+/** Counts for the daily-review entry point: reviews actually due vs never-seen. */
+export function reviewStats(
+  srs: SrsData,
+  openingIds: string[],
+): { due: number; fresh: number } {
+  const now = Date.now();
+  let due = 0;
+  let fresh = 0;
+  for (const l of repertoireLines(openingIds)) {
+    const it = srs[srsKey(l.key)];
+    if (!it) fresh++;
+    else if (it.due <= now) due++;
+  }
+  return { due, fresh };
+}
+
+/** All lines for a "train everything" pass, ordered worst-known first: due /
+ *  most-missed, then never-seen, then not-yet-due last (interleaved across
+ *  openings). Unlike reviewQueue this drops nothing. */
+export function orderedLines(srs: SrsData, openingIds: string[]): TrainerLine[] {
+  const now = Date.now();
+  const rank = (l: TrainerLine): number => {
+    const it = srs[srsKey(l.key)];
+    if (!it) return 1; // fresh: after due, before not-yet-due
+    return it.due <= now ? 0 : 2;
+  };
+  const byOpening = openingIds
+    .map((id) => getOpening(id))
+    .filter((o): o is Opening => !!o)
+    .map((o) =>
+      [...openingLines(o)].sort((a, b) => {
+        const ra = rank(a);
+        const rb = rank(b);
+        if (ra !== rb) return ra - rb;
+        const A = srs[srsKey(a.key)];
+        const B = srs[srsKey(b.key)];
+        if (A && B) {
+          if (B.lapses !== A.lapses) return B.lapses - A.lapses;
+          return A.due - B.due;
+        }
+        return 0; // keep registry order among fresh
+      }),
+    );
+  return interleave(byOpening);
+}
+
 /** All openings available to add to a repertoire (registry order). */
 export function allOpenings(): Opening[] {
   return OPENINGS;
