@@ -15,7 +15,9 @@ import { seededOrder } from "@/lib/shuffle";
 
 interface Props {
   opening: Opening;
-  onContinue: () => void;
+  /** `passed` = answered the idea-quiz correctly, or self-reported knowing the
+   *  plan. Gates the opening's concept mastery. */
+  onContinue: (passed: boolean) => void;
 }
 
 export function WhyCheckpoint({ opening, onContinue }: Props) {
@@ -105,7 +107,11 @@ export function WhyCheckpoint({ opening, onContinue }: Props) {
       <div className="flex justify-end gap-3">
         {quiz ? (
           answered && (
-            <button type="button" onClick={onContinue} className={buttonClasses("primary", "md")}>
+            <button
+              type="button"
+              onClick={() => onContinue(picked === quiz.correctIndex)}
+              className={buttonClasses("primary", "md")}
+            >
               Got it — continue
             </button>
           )
@@ -114,9 +120,15 @@ export function WhyCheckpoint({ opening, onContinue }: Props) {
             Reveal plan
           </button>
         ) : (
-          <button type="button" onClick={onContinue} className={buttonClasses("primary", "md")}>
-            Got it — continue
-          </button>
+          // No authored quiz → honest self-report so understanding still counts.
+          <>
+            <button type="button" onClick={() => onContinue(false)} className={buttonClasses("secondary", "md")}>
+              Not quite
+            </button>
+            <button type="button" onClick={() => onContinue(true)} className={buttonClasses("primary", "md")}>
+              I knew it
+            </button>
+          </>
         )}
       </div>
     </div>

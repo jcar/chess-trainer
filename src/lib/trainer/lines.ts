@@ -11,8 +11,21 @@ import { isDue } from "../srs/store";
 
 /** SRS namespace for opening lines (kept distinct from tactics-puzzle ids). */
 export const srsKey = (lineKey: string): string => `ol:${lineKey}`;
+/** SRS namespace for an opening's "idea"/concept check (the WhyCheckpoint). */
+export const conceptKey = (openingId: string): string => `co:${openingId}`;
 /** Leitner box at which a line counts as "mastered" (retained over ~weeks). */
 const MASTER_BOX = 3;
+
+/**
+ * Has the learner shown they understand the opening's IDEA (passed the idea
+ * check)? Mastery requires this on top of clean move recall — so you can't
+ * "master" an opening by rote alone. A correct answer boxes it up; a wrong one
+ * resets to box 0 (not passed).
+ */
+export function conceptPassed(srs: SrsData, openingId: string): boolean {
+  const it = srs[conceptKey(openingId)];
+  return !!it && it.box >= 1;
+}
 
 export interface TrainerLine {
   opening: Opening;
@@ -73,12 +86,14 @@ export interface LineState {
   lapses: number;
 }
 
-/** Per-line skill state for the opening page's line list. */
+/** Per-line skill state for the opening page's line list. "Mastered" needs BOTH
+ *  clean move recall (box ≥ MASTER_BOX) AND the opening's idea check passed. */
 export function lineState(srs: SrsData, l: TrainerLine): LineState {
   const it = srs[srsKey(l.key)];
   if (!it) return { status: "new", box: 0, reps: 0, lapses: 0 };
+  const mastered = it.box >= MASTER_BOX && conceptPassed(srs, l.opening.id);
   return {
-    status: it.box >= MASTER_BOX ? "mastered" : "learning",
+    status: mastered ? "mastered" : "learning",
     box: it.box,
     reps: it.reps,
     lapses: it.lapses,
@@ -101,7 +116,7 @@ export function masteryCounts(srs: SrsData, openingIds: string[]): MasteryCounts
   let due = 0;
   for (const l of lines) {
     const it = srs[srsKey(l.key)];
-    if (it && it.box >= MASTER_BOX) mastered++;
+    if (it && it.box >= MASTER_BOX && conceptPassed(srs, l.opening.id)) mastered++;
     else if (it) learning++;
     if (isDue(srs, srsKey(l.key), now)) due++;
   }

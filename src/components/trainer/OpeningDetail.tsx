@@ -8,7 +8,7 @@
 import Link from "next/link";
 import type { Opening } from "@/content/openings/types";
 import type { TrainerLine } from "@/lib/trainer/lines";
-import { openingLines, lineState, masteryCounts, orderedLines, reviewQueue } from "@/lib/trainer/lines";
+import { openingLines, lineState, masteryCounts, orderedLines, reviewQueue, conceptPassed } from "@/lib/trainer/lines";
 import { useTrainer } from "@/lib/trainer/useTrainer";
 import { Board } from "@/components/board/Board";
 import { Card } from "@/components/ui/Card";
@@ -23,13 +23,15 @@ const MAX_BOX = 5; // matches the SRS Leitner ladder length
 interface Props {
   opening: Opening;
   onStartSession: (lines: TrainerLine[]) => void;
+  onIdeaCheck: () => void;
 }
 
-export function OpeningDetail({ opening, onStartSession }: Props) {
+export function OpeningDetail({ opening, onStartSession, onIdeaCheck }: Props) {
   const { srs } = useTrainer();
   const lines = openingLines(opening);
   const counts = masteryCounts(srs, [opening.id]);
   const pct = counts.total ? (counts.mastered / counts.total) * 100 : 0;
+  const conceptOk = conceptPassed(srs, opening.id);
 
   return (
     <div className="space-y-5">
@@ -87,6 +89,26 @@ export function OpeningDetail({ opening, onStartSession }: Props) {
         >
           Spar vs engine
         </Link>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        {conceptOk ? (
+          <>
+            <Chip tone="sage">Idea ✓</Chip>
+            <span className="text-ink-soft">You&apos;ve shown you understand the idea.</span>
+          </>
+        ) : (
+          <>
+            <button
+              type="button"
+              onClick={onIdeaCheck}
+              className={buttonClasses("secondary", "md")}
+            >
+              Idea check
+            </button>
+            <span className="text-ink-soft">Pass the idea check to master this opening — not just the moves.</span>
+          </>
+        )}
       </div>
 
       <OpeningSummary opening={opening} defaultOpen />

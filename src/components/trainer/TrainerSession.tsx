@@ -19,13 +19,14 @@ import { OpeningSummary } from "./OpeningSummary";
 interface Props {
   queue: TrainerLine[];
   recordLineResult: (key: string, clean: boolean) => void;
+  recordConcept: (openingId: string, passed: boolean) => void;
   onExit: () => void;
 }
 
 const WHY_EVERY = 3; // show a "why" checkpoint after every N drilled lines
 const MAX_ATTEMPTS = 2; // a missed line comes back once more for a clean recall
 
-export function TrainerSession({ queue, recordLineResult, onExit }: Props) {
+export function TrainerSession({ queue, recordLineResult, recordConcept, onExit }: Props) {
   // The working queue grows when a missed line is re-queued (repeat-until-correct),
   // so it's local state seeded from the prop.
   const [q, setQ] = useState<TrainerLine[]>(queue);
@@ -64,7 +65,8 @@ export function TrainerSession({ queue, recordLineResult, onExit }: Props) {
     }
   }
 
-  function afterWhy() {
+  function afterWhy(passed: boolean) {
+    recordConcept(current.opening.id, passed);
     setPhase("drill");
     setIdx((i) => i + 1);
   }

@@ -10,7 +10,7 @@
 // catalog (for the home tile / catalog), and `srs` is exposed so per-opening and
 // per-line views can derive their own state via the helpers in ./lines.
 
-import { allOpenings, masteryCounts, srsKey, type MasteryCounts } from "./lines";
+import { allOpenings, masteryCounts, srsKey, conceptKey, type MasteryCounts } from "./lines";
 import { trainerStore } from "./store";
 import { useSrs, srsStore } from "../srs/useSrs";
 import type { SrsData } from "../srs/store";
@@ -21,6 +21,8 @@ export interface TrainerApi {
   /** Mastery across ALL openings (powers the home-page tile and overall progress). */
   counts: MasteryCounts;
   recordLineResult: (key: string, clean: boolean) => void;
+  /** Record an idea-check result for an opening (gates mastery on understanding). */
+  recordConcept: (openingId: string, passed: boolean) => void;
   reset: () => void;
 }
 
@@ -34,6 +36,7 @@ export function useTrainer(): TrainerApi {
     // True spaced repetition: a clean recall pushes the line further out; a miss
     // resets it to be reviewed again soon. Also drives the per-line skill meter.
     recordLineResult: (key, clean) => srsStore.record(srsKey(key), clean),
+    recordConcept: (openingId, passed) => srsStore.record(conceptKey(openingId), passed),
     reset: () => {
       trainerStore.reset();
       srsStore.reset();

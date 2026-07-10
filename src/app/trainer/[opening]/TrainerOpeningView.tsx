@@ -11,12 +11,14 @@ import type { TrainerLine } from "@/lib/trainer/lines";
 import { useTrainer } from "@/lib/trainer/useTrainer";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { TrainerSession } from "@/components/trainer/TrainerSession";
+import { WhyCheckpoint } from "@/components/trainer/WhyCheckpoint";
 import { OpeningDetail } from "@/components/trainer/OpeningDetail";
 
 export function TrainerOpeningView({ openingId }: { openingId: string }) {
   const opening = getOpening(openingId);
-  const { recordLineResult } = useTrainer();
+  const { recordLineResult, recordConcept } = useTrainer();
   const [session, setSession] = useState<{ lines: TrainerLine[] } | null>(null);
+  const [ideaOpen, setIdeaOpen] = useState(false);
 
   if (!opening) notFound();
 
@@ -27,7 +29,23 @@ export function TrainerOpeningView({ openingId }: { openingId: string }) {
         <TrainerSession
           queue={session.lines}
           recordLineResult={recordLineResult}
+          recordConcept={recordConcept}
           onExit={() => setSession(null)}
+        />
+      </main>
+    );
+  }
+
+  if (ideaOpen) {
+    return (
+      <main className="space-y-5">
+        <PageHeader eyebrow="Training" title={`${opening.name} — idea check`} />
+        <WhyCheckpoint
+          opening={opening}
+          onContinue={(passed) => {
+            recordConcept(opening.id, passed);
+            setIdeaOpen(false);
+          }}
         />
       </main>
     );
@@ -35,7 +53,11 @@ export function TrainerOpeningView({ openingId }: { openingId: string }) {
 
   return (
     <main className="space-y-5">
-      <OpeningDetail opening={opening} onStartSession={(lines) => setSession({ lines })} />
+      <OpeningDetail
+        opening={opening}
+        onStartSession={(lines) => setSession({ lines })}
+        onIdeaCheck={() => setIdeaOpen(true)}
+      />
     </main>
   );
 }

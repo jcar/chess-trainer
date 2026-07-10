@@ -23,7 +23,7 @@ const ALL_IDS = allOpenings().map((o) => o.id);
 const NEW_PER_SESSION = 8;
 
 export default function TrainerReviewPage() {
-  const { srs, recordLineResult } = useTrainer();
+  const { srs, recordLineResult, recordConcept } = useTrainer();
   const [queue, setQueue] = useState<TrainerLine[] | null>(null);
 
   if (queue) {
@@ -33,6 +33,7 @@ export default function TrainerReviewPage() {
         <TrainerSession
           queue={queue}
           recordLineResult={recordLineResult}
+          recordConcept={recordConcept}
           onExit={() => setQueue(null)}
         />
       </main>
