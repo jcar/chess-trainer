@@ -65,6 +65,23 @@ interface CoachTip {
 }
 interface Flag { ply: number; moveLabel: string; san: string; bestSan: string; bestUci: string; playedUci: string; fenBefore: string; loss: number; klass: "blunder" | "mistake" | "inaccuracy" }
 interface RatingChange { before: number; after: number; delta: number }
+/** Where the learner left prepared theory — the review's opening teaching moment. */
+interface BookExit {
+  moveLabel: string;
+  playedSan: string;
+  playedUci: string;
+  fenBefore: string;
+  bookMove?: string;
+  bookUci: string;
+  note?: string;
+  mistakeWhy?: string;
+  openingName?: string;
+  openingId?: string;
+  lineLabel?: string;
+  bestSan: string;
+  bestUci: string;
+  loss: number;
+}
 
 function applyMove(fen: string, m: SimpleMove) {
   const d = new ChessGame(fen).tryMove(m);
@@ -138,6 +155,7 @@ function SparringGame() {
   const [flags, setFlags] = useState<Flag[]>([]);
   const [accuracy, setAccuracy] = useState(0);
   const [selected, setSelected] = useState<Flag | null>(null);
+  const [bookExit, setBookExit] = useState<BookExit | null>(null);
   // The opening we've been identified as (for the middlegame plan + review recap).
   const [faced, setFaced] = useState<Opening | null>(null);
 
@@ -320,24 +338,54 @@ function SparringGame() {
     setProgress({ n: 0, total: learnerPlies.length });
     const engine = getEngine();
     const found: Flag[] = [];
+    let exit: BookExit | null = null;
+    let leftAt = -1;
     let good = 0;
     let done = 0;
+    const bump = () => { done++; setProgress({ n: done, total: learnerPlies.length }); };
     for (let i = 0; i < history.length; i++) {
       const p = history[i];
       if (!p.byLearner) continue;
-      if (i < 8) { good++; done++; setProgress({ n: done, total: learnerPlies.length }); continue; }
+      // A move that was still authored theory is correct by definition — don't
+      // second-guess the book with a shallow engine. Only judge moves once the
+      // learner has left (or exhausted) theory.
+      const wasBook = inBook(p.bookBefore);
+      const playedNorm = p.san.replace(/[+#!?]/g, "");
+      const inTheory = wasBook && theoryMoves(p.bookBefore).some((t) => t.san.replace(/[+#!?]/g, "") === playedNorm);
+      if (inTheory) { good++; bump(); continue; }
+
       const before = await engine.analyze(p.fenBefore, REVIEW_DEPTH);
       const after = await engine.analyze(p.fenAfter, REVIEW_DEPTH);
       const loss = toCp(before) - -toCp(after);
       const bestUci = before.bestMove ?? "";
+      const bestSan = bestSanAt(p.fenBefore, bestUci);
       const klass = reviewClass(loss);
-      if (klass) found.push({ ply: i, moveLabel: moveLabel(i), san: p.san, bestSan: bestSanAt(p.fenBefore, bestUci), bestUci, playedUci: p.uci, fenBefore: p.fenBefore, loss, klass });
+
+      // The FIRST time the learner leaves available theory is the opening
+      // teaching moment — capture it with book move + why (not just the engine).
+      if (wasBook && leftAt < 0) {
+        leftAt = i;
+        const lesson = explainDeviation(p.bookBefore, p.san);
+        const bookMove = lesson.theory[0]?.san;
+        exit = {
+          moveLabel: moveLabel(i), playedSan: p.san, playedUci: p.uci, fenBefore: p.fenBefore,
+          bookMove, bookUci: bookMove ? (sanToUci(p.fenBefore, bookMove) ?? "") : "",
+          note: lesson.theory[0]?.note, mistakeWhy: lesson.mistakeWhy,
+          openingName: lesson.opening?.name, openingId: lesson.opening?.id, lineLabel: lesson.line?.label,
+          bestSan, bestUci, loss,
+        };
+        if (!klass) good++; // a playable departure still counts as a fine move
+        bump();
+        continue; // shown in its own "left theory" card, not the mistake list
+      }
+
+      if (klass) found.push({ ply: i, moveLabel: moveLabel(i), san: p.san, bestSan, bestUci, playedUci: p.uci, fenBefore: p.fenBefore, loss, klass });
       else good++;
-      done++;
-      setProgress({ n: done, total: learnerPlies.length });
+      bump();
     }
     found.sort((a, b) => b.loss - a.loss);
     setFlags(found.slice(0, 8));
+    setBookExit(exit);
     setAccuracy(learnerPlies.length ? Math.round((good / learnerPlies.length) * 100) : 100);
     setSelected(found[0] ?? null);
     setPhase("done");
@@ -387,6 +435,49 @@ function SparringGame() {
             You faced the <span className="font-semibold text-primary-strong">{faced.name}</span>.
           </Card>
         )}
+
+        {bookExit ? (
+          <Card className="space-y-3 border-2 border-accent/40 p-4">
+            <div className="flex items-center gap-2">
+              <span className="text-lg" aria-hidden>📖</span>
+              <span className="font-display text-base font-semibold text-primary-strong">Where you left theory</span>
+            </div>
+            <p className="text-sm text-ink-soft">
+              You followed {bookExit.openingName
+                ? <>the <span className="font-semibold text-primary-strong">{bookExit.openingName}{bookExit.lineLabel ? ` · ${bookExit.lineLabel}` : ""}</span></>
+                : "the book"} to move {bookExit.moveLabel.replace(/\.+$/, "")}, then played <span className="font-mono text-ink">{bookExit.playedSan}</span>.
+              {bookExit.bookMove && <> Theory here was <span className="font-semibold text-sage">{bookExit.bookMove}</span>.</>}
+            </p>
+            {bookExit.note && <p className="text-sm text-ink">{bookExit.note}</p>}
+            {bookExit.mistakeWhy && (
+              <p className="text-sm text-ink-soft"><span className="font-semibold text-clay">Why not {bookExit.playedSan}?</span> {bookExit.mistakeWhy}</p>
+            )}
+            {bookExit.bookUci && (
+              <div className="mx-auto w-full max-w-[22rem]">
+                <Board
+                  fen={bookExit.fenBefore}
+                  orientation={color}
+                  interactive={false}
+                  arrows={[
+                    { from: bookExit.playedUci.slice(0, 2), to: bookExit.playedUci.slice(2, 4), color: "#ef4444" },
+                    { from: bookExit.bookUci.slice(0, 2), to: bookExit.bookUci.slice(2, 4), color: "#22c55e" },
+                  ]}
+                />
+              </div>
+            )}
+            {bookExit.openingId && (
+              <Link href={`/trainer/${bookExit.openingId}`} className={`${buttonClasses("secondary", "md")} self-start`}>
+                Drill this line →
+              </Link>
+            )}
+          </Card>
+        ) : faced ? (
+          <Card className="flex items-center gap-2 p-4 text-sm text-ink-soft">
+            <Chip tone="sage">📖 In book</Chip>
+            You stayed in prepared theory the whole way — solid prep.
+          </Card>
+        ) : null}
+
         <Card className="flex items-center justify-between p-4">
           <span className="font-display text-lg font-semibold text-primary-strong">Accuracy</span>
           <Chip tone={accuracy >= 80 ? "sage" : accuracy >= 60 ? "amber" : "clay"}>{accuracy}%</Chip>
