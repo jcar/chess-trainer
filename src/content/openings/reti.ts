@@ -91,5 +91,30 @@ export const reti: Opening = {
         "Black recaptures with the queen, reaching a balanced, open position.",
       ],
     },
+    {
+      label: "Transposing to the Queen's Gambit Declined",
+      summary:
+        "1.Nf3 first, d4 later. If Black sets up with ...d5 and ...e6 you can simply play d4 and land in a Queen's Gambit Declined — the Réti's real value is the move orders it lets you choose.",
+      sans: [
+        "Nf3", "d5", "c4", "e6",
+        "d4", "Nf6", "Nc3", "Be7", "Bg5", "O-O", "e3", "h6", "Bh4", "b6",
+      ],
+      notes: [
+        "The Réti — developing first and keeping every central option open.",
+        "Black claims the centre.",
+        "Questioning d5 from the flank.",
+        "Supporting the d5-pawn.",
+        "Now the centre pawn joins in, heading for familiar territory.",
+        "Natural development.",
+        "Developing and adding a third attacker to d5.",
+        "Black develops, ready to castle.",
+        "The Classical pin.",
+        "King safety.",
+        "Solid support for d4.",
+        "Putting the question to the bishop.",
+        "Keeping the pin.",
+        "The Tartakower set-up — and note the whole thing arrived via 1.Nf3.",
+      ],
+    },
   ],
 };

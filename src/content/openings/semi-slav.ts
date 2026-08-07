@@ -98,5 +98,37 @@ export const semiSlav: Opening = {
         "The fearless main line — clutching the extra pawn and gaining space.",
       ],
     },
+    {
+      label: "Indian move order (...e6 before ...c6)",
+      summary:
+        "You reach the Semi-Slav triangle in the reverse order — ...Nf6 and ...e6 first, ...c6 last. From move 8 it is the Meran main line exactly; recognising that saves you from re-deriving the plan at the board.",
+      sans: [
+        "d4", "Nf6", "c4", "e6", "Nf3", "d5", "Nc3", "c6",
+        "e3", "Nbd7", "Bd3", "dxc4", "Bxc4", "b5",
+      ],
+      notes: [
+        "White takes the centre.",
+        "A flexible Indian move — the d-pawn stays home for now.",
+        "White grabs space on the queenside.",
+        "Supporting a coming ...d5.",
+        "Developing and covering e5 and d4.",
+        "Now the centre pawn arrives.",
+        "Developing and pressing d5.",
+        "...c6 completes the Semi-Slav triangle — and this is the standard position, one move order removed.",
+        "Solid, if modest, development.",
+        "Developing and preparing ...dxc4 with ...b5.",
+        "The bishop takes its natural diagonal.",
+        "Grabbing the pawn now that the bishop has committed, gaining a tempo.",
+        "Recapturing.",
+        "The Meran: seizing queenside space and hitting the bishop.",
+      ],
+      commonMistakes: [
+        {
+          ply: 7,
+          move: "Be7",
+          why: "Playable, but it is a Queen's Gambit Declined, not a Semi-Slav — you have shut in the c8-bishop without gaining the ...c6/...b5 queenside play. If the Semi-Slav is your line, ...c6 here is the move that gets you there.",
+        },
+      ],
+    },
   ],
 };

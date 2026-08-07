@@ -95,5 +95,30 @@ export const englishOpening: Opening = {
         "King safety, with a comfortable reversed-Sicilian middlegame ahead.",
       ],
     },
+    {
+      label: "Transposing to the Queen's Gambit",
+      summary:
+        "The English is a move-order weapon: start 1.c4, and if Black answers ...e6 and ...d5 you play d4 and the game becomes a Queen's Gambit Declined — reached without ever allowing the defences that meet 1.d4 directly.",
+      sans: [
+        "c4", "e6", "Nc3", "d5",
+        "d4", "Nf6", "Bg5", "Be7", "e3", "O-O", "Nf3", "h6", "Bh4", "b6",
+      ],
+      notes: [
+        "The English — a flexible first move that keeps d4 in reserve.",
+        "Black prepares ...d5, heading for classical structures.",
+        "Developing and fighting for d5.",
+        "Black stakes the centre.",
+        "NOW d4 — and this is the Queen's Gambit Declined. You reached your main line without facing the Nimzo-Indian, Grünfeld or Benoni.",
+        "Black develops into the standard set-up.",
+        "The Classical pin against the d5-point.",
+        "Breaking the pin.",
+        "Solid development.",
+        "King safety.",
+        "Completing development.",
+        "Putting the question to the bishop.",
+        "Maintaining the pin.",
+        "Heading for ...Bb7 — a normal QGD middlegame, arrived at by a flank route.",
+      ],
+    },
   ],
 };

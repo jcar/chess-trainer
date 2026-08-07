@@ -157,5 +157,30 @@ export const kingsIndian: Opening = {
         "The thematic hit at the over-extended centre; against so many pawns, ...c5 pries it open.",
       ],
     },
+    {
+      label: "English move order (1.c4)",
+      summary:
+        "White starts 1.c4 and reaches the same big centre a move later. Your set-up is unchanged — knight, fianchetto, ...d6 — and by move 8 it is the Classical main line exactly.",
+      sans: [
+        "c4", "Nf6", "Nc3", "g6", "e4", "d6", "d4", "Bg7",
+        "Nf3", "O-O", "Be2", "e5", "O-O", "Nc6",
+      ],
+      notes: [
+        "The English — White delays d4 to sidestep some defences.",
+        "Developing; the King's Indian set-up works against almost anything.",
+        "Natural development.",
+        "Preparing the fianchetto, exactly as against 1.d4.",
+        "White takes the big centre after all.",
+        "Supporting a later ...e5 and opening the bishop's diagonal.",
+        "The d-pawn finally arrives — and this is a standard King's Indian.",
+        "Completing the fianchetto.",
+        "Developing and defending d4.",
+        "King safety.",
+        "Solid development.",
+        "The thematic strike: the King's Indian is a fight over the e5-square.",
+        "White castles.",
+        "Piling onto d4 — the Classical main line, reached from a flank move order.",
+      ],
+    },
   ],
 };

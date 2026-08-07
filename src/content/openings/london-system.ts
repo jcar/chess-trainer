@@ -132,5 +132,36 @@ export const londonSystem: Opening = {
         "Black also develops the bishop outside the chain, mirroring White's idea.",
       ],
     },
+    {
+      label: "Move-order twin (1...Nf6 first)",
+      summary:
+        "Black plays ...Nf6 before ...d5, so the moves arrive in the opposite order — and from move 4 the position is identical to the main setup. The London's whole appeal is that the set-up does not depend on the sequence.",
+      sans: [
+        "d4", "Nf6", "Nf3", "d5",
+        "Bf4", "e6", "e3", "c5", "c3", "Nc6", "Nbd2", "Bd6", "Bg3",
+      ],
+      notes: [
+        "Claiming the centre.",
+        "Black develops first and keeps the d-pawn back a move.",
+        "Developing and covering e5.",
+        "Now the pawn comes — and this is the main London position, reached in the other order.",
+        "The bishop gets out BEFORE e3 shuts it in. That is the one move-order rule the London really has.",
+        "Black builds the classical structure.",
+        "Completing the pawn triangle behind the bishop.",
+        "The critical strike at d4.",
+        "Holding the centre and opening c2 for the bishop.",
+        "Adding pressure to d4.",
+        "Developing without blocking the c-pawn.",
+        "Black develops the bishop outside the chain.",
+        "Stepping aside to keep the prized dark-squared bishop.",
+      ],
+      commonMistakes: [
+        {
+          ply: 4,
+          move: "e3",
+          why: "This is the one order that matters in the London. Play e3 before Bf4 and the dark-squared bishop is stuck behind its own pawns — the single piece the whole system is built around. Bishop out first, then e3.",
+        },
+      ],
+    },
   ],
 };

@@ -128,5 +128,37 @@ export const queensGambitDeclined: Opening = {
         "Grabbing the c-pawn to gain a tempo and ease the cramped position.",
       ],
     },
+    {
+      label: "Indian move order (1...Nf6)",
+      summary:
+        "The same QGD by a different door: you play ...Nf6 first and only then ...d5. Learn to recognise the position, not the sequence — from move 6 this is note-for-note the Classical main line.",
+      sans: [
+        "d4", "Nf6", "c4", "e6", "Nc3", "d5",
+        "Bg5", "Be7", "e3", "O-O", "Nf3", "h6", "Bh4", "b6",
+      ],
+      notes: [
+        "White takes the centre.",
+        "A flexible Indian start — you have not committed the d-pawn yet.",
+        "White grabs more space and pressures d5 before you have played there.",
+        "Preparing ...d5 with the pawn rather than playing it at once.",
+        "Developing and covering d5 and e4.",
+        "NOW the pawn comes — and the position is exactly the Queen's Gambit Declined. Same house, different door.",
+        "Pinning the knight to increase the pressure on d5.",
+        "Calmly breaking the pin.",
+        "Solid, if modest, development.",
+        "King safety.",
+        "Developing the last minor piece.",
+        "Putting the question to the bishop before committing.",
+        "Keeping the pin along the diagonal.",
+        "Preparing ...Bb7 to fight for the long diagonal — the Tartakower plan.",
+      ],
+      commonMistakes: [
+        {
+          ply: 5,
+          move: "Bb4",
+          why: "That is the Nimzo-Indian, a fine opening — but a different one. If your repertoire is the QGD, play ...d5 here and you reach your own main line by transposition. Choosing between them is a repertoire decision, not a move-order accident.",
+        },
+      ],
+    },
   ],
 };
