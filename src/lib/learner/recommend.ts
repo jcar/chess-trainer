@@ -12,26 +12,37 @@ import type { ProgressData } from "@/lib/progress/store";
 import type { SrsData } from "@/lib/srs/store";
 
 /** Due-review counts by tool. SRS ids are namespaced by their writers:
- *  `eg:` endgames, `ol:` openings, `kc:` lesson-concepts (surfaced inside modules,
- *  not here), and bare ids = tactics/daily puzzles. */
+ *  `eg:` endgames, `ol:` opening lines, `rn:` repertoire positions, `co:` opening
+ *  concepts, `kc:` lesson-concepts (surfaced inside modules, not here), and bare
+ *  ids = tactics/daily puzzles. */
 export interface DueReviews {
-  total: number; // across the routable training tools (tactics + endgames + openings)
+  total: number; // across the routable training tools
   tactics: number;
   endgames: number;
   openings: number;
+  /** Repertoire Lab positions (`rn:`) — routed to /repertoire, not /trainer. */
+  repertoire: number;
 }
 
 export function classifyDueReviews(srs: SrsData, now: number): DueReviews {
-  const d: DueReviews = { total: 0, tactics: 0, endgames: 0, openings: 0 };
+  const d: DueReviews = {
+    total: 0,
+    tactics: 0,
+    endgames: 0,
+    openings: 0,
+    repertoire: 0,
+  };
   for (const id in srs) {
     const it = srs[id];
     if (!it || it.due > now) continue; // not yet due
     if (id.startsWith("eg:")) d.endgames++;
+    else if (id.startsWith("rn:")) d.repertoire++;
     else if (id.startsWith("ol:")) d.openings++;
+    else if (id.startsWith("co:")) continue; // idea checks ride along with their line
     else if (id.startsWith("kc:")) continue; // lesson reviews live inside their module
     else d.tactics++;
   }
-  d.total = d.tactics + d.endgames + d.openings;
+  d.total = d.tactics + d.endgames + d.openings + d.repertoire;
   return d;
 }
 
@@ -39,6 +50,7 @@ const REVIEW_TOOLS = {
   tactics: { href: "/tactics", label: "Tactics Trainer" },
   endgames: { href: "/endgames", label: "Endgame Trainer" },
   openings: { href: "/trainer", label: "Openings Trainer" },
+  repertoire: { href: "/repertoire/drill", label: "Repertoire Lab" },
 } as const;
 
 type ReviewKey = keyof typeof REVIEW_TOOLS;

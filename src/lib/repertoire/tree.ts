@@ -86,6 +86,10 @@ export interface RepTree {
   roots: NodeKey[];
 }
 
+/** The standard initial position's node key — the root of every tree. */
+export const START_KEY: NodeKey =
+  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -";
+
 /** How many distinct routes we retain per node (bounds memory; UI shows ~3). */
 const MAX_PATHS = 4;
 

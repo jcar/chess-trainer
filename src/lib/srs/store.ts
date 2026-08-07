@@ -120,6 +120,34 @@ class LocalSrsStore {
     });
   };
 
+  /**
+   * Insert items that do NOT already exist, at a given box/due. Used to carry
+   * evidence over from another namespace (e.g. the Repertoire Lab seeding
+   * position mastery from the Openings Trainer's line progress) without
+   * overwriting anything the learner has actually earned here.
+   */
+  seedMissing = (entries: { id: string; box: number; due: number }[]): number => {
+    const data = this.getSnapshot();
+    const next = { ...data };
+    const t = now();
+    let added = 0;
+    for (const e of entries) {
+      if (next[e.id]) continue;
+      const box = Math.max(0, Math.min(e.box, MAX_BOX));
+      next[e.id] = {
+        box,
+        due: e.due,
+        reps: 0,
+        lapses: 0,
+        lastResult: null,
+        lastSeen: t,
+      };
+      added++;
+    }
+    if (added > 0) this.persist(next);
+    return added;
+  };
+
   reset = (): void => this.persist({});
 }
 
