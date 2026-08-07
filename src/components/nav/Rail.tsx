@@ -33,7 +33,9 @@ const NAV: Item[] = [
   { href: "/", label: "Hall", Icon: HallGlyph, exact: true },
   { href: "/arcade", label: "Arcade", Icon: ArcadeIcon },
   { href: "/tactics", label: "Tactics", Icon: PuzzleIcon },
-  { href: "/trainer", label: "Openings", Icon: OpeningDrillIcon },
+  // Points at the Repertoire Lab, which links out to /trainer for the full
+  // 31-opening catalog and to sparring.
+  { href: "/repertoire", label: "Openings", Icon: OpeningDrillIcon },
   { href: "/play", label: "Play", Icon: PlayIcon },
   { href: "/endgames", label: "Endgames", Icon: CrownGlyph },
 ];

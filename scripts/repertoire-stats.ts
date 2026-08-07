@@ -7,6 +7,7 @@
 // per-slot coverage for a White and a Black repertoire. Also asserts the
 // chess.js en-passant normalization that the 4-field node key depends on.
 
+import { existsSync, readFileSync } from "node:fs";
 import { Chess } from "chess.js";
 import {
   buildTree,
@@ -122,6 +123,41 @@ function reportConflicts(tree: RepTree, color: Orientation): void {
   }
 }
 
+/**
+ * The precomputed engine replies are keyed by node. Editing opening content can
+ * strand keys (a position that no longer arises) or leave positions unanalyzed,
+ * and the Lab would then under- or over-report gaps without saying so.
+ */
+function checkReplyData(tree: RepTree): void {
+  const path = "src/content/repertoire-replies.json";
+  console.log("\nPrecomputed engine replies");
+  if (!existsSync(path)) {
+    console.log(`  ~ ${path} missing — gap detection is off. Run scripts/build-repertoire-replies.ts`);
+    return;
+  }
+  const data = JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown[]>;
+  const keys = Object.keys(data);
+  const stranded = keys.filter((k) => !tree.nodes.has(k));
+  const shallow = [...tree.nodes.values()].filter((n) => n.minPly <= 12);
+  const unanalyzed = shallow.filter((n) => !data[n.key]);
+
+  console.log(`  ${keys.length} positions analyzed`);
+  if (stranded.length) {
+    fail(
+      `${stranded.length} analyzed position(s) no longer exist in the tree — regenerate scripts/build-repertoire-replies.ts`,
+    );
+  } else {
+    console.log("  ✓ every analyzed position still arises");
+  }
+  if (unanalyzed.length) {
+    fail(
+      `${unanalyzed.length} position(s) at ply <= 12 have no reply data — regenerate scripts/build-repertoire-replies.ts`,
+    );
+  } else {
+    console.log("  ✓ every position at ply <= 12 is covered");
+  }
+}
+
 // --- Main -------------------------------------------------------------------
 assertEpNormalization();
 
@@ -153,6 +189,7 @@ console.log(`\nShared positions (in >1 opening): ${sharedPositions(tree).length}
 reportConflicts(tree, "white");
 reportConflicts(tree, "black");
 reportCoverage(tree);
+checkReplyData(tree);
 
 console.log(
   failures === 0

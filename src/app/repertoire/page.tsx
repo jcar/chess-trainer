@@ -14,15 +14,49 @@ import { ChevronRightIcon } from "@/components/icons";
 import { RepertoireTree } from "@/components/repertoire/RepertoireTree";
 import { useRepertoire, pickTree } from "@/lib/repertoire/useRepertoire";
 import { hasRepertoire } from "@/lib/repertoire/store";
+import { decodeRepertoire } from "@/lib/repertoire/share";
 import { repertoireCounts } from "@/lib/repertoire/mastery";
 import { transpositions } from "@/lib/repertoire/tree";
 import type { Orientation } from "@/content/types";
 
 export default function RepertoirePage() {
-  const { data, trees, srs } = useRepertoire();
+  const { data, trees, srs, store } = useRepertoire();
   const [color, setColor] = useState<Orientation>("white");
   // Date.now() is impure in render; capture once at mount like /placement does.
   const [now] = useState(() => Date.now());
+  // Read ?r= from the URL directly rather than useSearchParams: this is a
+  // static export, and useSearchParams would force a Suspense boundary for a
+  // value that never changes after mount.
+  const [shared] = useState(() => {
+    if (typeof window === "undefined") return null;
+    const token = new URLSearchParams(window.location.search).get("r");
+    return token ? decodeRepertoire(token) : null;
+  });
+  const [adopted, setAdopted] = useState(false);
+
+  const sharedBanner =
+    shared && !adopted ? (
+      <Card className="space-y-3 border-primary/40 p-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+          A shared repertoire
+        </p>
+        <p className="text-sm text-ink-soft">
+          Someone shared a repertoire with you: {shared.white.length} openings as
+          White, {shared.black.length} as Black. Adopting replaces yours — your
+          drilling history stays.
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            store.adopt(shared);
+            setAdopted(true);
+          }}
+          className={buttonClasses("primary", "md")}
+        >
+          Adopt this repertoire
+        </button>
+      </Card>
+    ) : null;
 
   if (!hasRepertoire(data)) {
     return (
@@ -34,6 +68,7 @@ export default function RepertoirePage() {
           title="Your openings, by position"
           subtitle="Most opening training drills lines from move 1. Real games only ever hand you a position — so this trains positions, spots transpositions, and shows you where your repertoire runs out."
         />
+        {sharedBanner}
         <Card className="space-y-4 p-5">
           <p className="text-sm text-ink-soft">
             Start by choosing a repertoire for both colours. Five questions, and
@@ -74,6 +109,8 @@ export default function RepertoirePage() {
         }
       />
 
+      {sharedBanner}
+
       <div className="flex flex-wrap gap-3">
         <Link href="/repertoire/drill" className={buttonClasses("primary", "lg")}>
           {counts.due > 0 ? `Drill — ${counts.due} due` : "Drill positions"}
@@ -84,6 +121,12 @@ export default function RepertoirePage() {
         </Link>
         <Link href="/repertoire/print" className={buttonClasses("secondary", "lg")}>
           Print sheet
+        </Link>
+        <Link href="/trainer" className={buttonClasses("ghost", "lg")}>
+          All 31 openings
+        </Link>
+        <Link href="/trainer/sparring" className={buttonClasses("ghost", "lg")}>
+          Spar a game
         </Link>
       </div>
 
