@@ -114,12 +114,25 @@ export function reviewQueue(
   );
   const strip = (id: string): NodeKey => id.slice(3);
   const dueNodes = due.map((id) => byKey.get(strip(id))!).filter(Boolean);
-  const freshNodes = fresh
+
+  // Fresh positions are shallow-first so a new repertoire is learned from the
+  // opening outward — but taking the shallowest N makes a whole session ply 0-3,
+  // where there is no move order to confuse and the deeper drills can't fire.
+  // So: anchor on the shallow head, then spread the rest across the depth range.
+  const sorted = fresh
     .map((id) => byKey.get(strip(id))!)
     .filter(Boolean)
-    .sort((a, b) => a.minPly - b.minPly)
-    .slice(0, newLimit);
-  return [...dueNodes, ...freshNodes];
+    .sort((a, b) => a.minPly - b.minPly);
+  const headCount = Math.min(Math.ceil(newLimit * 0.6), sorted.length);
+  const head = sorted.slice(0, headCount);
+  const tail = sorted.slice(headCount);
+  const wantTail = Math.min(newLimit - headCount, tail.length);
+  const step = wantTail > 0 ? Math.max(1, Math.floor(tail.length / wantTail)) : 1;
+  const spread: RepNode[] = [];
+  for (let i = 0; i < tail.length && spread.length < wantTail; i += step) {
+    spread.push(tail[i]);
+  }
+  return [...dueNodes, ...head, ...spread];
 }
 
 /** Count of positions due for review right now. */
