@@ -7,6 +7,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Chip } from "@/components/ui/Chip";
+import { getOpening } from "@/content/openings";
 import { TreeBoardPane } from "./TreeBoardPane";
 import { buildOutline, plyLabel, type OutlineRow } from "@/lib/repertoire/outline";
 import { nodeMastery } from "@/lib/repertoire/mastery";
@@ -149,13 +150,20 @@ export function RepertoireTree({
             if (row) setSelectedId(row.id);
           }}
         />
+        {/* Provenance, not "what we play": these are the opening files this
+            position comes from, so the opening's own name is correct here. */}
         {openingNames.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {openingNames.slice(0, 3).map((id) => (
-              <Link key={id} href={`/trainer/${id}`}>
-                <Chip tone="neutral">{id.replace(/-/g, " ")}</Chip>
-              </Link>
-            ))}
+          <div className="mt-3 space-y-1.5">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-soft">
+              From
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {openingNames.slice(0, 3).map((id) => (
+                <Link key={id} href={`/trainer/${id}`}>
+                  <Chip tone="neutral">{getOpening(id)?.name ?? id}</Chip>
+                </Link>
+              ))}
+            </div>
           </div>
         )}
       </div>

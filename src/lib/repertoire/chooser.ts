@@ -6,6 +6,7 @@
 // to the learner's stated preferences.
 
 import { getOpening } from "@/content/openings";
+import { systemNameFor } from "./naming";
 import {
   SLOTS,
   SLOTS_FOR_FIRST_MOVE,
@@ -157,13 +158,20 @@ function buildProfile(answers: Record<string, number>): Profile {
     const opt = item.options[choice];
     if (!opt) continue;
     const pull = opt.pull;
+    if (pull.firstMove) p.firstMove = pull.firstMove;
+    if (pull.prefer) {
+      // A slot-scoped answer ("against 1.e4 I want the imbalance") applies to
+      // THAT slot only. Letting it also rewrite the global style would mean a
+      // self-declared attacker who wants a solid Black defence gets told their
+      // whole repertoire is "a slow positional game".
+      p.prefer.set(pull.prefer.slot, pull.prefer.ids);
+      continue;
+    }
     if (pull.tension !== undefined) p.tension = pull.tension;
     if (pull.theoryLoad !== undefined) p.theoryLoad = pull.theoryLoad;
     if (pull.systemic !== undefined) p.systemic = pull.systemic ? 1 : -0.25;
     if (pull.counterattack !== undefined) p.counterattack = pull.counterattack ? 1 : -0.5;
     if (pull.structure) p.structures.push(pull.structure);
-    if (pull.firstMove) p.firstMove = pull.firstMove;
-    if (pull.prefer) p.prefer.set(pull.prefer.slot, pull.prefer.ids);
   }
   return p;
 }
@@ -198,10 +206,14 @@ export interface SlotChoice {
   why: string;
   /** How clearly this beat the runner-up. */
   confidence: "strong" | "fair" | "close";
+  /** Set only when it was genuinely close — surfaced on the results screen. */
+  runnerUp?: { systemName: string; openingName: string };
 }
 
 export interface RepertoirePlan {
   firstMove: FirstMove;
+  /** Why this opening move — "You chose it." or the derived reason. */
+  firstMoveReason: string;
   slots: SlotChoice[];
   /** Slots with no candidate in the library (should be none — surfaced honestly). */
   uncovered: SlotId[];
@@ -222,17 +234,112 @@ function reasonFor(t: OpeningTraits, p: Profile): string {
   return bits.slice(0, 2).join(", ");
 }
 
-/** Resolve White's first move: an explicit answer wins; "any" follows the style. */
-function pickFirstMove(p: Profile): FirstMove {
-  if (p.firstMove !== "any") return p.firstMove;
-  if (p.systemic > 0 && p.theoryLoad <= 2) return "d4"; // the London route
-  if (p.tension >= 4) return "e4";
-  return "d4";
+/** Resolve White's first move: an explicit answer wins; "any" follows the style.
+ *  Returns the reason too, so the results screen can explain the decision. */
+function pickFirstMove(p: Profile): { move: FirstMove; reason: string } {
+  if (p.firstMove !== "any") {
+    return { move: p.firstMove, reason: "You chose it." };
+  }
+  if (p.systemic > 0 && p.theoryLoad <= 2) {
+    return {
+      move: "d4",
+      reason: "You wanted one setup and very little theory — a queen's-pawn system gives you both.",
+    };
+  }
+  if (p.tension >= 4) {
+    return {
+      move: "e4",
+      reason: "You asked for sharp, open games, and 1.e4 gets you there fastest.",
+    };
+  }
+  return {
+    move: "d4",
+    reason: "Your answers lean positional, which 1.d4 structures suit.",
+  };
+}
+
+/**
+ * Why a candidate lost: the single largest penalty term in `distance`, phrased
+ * from the learner's own answers. Undefined when nothing really counted against
+ * it (i.e. it was a close call on merit).
+ */
+function demeritFor(t: OpeningTraits, p: Profile, slot: SlotId): string | undefined {
+  const terms: { cost: number; text: string }[] = [];
+
+  const theoryGap = t.theoryLoad - p.theoryLoad;
+  if (theoryGap > 0) {
+    terms.push({
+      cost: theoryGap * 2.0,
+      text: "more theory than you said you'd memorize",
+    });
+  }
+  const tensionGap = t.tension - p.tension;
+  if (Math.abs(tensionGap) >= 2) {
+    terms.push({
+      cost: Math.abs(tensionGap),
+      text: tensionGap > 0 ? "sharper than you asked for" : "quieter than you asked for",
+    });
+  }
+  if (p.systemic > 0 && !t.systemic) {
+    terms.push({ cost: 2.0, text: "a branching tree, not one repeatable setup" });
+  }
+  if (p.counterattack > 0 && !t.counterattack) {
+    terms.push({ cost: 1.4, text: "plays for balance rather than counterplay" });
+  }
+  const preferred = p.prefer.get(slot);
+  if (preferred && !preferred.includes(t.id)) {
+    terms.push({ cost: 8.5, text: "not the approach you picked for this reply" });
+  }
+
+  terms.sort((a, b) => b.cost - a.cost);
+  return terms[0]?.text;
+}
+
+export interface Candidate {
+  openingId: string;
+  /** The opening file's own name — provenance. */
+  openingName: string;
+  /** What WE call the system we'd play here. */
+  systemName: string;
+  rank: number;
+  score: number;
+  /** How far behind the leader (0 for the leader itself). */
+  gapToLeader: number;
+  why: string;
+  demerit?: string;
+}
+
+/**
+ * Every opening that could fill a slot, best first, with a reason each way.
+ * `scoreRepertoire` consumes this too, so the results screen and the swap sheet
+ * can never disagree about the ranking.
+ */
+export function rankCandidates(
+  answers: Record<string, number>,
+  slot: SlotId,
+  firstMove: FirstMove,
+): Candidate[] {
+  const p = buildProfile(answers);
+  const scored = candidatesFor(slot, firstMove)
+    .map((t) => ({ t, score: distance(t, p, slot) }))
+    .sort((a, b) => a.score - b.score);
+  const leader = scored[0]?.score ?? 0;
+
+  return scored.map(({ t, score }, i) => ({
+    openingId: t.id,
+    openingName: getOpening(t.id)?.name ?? t.id,
+    systemName: systemNameFor(slot, t.id),
+    rank: i + 1,
+    score,
+    gapToLeader: score - leader,
+    why: reasonFor(t, p),
+    demerit: i === 0 ? undefined : demeritFor(t, p, slot),
+  }));
 }
 
 export function scoreRepertoire(answers: Record<string, number>): RepertoirePlan {
   const p = buildProfile(answers);
-  const firstMove = pickFirstMove(p);
+  const { move: firstMove, reason: firstMoveReason } = pickFirstMove(p);
 
   const wanted: SlotId[] = [
     ...SLOTS_FOR_FIRST_MOVE[firstMove],
@@ -245,24 +352,25 @@ export function scoreRepertoire(answers: Record<string, number>): RepertoirePlan
   const uncovered: SlotId[] = [];
 
   for (const slot of wanted) {
-    const ranked = candidatesFor(slot, firstMove)
-      .map((t) => ({ t, d: distance(t, p, slot) }))
-      .sort((a, b) => a.d - b.d);
+    const ranked = rankCandidates(answers, slot, firstMove);
     if (ranked.length === 0) {
       uncovered.push(slot);
       continue;
     }
     const best = ranked[0];
-    const gap = ranked.length > 1 ? ranked[1].d - best.d : 99;
-    const opening = getOpening(best.t.id);
+    const gap = ranked.length > 1 ? ranked[1].gapToLeader : 99;
     slots.push({
       slot,
       label: SLOTS[slot].label,
       prompt: SLOTS[slot].prompt,
-      openingId: best.t.id,
-      openingName: opening?.name ?? best.t.id,
-      why: reasonFor(best.t, p),
+      openingId: best.openingId,
+      openingName: best.openingName,
+      why: best.why,
       confidence: gap >= 2 ? "strong" : gap >= 0.8 ? "fair" : "close",
+      runnerUp:
+        ranked[1] && ranked[1].gapToLeader < 0.8
+          ? { systemName: ranked[1].systemName, openingName: ranked[1].openingName }
+          : undefined,
     });
   }
 
@@ -284,6 +392,7 @@ export function scoreRepertoire(answers: Record<string, number>): RepertoirePlan
 
   return {
     firstMove,
+    firstMoveReason,
     slots,
     uncovered,
     white: [...white],

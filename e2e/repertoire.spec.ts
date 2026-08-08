@@ -30,14 +30,36 @@ test("chooser builds a repertoire and the tree renders it", async ({ page }) => 
   await page.goto("/repertoire/choose");
   await page.getByRole("button", { name: /^Start/ }).click();
 
-  // Five questions; answer the first option each time.
+  // Five questions; answer the first option each time. Question 3 (the opening
+  // move) carries the cost comparison that answers "why not the London?".
   for (let i = 0; i < 5; i++) {
+    if (i === 2) {
+      await expect(page.getByText("What each costs you")).toBeVisible();
+      // Rendered as separate spans, so assert the pieces.
+      await expect(page.getByText(/~\d+ positions/).first()).toBeVisible();
+      await expect(page.getByText(/They can answer 1…/).first()).toBeVisible();
+    }
     await page.locator("button").filter({ hasText: /^A/ }).first().click();
   }
 
   // The plan screen names White's opening move and offers a swap per slot.
   await expect(page.getByText("You open with")).toBeVisible();
   await expect(page.getByRole("button", { name: "Swap this" }).first()).toBeVisible();
+
+  // The count is reframed as answers owed, not openings to learn.
+  await expect(page.getByText(/answers as White/).first()).toBeVisible();
+  await expect(page.getByText(/not \d+ openings to learn/)).toBeVisible();
+
+  // A White slot answering 1...c6 must NOT be headlined with the defence's
+  // name — the opening is demoted to a provenance link instead.
+  const caroCard = page
+    .locator("div")
+    .filter({ hasText: /^They play 1\.\.\.c6/ })
+    .first();
+  await expect(caroCard).toBeVisible();
+  await expect(
+    page.getByText(/from the Caro-Kann Defence lines/).first(),
+  ).toBeVisible();
 
   await page.getByRole("button", { name: "Lock it in" }).click();
   await expect(page).toHaveURL(/\/repertoire\/?$/);

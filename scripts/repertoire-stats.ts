@@ -20,6 +20,10 @@ import {
   type RepTree,
 } from "../src/lib/repertoire/tree";
 import { OPENINGS } from "../src/content/openings";
+import {
+  systemNameCoverageErrors,
+  traitCoverageErrors,
+} from "../src/lib/repertoire/traits";
 import type { Orientation } from "../src/content/types";
 
 let failures = 0;
@@ -158,6 +162,21 @@ function checkReplyData(tree: RepTree): void {
   }
 }
 
+/**
+ * Every (slot, opening) pair must resolve to a name written from OUR seat --
+ * otherwise a White slot answering 1...c6 gets headlined "Caro-Kann Defence",
+ * reading as though we were told to play it as White.
+ */
+function checkNaming(): void {
+  console.log("\nSystem names (what WE play in each slot)");
+  const errors = [...systemNameCoverageErrors(), ...traitCoverageErrors()];
+  if (errors.length) {
+    for (const e of errors) fail(e);
+  } else {
+    console.log("  ✓ every slot/opening pair resolves to an our-seat name");
+  }
+}
+
 // --- Main -------------------------------------------------------------------
 assertEpNormalization();
 
@@ -189,6 +208,7 @@ console.log(`\nShared positions (in >1 opening): ${sharedPositions(tree).length}
 reportConflicts(tree, "white");
 reportConflicts(tree, "black");
 reportCoverage(tree);
+checkNaming();
 checkReplyData(tree);
 
 console.log(

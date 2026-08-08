@@ -20,7 +20,8 @@ export interface SlotCoverage {
   label: string;
   prompt: string;
   covered: boolean;
-  openingName?: string;
+  /** The system WE play here — never the opening file's name. */
+  systemName?: string;
   /** Plies you produce cold vs plies authored. */
   coldDepth: number;
   bookDepth: number;
@@ -44,7 +45,7 @@ export function SlotCoverageList({ rows }: { rows: SlotCoverage[] }) {
             </span>
             <span className="min-w-0 flex-1 text-ink-soft">{r.prompt}</span>
             <span className="shrink-0 text-right text-ink">
-              {r.openingName ?? "nothing yet"}
+              {r.systemName ?? "nothing yet"}
             </span>
           </li>
         ))}

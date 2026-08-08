@@ -47,8 +47,11 @@ export const SLOTS: Record<SlotId, SlotMeta> = {
   "w-vs-scandi": { id: "w-vs-scandi", label: "vs the Scandinavian", prompt: "They play 1...d5", color: "white", prefix: ["e4", "d5"] },
   "w-vs-alekhine": { id: "w-vs-alekhine", label: "vs the Alekhine", prompt: "They play 1...Nf6", color: "white", prefix: ["e4", "Nf6"] },
   "w-vs-pirc": { id: "w-vs-pirc", label: "vs the Pirc/Modern", prompt: "They play 1...d6", color: "white", prefix: ["e4", "d6"] },
-  "w-vs-d5": { id: "w-vs-d5", label: "vs 1...d5", prompt: "They meet your queen's-pawn opening with 1...d5", color: "white", prefix: ["d4", "d5"] },
-  "w-vs-indian": { id: "w-vs-indian", label: "vs 1...Nf6", prompt: "They play an Indian defence with 1...Nf6", color: "white", prefix: ["d4", "Nf6"] },
+  // Prompts stay opener-agnostic: these two slots are also used by 1.c4/1.Nf3/
+  // 1.b3 repertoires (see SLOTS_FOR_FIRST_MOVE), where "your queen's-pawn
+  // opening" would simply be false.
+  "w-vs-d5": { id: "w-vs-d5", label: "vs a classical ...d5", prompt: "They answer with a classical ...d5 setup", color: "white", prefix: ["d4", "d5"] },
+  "w-vs-indian": { id: "w-vs-indian", label: "vs an Indian ...Nf6", prompt: "They answer with an Indian ...Nf6 setup", color: "white", prefix: ["d4", "Nf6"] },
   "b-vs-e4": { id: "b-vs-e4", label: "vs 1.e4", prompt: "They open 1.e4", color: "black", prefix: ["e4"] },
   "b-vs-d4": { id: "b-vs-d4", label: "vs 1.d4", prompt: "They open 1.d4", color: "black", prefix: ["d4"] },
   "b-vs-flank": { id: "b-vs-flank", label: "vs flank openings", prompt: "They open 1.c4, 1.Nf3 or 1.b3", color: "black", prefix: [] },
@@ -129,6 +132,60 @@ export const TRAITS: OpeningTraits[] = [
   { id: "larsen", slots: ["w-vs-d5", "w-vs-indian"], firstMoves: ["b3"], tension: 3, theoryLoad: 1, systemic: true, structure: "fianchetto", counterattack: false },
 ];
 
+/**
+ * What WE call the system we play in a slot.
+ *
+ * Needed because an `Opening` file holds BOTH sides' moves and is named for the
+ * opening — so a White slot answering 1...c6 would otherwise be headlined
+ * "Caro-Kann Defence", reading as though we were being told to play the
+ * Caro-Kann as White.
+ *
+ * Only the pairs where the slot's colour differs from the opening's
+ * `trainerColor` need a row: the other 37 pairs are named correctly by the
+ * opening itself (see `systemNameFor`). `after` matches OUR resolved SAN moves
+ * from the slot position, longest prefix wins; a row without `after` is the
+ * default for that pair.
+ */
+export interface SystemNameRow {
+  slot: SlotId;
+  openingId: string;
+  after?: string[];
+  name: string;
+}
+
+export const SYSTEM_NAMES: SystemNameRow[] = [
+  // White vs the Sicilian
+  { slot: "w-vs-sicilian", openingId: "sicilian-defence", name: "Open Sicilian (2.Nf3, 3.d4)" },
+  { slot: "w-vs-sicilian", openingId: "sicilian-defence", after: ["c3"], name: "Alapin (2.c3)" },
+
+  // White vs the French
+  { slot: "w-vs-french", openingId: "french-defence", name: "Advance Variation (3.e5)" },
+  { slot: "w-vs-french", openingId: "french-defence", after: ["d4", "Nc3"], name: "Classical (3.Nc3)" },
+  { slot: "w-vs-french", openingId: "french-defence", after: ["d4", "Nd2"], name: "Tarrasch (3.Nd2)" },
+  { slot: "w-vs-french", openingId: "french-defence", after: ["d4", "exd5"], name: "Exchange Variation" },
+
+  // White vs the Caro-Kann
+  { slot: "w-vs-caro", openingId: "caro-kann", name: "Classical (3.Nc3)" },
+  { slot: "w-vs-caro", openingId: "caro-kann", after: ["d4", "e5"], name: "Advance Variation (3.e5)" },
+  { slot: "w-vs-caro", openingId: "caro-kann", after: ["d4", "exd5"], name: "Exchange Variation" },
+  { slot: "w-vs-caro", openingId: "caro-kann", after: ["Nc3"], name: "Two Knights Attack" },
+
+  // White vs the Scandinavian / Alekhine / Pirc
+  { slot: "w-vs-scandi", openingId: "scandinavian", name: "Main line (2.exd5, 3.Nc3)" },
+  { slot: "w-vs-alekhine", openingId: "alekhine", name: "Modern Variation (4.Nf3)" },
+  { slot: "w-vs-alekhine", openingId: "alekhine", after: ["e5", "d4", "c4"], name: "Four Pawns Attack" },
+  { slot: "w-vs-pirc", openingId: "pirc", name: "Classical System (Nf3 & Be2)" },
+  { slot: "w-vs-pirc", openingId: "pirc", after: ["d4", "Nc3", "f4"], name: "Austrian Attack" },
+
+  // Black playing 1...e5 — the file is named for White's system, not ours.
+  { slot: "b-vs-e4", openingId: "italian-game", name: "1…e5 — Italian / Giuoco Piano" },
+  { slot: "b-vs-e4", openingId: "ruy-lopez", name: "1…e5 — Ruy Lopez lines" },
+
+  // Black vs flank openings — this slot has no single starting position.
+  { slot: "b-vs-flank", openingId: "english-opening", name: "…c5 Symmetrical vs 1.c4" },
+  { slot: "b-vs-flank", openingId: "reti", name: "…d5 vs the Réti" },
+];
+
 const BY_ID = new Map(TRAITS.map((t) => [t.id, t]));
 
 export function traitsFor(openingId: string): OpeningTraits | undefined {
@@ -165,6 +222,36 @@ export function firstMoveFor(openingId: string): FirstMove | null {
     default:
       return null;
   }
+}
+
+/**
+ * Dev guard: every (slot, opening) pair resolves to a real system name — either
+ * from a curated row or because the slot's colour matches the opening's
+ * `trainerColor`. Anything left over would fall through to a bare move gloss,
+ * which is a safety net rather than a name.
+ */
+export function systemNameCoverageErrors(): string[] {
+  const errors: string[] = [];
+  const curated = new Set(SYSTEM_NAMES.map((r) => `${r.slot}|${r.openingId}`));
+  for (const row of SYSTEM_NAMES) {
+    if (!BY_ID.has(row.openingId)) {
+      errors.push(`SYSTEM_NAMES row for unknown opening "${row.openingId}"`);
+    } else if (!BY_ID.get(row.openingId)!.slots.includes(row.slot)) {
+      errors.push(`SYSTEM_NAMES row "${row.openingId}" is not a candidate for slot "${row.slot}"`);
+    }
+  }
+  for (const t of TRAITS) {
+    const opening = OPENINGS.find((o) => o.id === t.id);
+    if (!opening) continue;
+    for (const slot of t.slots) {
+      if (SLOTS[slot].color === opening.trainerColor) continue; // named by the opening itself
+      if (curated.has(`${slot}|${t.id}`)) continue;
+      errors.push(
+        `no system name for slot "${slot}" + opening "${t.id}" (slot is ${SLOTS[slot].color}, opening trains ${opening.trainerColor})`,
+      );
+    }
+  }
+  return errors;
 }
 
 /** Dev guard: every trait row points at a real opening, and vice versa. */

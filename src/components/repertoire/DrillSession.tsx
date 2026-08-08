@@ -214,8 +214,10 @@ export function DrillSession({ items }: { items: DrillItem[] }) {
           <div className="mx-auto max-w-sm">
             <Board fen={item.fen} orientation={item.color} interactive={false} />
           </div>
+          {/* The opening's own name is the right answer here whichever side you
+              play — naming the position is exactly what this drill teaches. */}
           <p className="font-display text-lg font-semibold text-ink">
-            Which opening is this?
+            Which opening is on the board?
           </p>
           <div className="space-y-2.5">
             {item.options.map((opt, i) => (

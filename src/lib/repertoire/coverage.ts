@@ -1,28 +1,14 @@
 // Per-slot coverage and depth: which repertoire decisions are answered, and how
 // far into each you can actually go from the position alone.
 
-import { Chess } from "chess.js";
-import { getOpening } from "@/content/openings";
 import { SLOTS, type SlotId } from "./traits";
-import { nodeKey, resolveEdge, type RepTree } from "./tree";
+import { resolveEdge, type RepTree } from "./tree";
+import { keyForSlot, ourMovesFromSlot, systemNameFor } from "./naming";
 import { coldDepth } from "./mastery";
 import type { RepertoireData } from "./store";
 import type { RepertoireTrees } from "./useRepertoire";
 import type { SrsData } from "../srs/store";
 import type { SlotCoverage } from "@/components/repertoire/HealthWidgets";
-
-/** Node key for the position a slot answers. */
-function keyForSlot(slot: SlotId): string | null {
-  const game = new Chess();
-  for (const san of SLOTS[slot].prefix) {
-    try {
-      game.move(san);
-    } catch {
-      return null;
-    }
-  }
-  return nodeKey(game.fen());
-}
 
 /** Plies of authored book from a position, down our resolved main path. */
 function bookDepth(
@@ -76,13 +62,19 @@ export function slotCoverage(
       continue;
     }
 
-    const openingName = getOpening(node.openings[0])?.name;
+    // Name the system WE play, not the opening file — otherwise a White row
+    // answering 1...c6 reads "Caro-Kann Defence".
+    const systemName = systemNameFor(
+      slot,
+      node.openings[0],
+      ourMovesFromSlot(tree, slot, data.choices),
+    );
     rows.push({
       slot,
       label: meta.label,
       prompt: meta.prompt,
       covered: true,
-      openingName,
+      systemName,
       coldDepth: coldDepth(tree, node.key, meta.color, data.choices, srs),
       bookDepth: bookDepth(tree, node.key, meta.color, data.choices),
     });

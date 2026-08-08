@@ -14,6 +14,7 @@ import { buttonClasses } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { CheckIcon, ChevronRightIcon } from "@/components/icons";
 import { RepertoirePlanView } from "@/components/repertoire/RepertoirePlanView";
+import { FirstMoveCost } from "@/components/repertoire/FirstMoveCost";
 import {
   CHOOSER_ITEMS,
   scoreRepertoire,
@@ -100,8 +101,14 @@ export default function RepertoireChooserPage() {
         />
         <RepertoirePlanView
           plan={plan}
+          answers={answers}
           onChange={setPlan}
           onConfirm={() => confirm(plan)}
+          onRebuild={(firstMoveOptionIndex) => {
+            const next = { ...answers, "first-move": firstMoveOptionIndex };
+            setAnswers(next);
+            setPlan(scoreRepertoire(next));
+          }}
         />
       </main>
     );
@@ -126,6 +133,10 @@ export default function RepertoireChooserPage() {
         </p>
         {item.help && <p className="text-sm text-ink-soft">{item.help}</p>}
       </div>
+
+      {/* The cost table is UI, so it's special-cased here rather than added as a
+          field on ChooserItem — the item bank stays data. */}
+      {item.id === "first-move" && <FirstMoveCost answers={answers} />}
 
       <div className="space-y-2.5">
         {item.options.map((opt, i) => (
